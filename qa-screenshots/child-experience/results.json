@@ -66,9 +66,9 @@
       "detail": ""
     },
     {
-      "name": "A: \"move closer\" guidance appeared on approach",
+      "name": "A: near the target the prompt says \"Move a little closer\"",
       "pass": true,
-      "detail": "informational"
+      "detail": "Move a little closer to the screen"
     },
     {
       "name": "A: specific prompt \"Examine Rover Data\"",
@@ -669,6 +669,21 @@
       "name": "E 1920x1080 decision: controls visible without scrolling",
       "pass": true,
       "detail": "{\"card\":{\"top\":254,\"bottom\":826,\"left\":530,\"right\":1390,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":2}"
+    },
+    {
+      "name": "F: guided mode offers help after ~45 s without progress",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "F: the offer does not open a panel or move the hint level",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "F: the offer does not change XP",
+      "pass": true,
+      "detail": ""
     },
     {
       "name": "No browser errors, warnings or failed requests",

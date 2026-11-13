@@ -41,9 +41,10 @@ await section('A+B',async()=>{
   check('A: SHOW ME pans the camera toward the target',await p.evaluate(()=>window.__ripple.scene.showingMe===true));
   await p.waitForTimeout(2600);
   // walk to terminal, check "move closer" then E prompt
-  let sawCloser=false;
-  await walkTo(p,664,694,s=>{if(s.guideDistance==='near'&&!s.nearestKind)sawCloser=true;return s.nearestKind==='field'});
-  check('A: "move closer" guidance appeared on approach',sawCloser||true,'informational');
+  await walkTo(p,664,694,s=>s.guideDistance==='near');await p.waitForTimeout(250);
+  const closer=await p.locator('#prompt-text').textContent();
+  check('A: near the target the prompt says "Move a little closer"',/Move a little closer to the screen/.test(closer),closer);
+  await walkTo(p,664,694,s=>s.nearestKind==='field');
   await p.waitForTimeout(200);
   check('A: specific prompt "Examine Rover Data"',(await p.locator('#prompt-text').textContent())==='Examine Rover Data');
   await shot(p,r,`${DIR}/04-device-prompt.png`);
@@ -312,6 +313,16 @@ for(const [w,h] of [[1024,640],[1920,1080]])await section('E '+w,async()=>{
   await enter(p,'research');await useEquipment(p);await act(p,'next');await act(p,'next');await act(p,'research-done');
   await exitRoom(p);await enter(p,'command');await useEquipment(p);
   await fits(p,`E ${w}x${h} decision`);await shot(p,r,`${DIR}/17-decision-${w}x${h}.png`);
+  await context.close();
+});
+// =============================================================== F · help is offered (not forced) after a quiet period
+await section('F',async()=>{
+  const {page:p,context}=await openGame(browser,{errors:errs});
+  await p.locator('#science-mission-button').click();await act(p,'close');
+  await p.waitForTimeout(52000);
+  check('F: guided mode offers help after ~45 s without progress',await p.locator('#help-button.offer').count()===1&&/Need a hint/.test(await p.locator('#nuri-text').textContent()));
+  check('F: the offer does not open a panel or move the hint level',!(await p.locator('#panel-overlay').isVisible())&&await helpLevel(p)===0);
+  check('F: the offer does not change XP',await xp(p)===0);
   await context.close();
 });
 check('No browser errors, warnings or failed requests',errs.length===0,errs.join(' | '));
