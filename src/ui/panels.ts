@@ -30,15 +30,15 @@ export function setupPanels(deps:Deps){
   // ------------------------------------------------------------------ help
   function help(l:Locale){
     const m=deps.mission(),stage=m.getState().stage as StageKey,room=m.room(),seq=cardSeq(),ladder=hintLadder(stage,room,l,seq),level=P.hintLevel(hintKey());
-    const cats={goal:HELP.goal,nav:HELP.nav,control:HELP.control,science:HELP.science};
-    const rows=ladder.filter(h=>h.level<=level).map(h=>`<div class="hint-row hint-${h.category}"><small>${pick(cats[h.category],l)}</small><p>${esc(h.text)}</p>${h.category==='control'?'<div class="key-demo" aria-hidden="true"><kbd>E</kbd><span>×1</span></div>':''}</div>`).join('');
+    const h=ladder[level],icon={goal:'guide/guide-beacon',nav:'ui/ui-map-pixel',control:'ui/ui-help-pixel',science:'ui/science-question'}[h.category];
     const showMe=level>=1&&!['ready','debrief','complete'].includes(stage)&&!m.card();
     const graph=level>=3&&m.graphVisible();
-    return `<h2 id="panel-title">${pick(HELP.title,l)}</h2>${nuriLine(level===0?(l==='en'?'Here’s your goal. Want another hint?':'ده هدفك. عايز تلميح كمان؟'):level>=3?pick(HELP.noMore,l):(l==='en'?'Here’s a little more help.':'خد مساعدة كمان شوية.'),l)}
-      <div class="hint-list">${rows}</div><p class="card-note">${pick(HELP.noPenalty,l)}</p>
-      <div class="panel-actions">${level<3?`<button type="button" data-panel-action="more" class="learning-next">${pick(HELP.more,l)} <span>${level+1}/3</span></button>`:''}
-      ${showMe?`<button type="button" data-panel-action="show-me">${pick(HELP.showMe,l)}</button>`:''}${graph?`<button type="button" data-panel-action="show-graph">${pick(HELP.showGraph,l)}</button>`:''}
-      <button type="button" data-panel-action="close">${pick(HELP.back,l)}</button></div>`;
+    return `<h2 id="panel-title" class="sr-only">${pick(HELP.title,l)}</h2>
+      <div class="help-scene hint-${h.category}"><img class="help-icon" src="${asset(icon)}" alt=""/>${nuriLine(esc(h.text),l)}</div>
+      <div class="help-dots" aria-label="${level+1}/4">${ladder.map((_,i)=>`<i class="${i<=level?'on':''}"></i>`).join('')}</div>
+      <div class="panel-actions">${showMe?`<button type="button" data-panel-action="show-me">${pick(HELP.showMe,l)}</button>`:''}${graph?`<button type="button" data-panel-action="show-graph">${pick(HELP.showGraph,l)}</button>`:''}
+      ${level<3?`<button type="button" data-panel-action="more">${pick(HELP.more,l)}</button>`:''}
+      <button type="button" class="learning-next" data-panel-action="close">${pick(HELP.back,l)}</button></div>`;
   }
   // Hints opened over a science card describe that card; otherwise they describe the world objective.
   function cardSeq(){const c=deps.mission().card();return c&&['field','research','decide','later','debrief'].includes(c.seq)?c.seq:null}
@@ -56,7 +56,7 @@ export function setupPanels(deps:Deps){
       const pct=nt?Math.round((xp-t.xp)/(nt.xp-t.xp)*100):100;
       body=`<div class="pp-xp"><img src="${asset('ui/ui-xp-pixel')}" alt=""/><div><small>${pick(PASSPORT.xp,l)}</small><strong id="passport-xp">${bdi(xp)}</strong></div><div class="pp-title"><small>${pick(PASSPORT.titleL,l)}</small><strong>${esc(t.name[l])}</strong><div class="xp-bar"><i style="width:${pct}%"></i></div><span>${nt?pick(PASSPORT.nextTitle,l,{xp:bdi(nt.xp-xp),title:nt.name[l]}):pick(PASSPORT.maxTitle,l)}</span></div></div>
         <h3>${pick(PASSPORT.badges,l)} · ${bdi(`${s.achievements.length}/${ACHIEVEMENT_ORDER.length}`)}</h3>
-        <div class="badge-grid">${ACHIEVEMENT_ORDER.map(id=>{const got=s.achievements.includes(id),a=ACHIEVEMENTS[id];return `<div class="badge ${got?'got':''}" data-badge="${id}"><img src="${asset('badges/badge-'+id+(got?'':'-locked'))}" alt=""/><b>${esc(a.name[l])}</b><small>${got?esc(a.how[l]):`${pick(PASSPORT.locked,l)} · ${esc(a.how[l])}`}</small></div>`}).join('')}</div>
+        <div class="badge-grid">${ACHIEVEMENT_ORDER.map(id=>{const got=s.achievements.includes(id),a=ACHIEVEMENTS[id];return `<div class="badge ${got?'got':''}" data-badge="${id}" title="${esc(a.how[l])}"><img src="${asset('badges/badge-'+id+(got?'':'-locked'))}" alt=""/><b>${esc(a.name[l])}</b><small>${got?esc(a.how[l]):`${pick(PASSPORT.locked,l)} · ${esc(a.how[l])}`}</small></div>`}).join('')}</div>
         <h3>${pick(PASSPORT.nuriLight,l)}</h3><div class="light-row">${NURI_LIGHTS.map(n=>{const ok=!n.unlock||s.achievements.includes(n.unlock);return `<button type="button" class="light ${s.settings.nuriLight===n.id?'on':''}" ${ok?`data-panel-action="light-${n.id}"`:'disabled'} title="${ok?'':esc(pick(PASSPORT.unlockWith,l,{badge:ACHIEVEMENTS[n.unlock!].name[l]}))}"><i style="background:${n.css}"></i>${esc(n.name[l])}${ok?'':' 🔒'.replace('🔒','·')}</button>`}).join('')}</div>`;
     }else if(tab==='missions'){
       const m=deps.mission().getState(),stage=m.stage as StageKey,o=OBJECTIVES[stage];
@@ -69,7 +69,7 @@ export function setupPanels(deps:Deps){
       body=`<h3>${pick(PASSPORT.science,l)} · ${bdi(`${s.cards.length}/${DISCOVERIES.length}`)}</h3><div class="disc-grid">${DISCOVERIES.map(d=>{const got=s.cards.includes(d.id);return got?`<button type="button" class="disc got" data-panel-action="card-${d.id}"><img src="${asset(d.icon)}" alt=""/><b>${esc(d.title[l])}</b><small>${d.kind==='exhibit'?(l==='en'?'Exhibit':'معروض'):(l==='en'?'Mission':'مهمة')}</small></button>`:`<div class="disc"><img src="${asset(d.icon)}" alt="" class="dim"/><b>?</b><small>${pick(PASSPORT.foundIn,l,{where:d.where[l]})}</small></div>`}).join('')}</div>
         <h3>${pick(PASSPORT.places,l)} · ${bdi(`${s.places.length}/${BUILDINGS.length}`)}</h3><div class="place-grid">${BUILDINGS.map(b=>`<span class="${s.places.includes(b.id)?'got':''}">${s.places.includes(b.id)?'✓':'·'} ${esc(l==='en'?b.name:b.ar)}</span>`).join('')}</div>`;
     }
-    return `<h2 id="panel-title"><img src="${asset('ui/ui-passport-pixel')}" alt=""/>${pick(PASSPORT.title,l)}</h2>${suggest(l)}<div class="tabs" role="tablist">${tabs}</div><div class="pp-body">${body}</div><p class="card-note">${pick(PASSPORT.noPublic,l)}</p>`;
+    return `<h2 id="panel-title"><img src="${asset('ui/ui-passport-pixel')}" alt=""/>${pick(PASSPORT.title,l)}</h2><div class="tabs" role="tablist">${tabs}</div><div class="pp-body">${body}</div><p class="card-note">${pick(PASSPORT.noPublic,l)}</p>`;
   }
   function suggest(l:Locale){
     const s=P.get(),pref=s.settings.preference,m=deps.mission().getState(),o=OBJECTIVES[m.stage as StageKey];

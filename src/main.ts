@@ -38,14 +38,13 @@ function promptText():{text:string;key:boolean}|null{
   return null;
 }
 function renderPassportChip(){
-  const xp=progress.xp(),p=progress.get();
-  $('resource-rows').innerHTML=`<button type="button" id="passport-chip" class="passport-chip"><img src="${asset('ui/ui-passport-pixel')}" alt=""/><div><small>${pick(PASSPORT.xp,locale)}</small><strong><img src="${asset('ui/ui-xp-pixel')}" alt=""/> <span id="hud-xp">${bdi(xp)}</span></strong><span class="chip-title">${esc(titleFor(xp).name[locale])}</span></div><span class="chip-badges"><b>${bdi(p.achievements.length)}</b>/${bdi(Object.keys(ACHIEVEMENTS).length)}<small>${pick(PASSPORT.badges,locale)}</small></span></button>`;
+  const xp=progress.xp();
+  $('resource-rows').innerHTML=`<button type="button" id="passport-chip" class="passport-chip pixel-panel" aria-label="${esc(pick(PASSPORT.xp,locale))}: ${xp}"><img src="${asset('ui/ui-xp-pixel')}" alt=""/><strong id="hud-xp">${bdi(xp)}</strong><small>XP</small></button>`;
   $('passport-chip').onclick=()=>panels.toggle('passport');
 }
 function render(){
   document.documentElement.lang=locale;document.documentElement.dir=locale==='ar'?'rtl':'ltr';
   document.body.classList.toggle('guided',progress.get().settings.guidance==='guided');
-  $('sol-label').textContent=pick(MISC.sol,locale);$('time-label').textContent=pick(MISC.demo,locale);
   renderPassportChip();
   $('nuri-name').textContent=locale==='en'?'NURI':'نوري';
   if(!$('nuri-text').textContent)$('nuri-text').textContent=pick(OBJECTIVES[science.getState().stage as StageKey].intro,locale);
@@ -53,9 +52,7 @@ function render(){
   if(pr){$('prompt-key').classList.toggle('hidden',!pr.key);$('prompt-move').classList.toggle('hidden',pr.key);$('prompt-text').textContent=pr.text}
   const moved=state.exploredCourtyard||state.room!=null;$('move-hint').classList.toggle('hidden',moved||modals.any()||science.getState().stage==='ready');
   $('move-hint-text').textContent=pick(MISC.moveHint,locale);
-  $('toolbar').innerHTML=['tablet','tool','scanner','sample'].map((n,i)=>`<button type="button" class="slot" aria-label="${esc(pick(MISC.items[i],locale))}"><small>${i+1}</small><img src="${asset('ui/ui-'+n+'-pixel')}" alt=""/></button>`).join('');
-  document.querySelectorAll<HTMLButtonElement>('.slot').forEach(b=>b.onclick=()=>panels.toggle('inventory'));
-  for(const [id,en,ar] of [['map-button','Map (M)','الخريطة (M)'],['journal-button','Science Passport (J)','جواز السفر العلمي (J)'],['inventory-button','Equipment (B)','المعدات (B)'],['pause-button','Settings (Esc)','الإعدادات (Esc)']]){const b=$(id);b.title=locale==='en'?en:ar;b.setAttribute('aria-label',b.title)}
+  for(const [id,en,ar] of [['map-button','Map (M)','الخريطة (M)'],['journal-button','My badges (J)','شاراتي (J)'],['pause-button','Settings (Esc)','الإعدادات (Esc)']]){const b=$(id);b.title=locale==='en'?en:ar;b.setAttribute('aria-label',b.title)}
   science.renderHud();
   if(panels.isOpen())panels.render();
 }
@@ -64,9 +61,8 @@ function switchLocale(){locale=locale==='en'?'ar':'en';progress.setting('locale'
 progress.onReward(n=>{
   const l=locale,parts:string[]=[];
   if(n.xp)parts.push(`<span class="t-xp"><img src="${asset('ui/ui-xp-pixel')}" alt=""/>${pick(TOAST.xp,l,{xp:n.xp})}</span>`);
-  if(n.achievement)parts.push(`<span class="t-badge"><img src="${asset('badges/badge-'+n.achievement)}" alt=""/>${esc(pick(TOAST.badge,l,{name:ACHIEVEMENTS[n.achievement].name[l]}))}</span>`);
-  for(const c of n.cards){const d=discovery(c);if(d)parts.push(`<span class="t-card"><img src="${asset(d.icon)}" alt=""/>${esc(pick(TOAST.card,l,{name:d.title[l]}))}</span>`)}
-  if(n.title)parts.push(`<span class="t-title">${esc(pick(TOAST.title,l,{name:titleFor(progress.xp()).name[l]}))}</span>`);
+  if(n.achievement)parts.push(`<span class="t-badge"><img src="${asset('badges/badge-'+n.achievement)}" alt=""/>${esc(ACHIEVEMENTS[n.achievement].name[l])}</span>`);
+  // Cards and titles are collected quietly in the Passport; pop-ups stay to one or two short lines.
   if(parts.length)toast(parts.join(''));
   renderPassportChip();
 });
@@ -88,7 +84,7 @@ window.addEventListener('ripple-language',switchLocale);
 window.addEventListener('ripple-scene-ready',()=>{send('locale',locale);send('nuri-light',NURI_LIGHTS.find(n=>n.id===progress.get().settings.nuriLight)!.color);science.updateGuide()});
 document.addEventListener('keydown',e=>{if(!modals.isOpen('science')||modals.top()!=='science')return;
   if(e.key==='ArrowLeft'||e.key==='ArrowRight'){const rtl=locale==='ar',fwd=(e.key==='ArrowRight')!==rtl;const btn=document.querySelector<HTMLButtonElement>(fwd?'#science-content .learning-next:not([disabled])':'#science-content .card-back');if(btn&&(fwd?btn.dataset.scienceAction==='next':true)){e.preventDefault();btn.click()}}});
-for(const [id,f] of [['map-button',()=>panels.toggle('map')],['journal-button',()=>panels.toggle('passport')],['inventory-button',()=>panels.toggle('inventory')],['pause-button',()=>panels.toggle('settings')]] as const)$(id).addEventListener('click',guarded(f));
+for(const [id,f] of [['map-button',()=>panels.toggle('map')],['journal-button',()=>panels.toggle('passport')],['pause-button',()=>panels.toggle('settings')]] as const)$(id).addEventListener('click',guarded(f));
 (window as any).__progress=progress;(window as any).__panels=panels;
 new Phaser.Game({type:Phaser.AUTO,parent:'game',backgroundColor:'#7f4449',scale:{mode:Phaser.Scale.FIT,autoCenter:Phaser.Scale.CENTER_BOTH,width:1280,height:720},render:{antialias:false,pixelArt:true,roundPixels:true},scene:[MarsScene]});
 render();

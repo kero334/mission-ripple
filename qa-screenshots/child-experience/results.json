@@ -17,7 +17,7 @@
     },
     {
       "name": "A: start opens short brief card",
-      "pass": true,
+      "pass": false,
       "detail": ""
     },
     {
@@ -53,7 +53,7 @@
     {
       "name": "A: level-1 hint gives direction to the real field terminal",
       "pass": true,
-      "detail": "The field terminal is the glowing screen just south of where you started. Follow the yellow beacon. Press M for the map."
+      "detail": "The glowing screen is just below you. Follow the yellow arrow. Press M for the map."
     },
     {
       "name": "A: hint request did not change XP",
@@ -68,7 +68,7 @@
     {
       "name": "A: near the target the prompt says \"Move a little closer\"",
       "pass": true,
-      "detail": "Move a little closer to the screen"
+      "detail": "Walk a little closer to the screen"
     },
     {
       "name": "A: specific prompt \"Examine Rover Data\"",
@@ -88,7 +88,7 @@
     {
       "name": "A curiosity: controls visible without scrolling",
       "pass": true,
-      "detail": "{\"card\":{\"top\":142,\"bottom\":578,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":2}"
+      "detail": "{\"card\":{\"top\":149,\"bottom\":571,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":2}"
     },
     {
       "name": "A: Layer 2 collapsed by default in guided mode",
@@ -123,12 +123,12 @@
     {
       "name": "A: choosing a calm window gives a friendly descriptive hint (no penalty)",
       "pass": true,
-      "detail": "Here the readings stay low and steady, around 4 µGy/hour. Keep looking for a big change! 14 readings in this part of the day"
+      "detail": "Here the dots are low and flat. Keep looking! 14 dots here"
     },
     {
-      "name": "A: finding the change explains it with real values",
+      "name": "A: finding the change explains it simply, with a rounded real value",
       "pass": true,
-      "detail": "You found it! Around 05:38–05:48 UTC the readings jumped up fast. The highest one was about 304 µGy/hour at 06:15 UTC."
+      "detail": "Yes! Here the dots jump way up, super fast! The top dot was about 300."
     },
     {
       "name": "A: Evidence Detective +15",
@@ -143,7 +143,7 @@
     {
       "name": "A chart: controls visible without scrolling",
       "pass": true,
-      "detail": "{\"card\":{\"top\":17,\"bottom\":703,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":4}"
+      "detail": "{\"card\":{\"top\":35,\"bottom\":685,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":4}"
     },
     {
       "name": "A: hint levels reach 3 (science thinking)",
@@ -153,7 +153,7 @@
     {
       "name": "A: level-3 hint is reasoning, not an answer",
       "pass": true,
-      "detail": "When the graph opens, look for the place where the line climbs fast."
+      "detail": "On the graph, look for where the dots jump up."
     },
     {
       "name": "A: SHOW ME ON THE GRAPH highlights the rise",
@@ -183,7 +183,7 @@
     {
       "name": "A: wrong building → Nuri names the right one",
       "pass": true,
-      "detail": "This is the Power Station. Our next clue is in the Research Lab."
+      "detail": "This is the Power Station. Our clue is in the Research Lab!"
     },
     {
       "name": "A: inside wrong room the beacon points at the exit",
@@ -208,7 +208,7 @@
     {
       "name": "A: mandatory rover ≠ base dose line present",
       "pass": true,
-      "detail": "The measurements changed. But this doesn’t tell us the radiation dose inside our base."
+      "detail": "The numbers changed. But they don’t tell us how much radiation was inside our base."
     },
     {
       "name": "A: median bars are to scale (19 May ≈ 9% of 20 May)",
@@ -223,7 +223,7 @@
     {
       "name": "A uncertainty: controls visible without scrolling",
       "pass": true,
-      "detail": "{\"card\":{\"top\":129,\"bottom\":591,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":3}"
+      "detail": "{\"card\":{\"top\":143,\"bottom\":578,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":3}"
     },
     {
       "name": "A: second look shows the analysis line, labelled not a safety limit",
@@ -231,7 +231,7 @@
       "detail": ""
     },
     {
-      "name": "A: second look obs uses real count (92) and ~14 h",
+      "name": "A: second look: ~14 h on the card, the real count (92) under Tell me more",
       "pass": true,
       "detail": ""
     },
@@ -263,7 +263,7 @@
     {
       "name": "A decision: controls visible without scrolling",
       "pass": true,
-      "detail": "{\"card\":{\"top\":86,\"bottom\":634,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":2}"
+      "detail": "{\"card\":{\"top\":93,\"bottom\":627,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":2}"
     },
     {
       "name": "A: no safe/danger labels on choices",
@@ -313,12 +313,12 @@
     {
       "name": "A: delayed consequence links earlier choice → later result",
       "pass": true,
-      "detail": "LATERTrend notes are ready. The optional robot survey is still waiting."
+      "detail": "LATEROur notes are ready! The robot trip is still waiting."
     },
     {
       "name": "A delayed: controls visible without scrolling",
       "pass": true,
-      "detail": "{\"card\":{\"top\":137,\"bottom\":583,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":2}"
+      "detail": "{\"card\":{\"top\":145,\"bottom\":575,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":2}"
     },
     {
       "name": "A: debrief summary",
@@ -333,7 +333,7 @@
     {
       "name": "A debrief: controls visible without scrolling",
       "pass": true,
-      "detail": "{\"card\":{\"top\":137,\"bottom\":583,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":2}"
+      "detail": "{\"card\":{\"top\":147,\"bottom\":573,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":2}"
     },
     {
       "name": "A: reflection wrong answer → friendly explanation, no XP",
@@ -353,7 +353,7 @@
     {
       "name": "A reflection: controls visible without scrolling",
       "pass": true,
-      "detail": "{\"card\":{\"top\":98,\"bottom\":622,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":3}"
+      "detail": "{\"card\":{\"top\":108,\"bottom\":612,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":3}"
     },
     {
       "name": "A: mission complete (+30) → 130 XP",
@@ -368,7 +368,7 @@
     {
       "name": "A rewards: controls visible without scrolling",
       "pass": true,
-      "detail": "{\"card\":{\"top\":120,\"bottom\":600,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":4}"
+      "detail": "{\"card\":{\"top\":142,\"bottom\":578,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":4}"
     },
     {
       "name": "A: Science Passport opens with XP and badges",
@@ -378,7 +378,7 @@
     {
       "name": "A passport: controls visible (long panel may scroll)",
       "pass": true,
-      "detail": "{\"card\":{\"top\":32,\"bottom\":688,\"left\":260,\"right\":1020,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":1}"
+      "detail": "{\"card\":{\"top\":39,\"bottom\":681,\"left\":260,\"right\":1020,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":1}"
     },
     {
       "name": "A: Missions tab shows discovered plan A and undiscovered B",
@@ -483,7 +483,7 @@
     {
       "name": "B: DONKI exhibit states no causal claim",
       "pass": true,
-      "detail": "In May 2024, NASA’s DONKI catalog listed 181 solar flares. Being listed at the same time does not prove it caused the rover’s readings."
+      "detail": "NASA keeps a list of storms on the Sun. Happening at the same time does not prove one thing caused the other."
     },
     {
       "name": "B: three exhibits → Curious Mind badge",
@@ -563,7 +563,7 @@
     {
       "name": "C chart: controls visible without scrolling",
       "pass": true,
-      "detail": "{\"card\":{\"top\":28,\"bottom\":692,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":4}"
+      "detail": "{\"card\":{\"top\":27,\"bottom\":693,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":4}"
     },
     {
       "name": "C: chart axis stays LTR inside RTL card",
@@ -572,8 +572,8 @@
     },
     {
       "name": "C meaning: controls visible without scrolling",
-      "pass": true,
-      "detail": "{\"card\":{\"top\":18,\"bottom\":702,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":3}"
+      "pass": false,
+      "detail": "{\"card\":{\"top\":14,\"bottom\":706,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":27,\"buttonsInView\":true,\"buttons\":3}"
     },
     {
       "name": "C: mandatory Arabic rover≠base line",
@@ -583,12 +583,12 @@
     {
       "name": "C uncertainty: controls visible without scrolling",
       "pass": true,
-      "detail": "{\"card\":{\"top\":125,\"bottom\":595,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":3}"
+      "detail": "{\"card\":{\"top\":130,\"bottom\":590,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":3}"
     },
     {
       "name": "C decision: controls visible without scrolling",
       "pass": true,
-      "detail": "{\"card\":{\"top\":84,\"bottom\":636,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":2}"
+      "detail": "{\"card\":{\"top\":82,\"bottom\":638,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":2}"
     },
     {
       "name": "C delayed: controls visible without scrolling",
@@ -603,7 +603,7 @@
     {
       "name": "C reflection: controls visible without scrolling",
       "pass": true,
-      "detail": "{\"card\":{\"top\":125,\"bottom\":595,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":3}"
+      "detail": "{\"card\":{\"top\":124,\"bottom\":596,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":3}"
     },
     {
       "name": "C rewards: controls visible without scrolling",
@@ -613,7 +613,7 @@
     {
       "name": "C passport: controls visible (long panel may scroll)",
       "pass": true,
-      "detail": "{\"card\":{\"top\":22,\"bottom\":698,\"left\":260,\"right\":1020,\"inView\":true},\"scroll\":47,\"buttonsInView\":true,\"buttons\":1}"
+      "detail": "{\"card\":{\"top\":22,\"bottom\":698,\"left\":260,\"right\":1020,\"inView\":true},\"scroll\":32,\"buttonsInView\":true,\"buttons\":1}"
     },
     {
       "name": "C: Arabic help panel",
@@ -653,17 +653,17 @@
     {
       "name": "E 1024x640 chart: controls visible without scrolling",
       "pass": true,
-      "detail": "{\"card\":{\"top\":47,\"bottom\":593,\"left\":82,\"right\":942,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":4}"
+      "detail": "{\"card\":{\"top\":43,\"bottom\":597,\"left\":82,\"right\":942,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":4}"
     },
     {
       "name": "E 1024x640 decision: controls visible without scrolling",
       "pass": true,
-      "detail": "{\"card\":{\"top\":60,\"bottom\":580,\"left\":82,\"right\":942,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":2}"
+      "detail": "{\"card\":{\"top\":65,\"bottom\":575,\"left\":82,\"right\":942,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":2}"
     },
     {
       "name": "E 1920x1080 chart: controls visible without scrolling",
       "pass": true,
-      "detail": "{\"card\":{\"top\":178,\"bottom\":902,\"left\":530,\"right\":1390,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":4}"
+      "detail": "{\"card\":{\"top\":186,\"bottom\":894,\"left\":530,\"right\":1390,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":4}"
     },
     {
       "name": "E 1920x1080 decision: controls visible without scrolling",
@@ -672,7 +672,7 @@
     },
     {
       "name": "F: guided mode offers help after ~45 s without progress",
-      "pass": true,
+      "pass": false,
       "detail": ""
     },
     {

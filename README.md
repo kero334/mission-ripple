@@ -1,46 +1,59 @@
 # Mission Ripple 2D — pixel Mars outpost
 
-Playable Phaser 3 / TypeScript exploration game built from original separate pixel assets. It now includes one NASA evidence-driven mission, **The Rover Reading**. The original PlayCanvas 3D project and the external scientific package are read-only and were not modified. The attached art reference is stored in `docs/reference/` for visual comparison, never loaded as the game world.
+A Phaser 3 / TypeScript exploration game for children aged 7–12, in English and Arabic. It has one
+NASA evidence mission, **The Rover Reading (P2-M02)**, built on real Curiosity RAD readings from 20 May 2024.
+The PlayCanvas 3D project and the scientific research package are read-only and were not modified.
 
 ## Run
 
 ```powershell
 npm install
-npm run dev
+npm run dev        # http://localhost:5182/
+npm test           # unit tests for science, rewards, hints, saves, translations and reading level
+npm run build      # typecheck + production bundle
 ```
 
-Open [http://localhost:5182/](http://localhost:5182/) in desktop Chrome. `npm run build` creates the production bundle. `python tools/build_pixel_assets.py` rebuilds the pixel assets and manifest from checked-in art source and the procedural source generator.
+With the dev server running: `npm run qa:experience` (real Chrome playthroughs, about 10 min),
+`npm run qa:science` (compares every charted row with the original NASA CSV; needs the research package as a
+sibling folder) and `npm run qa:camera`.
 
-## Explore
+## Play
 
-Move with WASD or arrows; hold Shift to sprint. Press E at doors, equipment, or Nuri. M opens the map, J the journal, B the equipment preview, Esc the pause and settings panel, and L switches English / Arabic. All nine facilities can be entered and left. The Habitat, Greenhouse, Power Station, Water Recovery, and Research Lab have distinct main equipment. The opening orientation checklist reflects actual play state. Resource systems remain inactive until science missions are implemented.
+- **Controls:** WASD or the arrow keys move (Shift runs). **E** uses things and talks. **H** opens Nuri's help.
+  **M** is the map, **J** the Science Passport, **B** your tools, **Esc** pause and settings, **L** English/Arabic.
+- **The mission:** press **START MISSION**, then follow the yellow arrow:
+  glowing screen (see the robot's real data) → Research Lab (what it means, what is still a mystery) →
+  Command Hub (pick plan A or B) → Communications (see what your choice changed) → debrief and rewards.
+  Play again to try the other plan.
+- **Extras:** four optional **bonus facts** are hidden on screens in the Habitat, Research Lab, Command Hub and
+  Radiation Shelter.
 
-Click **Start Science Mission** in the top-left panel. Walk to the courtyard field terminal and press E, examine the real Curiosity RAD readings, then inspect equipment in Research Lab, Command Hub, and Communications. Choose how to use one fictional crew-work slot. The next-shift result and debrief depend on that choice. Mission state saves locally and can be replayed. The research readings are rover measurements, not an astronaut or habitat dose.
+Every number a child sees is rounded and comes from the NASA snapshot. Exact values and sources are in each
+card's "For grown-ups" drawer. The robot's readings are never presented as an astronaut's dose, a reading
+inside the base, or a safety level. The work plan, XP and badges are pretend game rules.
 
-The science mission now teaches through illustrated pixel cards: **See → Understand → Choose → Result**. Nuri gives one short idea at a time. Exact measurements and provenance remain available in each card’s optional NASA source drawer.
+## Docs
+
+- `docs/CHILD_EXPERIENCE.md`: learning flow, writing rules, chart, Nuri hints, guidance, rewards, saves, files.
+- `docs/CHILD_TESTING_PROTOCOL.md`: first-time player test plan. **No child test has been run yet.**
+- `docs/SCIENCE_MISSION_ARCHITECTURE.md`, `docs/MISSION_SELECTION_AND_SCIENCE.md`: science boundaries and why
+  this mission was chosen.
+- `docs/PIXEL_ART_SPEC.md`, `docs/UNFINISHED.md`: art rules and open art gaps.
+- `MISSION_RIPPLE_AI_HANDOFF/`: frozen 13 Nov handoff, plus `UPDATE_2026-11-14.md`.
 
 ## Structure
 
-- `src/scene.ts`: layered tile world, camera, collision, sprite animation, Nuri, interiors and interactions.
-- `src/world-data.ts`: facility identities, bilingual copy and mission anchors.
-- `src/main.ts`, `src/style.css`, `index.html`: RPG style HUD, real orientation state, menu panels and locale.
-- `art-source/`: editable original source images.
-- `tools/build_pixel_assets.py`: reproducible normalization and procedural pixel asset pipeline.
-- `public/assets/pixel-manifest.json`: dimensions, frames, purpose, location, scope and status for 80 assets.
-- `public/assets/terrain/world-map.json`: 40 × 35 tile map.
-- `docs/PIXEL_ART_SPEC.md`: art, scale, world, animation and mission integration conventions.
-- `docs/UNFINISHED.md`: open fidelity and feature gaps.
-- `src/science/`: immutable versioned NASA evidence snapshot, deterministic mission reducer, bilingual in-game evidence and decision UI.
-- `tools/build_science_snapshot.py`: reproducible subset extraction from the read-only research package.
-- `tools/build_science_icons.py`: original pixel icons for the visual science cards.
-- `docs/MISSION_SELECTION_AND_SCIENCE.md`: evidence-based mission choice and alternative scores.
-- `docs/SCIENCE_MISSION_ARCHITECTURE.md`: provenance, stage, ripple and scientific limits.
-- `qa-screenshots/pixel/`: before / pass / final Chrome images and final check result.
-
-## Verification
-
-Run `node tools/pixel-qa.mjs` while the Vite server is active. It launches desktop Chrome, captures 1280 × 720 and 1920 × 1080, walks to the Habitat and enters with E, inspects equipment, exits, smoke checks every other interior, and checks menu panels and Arabic RTL. See `qa-screenshots/pixel/final-results.json`.
-
-Run `node tools/science-qa.mjs` for source-row comparison, mission choices, persistence, Arabic, and Chrome screenshots in `qa-screenshots/science/`.
-
-The other planned science missions remain future work: solar energy and dust, water recovery, communication delay, and oxygen production. The HUD uses no invented NASA measurements or unsupported survival calculations.
+- `src/scene.ts`: tile world, camera, collision, sprites, Nuri, rooms, guidance beacon, bonus-fact screens.
+- `src/main.ts`, `index.html`, `src/style.css`: the HUD (objective tracker, XP chip, prompts, toasts) and wiring.
+- `src/content/strings.ts`: **all child-facing words** (EN and AR). `src/content/discoveries.ts`: science cards.
+- `src/science/`:
+  - `mission.ts`: the unchanged mission state machine and save repair.
+  - `ui.ts`: the mission cards.
+  - `series.ts`: the validated 19–20 May readings.
+  - `*.json`: the NASA snapshots.
+- `src/game/`: rewards configuration, progress store, guidance and hints, bonus-fact placement.
+- `src/ui/`: card shell and modal stack, real-data chart, help, passport, map and settings panels.
+- `public/assets/`: pixel art. `pixel-manifest.json` (89 world assets) and `experience-manifest.json`
+  (34 badge, science and guide assets).
+- `tools/`: art builders, science snapshot builders, unit tests and Chrome QA.
+  `playtest.mjs`, `pixel-pass1.mjs` and `pixel-qa.mjs` target the old UI.

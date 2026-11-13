@@ -1,112 +1,127 @@
 {
   "checks": [
     {
-      "name": "Source hash matches immutable snapshot",
+      "name": "Original CSV SHA-256 matches both snapshots",
+      "pass": true,
+      "detail": "baea6261262f499f02259fbfba986973038c88a7b03f4f1b2136d6e346132a11"
+    },
+    {
+      "name": "All 10 snapshot rows match the original CSV",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "All chart rows match original NASA CSV",
+      "name": "All 221 charted rows (19+20 May) match the original CSV, dose equivalent blank",
+      "pass": true,
+      "detail": "221"
+    },
+    {
+      "name": "Chart includes every retrieved row of each day (no omissions)",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "Observed units and limits retained",
+      "name": "Units retained (µGy/hour) and limits flagged",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "Provenance references present",
+      "name": "Exhibit values equal canonical findings",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "Game launches",
+      "name": "Peak equals finding P2-RAD-04",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "Missing provenance rejected",
+      "name": "Browser validator rejects missing provenance",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "Unsupported habitat-dose claim rejected",
+      "name": "Browser validator rejects an unsupported habitat dose",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "Mission starts and briefing appears",
+      "name": "First screen: Curiosity is a real NASA robot; stamp REAL NASA DATA",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "Player walks to field terminal",
-      "pass": true,
-      "detail": "{\"x\":640,\"y\":659}"
-    },
-    {
-      "name": "Field interaction opens child-facing rover reading",
+      "name": "RAD screen: RAD measures radiation (accurate, simple)",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "Exact NASA value remains in optional source",
+      "name": "Chart draws 139 real points for 20 May",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "Source details start collapsed",
+      "name": "Child text rounds the real peak (303.98798 → about 300)",
+      "pass": true,
+      "detail": "Tell me moreThe top dot was about 300. Every dot is real. We didn’t make any up."
+    },
+    {
+      "name": "Grown-ups drawer: exact value, unit, UTC time, instrument, dataset, IDs, SHA and NASA link",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "Objective advances to Research",
+      "name": "Grown-ups drawer: not an astronaut dose, not inside the base",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "Research equipment opens evidence and uncertainty",
+      "name": "Two-day comparison draws all 82 + 139 real points",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "Command offers two illustrated scheduling cards",
+      "name": "Mandatory distinction: rover measured outside, cannot tell us inside the base",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "Choice A immediate simulated consequence",
+      "name": "People are not inferred (Tell me more) + uncertainty for grown-ups",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "Choice and delayed flag survive reload",
+      "name": "Cause stated as unknown; catalog ≠ cause for grown-ups",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "Communications shows delayed consequence",
+      "name": "Many dots: ~14 h; 92 dots; line is not safe/unsafe; grown-ups: not a human safety limit",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "Science debrief visible",
+      "name": "Decision stamped PRETEND PLAN; grown-ups: game rule, no dose/health/safety result",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "Mission completes",
+      "name": "Immediate result is labelled pretend",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "Arabic mission HUD and RTL",
+      "name": "Mission state flags unchanged from original design",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "Choice B distinct delayed flag",
+      "name": "After the choice: NASA’s real dots stayed the same (stamped real)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "NASA snapshot unchanged by the decision",
       "pass": true,
       "detail": ""
     },
@@ -116,5 +131,6 @@
       "detail": ""
     }
   ],
-  "errors": []
+  "errors": [],
+  "screens": []
 }

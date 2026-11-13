@@ -16,16 +16,16 @@ export type XpKind=keyof typeof XP;
 export type AchievementId='first-discovery'|'evidence-detective'|'careful-scientist'|'second-look'|'scientific-thinker'|'mission-complete'|'method-master'|'outpost-explorer'|'curious-mind'|'branch-explorer';
 export type Motivation='collect'|'solve'|'explore';
 export const ACHIEVEMENTS:Record<AchievementId,{name:Tx;how:Tx;motivation:Motivation}>={
-  'first-discovery':{name:tx('First Discovery','أول اكتشاف'),how:tx('Examine your first real NASA evidence record.','افحص أول سجل حقيقي من ناسا.'),motivation:'collect'},
-  'evidence-detective':{name:tx('Evidence Detective','مخبر الأدلة'),how:tx('Find the part of the graph where the rover’s readings changed.','لاقي الجزء من الرسم اللي قراءات الروبوت اتغيرت فيه.'),motivation:'solve'},
-  'careful-scientist':{name:tx('Careful Scientist','عالِم حريص'),how:tx('Explain your plan with strong evidence.','اشرح خطتك بدليل قوي.'),motivation:'solve'},
-  'second-look':{name:tx('Second Look','بصة تانية'),how:tx('Look at the evidence again after learning what we don’t know.','بُص على الأدلة تاني بعد ما تعرف اللي منعرفوش.'),motivation:'collect'},
-  'scientific-thinker':{name:tx('Scientific Thinker','مفكّر علمي'),how:tx('Explain why a rover reading is not an astronaut’s dose.','اشرح ليه قراية الروبوت مش جرعة رائد فضاء.'),motivation:'collect'},
-  'mission-complete':{name:tx('Mission Complete','المهمة خلصت'),how:tx('Finish The Rover Reading and see its outcome.','خلّص مهمة قراءة روبوت المريخ وشوف النتيجة.'),motivation:'solve'},
-  'method-master':{name:tx('Method Master','أستاذ الطريقة'),how:tx('Use the scientist’s method on a brand-new example.','استخدم طريقة العلماء في مثال جديد.'),motivation:'solve'},
-  'outpost-explorer':{name:tx('Outpost Explorer','مستكشف القاعدة'),how:tx('Visit all nine places in the outpost.','زور كل الأماكن التسعة في القاعدة.'),motivation:'explore'},
-  'curious-mind':{name:tx('Curious Mind','عقل فضولي'),how:tx('Read three optional science exhibits.','اقرا تلات معروضات علمية اختيارية.'),motivation:'explore'},
-  'branch-explorer':{name:tx('Branch Explorer','مستكشف الطرق'),how:tx('Discover what both plans lead to (try a replay).','اكتشف الخطتين بيوصّلوا لإيه (جرّب تلعب تاني).'),motivation:'solve'},
+  'first-discovery':{name:tx('First Clue','أول دليل'),how:tx('Look at real NASA data.','بُص على بيانات ناسا حقيقية.'),motivation:'collect'},
+  'evidence-detective':{name:tx('Evidence Detective','مخبر الأدلة'),how:tx('Find where the dots jump up.','لاقي النقط نطت فين.'),motivation:'solve'},
+  'careful-scientist':{name:tx('Careful Scientist','عالِم حريص'),how:tx('Pick a strong clue for your plan.','اختار دليل قوي لخطتك.'),motivation:'solve'},
+  'second-look':{name:tx('Second Look','بصة تانية'),how:tx('Look at the dots again.','بُص على النقط تاني.'),motivation:'collect'},
+  'scientific-thinker':{name:tx('Big Thinker','مفكّر كبير'),how:tx('Know that a robot reading is not a person’s.','اعرف إن قراية الروبوت مش قراية إنسان.'),motivation:'collect'},
+  'mission-complete':{name:tx('Mission Complete','المهمة خلصت'),how:tx('Finish the mission.','خلّص المهمة.'),motivation:'solve'},
+  'method-master':{name:tx('Clue Master','أستاذ الأدلة'),how:tx('Answer the new robot question.','جاوب سؤال الروبوت الجديد.'),motivation:'solve'},
+  'outpost-explorer':{name:tx('Outpost Explorer','مستكشف القاعدة'),how:tx('Visit all 9 places.','زور الـ٩ أماكن كلهم.'),motivation:'explore'},
+  'curious-mind':{name:tx('Curious Mind','عقل فضولي'),how:tx('Find 3 bonus facts.','لاقي ٣ معلومات زيادة.'),motivation:'explore'},
+  'branch-explorer':{name:tx('Two Paths','طريقين'),how:tx('Try both plans. Play again!','جرّب الخطتين. العب تاني!'),motivation:'solve'},
 };
 export const ACHIEVEMENT_ORDER=Object.keys(ACHIEVEMENTS) as AchievementId[];
 
@@ -54,9 +54,9 @@ export const REWARD_EVENTS:Record<string,RewardEvent>={
 export const xpFor=(eventId:string)=>{const e=REWARD_EVENTS[eventId];return e?.xp?XP[e.xp]:0};
 
 export const CHALLENGES:{id:string;name:Tx;how:Tx}[]=[
-  {id:'check-evidence',name:tx('Check the Evidence','راجع الأدلة'),how:tx('Find out what changed in the rover’s readings.','اعرف إيه اللي اتغير في قراءات الروبوت.')},
-  {id:'explain-choice',name:tx('Explain Your Choice','اشرح اختيارك'),how:tx('Which observation helped you make your plan?','أنهي ملاحظة ساعدتك تعمل خطتك؟')},
-  {id:'both-plans',name:tx('Two Paths','طريقين'),how:tx('Replay and discover what the other plan changes.','العب تاني واكتشف الخطة التانية بتغيّر إيه.')},
+  {id:'check-evidence',name:tx('Check the Clue','راجع الدليل'),how:tx('Find what changed in the dots.','لاقي إيه اللي اتغير في النقط.')},
+  {id:'explain-choice',name:tx('Why This Plan?','ليه الخطة دي؟'),how:tx('Pick the clue that helped you.','اختار الدليل اللي ساعدك.')},
+  {id:'both-plans',name:tx('Two Paths','طريقين'),how:tx('Play again and try the other plan.','العب تاني وجرّب الخطة التانية.')},
 ];
 
 export const TITLES:{xp:number;name:Tx}[]=[

@@ -49,7 +49,7 @@ await test('science: exhibit values equal canonical findings (needs research pac
   assert.equal(ex['data-check'].value,by['P2-RAD-08'].value);assert.equal(ex['surface-typical'].value,by['P2-RAD-02'].value);assert.equal(ex['data-check'].coverageReadings,by['P2-RAD-01'].value);
   assert.deepEqual(ex['solar-catalog'].counts,by['SCI-0003'].value.counts)});
 await test('science: no child-facing text calls a reading safe/unsafe or gives a cause',()=>{
-  const all=JSON.stringify(C).toLowerCase();for(const bad of ['unsafe','is safe','dangerous level','caused by the sun','solar storm caused'])assert.ok(!all.includes(bad),bad);
+  const all=JSON.stringify(C).toLowerCase().replaceAll('not “safe” or “unsafe”','').replaceAll('does not mean “safe” or “unsafe”','').replaceAll('does not decide what is safe for people','');for(const bad of ['unsafe','is safe','dangerous level','caused by the sun','solar storm caused'])assert.ok(!all.includes(bad),bad);
   for(const d of D.DISCOVERIES){const t=(d.short('en')+d.detail('en')).toLowerCase();assert.ok(!/\bunsafe\b|\bdangerous\b/.test(t),d.id)}});
 // ---------------------------------------------------------------- rewards
 const store=()=>PG.createProgressStore(new MemoryStorage());
@@ -72,6 +72,20 @@ await test('hints: navigation hints only name buildings that exist',()=>{const n
 // ---------------------------------------------------------------- localization completeness
 await test('localization: every Tx has non-empty English and Arabic',()=>{const walk=(o,path='')=>{if(o&&typeof o==='object'){if('en' in o&&'ar' in o&&Object.keys(o).length===2){assert.ok(o.en.trim()&&o.ar.trim(),path);assert.ok(/[\u0600-\u06FF]/.test(o.ar)||/^[A-Z0-9 ·.:()\-]+$/.test(o.ar)||o.ar===o.en,`${path} has no Arabic`);return}for(const [k,v] of Object.entries(o))walk(v,path+'.'+k)}};walk(C);walk(R.ACHIEVEMENTS);walk(R.TITLES);walk(R.CHALLENGES);for(const d of D.DISCOVERIES)for(const l of ['en','ar']){assert.ok(d.short(l).length>10);assert.ok(d.detail(l).length>10)}});
 await test('localization: placeholders match between languages',()=>{const walk=o=>{if(o&&typeof o==='object'){if('en' in o&&'ar' in o){const a=(o.en.match(/\{\w+\}/g)||[]).sort().join(),b=(o.ar.match(/\{\w+\}/g)||[]).sort().join();assert.equal(a,b,o.en);return}Object.values(o).forEach(walk)}};walk(C)});
+// ---------------------------------------------------------------- reading level (ages 7–12)
+const JARGON=/µgy|utc|median|dataset|absorbed|dose.equivalent|exploratory|catalog|cme|provenance|anomal|interpretation|parameter|simulation|allocation/i;
+const childLines=()=>{const out=[];const add=(t,where)=>{if(t&&t.en)out.push([t.en,where])};
+  for(const [s,o] of Object.entries(C.OBJECTIVES))for(const k of ['task','why','intro'])add(o[k],`OBJECTIVES.${s}.${k}`);
+  for(const [s,h] of Object.entries(C.HINTS))for(const k of ['nav','control','science'])add(h[k],`HINTS.${s}.${k}`);
+  for(const [c,o] of Object.entries(C.CARDS))for(const [k,v] of Object.entries(o))if(!['axisX','axisY','count'].includes(k))add(v,`CARDS.${c}.${k}`);
+  for(const [k,v] of Object.entries(C.NURI))add(v,`NURI.${k}`);
+  for(const [k,v] of Object.entries(C.PROMPTS))add(v,`PROMPTS.${k}`);
+  for(const a of Object.values(R.ACHIEVEMENTS))add(a.how,'ACHIEVEMENTS.how');
+  for(const d of D.DISCOVERIES)out.push([d.short('en'),`DISCOVERY.${d.id}.short`]);
+  return out};
+await test('reading level: no jargon in anything a child reads first',()=>{for(const [t,w] of childLines())assert.ok(!JARGON.test(t),`${w}: "${t}"`)});
+await test('reading level: short sentences (≤ 14 words each)',()=>{for(const [t,w] of childLines())for(const s of t.split(/(?<=[.!?])\s+/)){const n=s.split(/\s+/).filter(x=>/[A-Za-z0-9]/.test(x)).length;assert.ok(n<=14,`${w} (${n} words): "${s}"`)}});
+await test('reading level: no decimals or big numbers in child text',()=>{for(const [t,w] of childLines())assert.ok(!/\d+\.\d+|\d{4,}|\d{1,3},\d{3}/.test(t.replace(/2024/g,'')),`${w}: "${t}"`)});
 
 await server.close();
 const failed=results.filter(r=>!r[1]);

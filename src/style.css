@@ -265,3 +265,101 @@ html[dir=rtl] .science-card h2{font-size:24px;line-height:1.25;margin:2px 0 4px}
 #toasts{top:150px;left:auto;right:14px;transform:none;align-items:flex-end;width:200px}html[dir=rtl] #toasts{right:auto;left:14px;align-items:flex-start}.toast{max-width:200px;flex-direction:column;align-items:flex-start;font-size:18px;padding:6px 10px}.science-card{width:min(860px,94vw)}
 .seq-research .evidence-chart svg{max-height:176px}html[dir=rtl] .seq-research .evidence-chart svg{max-height:160px}.median-bars{padding:3px 10px}.mb-row{font-size:16px}
 @media(max-height:660px){.science-card{padding:8px 14px 6px}.science-card h2{font-size:28px}.evidence-chart svg{max-height:140px}.learn-steps{margin:4px 0}.learn-steps li{font-size:13px}.learning-nuri{min-height:38px;margin:4px 0}.learning-nuri img{width:34px;height:34px}.learning-nuri span{font-size:19px}.card-obs{font-size:21px}.feedback-box{min-height:24px}.feedback{font-size:18px;padding:3px 8px}.ch-windows button{min-height:26px;font-size:15px}.card-illus{width:190px;height:102px}.learning-option{min-height:140px}.card-note{font-size:15px}}
+/* ---- kid-friendly motion: plays once when a card first appears ---- */
+.science-card.fresh{animation:cardIn .28s steps(4)}
+@keyframes cardIn{from{transform:translateY(14px) scale(.97);opacity:0}to{transform:none;opacity:1}}
+.fresh .ch-line,.fresh .ch-line19{stroke-dasharray:3000;stroke-dashoffset:3000;animation:draw 1.8s linear forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.fresh .ch-pt{animation:dotIn .15s steps(2) both}
+@keyframes dotIn{from{opacity:0}to{opacity:1}}
+.fresh .unknown-tile,.fresh .db-tile,.fresh .learning-option,.fresh .rf-card,.fresh .reward-chip,.fresh .learning-route span{animation:tileIn .3s steps(3) both}
+.fresh .unknown-tile:nth-child(2),.fresh .db-tile:nth-child(2),.fresh .learning-option:nth-child(2),.fresh .rf-card:nth-child(3),.fresh .learning-route span:nth-child(2){animation-delay:.3s}
+.fresh .unknown-tile:nth-child(3),.fresh .db-tile:nth-child(3),.fresh .learning-route span:nth-child(3){animation-delay:.6s}
+.fresh .unknown-tile:nth-child(4),.fresh .db-tile:nth-child(4),.fresh .learning-route span:nth-child(4){animation-delay:.9s}
+.fresh .db-tile:nth-child(5){animation-delay:1.2s}.fresh .db-tile:nth-child(6){animation-delay:1.5s}
+@keyframes tileIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.learning-nuri img{animation:bob 1.2s steps(2) infinite}
+.feedback.good{animation:goodPop .4s steps(3)}.feedback.good::before{content:'★ ';color:var(--gold)}
+@keyframes goodPop{0%{transform:scale(.96)}60%{transform:scale(1.02)}100%{transform:none}}
+.card-split .card-illus{animation:roll 3s steps(6) infinite}@keyframes roll{50%{transform:translateX(3px)}}
+.db-tile img{width:28px;height:28px;image-rendering:pixelated;float:inline-end;margin-inline-start:6px}
+.card-obs{font-size:29px}html[dir=rtl] .card-obs{font-size:19px}
+
+/* ===================== Simple "Nuri scene" cards: one picture · one sentence · one button ===================== */
+.science-card.scene-card{width:min(720px,94vw);padding:16px 20px 12px}
+.scene{display:flex;flex-direction:column;gap:12px}
+.scene-art{position:relative;display:flex;align-items:center;justify-content:center;min-height:210px;background:#1f3040;border:3px solid #9f7352;padding:12px}
+.scene-img{image-rendering:pixelated;display:block}
+.scene-img.big{width:420px;height:224px}
+.scene-img.mid{width:180px;height:120px;object-fit:contain}
+.scene-img.building{height:200px;width:auto;max-width:90%;object-fit:contain}
+.scene-img.icon-big{width:128px;height:128px}
+.scene-img.roll{animation:roll 3s steps(6) infinite}.scene-img.bob{animation:bob 1.2s steps(2) infinite}
+.stamp{position:absolute;top:8px;inset-inline-start:8px;font-size:14px;letter-spacing:1px;padding:1px 7px;border:2px solid;transform:rotate(-3deg)}
+.stamp.nasa{color:#a2e4df;border-color:#68c5c7;background:#1b2f38}.stamp.game{color:#ffe1ac;border-color:#dba96d;background:#3e2c2a}
+html[dir=rtl] .stamp{font-size:12px;letter-spacing:0;font-weight:700;transform:rotate(3deg)}
+.nuri-say{display:flex;gap:12px;align-items:center;background:var(--cream);border:3px solid #ae6b47;color:#3d2a2e;padding:8px 14px}
+.nuri-say>img{width:60px;height:60px;image-rendering:pixelated;flex:none;animation:bob 1.2s steps(2) infinite}
+.nuri-say p{margin:0;font-size:30px;line-height:1.08}
+html[dir=rtl] .nuri-say p{font-size:21px;line-height:1.45;font-weight:700}
+.nuri-say.good{border-color:#5aa86c;background:#e4f5dc}.nuri-say.good #science-say::before{content:'★ ';color:#d08a1e}
+.fresh .nuri-say{animation:sayIn .3s steps(3)}@keyframes sayIn{from{transform:translateY(6px);opacity:0}to{transform:none;opacity:1}}
+.say-more summary{font-size:18px;color:#7f4938;cursor:pointer;margin-top:4px}.say-more p{font-size:22px;line-height:1.1;margin:4px 0 0}
+html[dir=rtl] .say-more summary{font-size:14px;font-weight:700}html[dir=rtl] .say-more p{font-size:16px;line-height:1.45}
+.scene-foot{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:10px}
+.scene .card-back{width:46px;padding:0;font-size:24px}
+.scene .learning-next{font-size:28px;min-height:50px;padding:6px 22px}
+html[dir=rtl] .scene .learning-next{font-size:19px}
+.scene .card-secondary{min-width:46px;font-size:22px}
+.pager i.past{background:#85cb93;border-color:#6a9c7a}
+.grownups{align-self:flex-start;margin-top:-4px}.grownups summary{cursor:pointer;font-size:15px;color:#a98f75;list-style:none}.grownups summary::before{content:'▸ '}.grownups[open] summary::before{content:'▾ '}
+.grownups-body{max-height:140px;overflow:auto;font-size:14px;line-height:1.2;background:#241a1f;border:2px solid #5f4740;padding:6px 10px;margin-top:4px;overflow-wrap:anywhere;color:#dbc5a8}
+.grownups-body p{margin:3px 0}.grownups-body a{color:#8ad7db}
+html[dir=rtl] .grownups summary{font-size:13px}html[dir=rtl] .grownups-body{font-size:12px;line-height:1.5}
+.scene-art .evidence-chart{border:none;background:none;padding:0;margin:0;width:100%}
+.evidence-chart.mini svg{max-height:150px}
+.choice-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;width:100%}
+.big-choice{display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px;border:4px solid #c28b60;background:#4a3435;color:#ffe8c0;min-height:190px;text-align:center}
+.big-choice:hover,.big-choice:focus{background:#66413b;border-color:#ffd28e}
+.big-choice .choice-icon{width:80px;height:80px}.big-choice b{font-size:30px;font-weight:400;color:#ffde9c;line-height:1}.big-choice b i{font-style:normal;color:#9ce1df;margin-inline-end:4px}
+.big-choice span{font-size:21px;line-height:1.08}
+html[dir=rtl] .big-choice b{font-size:21px;font-weight:800;line-height:1.3}html[dir=rtl] .big-choice span{font-size:15px;line-height:1.45}
+.chip-row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}.chip-row .chip{font-size:23px;padding:6px 18px;text-align:center}.chip-row.two .chip{min-width:130px}
+html[dir=rtl] .chip-row .chip{font-size:16px}
+.vs-art{display:flex;gap:56px;align-items:center;justify-content:center}.vs-art figure{margin:0;position:relative}
+.vs-art figure b{position:absolute;inset-inline-end:-14px;top:-18px;font-size:46px;font-family:monospace;text-shadow:2px 2px #1f1418}.vs-art .ok{color:#85cb93}.vs-art .q{color:var(--gold);animation:bob 1s steps(2) infinite}
+.ripple-art{display:flex;align-items:center;gap:26px;justify-content:center}.ripple-art .rf-arrow{font-size:60px}
+.done-art{display:flex;flex-direction:column;align-items:center;gap:6px}.done-art .xp-big{font-size:52px}
+.badge-strip{display:flex;flex-wrap:wrap;gap:6px;justify-content:center}.badge-strip img{width:40px;height:40px;image-rendering:pixelated}
+.fresh .badge-strip img{animation:tileIn .3s steps(3) both}.fresh .badge-strip img:nth-child(2){animation-delay:.15s}.fresh .badge-strip img:nth-child(3){animation-delay:.3s}.fresh .badge-strip img:nth-child(4){animation-delay:.45s}.fresh .badge-strip img:nth-child(5){animation-delay:.6s}.fresh .badge-strip img:nth-child(n+6){animation-delay:.75s}
+.status-art{display:flex;align-items:center;gap:6px}.status-art span{width:48px;height:48px;border:3px solid #705044;display:grid;place-items:center;font-size:26px;color:#bfac97}
+.status-art span.done{border-color:#85cb93;color:#85cb93}.status-art span.now{border-color:var(--gold);color:#fff0cf;background:#5c3d33;animation:pip 1s steps(2) infinite}.status-art i{width:22px;height:3px;background:#705044}
+.fresh .scene-art{animation:tileIn .3s steps(3)}
+/* help panel = one Nuri bubble */
+.panel-help{width:min(560px,94vw)}
+.help-scene{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:6px}.help-icon{width:56px;height:56px;image-rendering:pixelated;animation:bob 1.2s steps(2) infinite}
+.help-scene .nuri-say{width:100%}
+.help-dots{display:flex;gap:6px;justify-content:center;margin:8px 0}.help-dots i{width:10px;height:10px;border:1px solid #9a6b49;background:#5f4740}.help-dots i.on{background:var(--gold)}
+.hint-science .nuri-say{background:#e4f5dc;border-color:#5aa86c}
+/* ===================== HUD: fewer boxes ===================== */
+#mission-panel{width:auto;min-width:250px;max-width:340px;padding:8px 12px}
+#mission-panel .panel-title{height:26px;font-size:18px;border-bottom-width:2px;color:#d8b48c}#mission-panel .panel-title img{width:20px;height:20px}
+.quest{display:flex;gap:10px;align-items:center;border:none;background:none;padding:6px 2px 2px;text-align:start;width:100%;cursor:pointer}
+.quest img{width:19px;height:24px;image-rendering:pixelated;animation:bob 1.2s steps(2) infinite}
+.quest strong{display:block;font-size:27px;color:#fff4dc;font-weight:400;line-height:1}.quest small{display:block;font-size:19px;color:#ffd896;margin-top:2px}
+html[dir=rtl] .quest strong{font-size:20px;font-weight:800;line-height:1.3}html[dir=rtl] .quest small{font-size:14px}
+#tracker-actions{margin-top:6px}
+#resources{width:auto;background:none;border:none;box-shadow:none;padding:0}
+.passport-chip{display:flex;gap:6px;align-items:center;padding:6px 14px;width:auto;margin:0}
+.passport-chip img{width:20px;height:20px;image-rendering:pixelated}.passport-chip strong{font-size:30px;color:var(--gold);font-weight:400;line-height:1}.passport-chip small{font-size:16px;color:#d8b48c}
+#toolbar{display:none}
+body.modal-open #mission-panel,body.modal-open #resources,body.modal-open #nuri-panel,body.modal-open #menu-buttons,body.modal-open #arrival-note,body.modal-open #move-hint{visibility:hidden}
+#toasts{top:70px}
+/* passport: names only, how-to on hover */
+.badge small{display:none}.badge{padding:8px 4px}
+@media(max-height:660px){.scene-art{min-height:160px}.scene-img.big{width:330px;height:176px}.scene-img.building{height:150px}.nuri-say p{font-size:25px}.big-choice{min-height:150px}.scene .learning-next{font-size:24px;min-height:42px}}
+@media(max-width:820px){.choice-row{grid-template-columns:1fr}.vs-art{gap:24px}}
+
+.ch-line19{stroke:#7fd6ff;stroke-width:3}.ch-pt19{fill:#bdf0ff}.ch-label.c20{fill:#ffca80}.ch-label.c19{fill:#bdf0ff}.ch-tag19{fill:#1a2836;stroke:#7fd6ff;stroke-width:1}.ch-label.cut{fill:#c9d8ff}
+
+.card-back span,.learning-next span{display:inline-block}
