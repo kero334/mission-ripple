@@ -21,8 +21,8 @@ then what's next.
 |---|---|
 | Glowing screen (`monitor`) | This is Curiosity → RAD measures radiation → tap where the dots jump up (real chart) → next: Research Lab |
 | Research Lab (`research`) | 20 May vs the day before (real chart) → robot measured outside ✓ / base ? → why? we don't know yet → lots of dots for about 14 h → next: Command |
-| Command Hub (`command`) | Pick a plan (two big picture buttons) → which clue helped? (optional) → what happened now → next: Communications |
-| Communications (`nextShift`) | Because you picked X, Y happened → NASA's real dots stayed the same |
+| Command Hub (`command`) | Pick a plan: two big picture buttons, each with a ✓ gain and a ⏸ wait → which clue helped? (optional) → "You chose X. So right now, Y." → next: Communications |
+| Communications (`nextShift`) | "Because you chose X, Z! But …" → REAL (NASA chart) vs GAME (base) side by side |
 | Debrief | Big idea → quick question 1 (optional) → quick question 2 (optional) → Mission complete (+XP, badges, PLAY AGAIN) |
 
 Mission stages and both decisions are unchanged: they still go only through `transition()` in
@@ -113,8 +113,8 @@ screen. Reward pop-ups show "+XP" and the badge only.
   | Complete the mission | 30 |
   | Optional discovery | 10 |
 
-  The maximum is 190 XP. Titles: Junior Researcher (0) → Data Observer (40) → Evidence Detective (90) →
-  Science Investigator (140) → Mars Explorer (180).
+  The maximum is 210 XP. Titles: Junior Researcher (0) → Data Observer (40) → Evidence Detective (90) →
+  Science Investigator (140) → Mars Explorer (200).
 - **10 badges:**
   - **Mission:** First Clue, Evidence Detective, Careful Scientist, Second Look, Big Thinker,
     Mission Complete, Clue Master, Two Paths.
@@ -128,7 +128,7 @@ screen. Reward pop-ups show "+XP" and the badge only.
   - **BADGES:** XP, title and progress bar, badges (locked ones show how to earn them), and Nuri's light
     color (cosmetic).
   - **MISSIONS:** the current task, the steps, three extra challenges, and the plans tried (A and B).
-  - **CARDS:** 10 science cards (6 from the mission and 4 bonus facts) with "for grown-ups" details and
+  - **CARDS:** 12 science cards (6 from the mission and 6 bonus facts) with "for grown-ups" details and
     NASA links, plus the 9 places.
 - **Bonus facts** (Explorer). They are optional and source-linked (`src/game/exhibits.ts`,
   `src/science/exhibits-v1.json`):
@@ -139,6 +139,11 @@ screen. Reward pop-ups show "+XP" and the badge only.
   | A Usual Day on Mars | Radiation Shelter, right screen | P2-RAD-02 |
   | The Sun Storm List | Command Hub, left screen | SCI-0003; says "same time does not prove cause" |
   | Different Places, Different Readings | Habitat, left screen | SCI-0002 |
+  | Growing Food in Space | Greenhouse, left plants | P2-CSA-01; credits the Canadian Space Agency; says "our plants are pretend" (no measured Mars harvest in the evidence) |
+  | A Map of Mars | Communications, left dish | P2-TREK-01; says "the colors are a picture, not exact heights" |
+
+  The Power Station, Water Recovery and Oxygen Lab only describe the pretend outpost. They don't have a
+  science system yet, so the game doesn't pretend one exists.
 
 - **Child safety:** no leaderboards, timers, streaks, random rewards, purchases or sharing. Progress stays
   in this browser's localStorage.

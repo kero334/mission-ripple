@@ -363,3 +363,14 @@ body.modal-open #mission-panel,body.modal-open #resources,body.modal-open #nuri-
 .ch-line19{stroke:#7fd6ff;stroke-width:3}.ch-pt19{fill:#bdf0ff}.ch-label.c20{fill:#ffca80}.ch-label.c19{fill:#bdf0ff}.ch-tag19{fill:#1a2836;stroke:#7fd6ff;stroke-width:1}.ch-label.cut{fill:#c9d8ff}
 
 .card-back span,.learning-next span{display:inline-block}
+
+/* choice trade-offs, real-vs-game, help level label */
+.big-choice .gain,.big-choice .cost{display:flex;align-items:center;gap:8px;font-size:21px;line-height:1.05;width:100%;justify-content:center}
+.big-choice .gain{color:#c6f0cd}.big-choice .cost{color:#ffd896}.big-choice .gain i,.big-choice .cost i{font-style:normal;font-family:monospace;font-size:20px}
+html[dir=rtl] .big-choice .gain,html[dir=rtl] .big-choice .cost{font-size:15px;line-height:1.4}
+.real-vs-game{display:grid;grid-template-columns:1.3fr 1fr;gap:14px;width:100%;align-items:stretch}
+.real-vs-game figure{margin:0;border:3px solid;padding:6px;display:flex;flex-direction:column;gap:4px}
+.real-vs-game .real{border-color:#68c5c7}.real-vs-game .game{border-color:#dba96d;align-items:center;justify-content:center}
+.real-vs-game figcaption{font-size:20px;letter-spacing:2px;text-align:center}.real-vs-game .real figcaption{color:#a2e4df}.real-vs-game .game figcaption{color:#ffe1ac}
+.game-pics{display:flex;align-items:center;gap:8px}.scene-img.icon-mid{width:64px;height:64px}
+.help-level{font-size:22px;letter-spacing:2px;color:var(--gold);font-weight:400}html[dir=rtl] .help-level{font-size:17px;letter-spacing:0;font-weight:800}

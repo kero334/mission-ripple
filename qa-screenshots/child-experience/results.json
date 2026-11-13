@@ -1,7 +1,12 @@
 {
   "checks": [
     {
-      "name": "A: tracker shows mission and first task",
+      "name": "A: HUD is minimal (no toolbar, no resource rows, one XP chip)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: tracker shows one line: why + START",
       "pass": true,
       "detail": ""
     },
@@ -11,22 +16,27 @@
       "detail": ""
     },
     {
-      "name": "A: no XP before learning",
+      "name": "A: start opens one short brief scene",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "A: start opens short brief card",
-      "pass": false,
-      "detail": ""
+      "name": "A brief: one idea (1 Nuri line ≤2 sentences, ≤1 main button, no step bar/tag rows/info boxes)",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"words\":15,\"steps\":0,\"tags\":0,\"primaries\":1,\"boxes\":0}"
     },
     {
       "name": "A brief: controls visible without scrolling",
       "pass": true,
-      "detail": "{\"card\":{\"top\":132,\"bottom\":588,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":2}"
+      "detail": "{\"card\":{\"top\":135,\"bottom\":585,\"left\":280,\"right\":1000,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":1}"
     },
     {
-      "name": "A: objective → examine rover data at field terminal",
+      "name": "A: HUD panels hide while a card is open",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: objective → look at the robot’s data at the glowing screen",
       "pass": true,
       "detail": ""
     },
@@ -46,12 +56,12 @@
       "detail": ""
     },
     {
-      "name": "A: H opens Nuri help panel with goal (level 0)",
+      "name": "A: help shows ONE Nuri bubble (level 0 = goal)",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "A: level-1 hint gives direction to the real field terminal",
+      "name": "A: level-1 hint replaces the bubble with directions",
       "pass": true,
       "detail": "The glowing screen is just below you. Follow the yellow arrow. Press M for the map."
     },
@@ -66,12 +76,12 @@
       "detail": ""
     },
     {
-      "name": "A: near the target the prompt says \"Move a little closer\"",
+      "name": "A: near the target the prompt says \"Walk a little closer\"",
       "pass": true,
       "detail": "Walk a little closer to the screen"
     },
     {
-      "name": "A: specific prompt \"Examine Rover Data\"",
+      "name": "A: specific prompt \"Look at the robot’s data\"",
       "pass": true,
       "detail": ""
     },
@@ -81,54 +91,64 @@
       "detail": ""
     },
     {
-      "name": "A: field card 1 = Meet Curiosity",
+      "name": "A: scene 1 = Curiosity",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "A curiosity: controls visible without scrolling",
+      "name": "A rover: one idea (1 Nuri line ≤2 sentences, ≤1 main button, no step bar/tag rows/info boxes)",
       "pass": true,
-      "detail": "{\"card\":{\"top\":149,\"bottom\":571,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":2}"
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"words\":10,\"steps\":0,\"tags\":0,\"primaries\":1,\"boxes\":0}"
     },
     {
-      "name": "A: Layer 2 collapsed by default in guided mode",
+      "name": "A rover: controls visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":{\"top\":111,\"bottom\":609,\"left\":280,\"right\":1000,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":1}"
+    },
+    {
+      "name": "A: extra sentence hidden behind \"Tell me more\" in guided mode",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "A: source drawer collapsed",
+      "name": "A: grown-ups drawer collapsed",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "A: card 2 = What does RAD measure?",
+      "name": "A: scene 2 = RAD",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "A: card 3 = interactive chart",
+      "name": "A rad: one idea (1 Nuri line ≤2 sentences, ≤1 main button, no step bar/tag rows/info boxes)",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"words\":14,\"steps\":0,\"tags\":0,\"primaries\":1,\"boxes\":0}"
+    },
+    {
+      "name": "A: scene 3 = interactive chart of every real dot (139)",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "A: chart plots every retrieved 20 May reading (139)",
-      "pass": true,
-      "detail": "139"
-    },
-    {
-      "name": "A: first evidence record → +10 XP and First Discovery",
+      "name": "A: first evidence → +10 XP and First Clue",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "A: choosing a calm window gives a friendly descriptive hint (no penalty)",
+      "name": "A: calm window → friendly try-again line, no penalty",
       "pass": true,
-      "detail": "Here the dots are low and flat. Keep looking! 14 dots here"
+      "detail": "Here the dots stay low. Try another part!"
     },
     {
-      "name": "A: finding the change explains it simply, with a rounded real value",
+      "name": "A: finding the jump → Nuri celebrates simply",
       "pass": true,
-      "detail": "Yes! Here the dots jump way up, super fast! The top dot was about 300."
+      "detail": ""
+    },
+    {
+      "name": "A: rounded real value only behind Tell me more (about 300)",
+      "pass": true,
+      "detail": ""
     },
     {
       "name": "A: Evidence Detective +15",
@@ -141,9 +161,14 @@
       "detail": ""
     },
     {
+      "name": "A chart: one idea (1 Nuri line ≤2 sentences, ≤1 main button, no step bar/tag rows/info boxes)",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"words\":8,\"steps\":0,\"tags\":0,\"primaries\":1,\"boxes\":0}"
+    },
+    {
       "name": "A chart: controls visible without scrolling",
       "pass": true,
-      "detail": "{\"card\":{\"top\":35,\"bottom\":685,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":4}"
+      "detail": "{\"card\":{\"top\":121,\"bottom\":599,\"left\":280,\"right\":1000,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":1}"
     },
     {
       "name": "A: hint levels reach 3 (science thinking)",
@@ -151,7 +176,7 @@
       "detail": ""
     },
     {
-      "name": "A: level-3 hint is reasoning, not an answer",
+      "name": "A: level-3 hint is a question, not an answer",
       "pass": true,
       "detail": "On the graph, look for where the dots jump up."
     },
@@ -159,6 +184,16 @@
       "name": "A: SHOW ME ON THE GRAPH highlights the rise",
       "pass": true,
       "detail": ""
+    },
+    {
+      "name": "A: \"what’s next\" scene shows the Research Lab",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A goResearch: one idea (1 Nuri line ≤2 sentences, ≤1 main button, no step bar/tag rows/info boxes)",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"words\":11,\"steps\":0,\"tags\":0,\"primaries\":1,\"boxes\":0}"
     },
     {
       "name": "A: stage → research; card closed; world resumes",
@@ -188,10 +223,10 @@
     {
       "name": "A: inside wrong room the beacon points at the exit",
       "pass": true,
-      "detail": "{\"kind\":\"exit\",\"buildingId\":\"power\",\"x\":320,\"y\":318,\"mode\":\"guided\"}"
+      "detail": ""
     },
     {
-      "name": "A: arriving inside the goal → beacon on equipment + Nuri line",
+      "name": "A: arriving inside the goal → beacon on machine + Nuri line",
       "pass": true,
       "detail": ""
     },
@@ -201,37 +236,42 @@
       "detail": ""
     },
     {
-      "name": "A: research card 1 compares two days",
+      "name": "A: research scene 1 compares two days on the real chart",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "A: mandatory rover ≠ base dose line present",
+      "name": "A compare: one idea (1 Nuri line ≤2 sentences, ≤1 main button, no step bar/tag rows/info boxes)",
       "pass": true,
-      "detail": "The numbers changed. But they don’t tell us how much radiation was inside our base."
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"words\":17,\"steps\":0,\"tags\":0,\"primaries\":1,\"boxes\":0}"
     },
     {
-      "name": "A: median bars are to scale (19 May ≈ 9% of 20 May)",
+      "name": "A: mandatory rover ≠ base statement (with picture)",
       "pass": true,
-      "detail": "[9,100]"
+      "detail": "The robot measured outside, on Mars. It can’t tell us what happened inside our base."
     },
     {
-      "name": "A: uncertainty card",
+      "name": "A outside: one idea (1 Nuri line ≤2 sentences, ≤1 main button, no step bar/tag rows/info boxes)",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"words\":15,\"steps\":0,\"tags\":0,\"primaries\":1,\"boxes\":0}"
+    },
+    {
+      "name": "A outside: controls visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":{\"top\":133,\"bottom\":587,\"left\":280,\"right\":1000,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":1}"
+    },
+    {
+      "name": "A: cause unknown, said simply",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "A uncertainty: controls visible without scrolling",
-      "pass": true,
-      "detail": "{\"card\":{\"top\":143,\"bottom\":578,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":3}"
-    },
-    {
-      "name": "A: second look shows the analysis line, labelled not a safety limit",
+      "name": "A: many-dots scene: ~14 hours; counting line labelled",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "A: second look: ~14 h on the card, the real count (92) under Tell me more",
+      "name": "A: real count (92) + \"not safe or unsafe\" behind Tell me more",
       "pass": true,
       "detail": ""
     },
@@ -239,6 +279,11 @@
       "name": "A: XP after research = 25+10+15 = 50",
       "pass": true,
       "detail": "50"
+    },
+    {
+      "name": "A: what’s next → Command",
+      "pass": true,
+      "detail": ""
     },
     {
       "name": "A: stage → command",
@@ -256,14 +301,19 @@
       "detail": ""
     },
     {
-      "name": "A: decision card shows two large options",
+      "name": "A: choice scene: two big picture buttons, each with a ✓ gain and a ⏸ wait, + PRETEND PLAN stamp",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "A decision: controls visible without scrolling",
+      "name": "A choose: one idea (1 Nuri line ≤2 sentences, ≤1 main button, no step bar/tag rows/info boxes)",
       "pass": true,
-      "detail": "{\"card\":{\"top\":93,\"bottom\":627,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":2}"
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"words\":12,\"steps\":0,\"tags\":0,\"primaries\":0,\"boxes\":0}"
+    },
+    {
+      "name": "A choose: controls visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":{\"top\":124,\"bottom\":596,\"left\":280,\"right\":1000,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":1}"
     },
     {
       "name": "A: no safe/danger labels on choices",
@@ -276,27 +326,32 @@
       "detail": "{\"version\":1,\"stage\":\"nextShift\",\"choice\":\"review-defer\",\"monitorReviewed\":true,\"researchReviewed\":true,\"nextShiftFlag\":\"trend_reviewed\",\"simulatedWorkSlotsUsed\":1}"
     },
     {
-      "name": "A: explain-your-choice challenge appears",
+      "name": "A: optional \"which clue?\" scene",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "A: weaker evidence gets gentle feedback, no XP",
+      "name": "A: weaker clue → gentle line, no XP",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "A: strong evidence → Careful Scientist +20",
+      "name": "A: strong clue → Careful Scientist +20",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "A: immediate consequence card",
+      "name": "A: what happened now: “You chose X. So Y.” (picture + one line)",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "A: shows simulation slot + NASA unchanged",
+      "name": "A now: one idea (1 Nuri line ≤2 sentences, ≤1 main button, no step bar/tag rows/info boxes)",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"words\":13,\"steps\":0,\"tags\":0,\"primaries\":1,\"boxes\":0}"
+    },
+    {
+      "name": "A: what’s next → Communications",
       "pass": true,
       "detail": ""
     },
@@ -311,49 +366,59 @@
       "detail": ""
     },
     {
-      "name": "A: delayed consequence links earlier choice → later result",
+      "name": "A: delayed result says what happened AND why",
       "pass": true,
-      "detail": "LATEROur notes are ready! The robot trip is still waiting."
+      "detail": "Because you chose Study first, our notes are ready! But the robot trip is still waiting."
     },
     {
-      "name": "A delayed: controls visible without scrolling",
+      "name": "A later: one idea (1 Nuri line ≤2 sentences, ≤1 main button, no step bar/tag rows/info boxes)",
       "pass": true,
-      "detail": "{\"card\":{\"top\":145,\"bottom\":575,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":2}"
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"words\":16,\"steps\":0,\"tags\":0,\"primaries\":1,\"boxes\":0}"
     },
     {
-      "name": "A: debrief summary",
+      "name": "A later: controls visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":{\"top\":157,\"bottom\":563,\"left\":280,\"right\":1000,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":1}"
+    },
+    {
+      "name": "A: real-vs-game scene (REAL chart | GAME base)",
+      "pass": false,
+      "detail": ""
+    },
+    {
+      "name": "A: debrief big idea",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "A: debrief states NASA-real vs game practice",
+      "name": "A bigIdea: one idea (1 Nuri line ≤2 sentences, ≤1 main button, no step bar/tag rows/info boxes)",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"words\":13,\"steps\":0,\"tags\":0,\"primaries\":1,\"boxes\":0}"
+    },
+    {
+      "name": "A: q1 wrong → friendly line, no XP",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "A debrief: controls visible without scrolling",
-      "pass": true,
-      "detail": "{\"card\":{\"top\":147,\"bottom\":573,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":2}"
-    },
-    {
-      "name": "A: reflection wrong answer → friendly explanation, no XP",
+      "name": "A: q1 right → Big Thinker +15",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "A: reflection correct → Scientific Thinker +15",
+      "name": "A q1: one idea (1 Nuri line ≤2 sentences, ≤1 main button, no step bar/tag rows/info boxes)",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"words\":7,\"steps\":0,\"tags\":0,\"primaries\":1,\"boxes\":0}"
+    },
+    {
+      "name": "A: q2 wrong → try again",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "A: transfer question → Method Master +15",
+      "name": "A: q2 right → Clue Master +15",
       "pass": true,
       "detail": ""
-    },
-    {
-      "name": "A reflection: controls visible without scrolling",
-      "pass": true,
-      "detail": "{\"card\":{\"top\":108,\"bottom\":612,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":3}"
     },
     {
       "name": "A: mission complete (+30) → 130 XP",
@@ -361,37 +426,37 @@
       "detail": "130"
     },
     {
-      "name": "A: rewards page shows run XP and replay control",
+      "name": "A: rewards scene: big +130, badges, PLAY AGAIN",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "A rewards: controls visible without scrolling",
+      "name": "A done: one idea (1 Nuri line ≤2 sentences, ≤1 main button, no step bar/tag rows/info boxes)",
       "pass": true,
-      "detail": "{\"card\":{\"top\":142,\"bottom\":578,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":4}"
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"words\":7,\"steps\":0,\"tags\":0,\"primaries\":1,\"boxes\":0}"
     },
     {
-      "name": "A: Science Passport opens with XP and badges",
+      "name": "A rewards: controls visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":{\"top\":138,\"bottom\":589,\"left\":283,\"right\":997,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":1}"
+    },
+    {
+      "name": "A: Science Passport opens with XP and 7 badges",
       "pass": true,
       "detail": ""
     },
     {
       "name": "A passport: controls visible (long panel may scroll)",
       "pass": true,
-      "detail": "{\"card\":{\"top\":39,\"bottom\":681,\"left\":260,\"right\":1020,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":1}"
+      "detail": "{\"card\":{\"top\":85,\"bottom\":635,\"left\":260,\"right\":1020,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":1}"
     },
     {
-      "name": "A: Missions tab shows discovered plan A and undiscovered B",
+      "name": "A: Cards tab lists six mission cards",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "A: Discoveries tab lists six mission cards",
-      "pass": true,
-      "detail": "6"
-    },
-    {
-      "name": "A: discovery detail has NASA source link",
+      "name": "A: card detail keeps the NASA source link",
       "pass": true,
       "detail": ""
     },
@@ -421,7 +486,7 @@
       "detail": ""
     },
     {
-      "name": "A: field terminal after completion opens review mode",
+      "name": "A: glowing screen after completion → straight to the chart (review)",
       "pass": true,
       "detail": ""
     },
@@ -441,32 +506,52 @@
       "detail": ""
     },
     {
-      "name": "B: replay restarts mission at monitor",
+      "name": "B: play again restarts mission at monitor",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "B: in independent mode the beacon is hidden while far away",
+      "name": "B: beacon hidden while far away in independent mode",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "B: Habitat exhibit opens a source-linked discovery card",
+      "name": "B: Habitat bonus fact opens one simple scene",
       "pass": true,
       "detail": ""
+    },
+    {
+      "name": "B exhibit: one idea (1 Nuri line ≤2 sentences, ≤1 main button, no step bar/tag rows/info boxes)",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"words\":13,\"steps\":0,\"tags\":0,\"primaries\":1,\"boxes\":0}"
     },
     {
       "name": "B exhibit: controls visible without scrolling",
       "pass": true,
-      "detail": "{\"card\":{\"top\":170,\"bottom\":551,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":2}"
+      "detail": "{\"card\":{\"top\":144,\"bottom\":576,\"left\":280,\"right\":1000,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":1}"
     },
     {
-      "name": "B: optional discovery +10",
+      "name": "B: bonus fact +10",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "B: re-reading an exhibit does not farm XP",
+      "name": "B: re-reading a bonus fact does not farm XP",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B: Greenhouse bonus fact credits the Canadian Space Agency and says our plants are pretend",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B: greenhouse bonus fact +10",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B: \"Tell me more\" opens by itself in independent mode",
       "pass": true,
       "detail": ""
     },
@@ -476,17 +561,17 @@
       "detail": ""
     },
     {
-      "name": "B: Research exhibit (data check) uses package values",
+      "name": "B: data bonus fact: simple front, exact package values for grown-ups",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "B: DONKI exhibit states no causal claim",
+      "name": "B: Sun bonus fact says same time ≠ cause",
       "pass": true,
-      "detail": "NASA keeps a list of storms on the Sun. Happening at the same time does not prove one thing caused the other."
+      "detail": ""
     },
     {
-      "name": "B: three exhibits → Curious Mind badge",
+      "name": "B: three bonus facts → Curious Mind badge",
       "pass": true,
       "detail": ""
     },
@@ -501,34 +586,34 @@
       "detail": ""
     },
     {
-      "name": "B: immediate consequence for B",
+      "name": "B: immediate result for B",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "B: delayed consequence for B differs from A",
+      "name": "B: delayed result for B differs from A and says why",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "B: debrief shows the other plan tried",
+      "name": "B: debrief mentions both plans tried",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "B: both branches → Branch Explorer; mission-complete XP not duplicated",
+      "name": "B: both branches → Two Paths; mission-complete XP not duplicated",
       "pass": true,
-      "detail": "{\"xp\":170,\"completions\":2}"
+      "detail": "{\"xp\":180,\"completions\":2}"
     },
     {
-      "name": "B: XP = 130 + 3 exhibits (30) + branch explorer (10) = 170",
+      "name": "B: XP = 130 + 4 bonus facts (40) + Two Paths (10) = 180",
       "pass": true,
-      "detail": "170"
+      "detail": "180"
     },
     {
-      "name": "B: rewards page names this run’s new rewards only",
+      "name": "B: rewards scene shows only this run’s XP",
       "pass": true,
-      "detail": " +40"
+      "detail": "+50"
     },
     {
       "name": "C: Arabic sets RTL",
@@ -541,14 +626,9 @@
       "detail": ""
     },
     {
-      "name": "C: Nuri panel no longer overlaps the toolbar in RTL",
-      "pass": true,
-      "detail": ""
-    },
-    {
       "name": "C: building signs are localized",
       "pass": true,
-      "detail": "مختبر الأبحاث"
+      "detail": ""
     },
     {
       "name": "C: Arabic interaction prompt",
@@ -556,14 +636,19 @@
       "detail": ""
     },
     {
-      "name": "C: Arabic chart card",
+      "name": "C: Arabic chart scene",
       "pass": true,
       "detail": ""
     },
     {
+      "name": "C chart: one idea (1 Nuri line ≤2 sentences, ≤1 main button, no step bar/tag rows/info boxes)",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"words\":6,\"steps\":0,\"tags\":0,\"primaries\":1,\"boxes\":0}"
+    },
+    {
       "name": "C chart: controls visible without scrolling",
       "pass": true,
-      "detail": "{\"card\":{\"top\":27,\"bottom\":693,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":4}"
+      "detail": "{\"card\":{\"top\":119,\"bottom\":601,\"left\":280,\"right\":1000,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":1}"
     },
     {
       "name": "C: chart axis stays LTR inside RTL card",
@@ -571,52 +656,57 @@
       "detail": ""
     },
     {
-      "name": "C meaning: controls visible without scrolling",
-      "pass": false,
-      "detail": "{\"card\":{\"top\":14,\"bottom\":706,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":27,\"buttonsInView\":true,\"buttons\":3}"
-    },
-    {
       "name": "C: mandatory Arabic rover≠base line",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "C uncertainty: controls visible without scrolling",
+      "name": "C outside: one idea (1 Nuri line ≤2 sentences, ≤1 main button, no step bar/tag rows/info boxes)",
       "pass": true,
-      "detail": "{\"card\":{\"top\":130,\"bottom\":590,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":3}"
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"words\":13,\"steps\":0,\"tags\":0,\"primaries\":1,\"boxes\":0}"
+    },
+    {
+      "name": "C outside: controls visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":{\"top\":128,\"bottom\":592,\"left\":280,\"right\":1000,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":1}"
     },
     {
       "name": "C decision: controls visible without scrolling",
       "pass": true,
-      "detail": "{\"card\":{\"top\":82,\"bottom\":638,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":2}"
+      "detail": "{\"card\":{\"top\":128,\"bottom\":592,\"left\":280,\"right\":1000,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":1}"
     },
     {
       "name": "C delayed: controls visible without scrolling",
       "pass": true,
-      "detail": "{\"card\":{\"top\":134,\"bottom\":586,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":2}"
+      "detail": "{\"card\":{\"top\":159,\"bottom\":561,\"left\":280,\"right\":1000,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":1}"
+    },
+    {
+      "name": "C delayed: one idea (1 Nuri line ≤2 sentences, ≤1 main button, no step bar/tag rows/info boxes)",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"words\":13,\"steps\":0,\"tags\":0,\"primaries\":1,\"boxes\":0}"
     },
     {
       "name": "C debrief: controls visible without scrolling",
       "pass": true,
-      "detail": "{\"card\":{\"top\":141,\"bottom\":579,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":2}"
+      "detail": "{\"card\":{\"top\":143,\"bottom\":577,\"left\":280,\"right\":1000,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":1}"
     },
     {
-      "name": "C reflection: controls visible without scrolling",
+      "name": "C q2: controls visible without scrolling",
       "pass": true,
-      "detail": "{\"card\":{\"top\":124,\"bottom\":596,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":3}"
+      "detail": "{\"card\":{\"top\":134,\"bottom\":586,\"left\":280,\"right\":1000,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":1}"
     },
     {
       "name": "C rewards: controls visible without scrolling",
       "pass": true,
-      "detail": "{\"card\":{\"top\":125,\"bottom\":595,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":4}"
+      "detail": "{\"card\":{\"top\":149,\"bottom\":592,\"left\":288,\"right\":992,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":1}"
     },
     {
       "name": "C passport: controls visible (long panel may scroll)",
       "pass": true,
-      "detail": "{\"card\":{\"top\":22,\"bottom\":698,\"left\":260,\"right\":1020,\"inView\":true},\"scroll\":32,\"buttonsInView\":true,\"buttons\":1}"
+      "detail": "{\"card\":{\"top\":52,\"bottom\":668,\"left\":260,\"right\":1020,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":1}"
     },
     {
-      "name": "C: Arabic help panel",
+      "name": "C: Arabic help is one Nuri bubble with a level label",
       "pass": true,
       "detail": ""
     },
@@ -631,7 +721,7 @@
       "detail": ""
     },
     {
-      "name": "D: redoing the card after reload does not duplicate",
+      "name": "D: redoing the scenes after reload does not duplicate",
       "pass": true,
       "detail": ""
     },
@@ -641,38 +731,38 @@
       "detail": ""
     },
     {
-      "name": "D: legacy complete save is kept and migrated into the passport",
+      "name": "D: legacy complete save kept and migrated into the passport",
       "pass": true,
       "detail": ""
     },
     {
-      "name": "D: malformed save (debrief, no choice) repaired to command + backup kept",
+      "name": "D: malformed save repaired to command + backup kept",
       "pass": true,
       "detail": "{\"version\":1,\"stage\":\"command\",\"choice\":null,\"monitorReviewed\":true,\"researchReviewed\":true,\"nextShiftFlag\":null,\"simulatedWorkSlotsUsed\":0}"
     },
     {
       "name": "E 1024x640 chart: controls visible without scrolling",
       "pass": true,
-      "detail": "{\"card\":{\"top\":43,\"bottom\":597,\"left\":82,\"right\":942,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":4}"
+      "detail": "{\"card\":{\"top\":114,\"bottom\":526,\"left\":152,\"right\":872,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":1}"
     },
     {
       "name": "E 1024x640 decision: controls visible without scrolling",
       "pass": true,
-      "detail": "{\"card\":{\"top\":65,\"bottom\":575,\"left\":82,\"right\":942,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":2}"
+      "detail": "{\"card\":{\"top\":97,\"bottom\":543,\"left\":152,\"right\":872,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":1}"
     },
     {
       "name": "E 1920x1080 chart: controls visible without scrolling",
       "pass": true,
-      "detail": "{\"card\":{\"top\":186,\"bottom\":894,\"left\":530,\"right\":1390,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":4}"
+      "detail": "{\"card\":{\"top\":283,\"bottom\":797,\"left\":600,\"right\":1320,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":1}"
     },
     {
       "name": "E 1920x1080 decision: controls visible without scrolling",
       "pass": true,
-      "detail": "{\"card\":{\"top\":254,\"bottom\":826,\"left\":530,\"right\":1390,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":2}"
+      "detail": "{\"card\":{\"top\":304,\"bottom\":776,\"left\":600,\"right\":1320,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":1}"
     },
     {
       "name": "F: guided mode offers help after ~45 s without progress",
-      "pass": false,
+      "pass": true,
       "detail": ""
     },
     {
@@ -698,22 +788,22 @@
     "qa-screenshots/child-experience/05-nuri-first-hint.png",
     "qa-screenshots/child-experience/04-device-prompt.png",
     "qa-screenshots/child-experience/07-curiosity-evidence.png",
-    "qa-screenshots/child-experience/13-achievement-unlock.png",
     "qa-screenshots/child-experience/08-radiation-chart.png",
     "qa-screenshots/child-experience/06-nuri-reasoning-hint.png",
     "qa-screenshots/child-experience/03-navigating-to-research.png",
+    "qa-screenshots/child-experience/09b-outside-vs-inside.png",
     "qa-screenshots/child-experience/09-decision-cards.png",
     "qa-screenshots/child-experience/10-immediate-consequence.png",
     "qa-screenshots/child-experience/11-delayed-consequence.png",
+    "qa-screenshots/child-experience/11b-real-vs-game.png",
     "qa-screenshots/child-experience/14-final-debrief.png",
     "qa-screenshots/child-experience/14b-reflection.png",
     "qa-screenshots/child-experience/14c-mission-complete.png",
     "qa-screenshots/child-experience/12-science-passport.png",
-    "qa-screenshots/child-experience/12b-passport-missions.png",
     "qa-screenshots/child-experience/12c-passport-discoveries.png",
     "qa-screenshots/child-experience/16-exhibit.png",
     "qa-screenshots/child-experience/15-arabic-chart.png",
-    "qa-screenshots/child-experience/15b-arabic-meaning.png",
+    "qa-screenshots/child-experience/15b-arabic-outside.png",
     "qa-screenshots/child-experience/15c-arabic-decision.png",
     "qa-screenshots/child-experience/15d-arabic-delayed.png",
     "qa-screenshots/child-experience/15e-arabic-debrief.png",
@@ -723,95 +813,5 @@
     "qa-screenshots/child-experience/17-decision-1024x640.png",
     "qa-screenshots/child-experience/17-chart-1920x1080.png",
     "qa-screenshots/child-experience/17-decision-1920x1080.png"
-  ],
-  "saveA": {
-    "xp": 130,
-    "progress": {
-      "version": 1,
-      "awarded": [
-        "ev:curiosity-card",
-        "ev:rad-card",
-        "ev:may20-series",
-        "ev:found-change",
-        "ev:may19-compare",
-        "ev:unknowns",
-        "ev:second-look",
-        "ev:explain-choice",
-        "ev:reflect-dose",
-        "ev:transfer",
-        "ev:mission-complete:P2-M02"
-      ],
-      "achievements": [
-        "first-discovery",
-        "evidence-detective",
-        "second-look",
-        "careful-scientist",
-        "scientific-thinker",
-        "method-master",
-        "mission-complete"
-      ],
-      "cards": [
-        "curiosity-rover",
-        "rad-instrument",
-        "may20-readings",
-        "compare-days",
-        "rover-vs-person",
-        "many-readings"
-      ],
-      "places": [
-        "power",
-        "research",
-        "comms",
-        "command"
-      ],
-      "exhibits": [],
-      "challenges": [
-        "check-evidence",
-        "explain-choice"
-      ],
-      "branchesSeen": [
-        "review-defer"
-      ],
-      "completions": 1,
-      "run": {
-        "events": [
-          "ev:curiosity-card",
-          "ev:rad-card",
-          "ev:may20-series",
-          "ev:found-change",
-          "ev:may19-compare",
-          "ev:unknowns",
-          "ev:second-look",
-          "ev:explain-choice",
-          "ev:reflect-dose",
-          "ev:transfer",
-          "ev:mission-complete:P2-M02"
-        ]
-      },
-      "settings": {
-        "locale": "en",
-        "guidance": "guided",
-        "preference": null,
-        "nuriLight": "cyan"
-      },
-      "hintLevel": {
-        "monitor": 1,
-        "monitor:field": 3
-      },
-      "stats": {
-        "hintRequests": 6,
-        "wrongPlaces": 2,
-        "misses": 0,
-        "helpOffers": 0
-      },
-      "flags": [
-        "migrated-from-mission-v1",
-        "xp-intro",
-        "place-toast-power",
-        "place-toast-research",
-        "place-toast-comms",
-        "place-toast-command"
-      ]
-    }
-  }
+  ]
 }

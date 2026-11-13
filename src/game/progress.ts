@@ -26,7 +26,7 @@ export type Progress={
   flags:string[];
 };
 const PLACE_IDS=['habitat','power','greenhouse','water','research','comms','command','shelter','oxygen'];
-const EXHIBIT_IDS=['data-check','surface-typical','solar-catalog','iss-environment'];
+const EXHIBIT_IDS=['data-check','surface-typical','solar-catalog','iss-environment','crop-education','mars-map'];
 export const fresh=():Progress=>({version:1,awarded:[],achievements:[],cards:[],places:[],exhibits:[],challenges:[],branchesSeen:[],completions:0,run:{events:[]},
   settings:{locale:'en',guidance:'guided',preference:null,nuriLight:'cyan'},hintLevel:{},stats:{hintRequests:0,wrongPlaces:0,misses:0,helpOffers:0},flags:[]});
 

@@ -65,7 +65,7 @@ check('Mission state flags unchanged from original design',JSON.stringify(await 
 await act(p,'next');await act(p,'close');
 await p.evaluate(()=>window.dispatchEvent(new CustomEvent('ripple-world-interaction',{detail:{kind:'equipment',buildingId:'comms'}})));
 await act(p,'next');
-check('After the choice: NASA’s real dots stayed the same (stamped real)',/NASA’s real dots stayed the same/.test(await say())&&/REAL NASA DATA/.test(await p.locator('#science-content .stamp').textContent()));
+check('After the choice: REAL (NASA chart) vs GAME (base) shown side by side',/real NASA data/.test(await say())&&/pretend game/.test(await say())&&(await p.locator('.real-vs-game .real .ch-pt').count())===139&&/GAME/.test(await p.locator('.real-vs-game .game figcaption').textContent()));
 const ev=await p.evaluate(()=>JSON.stringify(window.__mission.getEvidence()));
 check('NASA snapshot unchanged by the decision',ev===JSON.stringify(evidence));
 await browser.close();

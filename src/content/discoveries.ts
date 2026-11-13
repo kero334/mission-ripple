@@ -53,4 +53,15 @@ export const DISCOVERIES:Discovery[]=[
     detail:l=>tr(l,`ISS DosTel readings (${ex['iss-environment'].observationPeriod}) belong to a different environment from Curiosity’s ${evidence.datasetId} (SCI-0002). They are described separately, without converting one into the other.`,`قراءات ISS DosTel (${b(ex['iss-environment'].observationPeriod)}) من مكان مختلف عن ${b(evidence.datasetId)} بتاع كيوريوسيتي (SCI-0002). وبتتوصف لوحدها من غير ما نحوّل واحدة للتانية.`),
     org:'NASA',url:ex['iss-environment'].sourceUrl,refs:['SCI-0002'],where:{en:'Habitat · left screen',ar:'وحدة السكن · الشاشة الشمال'}},
 ];
+const csa=ex['crop-education'],trek=ex['mars-map'];
+DISCOVERIES.push(
+  {id:'crop-education',icon:'ui/ui-plant-pixel',kind:'exhibit',title:{en:'Growing Food in Space',ar:'زراعة الأكل في الفضاء'},
+    short:l=>tr(l,'The Canadian Space Agency teaches how to grow food for space trips. Our science files have no real Mars harvests yet, so our plants are pretend!','وكالة الفضاء الكندية بتعلّم إزاي نزرع أكل لرحلات الفضاء. ملفاتنا العلمية مفيهاش محاصيل حقيقية من المريخ، فنباتاتنا خيالية!'),
+    detail:l=>tr(l,`${csa.datasetId} (P2-CSA-01): education about ${csa.value}. ${csa.uncertainty} Attributed to the Canadian Space Agency.`,`${b(csa.datasetId)} (P2-CSA-01): تعليم عن إنتاج الأكل والتغذية. مفيش محصول صوبة مريخية متقاس، ولا استهلاك موارد، ولا نتيجة صحية. المصدر: وكالة الفضاء الكندية.`),
+    org:'Canadian Space Agency',url:csa.sourceUrl,refs:['P2-CSA-01'],where:{en:'Greenhouse · left plants',ar:'البيت الزراعي · النباتات الشمال'}},
+  {id:'mars-map',icon:'ui/ui-map-pixel',kind:'exhibit',title:{en:'A Map of Mars',ar:'خريطة المريخ'},
+    short:l=>tr(l,'NASA’s Mars Trek makes maps of Mars from real data. The colors are a picture, not exact heights.','موقع مارس تريك بتاع ناسا بيعمل خرايط للمريخ من بيانات حقيقية. الألوان صورة، مش ارتفاعات بالظبط.'),
+    detail:l=>tr(l,`${trek.datasetId} (P2-TREK-01), delivered as ${trek.value}. ${trek.uncertainty}`,`${b(trek.datasetId)} (P2-TREK-01)، صيغة ${b(String(trek.value))}. الصورة الملونة مش ارتفاع رقمي ولا ميل متأكد منه.`),
+    org:'NASA',url:trek.sourceUrl,refs:['P2-TREK-01'],where:{en:'Communications · left dish',ar:'الاتصالات · الطبق الشمال'}},
+);
 export const discovery=(id:string)=>DISCOVERIES.find(d=>d.id===id);

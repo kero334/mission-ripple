@@ -50,6 +50,8 @@ export const REWARD_EVENTS:Record<string,RewardEvent>={
   'ex:surface-typical':{xp:'optionalDiscovery',cards:['surface-typical']},
   'ex:solar-catalog':{xp:'optionalDiscovery',cards:['solar-catalog']},
   'ex:iss-environment':{xp:'optionalDiscovery',cards:['iss-environment']},
+  'ex:crop-education':{xp:'optionalDiscovery',cards:['crop-education']},
+  'ex:mars-map':{xp:'optionalDiscovery',cards:['mars-map']},
 };
 export const xpFor=(eventId:string)=>{const e=REWARD_EVENTS[eventId];return e?.xp?XP[e.xp]:0};
 
@@ -64,7 +66,7 @@ export const TITLES:{xp:number;name:Tx}[]=[
   {xp:40,name:tx('Data Observer','مراقب بيانات')},
   {xp:90,name:tx('Evidence Detective','مخبر أدلة')},
   {xp:140,name:tx('Science Investigator','محقق علمي')},
-  {xp:180,name:tx('Mars Explorer','مستكشف المريخ')},
+  {xp:200,name:tx('Mars Explorer','مستكشف المريخ')},
 ];
 export const titleFor=(xp:number)=>TITLES.reduce((best,t)=>xp>=t.xp?t:best,TITLES[0]);
 export const nextTitle=(xp:number)=>TITLES.find(t=>t.xp>xp)||null;

@@ -34,7 +34,7 @@ export function setupPanels(deps:Deps){
     const showMe=level>=1&&!['ready','debrief','complete'].includes(stage)&&!m.card();
     const graph=level>=3&&m.graphVisible();
     return `<h2 id="panel-title" class="sr-only">${pick(HELP.title,l)}</h2>
-      <div class="help-scene hint-${h.category}"><img class="help-icon" src="${asset(icon)}" alt=""/>${nuriLine(esc(h.text),l)}</div>
+      <div class="help-scene hint-${h.category}"><img class="help-icon" src="${asset(icon)}" alt=""/><b class="help-level">${pick(HELP.levels[level],l)}</b>${nuriLine(esc(h.text),l)}</div>
       <div class="help-dots" aria-label="${level+1}/4">${ladder.map((_,i)=>`<i class="${i<=level?'on':''}"></i>`).join('')}</div>
       <div class="panel-actions">${showMe?`<button type="button" data-panel-action="show-me">${pick(HELP.showMe,l)}</button>`:''}${graph?`<button type="button" data-panel-action="show-graph">${pick(HELP.showGraph,l)}</button>`:''}
       ${level<3?`<button type="button" data-panel-action="more">${pick(HELP.more,l)}</button>`:''}

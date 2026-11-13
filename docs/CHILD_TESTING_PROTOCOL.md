@@ -3,6 +3,21 @@
 **Status:** prepared, not run. No child has played this version yet. Do not report any result from this
 protocol until real sessions have taken place with consent.
 
+## Quick checklist: can the child say it? (ask after play, in their own words)
+
+| # | The child can say… | Pass if… |
+|---|---|---|
+| 1 | "I know what my mission is." | Explains the goal without reading the screen |
+| 2 | "I know where to go." | Walks to the next building without adult help (beacon or map) |
+| 3 | "I understand what the robot measured." | Says something like "radiation on Mars, by a rover" |
+| 4 | "I noticed something interesting." | Points to the jump in the dots |
+| 5 | "I made a decision using the evidence." | Names a clue for their plan |
+| 6 | "I understand what happened because of my choice." | Describes the later result for their plan |
+| 7 | "I learned something new." | Says the robot's reading is not what happened inside the base, or "look at many readings" |
+| 8 | "I want to play again!" | Chooses to replay or explore when offered |
+
+Also note any screen where the child stopped for more than 10 s without knowing what to press.
+
 ## Who and how
 
 - **Groups:** two small groups, about 5 children aged 7–8 and about 5 aged 9–12, for a qualitative pilot.

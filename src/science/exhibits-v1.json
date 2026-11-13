@@ -79,6 +79,34 @@
       ],
       "value": 1,
       "unit": "fraction"
+    },
+    "crop-education": {
+      "findingId": "P2-CSA-01",
+      "sourceOrganization": "Canadian Space Agency",
+      "sourceUrl": "https://www.asc-csa.gc.ca/eng/youth-educators/toolkits/food-production/",
+      "datasetId": "CSA Food Production Toolkit",
+      "observationPeriod": null,
+      "environment": "CSA education resource",
+      "limitations": [
+        "No measured Mars greenhouse yield, resource consumption, or health outcome."
+      ],
+      "value": "food production and nutrition",
+      "dataset": "CSA Food Production Toolkit",
+      "uncertainty": "No measured Mars greenhouse yield, resource consumption, or health outcome."
+    },
+    "mars-map": {
+      "findingId": "P2-TREK-01",
+      "sourceOrganization": "NASA",
+      "sourceUrl": "https://trek.nasa.gov/tiles/apidoc/trekAPI.html?body=mars",
+      "datasetId": "Mars Trek MOLA color-shaded WMTS",
+      "observationPeriod": null,
+      "environment": "Mars global map layer",
+      "limitations": [
+        "Color-shaded raster is not numeric elevation or validated slope."
+      ],
+      "value": "image/jpeg",
+      "dataset": "Mars Trek MOLA color-shaded WMTS",
+      "uncertainty": "Color-shaded raster is not numeric elevation or validated slope."
     }
   }
 }

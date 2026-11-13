@@ -25,8 +25,8 @@ sibling folder) and `npm run qa:camera`.
   glowing screen (see the robot's real data) → Research Lab (what it means, what is still a mystery) →
   Command Hub (pick plan A or B) → Communications (see what your choice changed) → debrief and rewards.
   Play again to try the other plan.
-- **Extras:** four optional **bonus facts** are hidden on screens in the Habitat, Research Lab, Command Hub and
-  Radiation Shelter.
+- **Extras:** six optional **bonus facts** are hidden in the Habitat, Research Lab, Command Hub, Radiation
+  Shelter, Greenhouse and Communications.
 
 Every number a child sees is rounded and comes from the NASA snapshot. Exact values and sources are in each
 card's "For grown-ups" drawer. The robot's readings are never presented as an astronaut's dose, a reading

@@ -44,7 +44,9 @@ const exhibits={
     'data-check':pick(need('P2-RAD-08'),{value:need('P2-RAD-08').value,unit:need('P2-RAD-08').unit,coverageReadings:need('P2-RAD-01').value,coverageFindingId:'P2-RAD-01'}),
     'solar-catalog':pick(need('SCI-0003'),{counts:sci3.counts,period:sci3.period,caveat:sci3.caveat,causalClaim:'none'}),
     'iss-environment':pick(need('SCI-0002'),{environmentNote:'ISS, low Earth orbit',datasetIdCompared:'MSL-RAD-Surface'}),
-    'dose-equivalent':pick(need('P2-RAD-07'),{value:need('P2-RAD-07').value,unit:need('P2-RAD-07').unit})
+    'dose-equivalent':pick(need('P2-RAD-07'),{value:need('P2-RAD-07').value,unit:need('P2-RAD-07').unit}),
+    'crop-education':pick(need('P2-CSA-01'),{value:need('P2-CSA-01').value,dataset:need('P2-CSA-01').dataset_id,uncertainty:need('P2-CSA-01').uncertainty}),
+    'mars-map':pick(need('P2-TREK-01'),{value:need('P2-TREK-01').value,dataset:need('P2-TREK-01').dataset_id,uncertainty:need('P2-TREK-01').uncertainty})
   }
 };
 writeFileSync('src/science/rad-series-v1.json',JSON.stringify(series)+'\n','utf8');

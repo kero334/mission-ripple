@@ -47,7 +47,9 @@ await test('science: exhibit values equal canonical findings (needs research pac
   const f=resolve(pkg,'04_VERIFIED_DISCOVERIES/scientific_findings.json');if(!existsSync(f)){console.log('    (skipped)');return}
   const by=Object.fromEntries(JSON.parse(readFileSync(f,'utf8')).map(x=>[x.id,x]));const ex=S.exhibitRecords;
   assert.equal(ex['data-check'].value,by['P2-RAD-08'].value);assert.equal(ex['surface-typical'].value,by['P2-RAD-02'].value);assert.equal(ex['data-check'].coverageReadings,by['P2-RAD-01'].value);
-  assert.deepEqual(ex['solar-catalog'].counts,by['SCI-0003'].value.counts)});
+  assert.deepEqual(ex['solar-catalog'].counts,by['SCI-0003'].value.counts);
+  assert.equal(ex['crop-education'].sourceOrganization,'Canadian Space Agency');assert.equal(ex['crop-education'].uncertainty,by['P2-CSA-01'].uncertainty);
+  assert.equal(ex['mars-map'].value,by['P2-TREK-01'].value);assert.equal(ex['mars-map'].uncertainty,by['P2-TREK-01'].uncertainty)});
 await test('science: no child-facing text calls a reading safe/unsafe or gives a cause',()=>{
   const all=JSON.stringify(C).toLowerCase().replaceAll('not “safe” or “unsafe”','').replaceAll('does not mean “safe” or “unsafe”','').replaceAll('does not decide what is safe for people','');for(const bad of ['unsafe','is safe','dangerous level','caused by the sun','solar storm caused'])assert.ok(!all.includes(bad),bad);
   for(const d of D.DISCOVERIES){const t=(d.short('en')+d.detail('en')).toLowerCase();assert.ok(!/\bunsafe\b|\bdangerous\b/.test(t),d.id)}});
