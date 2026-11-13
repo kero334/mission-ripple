@@ -1,0 +1,13 @@
+# Verified implementation history
+
+The precise dates of early concept and 3D changes are not established by the inspected current 2D repository, which has no Git history. This order is supported by project documents, source, QA artifacts and timestamped checkpoint names; do not infer undocumented commits or acceptance sign-off.
+
+1. **Concept and 3D historical prototype.** User direction established a NASA Space Apps educational game for ages 7–12 and a five-mission Mars base. Old PlayCanvas project exists separately. Its `AGENTS.md` refers to camera, Nuri and audio design documents in a planning project; none proves corresponding behavior in the new 2D runtime. Do not modify the old project.
+2. **2D world foundation.** User moved to browser-based 2D exploration; early `WORLDBUILDING_SPEC.md` and SVG manifest describe a now-superseded stage. Phaser scene, nine buildings, enterable rooms and controls are in current source. Remaining: richer environment art and general persistence.
+3. **Pixel-art visual reconstruction.** User-supplied screenshot became visual target. `art-source/`, normalized PNGs, pixel manifest and 720p/1080p QA show the separate-asset implementation. `docs/UNFINISHED.md` records fidelity gaps. Checkpoints `pre-pixel-art-2026-11-13.zip`, `pixel-art-final-2026-11-13.zip` exist outside active project.
+4. **Scientific analysis/handoff.** Separate research package provides source registry, original records, findings, candidates, limitations and validator reports. Current game selected P2-M02 with rationale in `docs/MISSION_SELECTION_AND_SCIENCE.md`. Package validation is integrity evidence, not independent scientific review.
+5. **Science mission.** `src/science/` integrates a bounded RadLab snapshot, deterministic reducer, both choices, next-shift branch and bilingual cards. Checkpoints `pre-science-mission-2026-11-13.zip` and `science-mission-final-2026-11-13.zip`; science QA 23/23. Remaining campaign missions not implemented.
+6. **Educational UX and camera refinement.** Visual cards replaced dense default source text; exact provenance remains optional. Camera zoom changed to exterior 0.8 with eased follow; camera QA 6/6. Checkpoints `pre-child-friendly-ui-2026-11-13.zip` and `child-friendly-ui-final-2026-11-13.zip`. No child usability study was found.
+7. **Gamification requests.** Three motivation types and desired XP/passport/achievements appear in user brief, but no runtime implementation or checkpoint evidence for those systems was found. Current acceptance is limited to playable world and P2-M02 QA.
+
+Historic checkpoint archives are listed in [FILE_INVENTORY.md](FILE_INVENTORY.md) but intentionally excluded from the portable ZIP to avoid large duplicate builds.

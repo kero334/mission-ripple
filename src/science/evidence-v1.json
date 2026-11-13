@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "snapshotId": "radlab-may20-v1",
+  "missionId": "P2-M02",
+  "evidenceId": "RAD-MAY20-2024",
+  "findingIds": [
+    "P2-RAD-04",
+    "P2-RAD-05",
+    "P2-RAD-07",
+    "P2-RAD-08"
+  ],
+  "eventId": "P2-EVT-RAD-MAY20",
+  "sourceOrganization": "NASA",
+  "sourceUrl": "https://visualization.osdr.nasa.gov/radlab/gui/data-api/",
+  "datasetId": "MSL-RAD-Surface",
+  "instrument": "Curiosity RAD",
+  "environment": "Curiosity rover, Mars surface",
+  "observationPeriod": "2024-05-20 UTC",
+  "sourceRecord": "01_ORIGINAL_DATA/RADLAB/phase2/MSL_RAD_surface_2024.csv",
+  "sourceSha256": "baea6261262f499f02259fbfba986973038c88a7b03f4f1b2136d6e346132a11",
+  "analysisRecord": "03_SCIENTIFIC_ANALYSIS/radiation/may_2024_radlab_case.json",
+  "scope": "rover_surface_only",
+  "humanSafetyThreshold": null,
+  "habitatDose": null,
+  "causalSolarEvent": null,
+  "exploratoryCutoffIsSafetyLimit": false,
+  "measurements": [
+    {
+      "timestampUtc": "2024-05-20T03:56:33Z",
+      "absorbedDoseRate": 4.1060014,
+      "unit": "µGy/hour",
+      "recordSelector": {
+        "timestamp": "2024-05-20T03:56:33"
+      }
+    },
+    {
+      "timestampUtc": "2024-05-20T05:38:56Z",
+      "absorbedDoseRate": 60.03622,
+      "unit": "µGy/hour",
+      "recordSelector": {
+        "timestamp": "2024-05-20T05:38:56"
+      }
+    },
+    {
+      "timestampUtc": "2024-05-20T05:57:07Z",
+      "absorbedDoseRate": 235.90192,
+      "unit": "µGy/hour",
+      "recordSelector": {
+        "timestamp": "2024-05-20T05:57:07"
+      }
+    },
+    {
+      "timestampUtc": "2024-05-20T06:15:19Z",
+      "absorbedDoseRate": 303.98798,
+      "unit": "µGy/hour",
+      "recordSelector": {
+        "timestamp": "2024-05-20T06:15:19"
+      }
+    },
+    {
+      "timestampUtc": "2024-05-20T08:59:02Z",
+      "absorbedDoseRate": 112.630424,
+      "unit": "µGy/hour",
+      "recordSelector": {
+        "timestamp": "2024-05-20T08:59:02"
+      }
+    },
+    {
+      "timestampUtc": "2024-05-20T12:01:41Z",
+      "absorbedDoseRate": 83.70684,
+      "unit": "µGy/hour",
+      "recordSelector": {
+        "timestamp": "2024-05-20T12:01:41"
+      }
+    },
+    {
+      "timestampUtc": "2024-05-20T15:01:50Z",
+      "absorbedDoseRate": 50.14013,
+      "unit": "µGy/hour",
+      "recordSelector": {
+        "timestamp": "2024-05-20T15:01:50"
+      }
+    },
+    {
+      "timestampUtc": "2024-05-20T18:04:29Z",
+      "absorbedDoseRate": 36.345375,
+      "unit": "µGy/hour",
+      "recordSelector": {
+        "timestamp": "2024-05-20T18:04:29"
+      }
+    },
+    {
+      "timestampUtc": "2024-05-20T20:03:13Z",
+      "absorbedDoseRate": 30.445269,
+      "unit": "µGy/hour",
+      "recordSelector": {
+        "timestamp": "2024-05-20T20:03:13"
+      }
+    },
+    {
+      "timestampUtc": "2024-05-20T20:58:01Z",
+      "absorbedDoseRate": 25.318884,
+      "unit": "µGy/hour",
+      "recordSelector": {
+        "timestamp": "2024-05-20T20:58:01"
+      }
+    }
+  ],
+  "derived": {
+    "peak": 303.98798,
+    "readingsAboveExploratoryCutoff": 92,
+    "exploratoryCutoff": 30,
+    "spanHours": 14.404722222222222,
+    "previousDayMedian": 3.8454965999999997,
+    "eventDayMedian": 42.504765,
+    "unit": "µGy/hour"
+  },
+  "uncertainty": {
+    "en": "The cause and detector quality flags for this episode are not established. No astronaut or habitat exposure was measured.",
+    "ar": "لم يُحدد سبب هذه الحلقة أو علامات جودة الكاشف. لم يُقَس تعرض رائد فضاء أو داخل وحدة السكن."
+  },
+  "explanation": {
+    "en": "Several rover readings stayed elevated across many hours. A sequence gives more context than one peak.",
+    "ar": "ظلّت عدة قراءات للكاشف على العربة مرتفعة لساعات. تعطينا السلسلة معلومات أكثر من قمة واحدة."
+  },
+  "verificationStatus": "source-linked, package-validated; scientific transfer to fictional outpost not validated",
+  "provenanceRefs": [
+    "P2-RAD-04",
+    "P2-RAD-05",
+    "P2-RAD-07",
+    "P2-RAD-08",
+    "P2-EVT-RAD-MAY20"
+  ],
+  "relatedDecisionIds": [
+    "P2-M02A",
+    "P2-M02B"
+  ]
+}

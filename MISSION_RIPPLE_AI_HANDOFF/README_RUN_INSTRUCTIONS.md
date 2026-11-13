@@ -1,0 +1,7 @@
+# Run and reproduce
+
+Prerequisites: Node.js supported by Vite 8 (20.19+ or 22.12+), npm, desktop Chrome. Extract the ZIP, change directory into `MISSION_RIPPLE_AI_HANDOFF/project`, run `npm ci`, then `npm run dev`. Open `http://localhost:5182/`. `npm run build` runs TypeScript typecheck and Vite production bundling. `npm run preview` serves the built bundle on port 4182. Port 5182 must be free or use a Vite CLI override; QA scripts may assume 5182.
+
+Controls: WASD/arrows move, Shift sprint, E interact, M map, J journal, B equipment preview, Esc pause, L language. Click Start Science Mission to play P2-M02. The browser stores mission progress in localStorage under `mission-ripple-science-v1`. To inspect without changing state: `window.__mission.getState()`, `window.__mission.getEvidence()`. To reset via UI, complete and click Replay Mission. The game needs no external science package to launch because its bounded snapshot ships in source.
+
+Only if regenerating art: use Python and image libraries used by `tools/build_pixel_assets.py` and `tools/build_science_icons.py` (inspect imports for exact versions). Only if regenerating/verifying science: obtain the separate read-only `NASA-Science-to-Mission-Engine/MISSION_RIPPLE_COMPLETE_SCIENTIFIC_DATA` package, place the parent as a sibling of `project/` or adapt tool input paths, and compare the original CSV hash. Do not use the ZIP backup as a writable working copy.

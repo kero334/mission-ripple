@@ -1,0 +1,120 @@
+{
+  "checks": [
+    {
+      "name": "Canvas visible 1280x720",
+      "pass": true,
+      "detail": "1280x720"
+    },
+    {
+      "name": "WASD movement and exploration state",
+      "pass": true,
+      "detail": "{\"x\":640,\"y\":455}"
+    },
+    {
+      "name": "Habitat door prompt reached",
+      "pass": true,
+      "detail": "Enter Habitat"
+    },
+    {
+      "name": "Enter Habitat by walking to door and pressing E",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Habitat equipment inspection",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Exit Habitat to outpost",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Enter power",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Enter greenhouse",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Enter water",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Enter research",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Enter comms",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Enter command",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Enter shelter",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Enter oxygen",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Map opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Journal opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Inventory opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Pause opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Arabic RTL",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Canvas visible 1920x1080",
+      "pass": true,
+      "detail": "1920x1080"
+    },
+    {
+      "name": "No browser errors",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "errors": [],
+  "screens": [
+    "qa-screenshots/pixel/final-1280x720.png",
+    "qa-screenshots/pixel/habitat-interior.png",
+    "qa-screenshots/pixel/power-interior.png",
+    "qa-screenshots/pixel/greenhouse-interior.png",
+    "qa-screenshots/pixel/water-interior.png",
+    "qa-screenshots/pixel/research-interior.png",
+    "qa-screenshots/pixel/arabic-1280x720.png",
+    "qa-screenshots/pixel/final-1920x1080.png"
+  ]
+}

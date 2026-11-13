@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330 185" width="330" height="185"><defs>
+    <linearGradient id="sand" x2="0" y2="1"><stop stop-color="#d98157"/><stop offset=".55" stop-color="#b95d46"/><stop offset="1" stop-color="#833d3e"/></linearGradient>
+    <linearGradient id="metal" x2=".15" y2="1"><stop stop-color="#fff2d7"/><stop offset=".42" stop-color="#d6d6ca"/><stop offset="1" stop-color="#7f9cac"/></linearGradient>
+    <linearGradient id="navy" x2=".15" y2="1"><stop stop-color="#52738b"/><stop offset=".42" stop-color="#243e60"/><stop offset="1" stop-color="#101b31"/></linearGradient>
+    <linearGradient id="glass" x2="0" y2="1"><stop stop-color="#d9f6db" stop-opacity=".85"/><stop offset=".45" stop-color="#70b3a8" stop-opacity=".7"/><stop offset="1" stop-color="#173f56" stop-opacity=".95"/></linearGradient>
+    <radialGradient id="glow"><stop stop-color="#ffdfaa" stop-opacity=".85"/><stop offset="1" stop-color="#f59e42" stop-opacity="0"/></radialGradient>
+    <pattern id="grit" width="27" height="23" patternUnits="userSpaceOnUse"><circle cx="3" cy="5" r=".9" fill="#f3b17c" opacity=".28"/><circle cx="18" cy="14" r="1" fill="#4d2938" opacity=".25"/><path d="M10 19l3-1" stroke="#f0aa77" opacity=".22"/></pattern>
+    <filter id="shadow"><feGaussianBlur stdDeviation="7"/></filter></defs><ellipse cx="165" cy="168" rx="152" ry="32" fill="#35283a" opacity=".44" filter="url(#shadow)"/>
+    <path d="M26 83 70 56 267 56 306 84 306 139 268 161 67 161 26 137Z" fill="url(#metal)" stroke="#fbe3c2" stroke-width="5"/>
+    <path d="M26 85 67 105v56l-41-24Z" fill="#7792a0"/><path d="M306 84 268 105v56l38-22Z" fill="#668394"/>
+    <path d="M67 105 268 105v56H67Z" fill="#a9b8b5"/><path d="M68 112h198" stroke="#f9ebd0" stroke-width="3"/><path d="M163 61V-17M118 24q43 27 89 0M133 13q31 17 61 0" fill="none" stroke="#d5d5c8" stroke-width="5"/><circle cx="163" cy="-17" r="7" fill="#f59e42"/><path d="M84 71 108 30h105l30 41" fill="url(#navy)" stroke="#e1cbab" stroke-width="4"/>
+    <path d="M112 111h105v44H112Z" fill="url(#navy)" stroke="#e8cba7" stroke-width="4"/><path d="M124 119h81v29h-81Z" fill="#18394e" stroke="#f2c18b" stroke-width="2"/>
+    <path d="M158 120v28" stroke="#bcd1cc" stroke-width="3"/><circle cx="201" cy="135" r="2" fill="#ffcb7d"/>
+    <rect x="63" y="91" width="204" height="15" rx="3" fill="#203c55" stroke="#f3cca0" stroke-width="2"/>
+    <text x="165" y="102" text-anchor="middle" fill="#fff0d6" font-family="Arial,sans-serif" font-size="11" font-weight="bold" letter-spacing="1.4">COMMUNICATIONS</text>
+    <rect x="35" y="95" width="13" height="33" rx="4" fill="#243e60"/><rect x="35" y="95" width="13" height="9" fill="#f2c18b"/><rect x="282" y="95" width="13" height="33" rx="4" fill="#243e60"/><rect x="282" y="95" width="13" height="9" fill="#f2c18b"/>
+    <path d="M28 136 67 159h201l38-20" fill="none" stroke="#4c6273" stroke-width="6"/><path d="M71 163h192" stroke="#f5b36c" stroke-width="3" opacity=".7"/>
+    <circle cx="74" cy="134" r="4" fill="#f2c18b"/><circle cx="256" cy="134" r="4" fill="#f2c18b"/>
+    <path d="M70 58 34 81m233-23 35 25" fill="none" stroke="#fff0d2" stroke-width="3" opacity=".8"/>
+    <rect x="20" y="145" width="42" height="12" rx="3" fill="#bd8a66"/><text x="41" y="154" text-anchor="middle" font-size="8" fill="#fff0d6" font-family="Arial">MR-06</text></svg>

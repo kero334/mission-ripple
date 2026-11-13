@@ -1,0 +1,39 @@
+{
+  "checks": [
+    {
+      "name": "Exterior framing 1280x720",
+      "pass": true,
+      "detail": "{\"zoom\":0.8,\"viewWidth\":800,\"viewHeight\":450,\"scrollY\":390}"
+    },
+    {
+      "name": "Camera follows movement smoothly",
+      "pass": true,
+      "detail": "{\"scroll\":[390,381.07640095734314,367.61665990892027,352.0017694381879,334.09108803601976,318.10668325954987,303.1100351069817,289.11082377286897],\"deltas\":[8.92359904265686,13.45974104842287,15.614890470732348,17.910681402168166,15.984404776469887,14.996648152568184,13.999211334112715],\"position\":{\"x\":640,\"y\":483}}"
+    },
+    {
+      "name": "Interior remains at room scale",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Exterior zoom restores after exit",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Exterior framing 1920x1080",
+      "pass": true,
+      "detail": "{\"zoom\":0.8,\"viewWidth\":800,\"viewHeight\":450,\"scrollY\":390}"
+    },
+    {
+      "name": "No browser errors",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "errors": [],
+  "screens": [
+    "qa-screenshots/camera/outpost-1280x720.png",
+    "qa-screenshots/camera/outpost-1920x1080.png"
+  ]
+}

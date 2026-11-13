@@ -1,0 +1,85 @@
+{
+  "moved": {
+    "x": 1380,
+    "y": 690
+  },
+  "room": {
+    "room": "command",
+    "visited": [
+      "command"
+    ],
+    "nearest": null,
+    "paused": false,
+    "locale": "en",
+    "position": {
+      "x": 720,
+      "y": 760
+    }
+  },
+  "inspection": "The outpost keeps its systems connected here.",
+  "exited": {
+    "room": null,
+    "visited": [
+      "command"
+    ],
+    "nearest": "Enter Command Hub",
+    "paused": false,
+    "locale": "ar",
+    "position": {
+      "x": 1270,
+      "y": 547
+    }
+  },
+  "mapVisible": true,
+  "visited": [
+    [
+      "habitat",
+      "habitat"
+    ],
+    [
+      "power",
+      "power"
+    ],
+    [
+      "greenhouse",
+      "greenhouse"
+    ],
+    [
+      "water",
+      "water"
+    ],
+    [
+      "comms",
+      "comms"
+    ],
+    [
+      "shelter",
+      "shelter"
+    ],
+    [
+      "oxygen",
+      "oxygen"
+    ]
+  ],
+  "final": {
+    "room": null,
+    "visited": [
+      "command",
+      "habitat",
+      "power",
+      "greenhouse",
+      "water",
+      "comms",
+      "shelter",
+      "oxygen"
+    ],
+    "nearest": "Enter Oxygen Lab",
+    "paused": false,
+    "locale": "ar",
+    "position": {
+      "x": 1270,
+      "y": 1092
+    }
+  },
+  "errors": []
+}

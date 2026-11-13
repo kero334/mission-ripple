@@ -1,0 +1,291 @@
+# File and dependency inventory
+
+All paths are relative to `project/`. `node_modules`, `dist`, logs, build caches, raw research and duplicate checkpoint archives are excluded.
+
+## Entry points and source modules
+
+- `package.json` — npm scripts and dependencies.
+- `package-lock.json` — reproducible npm resolution.
+- `index.html` — DOM shell.
+- `vite.config.ts` — Vite server/build config.
+- `tsconfig.json` — TypeScript config.
+- `src/main.ts` — HUD, menus, locale, Phaser boot.
+- `src/scene.ts` — world, rooms, movement, Nuri, events.
+- `src/world-data.ts` — nine facilities and bilingual base copy.
+- `src/style.css` — HUD and science card styles.
+- `src/science/mission.ts` — reducer, save, evidence validation.
+- `src/science/ui.ts` — mission cards and interaction routing.
+- `src/science/evidence-v1.json` — small NASA source-linked snapshot.
+- `public/assets/terrain/world-map.json` — 40×35 tile map.
+- `public/assets/pixel-manifest.json` — runtime asset registry.
+- `public/assets/asset-manifest.json` — legacy SVG registry, historical.
+
+## Asset and QA directories
+
+- `art-source/` — 17 included files. editable generated source art.
+- `public/` — 158 included files. runtime sprites, tiles, maps, manifests, legacy files.
+- `qa-screenshots/` — 38 included files. captured browser screenshots and results.
+- `docs/` — 6 included files. design, science, art and historical docs.
+- `tools/` — 9 included files. art/science generators and QA scripts.
+
+## Exact included file list
+
+- `art-source/buildings/command.png`
+- `art-source/buildings/comms.png`
+- `art-source/buildings/greenhouse.png`
+- `art-source/buildings/habitat.png`
+- `art-source/buildings/oxygen.png`
+- `art-source/buildings/power.png`
+- `art-source/buildings/research.png`
+- `art-source/buildings/shelter.png`
+- `art-source/buildings/water.png`
+- `art-source/characters/astronaut-source-sheet.png`
+- `art-source/characters/nuri-source-sheet.png`
+- `art-source/equipment/grow-rack-source.png`
+- `art-source/equipment/life-support-source.png`
+- `art-source/equipment/power-core-source.png`
+- `art-source/equipment/research-core-source.png`
+- `art-source/equipment/water-core-source.png`
+- `art-source/solar-array-source.png`
+- `docs/MISSION_SELECTION_AND_SCIENCE.md`
+- `docs/PIXEL_ART_SPEC.md`
+- `docs/reference/visual-target.png`
+- `docs/SCIENCE_MISSION_ARCHITECTURE.md`
+- `docs/UNFINISHED.md`
+- `docs/WORLDBUILDING_SPEC.md`
+- `index.html`
+- `package-lock.json`
+- `package.json`
+- `public/assets/animations/astronaut-down-pixel-strip.png`
+- `public/assets/animations/astronaut-down-strip.svg`
+- `public/assets/animations/astronaut-left-pixel-strip.png`
+- `public/assets/animations/astronaut-left-strip.svg`
+- `public/assets/animations/astronaut-right-pixel-strip.png`
+- `public/assets/animations/astronaut-right-strip.svg`
+- `public/assets/animations/astronaut-up-pixel-strip.png`
+- `public/assets/animations/astronaut-up-strip.svg`
+- `public/assets/asset-manifest.json`
+- `public/assets/atlases/mars-tiles.png`
+- `public/assets/buildings/command-pixel.png`
+- `public/assets/buildings/command.svg`
+- `public/assets/buildings/comms-pixel.png`
+- `public/assets/buildings/comms.svg`
+- `public/assets/buildings/greenhouse-pixel.png`
+- `public/assets/buildings/greenhouse.svg`
+- `public/assets/buildings/habitat-pixel.png`
+- `public/assets/buildings/habitat.svg`
+- `public/assets/buildings/oxygen-pixel.png`
+- `public/assets/buildings/oxygen.svg`
+- `public/assets/buildings/power-pixel.png`
+- `public/assets/buildings/power.svg`
+- `public/assets/buildings/research-pixel.png`
+- `public/assets/buildings/shelter-pixel.png`
+- `public/assets/buildings/shelter.svg`
+- `public/assets/buildings/water-pixel.png`
+- `public/assets/buildings/water.svg`
+- `public/assets/characters/astronaut-down-0-pixel.png`
+- `public/assets/characters/astronaut-down-0.svg`
+- `public/assets/characters/astronaut-down-1-pixel.png`
+- `public/assets/characters/astronaut-down-1.svg`
+- `public/assets/characters/astronaut-down-2-pixel.png`
+- `public/assets/characters/astronaut-down-2.svg`
+- `public/assets/characters/astronaut-down-3-pixel.png`
+- `public/assets/characters/astronaut-down-3.svg`
+- `public/assets/characters/astronaut-interact-pixel.png`
+- `public/assets/characters/astronaut-left-0-pixel.png`
+- `public/assets/characters/astronaut-left-0.svg`
+- `public/assets/characters/astronaut-left-1-pixel.png`
+- `public/assets/characters/astronaut-left-1.svg`
+- `public/assets/characters/astronaut-left-2-pixel.png`
+- `public/assets/characters/astronaut-left-2.svg`
+- `public/assets/characters/astronaut-left-3-pixel.png`
+- `public/assets/characters/astronaut-left-3.svg`
+- `public/assets/characters/astronaut-right-0-pixel.png`
+- `public/assets/characters/astronaut-right-0.svg`
+- `public/assets/characters/astronaut-right-1-pixel.png`
+- `public/assets/characters/astronaut-right-1.svg`
+- `public/assets/characters/astronaut-right-2-pixel.png`
+- `public/assets/characters/astronaut-right-2.svg`
+- `public/assets/characters/astronaut-right-3-pixel.png`
+- `public/assets/characters/astronaut-right-3.svg`
+- `public/assets/characters/astronaut-up-0-pixel.png`
+- `public/assets/characters/astronaut-up-0.svg`
+- `public/assets/characters/astronaut-up-1-pixel.png`
+- `public/assets/characters/astronaut-up-1.svg`
+- `public/assets/characters/astronaut-up-2-pixel.png`
+- `public/assets/characters/astronaut-up-2.svg`
+- `public/assets/characters/astronaut-up-3-pixel.png`
+- `public/assets/characters/astronaut-up-3.svg`
+- `public/assets/characters/nuri-blink-pixel.png`
+- `public/assets/characters/nuri-happy-pixel.png`
+- `public/assets/characters/nuri-happy.svg`
+- `public/assets/characters/nuri-idle-pixel.png`
+- `public/assets/characters/nuri-idle.svg`
+- `public/assets/characters/nuri-speak-pixel.png`
+- `public/assets/characters/nuri-speak.svg`
+- `public/assets/characters/nuri-thinking-pixel.png`
+- `public/assets/characters/nuri-thinking.svg`
+- `public/assets/characters/nuri-warning-pixel.png`
+- `public/assets/characters/nuri-warning.svg`
+- `public/assets/effects/dust-pixel.png`
+- `public/assets/effects/dust.svg`
+- `public/assets/effects/lamp-glow-pixel.png`
+- `public/assets/equipment/antenna.svg`
+- `public/assets/equipment/beacon.svg`
+- `public/assets/equipment/console-pixel.png`
+- `public/assets/equipment/console.svg`
+- `public/assets/equipment/crate-pixel.png`
+- `public/assets/equipment/crate.svg`
+- `public/assets/equipment/dish-pixel.png`
+- `public/assets/equipment/grow-rack-pixel.png`
+- `public/assets/equipment/lamp-pixel.png`
+- `public/assets/equipment/life-support-pixel.png`
+- `public/assets/equipment/pipe-pixel.png`
+- `public/assets/equipment/plant.svg`
+- `public/assets/equipment/planter-pixel.png`
+- `public/assets/equipment/power-core-pixel.png`
+- `public/assets/equipment/research-core-pixel.png`
+- `public/assets/equipment/solar-pixel.png`
+- `public/assets/equipment/solar.svg`
+- `public/assets/equipment/tank-pixel.png`
+- `public/assets/equipment/tank.svg`
+- `public/assets/equipment/water-core-pixel.png`
+- `public/assets/interiors/command-floor-pixel.png`
+- `public/assets/interiors/command-room.svg`
+- `public/assets/interiors/comms-floor-pixel.png`
+- `public/assets/interiors/comms-room.svg`
+- `public/assets/interiors/greenhouse-floor-pixel.png`
+- `public/assets/interiors/greenhouse-room.svg`
+- `public/assets/interiors/habitat-floor-pixel.png`
+- `public/assets/interiors/habitat-room.svg`
+- `public/assets/interiors/oxygen-floor-pixel.png`
+- `public/assets/interiors/oxygen-room.svg`
+- `public/assets/interiors/power-floor-pixel.png`
+- `public/assets/interiors/power-room.svg`
+- `public/assets/interiors/research-floor-pixel.png`
+- `public/assets/interiors/shelter-floor-pixel.png`
+- `public/assets/interiors/shelter-room.svg`
+- `public/assets/interiors/water-floor-pixel.png`
+- `public/assets/interiors/water-room.svg`
+- `public/assets/pixel-manifest.json`
+- `public/assets/props/bush-pixel.png`
+- `public/assets/props/crater-pixel.png`
+- `public/assets/props/flag-pixel.png`
+- `public/assets/props/rock-pixel.png`
+- `public/assets/props/sign.svg`
+- `public/assets/terrain/mars-ground.svg`
+- `public/assets/terrain/path-segment.svg`
+- `public/assets/terrain/rock.svg`
+- `public/assets/terrain/world-map.json`
+- `public/assets/ui/bag-pixel.png`
+- `public/assets/ui/journal-pixel.png`
+- `public/assets/ui/map-pixel.png`
+- `public/assets/ui/marker.svg`
+- `public/assets/ui/nuri-portrait-pixel.png`
+- `public/assets/ui/oxygen-pixel.png`
+- `public/assets/ui/plant-pixel.png`
+- `public/assets/ui/power-pixel.png`
+- `public/assets/ui/scanner-pixel.png`
+- `public/assets/ui/science-calendar.png`
+- `public/assets/ui/science-check.png`
+- `public/assets/ui/science-choice.png`
+- `public/assets/ui/science-clock.png`
+- `public/assets/ui/science-question.png`
+- `public/assets/ui/science-radiation.png`
+- `public/assets/ui/science-research.png`
+- `public/assets/ui/science-robot.png`
+- `public/assets/ui/science-rover.png`
+- `public/assets/ui/settings-pixel.png`
+- `public/assets/ui/tablet-pixel.png`
+- `public/assets/ui/ui-bag-pixel.png`
+- `public/assets/ui/ui-food-pixel.png`
+- `public/assets/ui/ui-journal-pixel.png`
+- `public/assets/ui/ui-map-pixel.png`
+- `public/assets/ui/ui-oxygen-pixel.png`
+- `public/assets/ui/ui-plant-pixel.png`
+- `public/assets/ui/ui-power-pixel.png`
+- `public/assets/ui/ui-sample-pixel.png`
+- `public/assets/ui/ui-scanner-pixel.png`
+- `public/assets/ui/ui-settings-pixel.png`
+- `public/assets/ui/ui-tablet-pixel.png`
+- `public/assets/ui/ui-tool-pixel.png`
+- `public/assets/ui/ui-water-pixel.png`
+- `public/assets/ui/ui-wrench-pixel.png`
+- `public/assets/ui/water-pixel.png`
+- `public/assets/ui/wrench-pixel.png`
+- `public/favicon.svg`
+- `qa-screenshots/01-arrival.png`
+- `qa-screenshots/02-exterior-laptop.png`
+- `qa-screenshots/02-exterior.png`
+- `qa-screenshots/03-command-interior.png`
+- `qa-screenshots/04-arabic-interior.png`
+- `qa-screenshots/05-map.png`
+- `qa-screenshots/06-greenhouse-interior.png`
+- `qa-screenshots/06-water-interior.png`
+- `qa-screenshots/06-world-overview.png`
+- `qa-screenshots/07-world-overview.png`
+- `qa-screenshots/before-pixel-art.png`
+- `qa-screenshots/camera/outpost-1280x720.png`
+- `qa-screenshots/camera/outpost-1920x1080.png`
+- `qa-screenshots/camera/results.json`
+- `qa-screenshots/pixel/arabic-1280x720.png`
+- `qa-screenshots/pixel/final-1280x720.png`
+- `qa-screenshots/pixel/final-1920x1080.png`
+- `qa-screenshots/pixel/final-results.json`
+- `qa-screenshots/pixel/greenhouse-interior.png`
+- `qa-screenshots/pixel/habitat-interior.png`
+- `qa-screenshots/pixel/pass1-1280x720.png`
+- `qa-screenshots/pixel/pass1-1920x1080.png`
+- `qa-screenshots/pixel/pass1-results.json`
+- `qa-screenshots/pixel/pass2-1280x720.png`
+- `qa-screenshots/pixel/pass2-1920x1080.png`
+- `qa-screenshots/pixel/power-interior.png`
+- `qa-screenshots/pixel/research-interior.png`
+- `qa-screenshots/pixel/water-interior.png`
+- `qa-screenshots/playtest-results.json`
+- `qa-screenshots/science/01-briefing.png`
+- `qa-screenshots/science/02-field-evidence.png`
+- `qa-screenshots/science/03-research-evidence.png`
+- `qa-screenshots/science/04-decision.png`
+- `qa-screenshots/science/05-immediate.png`
+- `qa-screenshots/science/06-delayed.png`
+- `qa-screenshots/science/07-debrief.png`
+- `qa-screenshots/science/08-arabic.png`
+- `qa-screenshots/science/results.json`
+- `README.md`
+- `src/main.ts`
+- `src/scene.ts`
+- `src/science/evidence-v1.json`
+- `src/science/mission.ts`
+- `src/science/ui.ts`
+- `src/style.css`
+- `src/world-data.ts`
+- `tools/build_pixel_assets.py`
+- `tools/build_science_icons.py`
+- `tools/build_science_snapshot.py`
+- `tools/camera-qa.mjs`
+- `tools/generate_art.py`
+- `tools/pixel-pass1.mjs`
+- `tools/pixel-qa.mjs`
+- `tools/playtest.mjs`
+- `tools/science-qa.mjs`
+- `tsconfig.json`
+- `vite.config.ts`
+
+## Dependencies and external services
+
+- Runtime: `phaser` 3.90.x from npm lock; no backend.
+- Development: Vite 8.3.x, TypeScript 7.0.x, Playwright 1.65.x, Node types (exact resolved versions in `package-lock.json`).
+- Required tools: supported Node.js/npm; Chrome for manual QA. Playwright browser binary may require `npx playwright install chromium` after npm install.
+- Optional asset regeneration: Python, Pillow, numpy and OpenCV (no pinned Python lockfile).
+- Optional original-source science verification: separate NASA research package.
+- Fonts: external Google Fonts for intended Cairo/VT323 appearance, local fallback otherwise. No API key or online service is needed to run the game.
+
+## External historical checkpoints
+
+- `child-friendly-ui-final-2026-11-13.zip` (49,053,551 bytes), stored at original computer `C:\Users\ASUS\Downloads\nasa_video\mission-ripple-2d-checkpoints`; not packaged.
+- `pixel-art-final-2026-11-13.zip` (48,230,116 bytes), stored at original computer `C:\Users\ASUS\Downloads\nasa_video\mission-ripple-2d-checkpoints`; not packaged.
+- `pre-child-friendly-ui-2026-11-13.zip` (49,111,448 bytes), stored at original computer `C:\Users\ASUS\Downloads\nasa_video\mission-ripple-2d-checkpoints`; not packaged.
+- `pre-pixel-art-2026-11-13.zip` (97,229 bytes), stored at original computer `C:\Users\ASUS\Downloads\nasa_video\mission-ripple-2d-checkpoints`; not packaged.
+- `pre-science-mission-2026-11-13.zip` (48,229,904 bytes), stored at original computer `C:\Users\ASUS\Downloads\nasa_video\mission-ripple-2d-checkpoints`; not packaged.
+- `science-mission-final-2026-11-13.zip` (49,111,448 bytes), stored at original computer `C:\Users\ASUS\Downloads\nasa_video\mission-ripple-2d-checkpoints`; not packaged.

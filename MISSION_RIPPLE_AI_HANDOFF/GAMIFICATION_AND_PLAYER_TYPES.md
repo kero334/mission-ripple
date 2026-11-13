@@ -1,0 +1,5 @@
+# Player motivations and rewards
+
+Three overlapping design motivations, not fixed psychological categories: **Achiever** enjoys badges/progress/mastery; **Mission Solver** enjoys objectives and consequential decisions; **Explorer** enjoys optional rooms/discoveries. Current support is limited: a real orientation checklist, nine-facility visited count, P2-M02 objective stages and its two decision outcomes. The toolbar is a visual preview; it does not confer items or rewards.
+
+Science XP, achievements/badges, Science Passport, Discovery Journal, optional collectible registry, cosmetic rewards, preference selection, anti-farming logic and reward persistence are **planned, not implemented**. A basic mission journal in `src/main.ts` reports stage and choice; it is not a reward ledger. No current XP amounts, achievement IDs, thresholds or anti-farming rules exist to record. Future rewards should reinforce evidence reasoning and allow all three motivations without coercive streaks or scientifically false numerical performance claims.

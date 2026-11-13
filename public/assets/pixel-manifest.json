@@ -1,0 +1,803 @@
+[
+  {
+    "name": "habitat-pixel",
+    "purpose": "Original habitat exterior",
+    "dimensions": "236\u00d7184",
+    "animationFrames": 1,
+    "file": "assets/buildings/habitat-pixel.png",
+    "reuseScope": "exterior",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "power-pixel",
+    "purpose": "Original power exterior",
+    "dimensions": "188\u00d7136",
+    "animationFrames": 1,
+    "file": "assets/buildings/power-pixel.png",
+    "reuseScope": "exterior",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "greenhouse-pixel",
+    "purpose": "Original greenhouse exterior",
+    "dimensions": "206\u00d7150",
+    "animationFrames": 1,
+    "file": "assets/buildings/greenhouse-pixel.png",
+    "reuseScope": "exterior",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "water-pixel",
+    "purpose": "Original water exterior",
+    "dimensions": "188\u00d7136",
+    "animationFrames": 1,
+    "file": "assets/buildings/water-pixel.png",
+    "reuseScope": "exterior",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "research-pixel",
+    "purpose": "Original research exterior",
+    "dimensions": "184\u00d7140",
+    "animationFrames": 1,
+    "file": "assets/buildings/research-pixel.png",
+    "reuseScope": "exterior",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "command-pixel",
+    "purpose": "Original command exterior",
+    "dimensions": "184\u00d7139",
+    "animationFrames": 1,
+    "file": "assets/buildings/command-pixel.png",
+    "reuseScope": "exterior",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "shelter-pixel",
+    "purpose": "Original shelter exterior",
+    "dimensions": "185\u00d7139",
+    "animationFrames": 1,
+    "file": "assets/buildings/shelter-pixel.png",
+    "reuseScope": "exterior",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "oxygen-pixel",
+    "purpose": "Original oxygen exterior",
+    "dimensions": "184\u00d7139",
+    "animationFrames": 1,
+    "file": "assets/buildings/oxygen-pixel.png",
+    "reuseScope": "exterior",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "comms-pixel",
+    "purpose": "Original comms exterior",
+    "dimensions": "175\u00d7140",
+    "animationFrames": 1,
+    "file": "assets/buildings/comms-pixel.png",
+    "reuseScope": "exterior",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "mars-tiles",
+    "purpose": "12 soil variants and 4 stone path variants",
+    "dimensions": "128\u00d7128",
+    "animationFrames": 16,
+    "file": "assets/atlases/mars-tiles.png",
+    "reuseScope": "exterior tilemap",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "rock-pixel",
+    "purpose": "Rock occluder",
+    "dimensions": "46\u00d734",
+    "animationFrames": 1,
+    "file": "assets/props/rock-pixel.png",
+    "reuseScope": "world",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "bush-pixel",
+    "purpose": "Martian scrub",
+    "dimensions": "40\u00d732",
+    "animationFrames": 1,
+    "file": "assets/props/bush-pixel.png",
+    "reuseScope": "world",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "crater-pixel",
+    "purpose": "Small impact crater",
+    "dimensions": "64\u00d736",
+    "animationFrames": 1,
+    "file": "assets/props/crater-pixel.png",
+    "reuseScope": "world",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "lamp-pixel",
+    "purpose": "Warm route lamp",
+    "dimensions": "32\u00d742",
+    "animationFrames": 1,
+    "file": "assets/equipment/lamp-pixel.png",
+    "reuseScope": "world",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "crate-pixel",
+    "purpose": "Equipment crate",
+    "dimensions": "35\u00d734",
+    "animationFrames": 1,
+    "file": "assets/equipment/crate-pixel.png",
+    "reuseScope": "world",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "solar-pixel",
+    "purpose": "Detailed solar array",
+    "dimensions": "140\u00d796",
+    "animationFrames": 1,
+    "file": "assets/equipment/solar-pixel.png",
+    "reuseScope": "exterior",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "dish-pixel",
+    "purpose": "Satellite dish",
+    "dimensions": "72\u00d770",
+    "animationFrames": 1,
+    "file": "assets/equipment/dish-pixel.png",
+    "reuseScope": "world",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "tank-pixel",
+    "purpose": "Science storage tank",
+    "dimensions": "44\u00d752",
+    "animationFrames": 1,
+    "file": "assets/equipment/tank-pixel.png",
+    "reuseScope": "world",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "console-pixel",
+    "purpose": "Science console",
+    "dimensions": "54\u00d756",
+    "animationFrames": 1,
+    "file": "assets/equipment/console-pixel.png",
+    "reuseScope": "world",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "planter-pixel",
+    "purpose": "Grow tray",
+    "dimensions": "45\u00d745",
+    "animationFrames": 1,
+    "file": "assets/equipment/planter-pixel.png",
+    "reuseScope": "world",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "pipe-pixel",
+    "purpose": "Utility pipe",
+    "dimensions": "82\u00d737",
+    "animationFrames": 1,
+    "file": "assets/equipment/pipe-pixel.png",
+    "reuseScope": "world",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "dust-pixel",
+    "purpose": "Ambient dust",
+    "dimensions": "90\u00d728",
+    "animationFrames": 1,
+    "file": "assets/effects/dust-pixel.png",
+    "reuseScope": "world",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "flag-pixel",
+    "purpose": "Mission Ripple outpost flag",
+    "dimensions": "44\u00d772",
+    "animationFrames": 1,
+    "file": "assets/props/flag-pixel.png",
+    "reuseScope": "world",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "lamp-glow-pixel",
+    "purpose": "Stepped amber light halo",
+    "dimensions": "48\u00d748",
+    "animationFrames": 1,
+    "file": "assets/effects/lamp-glow-pixel.png",
+    "reuseScope": "ambient",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "astronaut-down-0-pixel",
+    "purpose": "Illustrated astronaut down frame 1",
+    "dimensions": "38\u00d748",
+    "animationFrames": 1,
+    "file": "assets/characters/astronaut-down-0-pixel.png",
+    "reuseScope": "player",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "astronaut-down-1-pixel",
+    "purpose": "Illustrated astronaut down frame 2",
+    "dimensions": "38\u00d748",
+    "animationFrames": 1,
+    "file": "assets/characters/astronaut-down-1-pixel.png",
+    "reuseScope": "player",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "astronaut-down-2-pixel",
+    "purpose": "Illustrated astronaut down frame 3",
+    "dimensions": "38\u00d748",
+    "animationFrames": 1,
+    "file": "assets/characters/astronaut-down-2-pixel.png",
+    "reuseScope": "player",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "astronaut-down-3-pixel",
+    "purpose": "Illustrated astronaut down frame 4",
+    "dimensions": "38\u00d748",
+    "animationFrames": 1,
+    "file": "assets/characters/astronaut-down-3-pixel.png",
+    "reuseScope": "player",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "astronaut-down-pixel-strip",
+    "purpose": "Astronaut down four-frame animation",
+    "dimensions": "168\u00d748",
+    "animationFrames": 4,
+    "file": "assets/animations/astronaut-down-pixel-strip.png",
+    "reuseScope": "player source",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "astronaut-up-0-pixel",
+    "purpose": "Illustrated astronaut up frame 1",
+    "dimensions": "38\u00d748",
+    "animationFrames": 1,
+    "file": "assets/characters/astronaut-up-0-pixel.png",
+    "reuseScope": "player",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "astronaut-up-1-pixel",
+    "purpose": "Illustrated astronaut up frame 2",
+    "dimensions": "38\u00d748",
+    "animationFrames": 1,
+    "file": "assets/characters/astronaut-up-1-pixel.png",
+    "reuseScope": "player",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "astronaut-up-2-pixel",
+    "purpose": "Illustrated astronaut up frame 3",
+    "dimensions": "38\u00d748",
+    "animationFrames": 1,
+    "file": "assets/characters/astronaut-up-2-pixel.png",
+    "reuseScope": "player",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "astronaut-up-3-pixel",
+    "purpose": "Illustrated astronaut up frame 4",
+    "dimensions": "38\u00d748",
+    "animationFrames": 1,
+    "file": "assets/characters/astronaut-up-3-pixel.png",
+    "reuseScope": "player",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "astronaut-up-pixel-strip",
+    "purpose": "Astronaut up four-frame animation",
+    "dimensions": "168\u00d748",
+    "animationFrames": 4,
+    "file": "assets/animations/astronaut-up-pixel-strip.png",
+    "reuseScope": "player source",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "astronaut-left-0-pixel",
+    "purpose": "Illustrated astronaut left frame 1",
+    "dimensions": "38\u00d748",
+    "animationFrames": 1,
+    "file": "assets/characters/astronaut-left-0-pixel.png",
+    "reuseScope": "player",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "astronaut-left-1-pixel",
+    "purpose": "Illustrated astronaut left frame 2",
+    "dimensions": "38\u00d748",
+    "animationFrames": 1,
+    "file": "assets/characters/astronaut-left-1-pixel.png",
+    "reuseScope": "player",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "astronaut-left-2-pixel",
+    "purpose": "Illustrated astronaut left frame 3",
+    "dimensions": "38\u00d748",
+    "animationFrames": 1,
+    "file": "assets/characters/astronaut-left-2-pixel.png",
+    "reuseScope": "player",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "astronaut-left-3-pixel",
+    "purpose": "Illustrated astronaut left frame 4",
+    "dimensions": "38\u00d748",
+    "animationFrames": 1,
+    "file": "assets/characters/astronaut-left-3-pixel.png",
+    "reuseScope": "player",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "astronaut-left-pixel-strip",
+    "purpose": "Astronaut left four-frame animation",
+    "dimensions": "168\u00d748",
+    "animationFrames": 4,
+    "file": "assets/animations/astronaut-left-pixel-strip.png",
+    "reuseScope": "player source",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "astronaut-right-0-pixel",
+    "purpose": "Illustrated astronaut right frame 1",
+    "dimensions": "38\u00d748",
+    "animationFrames": 1,
+    "file": "assets/characters/astronaut-right-0-pixel.png",
+    "reuseScope": "player",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "astronaut-right-1-pixel",
+    "purpose": "Illustrated astronaut right frame 2",
+    "dimensions": "38\u00d748",
+    "animationFrames": 1,
+    "file": "assets/characters/astronaut-right-1-pixel.png",
+    "reuseScope": "player",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "astronaut-right-2-pixel",
+    "purpose": "Illustrated astronaut right frame 3",
+    "dimensions": "38\u00d748",
+    "animationFrames": 1,
+    "file": "assets/characters/astronaut-right-2-pixel.png",
+    "reuseScope": "player",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "astronaut-right-3-pixel",
+    "purpose": "Illustrated astronaut right frame 4",
+    "dimensions": "38\u00d748",
+    "animationFrames": 1,
+    "file": "assets/characters/astronaut-right-3-pixel.png",
+    "reuseScope": "player",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "astronaut-right-pixel-strip",
+    "purpose": "Astronaut right four-frame animation",
+    "dimensions": "168\u00d748",
+    "animationFrames": 4,
+    "file": "assets/animations/astronaut-right-pixel-strip.png",
+    "reuseScope": "player source",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "astronaut-interact-pixel",
+    "purpose": "Astronaut raised scanner interaction frame",
+    "dimensions": "38\u00d748",
+    "animationFrames": 1,
+    "file": "assets/characters/astronaut-interact-pixel.png",
+    "reuseScope": "player",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "nuri-idle-pixel",
+    "purpose": "Illustrated Nuri idle",
+    "dimensions": "34\u00d734",
+    "animationFrames": 1,
+    "file": "assets/characters/nuri-idle-pixel.png",
+    "reuseScope": "companion",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "nuri-blink-pixel",
+    "purpose": "Illustrated Nuri blink",
+    "dimensions": "34\u00d734",
+    "animationFrames": 1,
+    "file": "assets/characters/nuri-blink-pixel.png",
+    "reuseScope": "companion",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "nuri-speak-pixel",
+    "purpose": "Illustrated Nuri speak",
+    "dimensions": "34\u00d734",
+    "animationFrames": 1,
+    "file": "assets/characters/nuri-speak-pixel.png",
+    "reuseScope": "companion",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "nuri-happy-pixel",
+    "purpose": "Illustrated Nuri happy",
+    "dimensions": "34\u00d734",
+    "animationFrames": 1,
+    "file": "assets/characters/nuri-happy-pixel.png",
+    "reuseScope": "companion",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "nuri-thinking-pixel",
+    "purpose": "Illustrated Nuri thinking",
+    "dimensions": "34\u00d734",
+    "animationFrames": 1,
+    "file": "assets/characters/nuri-thinking-pixel.png",
+    "reuseScope": "companion",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "nuri-warning-pixel",
+    "purpose": "Illustrated Nuri warning",
+    "dimensions": "34\u00d734",
+    "animationFrames": 1,
+    "file": "assets/characters/nuri-warning-pixel.png",
+    "reuseScope": "companion",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "nuri-portrait-pixel",
+    "purpose": "Nuri portrait",
+    "dimensions": "68\u00d768",
+    "animationFrames": 1,
+    "file": "assets/ui/nuri-portrait-pixel.png",
+    "reuseScope": "HUD",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "life-support-pixel",
+    "purpose": "life-support interior machinery",
+    "dimensions": "180\u00d7123",
+    "animationFrames": 1,
+    "file": "assets/equipment/life-support-pixel.png",
+    "reuseScope": "priority interiors",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "power-core-pixel",
+    "purpose": "power-core interior machinery",
+    "dimensions": "176\u00d7120",
+    "animationFrames": 1,
+    "file": "assets/equipment/power-core-pixel.png",
+    "reuseScope": "priority interiors",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "grow-rack-pixel",
+    "purpose": "grow-rack interior machinery",
+    "dimensions": "180\u00d7124",
+    "animationFrames": 1,
+    "file": "assets/equipment/grow-rack-pixel.png",
+    "reuseScope": "priority interiors",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "water-core-pixel",
+    "purpose": "water-core interior machinery",
+    "dimensions": "180\u00d7121",
+    "animationFrames": 1,
+    "file": "assets/equipment/water-core-pixel.png",
+    "reuseScope": "priority interiors",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "research-core-pixel",
+    "purpose": "research-core interior machinery",
+    "dimensions": "180\u00d7121",
+    "animationFrames": 1,
+    "file": "assets/equipment/research-core-pixel.png",
+    "reuseScope": "priority interiors",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ui-tablet-pixel",
+    "purpose": "Research tablet",
+    "dimensions": "24\u00d724",
+    "animationFrames": 1,
+    "file": "assets/ui/ui-tablet-pixel.png",
+    "reuseScope": "HUD",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ui-wrench-pixel",
+    "purpose": "Repair tool",
+    "dimensions": "24\u00d724",
+    "animationFrames": 1,
+    "file": "assets/ui/ui-wrench-pixel.png",
+    "reuseScope": "HUD",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ui-scanner-pixel",
+    "purpose": "Scanner",
+    "dimensions": "24\u00d724",
+    "animationFrames": 1,
+    "file": "assets/ui/ui-scanner-pixel.png",
+    "reuseScope": "HUD",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ui-plant-pixel",
+    "purpose": "Plant sample",
+    "dimensions": "24\u00d724",
+    "animationFrames": 1,
+    "file": "assets/ui/ui-plant-pixel.png",
+    "reuseScope": "HUD",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ui-tool-pixel",
+    "purpose": "Repair tool",
+    "dimensions": "24\u00d724",
+    "animationFrames": 1,
+    "file": "assets/ui/ui-tool-pixel.png",
+    "reuseScope": "HUD",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ui-sample-pixel",
+    "purpose": "Plant sample",
+    "dimensions": "24\u00d724",
+    "animationFrames": 1,
+    "file": "assets/ui/ui-sample-pixel.png",
+    "reuseScope": "HUD",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ui-map-pixel",
+    "purpose": "Map",
+    "dimensions": "24\u00d724",
+    "animationFrames": 1,
+    "file": "assets/ui/ui-map-pixel.png",
+    "reuseScope": "HUD",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ui-journal-pixel",
+    "purpose": "Journal",
+    "dimensions": "24\u00d724",
+    "animationFrames": 1,
+    "file": "assets/ui/ui-journal-pixel.png",
+    "reuseScope": "HUD",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ui-bag-pixel",
+    "purpose": "Inventory",
+    "dimensions": "24\u00d724",
+    "animationFrames": 1,
+    "file": "assets/ui/ui-bag-pixel.png",
+    "reuseScope": "HUD",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ui-settings-pixel",
+    "purpose": "Settings",
+    "dimensions": "24\u00d724",
+    "animationFrames": 1,
+    "file": "assets/ui/ui-settings-pixel.png",
+    "reuseScope": "HUD",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ui-power-pixel",
+    "purpose": "Power readout",
+    "dimensions": "24\u00d724",
+    "animationFrames": 1,
+    "file": "assets/ui/ui-power-pixel.png",
+    "reuseScope": "HUD",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ui-water-pixel",
+    "purpose": "Water readout",
+    "dimensions": "24\u00d724",
+    "animationFrames": 1,
+    "file": "assets/ui/ui-water-pixel.png",
+    "reuseScope": "HUD",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ui-oxygen-pixel",
+    "purpose": "Oxygen readout",
+    "dimensions": "24\u00d724",
+    "animationFrames": 1,
+    "file": "assets/ui/ui-oxygen-pixel.png",
+    "reuseScope": "HUD",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ui-food-pixel",
+    "purpose": "Crop readout",
+    "dimensions": "24\u00d724",
+    "animationFrames": 1,
+    "file": "assets/ui/ui-food-pixel.png",
+    "reuseScope": "HUD",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "habitat-floor-pixel",
+    "purpose": "habitat modular floor tile",
+    "dimensions": "32\u00d732",
+    "animationFrames": 1,
+    "file": "assets/interiors/habitat-floor-pixel.png",
+    "reuseScope": "interiors",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "power-floor-pixel",
+    "purpose": "power modular floor tile",
+    "dimensions": "32\u00d732",
+    "animationFrames": 1,
+    "file": "assets/interiors/power-floor-pixel.png",
+    "reuseScope": "interiors",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "greenhouse-floor-pixel",
+    "purpose": "greenhouse modular floor tile",
+    "dimensions": "32\u00d732",
+    "animationFrames": 1,
+    "file": "assets/interiors/greenhouse-floor-pixel.png",
+    "reuseScope": "interiors",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "water-floor-pixel",
+    "purpose": "water modular floor tile",
+    "dimensions": "32\u00d732",
+    "animationFrames": 1,
+    "file": "assets/interiors/water-floor-pixel.png",
+    "reuseScope": "interiors",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "research-floor-pixel",
+    "purpose": "research modular floor tile",
+    "dimensions": "32\u00d732",
+    "animationFrames": 1,
+    "file": "assets/interiors/research-floor-pixel.png",
+    "reuseScope": "interiors",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "command-floor-pixel",
+    "purpose": "command modular floor tile",
+    "dimensions": "32\u00d732",
+    "animationFrames": 1,
+    "file": "assets/interiors/command-floor-pixel.png",
+    "reuseScope": "interiors",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "shelter-floor-pixel",
+    "purpose": "shelter modular floor tile",
+    "dimensions": "32\u00d732",
+    "animationFrames": 1,
+    "file": "assets/interiors/shelter-floor-pixel.png",
+    "reuseScope": "interiors",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "oxygen-floor-pixel",
+    "purpose": "oxygen modular floor tile",
+    "dimensions": "32\u00d732",
+    "animationFrames": 1,
+    "file": "assets/interiors/oxygen-floor-pixel.png",
+    "reuseScope": "interiors",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "comms-floor-pixel",
+    "purpose": "comms modular floor tile",
+    "dimensions": "32\u00d732",
+    "animationFrames": 1,
+    "file": "assets/interiors/comms-floor-pixel.png",
+    "reuseScope": "interiors",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "science-rover",
+    "purpose": "Original pixel science-card rover icon",
+    "dimensions": "32\u00d732",
+    "animationFrames": 1,
+    "file": "assets/ui/science-rover.png",
+    "reuseScope": "science UI",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "science-radiation",
+    "purpose": "Original pixel science-card radiation icon",
+    "dimensions": "32\u00d732",
+    "animationFrames": 1,
+    "file": "assets/ui/science-radiation.png",
+    "reuseScope": "science UI",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "science-clock",
+    "purpose": "Original pixel science-card clock icon",
+    "dimensions": "32\u00d732",
+    "animationFrames": 1,
+    "file": "assets/ui/science-clock.png",
+    "reuseScope": "science UI",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "science-research",
+    "purpose": "Original pixel science-card research icon",
+    "dimensions": "32\u00d732",
+    "animationFrames": 1,
+    "file": "assets/ui/science-research.png",
+    "reuseScope": "science UI",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "science-question",
+    "purpose": "Original pixel science-card question icon",
+    "dimensions": "32\u00d732",
+    "animationFrames": 1,
+    "file": "assets/ui/science-question.png",
+    "reuseScope": "science UI",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "science-choice",
+    "purpose": "Original pixel science-card choice icon",
+    "dimensions": "32\u00d732",
+    "animationFrames": 1,
+    "file": "assets/ui/science-choice.png",
+    "reuseScope": "science UI",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "science-calendar",
+    "purpose": "Original pixel science-card calendar icon",
+    "dimensions": "32\u00d732",
+    "animationFrames": 1,
+    "file": "assets/ui/science-calendar.png",
+    "reuseScope": "science UI",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "science-check",
+    "purpose": "Original pixel science-card check icon",
+    "dimensions": "32\u00d732",
+    "animationFrames": 1,
+    "file": "assets/ui/science-check.png",
+    "reuseScope": "science UI",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "science-robot",
+    "purpose": "Original pixel science-card robot icon",
+    "dimensions": "32\u00d732",
+    "animationFrames": 1,
+    "file": "assets/ui/science-robot.png",
+    "reuseScope": "science UI",
+    "productionStatus": "production sprite"
+  }
+]

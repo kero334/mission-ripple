@@ -1,0 +1,11 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><link rel="icon" type="image/png" href="/assets/ui/ui-oxygen-pixel.png"/><title>Mission Ripple · Mars Outpost</title></head><body>
+<div id="app"><div id="game"></div><div id="hud">
+ <section id="mission-panel" class="pixel-panel"><div class="panel-title"><img src="/assets/ui/ui-journal-pixel.png" alt=""/><span id="mission-title">FIELD ORIENTATION</span></div><div id="objective-list"></div><div class="tiny-note" id="explored-text"></div></section>
+ <section id="resources" class="pixel-panel"><div class="sol-row"><span id="sol-label">SOL 001</span><span id="time-label">EXPLORATION DEMO</span></div><div id="resource-rows"></div></section>
+ <div id="prompt" class="hidden"><kbd>E</kbd><span id="prompt-text"></span></div>
+ <section id="nuri-panel" class="pixel-panel"><img id="nuri-portrait" src="/assets/ui/nuri-portrait-pixel.png" alt="Nuri"/><div class="dialogue-copy"><b id="nuri-name">NURI</b><p id="nuri-text"></p></div><span id="continue-indicator">◆</span></section>
+ <div id="toolbar" class="pixel-panel"></div>
+ <div id="menu-buttons"><button id="map-button" title="Map (M)"><img src="/assets/ui/ui-map-pixel.png" alt=""/><small>M</small></button><button id="journal-button" title="Journal (J)"><img src="/assets/ui/ui-journal-pixel.png" alt=""/><small>J</small></button><button id="inventory-button" title="Equipment (B)"><img src="/assets/ui/ui-bag-pixel.png" alt=""/><small>B</small></button><button id="pause-button" title="Settings (Esc)"><img src="/assets/ui/ui-settings-pixel.png" alt=""/><small>ESC</small></button></div>
+ <div id="overlay" class="hidden"><section class="overlay-card pixel-panel"><button id="close-overlay" aria-label="Close">×</button><h2 id="overlay-title"></h2><div id="overlay-content"></div><div class="overlay-actions"><button id="lang-button">العربية</button><button id="resume-button">RESUME</button></div></section></div>
+ <div id="arrival-note">MISSION RIPPLE <span>·</span> MARS OUTPOST</div>
+</div></div><script type="module" src="/src/main.ts"></script></body></html>

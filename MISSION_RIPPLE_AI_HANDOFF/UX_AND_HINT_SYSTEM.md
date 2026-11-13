@@ -1,0 +1,5 @@
+# UX and hints
+
+The stage-specific HUD checklist and objective text in `src/science/ui.ts` indicate courtyard field → Research → Command → Communications. `notifyTarget()` emits `ripple-control` `mission-target`, moving a world marker. `src/scene.ts` finds the nearest door/equipment/field/Nuri target and publishes an E prompt. Nuri's brief and route icons reinforce the next step. Map (M) is a bilingual facility list; Journal (J) shows stage/choice; Esc pauses; L changes language.
+
+The user asked for three kinds of help—navigation, controls and scientific reasoning—but a formal three-level assistance state machine and persisted hint counts do not exist. Only context-triggered hints and button text are implemented. No `hintLevel` or hint save key exists. Guidance avoids most stale states because mission target derives from current reducer stage; it does not dynamically route around obstacles or adapt to confusion. The field target is in the central courtyard. Later UX work should test whether children find doors and distinguish NASA facts from training choices before adding additional hints.

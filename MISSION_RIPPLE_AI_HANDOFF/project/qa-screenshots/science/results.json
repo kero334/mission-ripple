@@ -1,0 +1,120 @@
+{
+  "checks": [
+    {
+      "name": "Source hash matches immutable snapshot",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "All chart rows match original NASA CSV",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Observed units and limits retained",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Provenance references present",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Game launches",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Missing provenance rejected",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Unsupported habitat-dose claim rejected",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Mission starts and briefing appears",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Player walks to field terminal",
+      "pass": true,
+      "detail": "{\"x\":640,\"y\":659}"
+    },
+    {
+      "name": "Field interaction opens child-facing rover reading",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Exact NASA value remains in optional source",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Source details start collapsed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Objective advances to Research",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Research equipment opens evidence and uncertainty",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Command offers two illustrated scheduling cards",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Choice A immediate simulated consequence",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Choice and delayed flag survive reload",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Communications shows delayed consequence",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Science debrief visible",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Mission completes",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Arabic mission HUD and RTL",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Choice B distinct delayed flag",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "No browser errors",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "errors": []
+}

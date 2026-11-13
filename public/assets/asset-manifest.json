@@ -1,0 +1,488 @@
+[
+  {
+    "name": "mars-ground",
+    "purpose": "Layered outpost terrain",
+    "dimensions": "2600\u00d71800",
+    "animationFrames": 1,
+    "file": "assets/terrain/mars-ground.svg",
+    "reuseScope": "exterior",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "rock",
+    "purpose": "Layered erosion rock",
+    "dimensions": "145\u00d7100",
+    "animationFrames": 1,
+    "file": "assets/terrain/rock.svg",
+    "reuseScope": "exterior",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "path-segment",
+    "purpose": "Inset route segment",
+    "dimensions": "180\u00d786",
+    "animationFrames": 1,
+    "file": "assets/terrain/path-segment.svg",
+    "reuseScope": "exterior",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "command",
+    "purpose": "Command Hub exterior",
+    "dimensions": "330\u00d7185",
+    "animationFrames": 1,
+    "file": "assets/buildings/command.svg",
+    "reuseScope": "outpost",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "habitat",
+    "purpose": "Habitat exterior",
+    "dimensions": "330\u00d7185",
+    "animationFrames": 1,
+    "file": "assets/buildings/habitat.svg",
+    "reuseScope": "outpost",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "power",
+    "purpose": "Power Station exterior",
+    "dimensions": "330\u00d7185",
+    "animationFrames": 1,
+    "file": "assets/buildings/power.svg",
+    "reuseScope": "outpost",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "greenhouse",
+    "purpose": "Greenhouse exterior",
+    "dimensions": "330\u00d7185",
+    "animationFrames": 1,
+    "file": "assets/buildings/greenhouse.svg",
+    "reuseScope": "outpost",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "water",
+    "purpose": "Water Recovery exterior",
+    "dimensions": "330\u00d7185",
+    "animationFrames": 1,
+    "file": "assets/buildings/water.svg",
+    "reuseScope": "outpost",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "comms",
+    "purpose": "Communications exterior",
+    "dimensions": "330\u00d7185",
+    "animationFrames": 1,
+    "file": "assets/buildings/comms.svg",
+    "reuseScope": "outpost",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "shelter",
+    "purpose": "Shelter & Research exterior",
+    "dimensions": "330\u00d7185",
+    "animationFrames": 1,
+    "file": "assets/buildings/shelter.svg",
+    "reuseScope": "outpost",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "oxygen",
+    "purpose": "Oxygen Lab exterior",
+    "dimensions": "330\u00d7185",
+    "animationFrames": 1,
+    "file": "assets/buildings/oxygen.svg",
+    "reuseScope": "outpost",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "astronaut-down-0",
+    "purpose": "Astronaut down walk frame 1",
+    "dimensions": "70\u00d796",
+    "animationFrames": 1,
+    "file": "assets/characters/astronaut-down-0.svg",
+    "reuseScope": "player animation",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "astronaut-down-1",
+    "purpose": "Astronaut down walk frame 2",
+    "dimensions": "70\u00d796",
+    "animationFrames": 1,
+    "file": "assets/characters/astronaut-down-1.svg",
+    "reuseScope": "player animation",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "astronaut-down-2",
+    "purpose": "Astronaut down walk frame 3",
+    "dimensions": "70\u00d796",
+    "animationFrames": 1,
+    "file": "assets/characters/astronaut-down-2.svg",
+    "reuseScope": "player animation",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "astronaut-down-3",
+    "purpose": "Astronaut down walk frame 4",
+    "dimensions": "70\u00d796",
+    "animationFrames": 1,
+    "file": "assets/characters/astronaut-down-3.svg",
+    "reuseScope": "player animation",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "astronaut-up-0",
+    "purpose": "Astronaut up walk frame 1",
+    "dimensions": "70\u00d796",
+    "animationFrames": 1,
+    "file": "assets/characters/astronaut-up-0.svg",
+    "reuseScope": "player animation",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "astronaut-up-1",
+    "purpose": "Astronaut up walk frame 2",
+    "dimensions": "70\u00d796",
+    "animationFrames": 1,
+    "file": "assets/characters/astronaut-up-1.svg",
+    "reuseScope": "player animation",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "astronaut-up-2",
+    "purpose": "Astronaut up walk frame 3",
+    "dimensions": "70\u00d796",
+    "animationFrames": 1,
+    "file": "assets/characters/astronaut-up-2.svg",
+    "reuseScope": "player animation",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "astronaut-up-3",
+    "purpose": "Astronaut up walk frame 4",
+    "dimensions": "70\u00d796",
+    "animationFrames": 1,
+    "file": "assets/characters/astronaut-up-3.svg",
+    "reuseScope": "player animation",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "astronaut-left-0",
+    "purpose": "Astronaut left walk frame 1",
+    "dimensions": "70\u00d796",
+    "animationFrames": 1,
+    "file": "assets/characters/astronaut-left-0.svg",
+    "reuseScope": "player animation",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "astronaut-left-1",
+    "purpose": "Astronaut left walk frame 2",
+    "dimensions": "70\u00d796",
+    "animationFrames": 1,
+    "file": "assets/characters/astronaut-left-1.svg",
+    "reuseScope": "player animation",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "astronaut-left-2",
+    "purpose": "Astronaut left walk frame 3",
+    "dimensions": "70\u00d796",
+    "animationFrames": 1,
+    "file": "assets/characters/astronaut-left-2.svg",
+    "reuseScope": "player animation",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "astronaut-left-3",
+    "purpose": "Astronaut left walk frame 4",
+    "dimensions": "70\u00d796",
+    "animationFrames": 1,
+    "file": "assets/characters/astronaut-left-3.svg",
+    "reuseScope": "player animation",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "astronaut-right-0",
+    "purpose": "Astronaut right walk frame 1",
+    "dimensions": "70\u00d796",
+    "animationFrames": 1,
+    "file": "assets/characters/astronaut-right-0.svg",
+    "reuseScope": "player animation",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "astronaut-right-1",
+    "purpose": "Astronaut right walk frame 2",
+    "dimensions": "70\u00d796",
+    "animationFrames": 1,
+    "file": "assets/characters/astronaut-right-1.svg",
+    "reuseScope": "player animation",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "astronaut-right-2",
+    "purpose": "Astronaut right walk frame 3",
+    "dimensions": "70\u00d796",
+    "animationFrames": 1,
+    "file": "assets/characters/astronaut-right-2.svg",
+    "reuseScope": "player animation",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "astronaut-right-3",
+    "purpose": "Astronaut right walk frame 4",
+    "dimensions": "70\u00d796",
+    "animationFrames": 1,
+    "file": "assets/characters/astronaut-right-3.svg",
+    "reuseScope": "player animation",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "nuri-idle",
+    "purpose": "Nuri idle expression",
+    "dimensions": "86\u00d780",
+    "animationFrames": 1,
+    "file": "assets/characters/nuri-idle.svg",
+    "reuseScope": "companion",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "nuri-speak",
+    "purpose": "Nuri speak expression",
+    "dimensions": "86\u00d780",
+    "animationFrames": 1,
+    "file": "assets/characters/nuri-speak.svg",
+    "reuseScope": "companion",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "nuri-happy",
+    "purpose": "Nuri happy expression",
+    "dimensions": "86\u00d780",
+    "animationFrames": 1,
+    "file": "assets/characters/nuri-happy.svg",
+    "reuseScope": "companion",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "nuri-warning",
+    "purpose": "Nuri warning expression",
+    "dimensions": "86\u00d780",
+    "animationFrames": 1,
+    "file": "assets/characters/nuri-warning.svg",
+    "reuseScope": "companion",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "nuri-thinking",
+    "purpose": "Nuri thinking expression",
+    "dimensions": "86\u00d780",
+    "animationFrames": 1,
+    "file": "assets/characters/nuri-thinking.svg",
+    "reuseScope": "companion",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "console",
+    "purpose": "Multiuse status console",
+    "dimensions": "115\u00d795",
+    "animationFrames": 1,
+    "file": "assets/equipment/console.svg",
+    "reuseScope": "exterior and interior",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "solar",
+    "purpose": "Solar array",
+    "dimensions": "145\u00d795",
+    "animationFrames": 1,
+    "file": "assets/equipment/solar.svg",
+    "reuseScope": "exterior and interior",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "antenna",
+    "purpose": "Communications antenna",
+    "dimensions": "115\u00d795",
+    "animationFrames": 1,
+    "file": "assets/equipment/antenna.svg",
+    "reuseScope": "exterior and interior",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "crate",
+    "purpose": "Supply crate",
+    "dimensions": "115\u00d795",
+    "animationFrames": 1,
+    "file": "assets/equipment/crate.svg",
+    "reuseScope": "exterior and interior",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "beacon",
+    "purpose": "Path beacon",
+    "dimensions": "115\u00d795",
+    "animationFrames": 1,
+    "file": "assets/equipment/beacon.svg",
+    "reuseScope": "exterior and interior",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "plant",
+    "purpose": "Grow tray plant",
+    "dimensions": "115\u00d795",
+    "animationFrames": 1,
+    "file": "assets/equipment/plant.svg",
+    "reuseScope": "exterior and interior",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "tank",
+    "purpose": "Water or oxygen tank",
+    "dimensions": "115\u00d795",
+    "animationFrames": 1,
+    "file": "assets/equipment/tank.svg",
+    "reuseScope": "exterior and interior",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "sign",
+    "purpose": "Directional post",
+    "dimensions": "135\u00d798",
+    "animationFrames": 1,
+    "file": "assets/props/sign.svg",
+    "reuseScope": "world",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "dust",
+    "purpose": "Windblown dust",
+    "dimensions": "155\u00d760",
+    "animationFrames": 1,
+    "file": "assets/effects/dust.svg",
+    "reuseScope": "exterior ambient",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "marker",
+    "purpose": "Location marker",
+    "dimensions": "64\u00d764",
+    "animationFrames": 1,
+    "file": "assets/ui/marker.svg",
+    "reuseScope": "world",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "command-room",
+    "purpose": "Command Hub reusable interior plate",
+    "dimensions": "960\u00d7650",
+    "animationFrames": 1,
+    "file": "assets/interiors/command-room.svg",
+    "reuseScope": "interior scene",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "habitat-room",
+    "purpose": "Habitat reusable interior plate",
+    "dimensions": "960\u00d7650",
+    "animationFrames": 1,
+    "file": "assets/interiors/habitat-room.svg",
+    "reuseScope": "interior scene",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "power-room",
+    "purpose": "Power Station reusable interior plate",
+    "dimensions": "960\u00d7650",
+    "animationFrames": 1,
+    "file": "assets/interiors/power-room.svg",
+    "reuseScope": "interior scene",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "greenhouse-room",
+    "purpose": "Greenhouse reusable interior plate",
+    "dimensions": "960\u00d7650",
+    "animationFrames": 1,
+    "file": "assets/interiors/greenhouse-room.svg",
+    "reuseScope": "interior scene",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "water-room",
+    "purpose": "Water Recovery reusable interior plate",
+    "dimensions": "960\u00d7650",
+    "animationFrames": 1,
+    "file": "assets/interiors/water-room.svg",
+    "reuseScope": "interior scene",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "comms-room",
+    "purpose": "Communications reusable interior plate",
+    "dimensions": "960\u00d7650",
+    "animationFrames": 1,
+    "file": "assets/interiors/comms-room.svg",
+    "reuseScope": "interior scene",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "shelter-room",
+    "purpose": "Shelter & Research reusable interior plate",
+    "dimensions": "960\u00d7650",
+    "animationFrames": 1,
+    "file": "assets/interiors/shelter-room.svg",
+    "reuseScope": "interior scene",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "oxygen-room",
+    "purpose": "Oxygen Lab reusable interior plate",
+    "dimensions": "960\u00d7650",
+    "animationFrames": 1,
+    "file": "assets/interiors/oxygen-room.svg",
+    "reuseScope": "interior scene",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "astronaut-down-strip",
+    "purpose": "Astronaut down animation strip",
+    "dimensions": "280\u00d796",
+    "animationFrames": 4,
+    "file": "assets/animations/astronaut-down-strip.svg",
+    "reuseScope": "player animation source",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "astronaut-up-strip",
+    "purpose": "Astronaut up animation strip",
+    "dimensions": "280\u00d796",
+    "animationFrames": 4,
+    "file": "assets/animations/astronaut-up-strip.svg",
+    "reuseScope": "player animation source",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "astronaut-left-strip",
+    "purpose": "Astronaut left animation strip",
+    "dimensions": "280\u00d796",
+    "animationFrames": 4,
+    "file": "assets/animations/astronaut-left-strip.svg",
+    "reuseScope": "player animation source",
+    "productionStatus": "illustrated SVG prototype"
+  },
+  {
+    "name": "astronaut-right-strip",
+    "purpose": "Astronaut right animation strip",
+    "dimensions": "280\u00d796",
+    "animationFrames": 4,
+    "file": "assets/animations/astronaut-right-strip.svg",
+    "reuseScope": "player animation source",
+    "productionStatus": "illustrated SVG prototype"
+  }
+]
