@@ -1,0 +1,802 @@
+{
+  "checks": [
+    {
+      "name": "A: tracker shows mission and first task",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: guided mode is the default",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: no XP before learning",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: start opens short brief card",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A brief: controls visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":{\"top\":132,\"bottom\":588,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":2}"
+    },
+    {
+      "name": "A: objective → examine rover data at field terminal",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: beacon points at the field terminal",
+      "pass": true,
+      "detail": "{\"kind\":\"field\",\"buildingId\":null,\"x\":664,\"y\":690,\"mode\":\"guided\"}"
+    },
+    {
+      "name": "A: beacon visible in guided mode",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: WASD hint shown before first move",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: H opens Nuri help panel with goal (level 0)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: level-1 hint gives direction to the real field terminal",
+      "pass": true,
+      "detail": "The field terminal is the glowing screen just south of where you started. Follow the yellow beacon. Press M for the map."
+    },
+    {
+      "name": "A: hint request did not change XP",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: SHOW ME pans the camera toward the target",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: \"move closer\" guidance appeared on approach",
+      "pass": true,
+      "detail": "informational"
+    },
+    {
+      "name": "A: specific prompt \"Examine Rover Data\"",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: WASD hint hidden after moving",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: field card 1 = Meet Curiosity",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A curiosity: controls visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":{\"top\":142,\"bottom\":578,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":2}"
+    },
+    {
+      "name": "A: Layer 2 collapsed by default in guided mode",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: source drawer collapsed",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: card 2 = What does RAD measure?",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: card 3 = interactive chart",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: chart plots every retrieved 20 May reading (139)",
+      "pass": true,
+      "detail": "139"
+    },
+    {
+      "name": "A: first evidence record → +10 XP and First Discovery",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: choosing a calm window gives a friendly descriptive hint (no penalty)",
+      "pass": true,
+      "detail": "Here the readings stay low and steady, around 4 µGy/hour. Keep looking for a big change! 14 readings in this part of the day"
+    },
+    {
+      "name": "A: finding the change explains it with real values",
+      "pass": true,
+      "detail": "You found it! Around 05:38–05:48 UTC the readings jumped up fast. The highest one was about 304 µGy/hour at 06:15 UTC."
+    },
+    {
+      "name": "A: Evidence Detective +15",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: re-selecting does not farm XP",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A chart: controls visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":{\"top\":17,\"bottom\":703,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":4}"
+    },
+    {
+      "name": "A: hint levels reach 3 (science thinking)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: level-3 hint is reasoning, not an answer",
+      "pass": true,
+      "detail": "When the graph opens, look for the place where the line climbs fast."
+    },
+    {
+      "name": "A: SHOW ME ON THE GRAPH highlights the rise",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: stage → research; card closed; world resumes",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: tracker updated to Research Lab",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: help level resets for the new objective",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: beacon moves to Research Lab door",
+      "pass": true,
+      "detail": "{\"kind\":\"door\",\"buildingId\":\"research\",\"x\":845,\"y\":698,\"mode\":\"guided\"}"
+    },
+    {
+      "name": "A: wrong building → Nuri names the right one",
+      "pass": true,
+      "detail": "This is the Power Station. Our next clue is in the Research Lab."
+    },
+    {
+      "name": "A: inside wrong room the beacon points at the exit",
+      "pass": true,
+      "detail": "{\"kind\":\"exit\",\"buildingId\":\"power\",\"x\":320,\"y\":318,\"mode\":\"guided\"}"
+    },
+    {
+      "name": "A: arriving inside the goal → beacon on equipment + Nuri line",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: research prompt is specific",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: research card 1 compares two days",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: mandatory rover ≠ base dose line present",
+      "pass": true,
+      "detail": "The measurements changed. But this doesn’t tell us the radiation dose inside our base."
+    },
+    {
+      "name": "A: median bars are to scale (19 May ≈ 9% of 20 May)",
+      "pass": true,
+      "detail": "[9,100]"
+    },
+    {
+      "name": "A: uncertainty card",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A uncertainty: controls visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":{\"top\":129,\"bottom\":591,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":3}"
+    },
+    {
+      "name": "A: second look shows the analysis line, labelled not a safety limit",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: second look obs uses real count (92) and ~14 h",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: XP after research = 25+10+15 = 50",
+      "pass": true,
+      "detail": "50"
+    },
+    {
+      "name": "A: stage → command",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: early Communications → actionable message, no card",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: command prompt is specific",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: decision card shows two large options",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A decision: controls visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":{\"top\":86,\"bottom\":634,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":2}"
+    },
+    {
+      "name": "A: no safe/danger labels on choices",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: choice A uses original reducer semantics",
+      "pass": true,
+      "detail": "{\"version\":1,\"stage\":\"nextShift\",\"choice\":\"review-defer\",\"monitorReviewed\":true,\"researchReviewed\":true,\"nextShiftFlag\":\"trend_reviewed\",\"simulatedWorkSlotsUsed\":1}"
+    },
+    {
+      "name": "A: explain-your-choice challenge appears",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: weaker evidence gets gentle feedback, no XP",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: strong evidence → Careful Scientist +20",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: immediate consequence card",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: shows simulation slot + NASA unchanged",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: objective → Communications",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: comms prompt is specific",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: delayed consequence links earlier choice → later result",
+      "pass": true,
+      "detail": "LATERTrend notes are ready. The optional robot survey is still waiting."
+    },
+    {
+      "name": "A delayed: controls visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":{\"top\":137,\"bottom\":583,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":2}"
+    },
+    {
+      "name": "A: debrief summary",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: debrief states NASA-real vs game practice",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A debrief: controls visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":{\"top\":137,\"bottom\":583,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":2}"
+    },
+    {
+      "name": "A: reflection wrong answer → friendly explanation, no XP",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: reflection correct → Scientific Thinker +15",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: transfer question → Method Master +15",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A reflection: controls visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":{\"top\":98,\"bottom\":622,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":3}"
+    },
+    {
+      "name": "A: mission complete (+30) → 130 XP",
+      "pass": true,
+      "detail": "130"
+    },
+    {
+      "name": "A: rewards page shows run XP and replay control",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A rewards: controls visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":{\"top\":120,\"bottom\":600,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":4}"
+    },
+    {
+      "name": "A: Science Passport opens with XP and badges",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A passport: controls visible (long panel may scroll)",
+      "pass": true,
+      "detail": "{\"card\":{\"top\":32,\"bottom\":688,\"left\":260,\"right\":1020,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":1}"
+    },
+    {
+      "name": "A: Missions tab shows discovered plan A and undiscovered B",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: Discoveries tab lists six mission cards",
+      "pass": true,
+      "detail": "6"
+    },
+    {
+      "name": "A: discovery detail has NASA source link",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: Esc closes the passport (does not open settings)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: M/J ignored while a science card is open",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: Esc closes the science card first",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: Esc with nothing open opens settings (paused)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: world stays paused while settings open",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: field terminal after completion opens review mode",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: reviewing evidence gives no new XP",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: reload keeps XP, badges and completion (no duplicates)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B: independent mode saved",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B: replay restarts mission at monitor",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B: in independent mode the beacon is hidden while far away",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B: Habitat exhibit opens a source-linked discovery card",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B exhibit: controls visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":{\"top\":170,\"bottom\":551,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":2}"
+    },
+    {
+      "name": "B: optional discovery +10",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B: re-reading an exhibit does not farm XP",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B: progression works without hints in independent mode",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B: Research exhibit (data check) uses package values",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B: DONKI exhibit states no causal claim",
+      "pass": true,
+      "detail": "In May 2024, NASA’s DONKI catalog listed 181 solar flares. Being listed at the same time does not prove it caused the rover’s readings."
+    },
+    {
+      "name": "B: three exhibits → Curious Mind badge",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B: choice B semantics preserved",
+      "pass": true,
+      "detail": "{\"version\":1,\"stage\":\"nextShift\",\"choice\":\"survey-followup\",\"monitorReviewed\":true,\"researchReviewed\":true,\"nextShiftFlag\":\"followup_reading_due\",\"simulatedWorkSlotsUsed\":1}"
+    },
+    {
+      "name": "B: Careful Scientist not re-awarded on replay",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B: immediate consequence for B",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B: delayed consequence for B differs from A",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B: debrief shows the other plan tried",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B: both branches → Branch Explorer; mission-complete XP not duplicated",
+      "pass": true,
+      "detail": "{\"xp\":170,\"completions\":2}"
+    },
+    {
+      "name": "B: XP = 130 + 3 exhibits (30) + branch explorer (10) = 170",
+      "pass": true,
+      "detail": "170"
+    },
+    {
+      "name": "B: rewards page names this run’s new rewards only",
+      "pass": true,
+      "detail": " +40"
+    },
+    {
+      "name": "C: Arabic sets RTL",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "C: Arabic tracker",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "C: Nuri panel no longer overlaps the toolbar in RTL",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "C: building signs are localized",
+      "pass": true,
+      "detail": "مختبر الأبحاث"
+    },
+    {
+      "name": "C: Arabic interaction prompt",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "C: Arabic chart card",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "C chart: controls visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":{\"top\":28,\"bottom\":692,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":4}"
+    },
+    {
+      "name": "C: chart axis stays LTR inside RTL card",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "C meaning: controls visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":{\"top\":18,\"bottom\":702,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":3}"
+    },
+    {
+      "name": "C: mandatory Arabic rover≠base line",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "C uncertainty: controls visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":{\"top\":125,\"bottom\":595,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":3}"
+    },
+    {
+      "name": "C decision: controls visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":{\"top\":84,\"bottom\":636,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":2}"
+    },
+    {
+      "name": "C delayed: controls visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":{\"top\":134,\"bottom\":586,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":2}"
+    },
+    {
+      "name": "C debrief: controls visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":{\"top\":141,\"bottom\":579,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":2}"
+    },
+    {
+      "name": "C reflection: controls visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":{\"top\":125,\"bottom\":595,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":3}"
+    },
+    {
+      "name": "C rewards: controls visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":{\"top\":125,\"bottom\":595,\"left\":210,\"right\":1070,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":4}"
+    },
+    {
+      "name": "C passport: controls visible (long panel may scroll)",
+      "pass": true,
+      "detail": "{\"card\":{\"top\":22,\"bottom\":698,\"left\":260,\"right\":1020,\"inView\":true},\"scroll\":47,\"buttonsInView\":true,\"buttons\":1}"
+    },
+    {
+      "name": "C: Arabic help panel",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "C: language persists across reload",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "D: mid-card reload keeps earned XP and stage",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "D: redoing the card after reload does not duplicate",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "D: reload resumes the research objective + beacon",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "D: legacy complete save is kept and migrated into the passport",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "D: malformed save (debrief, no choice) repaired to command + backup kept",
+      "pass": true,
+      "detail": "{\"version\":1,\"stage\":\"command\",\"choice\":null,\"monitorReviewed\":true,\"researchReviewed\":true,\"nextShiftFlag\":null,\"simulatedWorkSlotsUsed\":0}"
+    },
+    {
+      "name": "E 1024x640 chart: controls visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":{\"top\":47,\"bottom\":593,\"left\":82,\"right\":942,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":4}"
+    },
+    {
+      "name": "E 1024x640 decision: controls visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":{\"top\":60,\"bottom\":580,\"left\":82,\"right\":942,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":2}"
+    },
+    {
+      "name": "E 1920x1080 chart: controls visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":{\"top\":178,\"bottom\":902,\"left\":530,\"right\":1390,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":4}"
+    },
+    {
+      "name": "E 1920x1080 decision: controls visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":{\"top\":254,\"bottom\":826,\"left\":530,\"right\":1390,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":2}"
+    },
+    {
+      "name": "No browser errors, warnings or failed requests",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "errors": [],
+  "screens": [
+    "qa-screenshots/child-experience/01-arrival.png",
+    "qa-screenshots/child-experience/02-objective-tracker.png",
+    "qa-screenshots/child-experience/05-nuri-first-hint.png",
+    "qa-screenshots/child-experience/04-device-prompt.png",
+    "qa-screenshots/child-experience/07-curiosity-evidence.png",
+    "qa-screenshots/child-experience/13-achievement-unlock.png",
+    "qa-screenshots/child-experience/08-radiation-chart.png",
+    "qa-screenshots/child-experience/06-nuri-reasoning-hint.png",
+    "qa-screenshots/child-experience/03-navigating-to-research.png",
+    "qa-screenshots/child-experience/09-decision-cards.png",
+    "qa-screenshots/child-experience/10-immediate-consequence.png",
+    "qa-screenshots/child-experience/11-delayed-consequence.png",
+    "qa-screenshots/child-experience/14-final-debrief.png",
+    "qa-screenshots/child-experience/14b-reflection.png",
+    "qa-screenshots/child-experience/14c-mission-complete.png",
+    "qa-screenshots/child-experience/12-science-passport.png",
+    "qa-screenshots/child-experience/12b-passport-missions.png",
+    "qa-screenshots/child-experience/12c-passport-discoveries.png",
+    "qa-screenshots/child-experience/16-exhibit.png",
+    "qa-screenshots/child-experience/15-arabic-chart.png",
+    "qa-screenshots/child-experience/15b-arabic-meaning.png",
+    "qa-screenshots/child-experience/15c-arabic-decision.png",
+    "qa-screenshots/child-experience/15d-arabic-delayed.png",
+    "qa-screenshots/child-experience/15e-arabic-debrief.png",
+    "qa-screenshots/child-experience/15f-arabic-passport.png",
+    "qa-screenshots/child-experience/15g-arabic-help.png",
+    "qa-screenshots/child-experience/17-chart-1024x640.png",
+    "qa-screenshots/child-experience/17-decision-1024x640.png",
+    "qa-screenshots/child-experience/17-chart-1920x1080.png",
+    "qa-screenshots/child-experience/17-decision-1920x1080.png"
+  ],
+  "saveA": {
+    "xp": 130,
+    "progress": {
+      "version": 1,
+      "awarded": [
+        "ev:curiosity-card",
+        "ev:rad-card",
+        "ev:may20-series",
+        "ev:found-change",
+        "ev:may19-compare",
+        "ev:unknowns",
+        "ev:second-look",
+        "ev:explain-choice",
+        "ev:reflect-dose",
+        "ev:transfer",
+        "ev:mission-complete:P2-M02"
+      ],
+      "achievements": [
+        "first-discovery",
+        "evidence-detective",
+        "second-look",
+        "careful-scientist",
+        "scientific-thinker",
+        "method-master",
+        "mission-complete"
+      ],
+      "cards": [
+        "curiosity-rover",
+        "rad-instrument",
+        "may20-readings",
+        "compare-days",
+        "rover-vs-person",
+        "many-readings"
+      ],
+      "places": [
+        "power",
+        "research",
+        "comms",
+        "command"
+      ],
+      "exhibits": [],
+      "challenges": [
+        "check-evidence",
+        "explain-choice"
+      ],
+      "branchesSeen": [
+        "review-defer"
+      ],
+      "completions": 1,
+      "run": {
+        "events": [
+          "ev:curiosity-card",
+          "ev:rad-card",
+          "ev:may20-series",
+          "ev:found-change",
+          "ev:may19-compare",
+          "ev:unknowns",
+          "ev:second-look",
+          "ev:explain-choice",
+          "ev:reflect-dose",
+          "ev:transfer",
+          "ev:mission-complete:P2-M02"
+        ]
+      },
+      "settings": {
+        "locale": "en",
+        "guidance": "guided",
+        "preference": null,
+        "nuriLight": "cyan"
+      },
+      "hintLevel": {
+        "monitor": 1,
+        "monitor:field": 3
+      },
+      "stats": {
+        "hintRequests": 6,
+        "wrongPlaces": 2,
+        "misses": 0,
+        "helpOffers": 0
+      },
+      "flags": [
+        "migrated-from-mission-v1",
+        "xp-intro",
+        "place-toast-power",
+        "place-toast-research",
+        "place-toast-comms",
+        "place-toast-command"
+      ]
+    }
+  }
+}

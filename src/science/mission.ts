@@ -28,11 +28,33 @@ export function transition(state:MissionState,action:'start'|'monitor-reviewed'|
   if(action==='finish'&&state.stage==='debrief')return {...state,stage:'complete'};
   return state;
 }
+const STAGE_ORDER:MissionStage[]=['ready','monitor','research','command','nextShift','debrief','complete'];
+export const stageIndex=(s:MissionStage)=>STAGE_ORDER.indexOf(s);
+// Old or hand-edited saves are repaired, never silently discarded: the raw text is kept under a backup key.
+function backup(raw:string){try{localStorage.setItem(SAVE_KEY+'.backup',raw)}catch{/* storage full: keep playing */}}
+export function sanitizeMission(x:any):{state:MissionState;repaired:boolean}{
+  const fresh=initialMission();
+  if(!x||typeof x!=='object'||x.version!==1||!STAGE_ORDER.includes(x.stage))return {state:fresh,repaired:x!=null};
+  let stage=x.stage as MissionStage;
+  let choice:Decision|null=x.choice==='review-defer'||x.choice==='survey-followup'?x.choice:null;
+  if(stageIndex(stage)>=stageIndex('nextShift')&&!choice)stage='command';
+  if(stageIndex(stage)<stageIndex('nextShift'))choice=null;
+  const state:MissionState={version:1,stage,choice,
+    monitorReviewed:stageIndex(stage)>=stageIndex('research'),
+    researchReviewed:stageIndex(stage)>=stageIndex('command'),
+    nextShiftFlag:choice?choice==='review-defer'?'trend_reviewed':'followup_reading_due':null,
+    simulatedWorkSlotsUsed:choice?1:0};
+  const repaired=(['stage','choice','monitorReviewed','researchReviewed','nextShiftFlag','simulatedWorkSlotsUsed'] as const).some(k=>x[k]!==state[k]);
+  return {state,repaired};
+}
 export function loadMission():MissionState{
-  try{const x=JSON.parse(localStorage.getItem(SAVE_KEY)||'null');
-    if(x?.version===1&&['ready','monitor','research','command','nextShift','debrief','complete'].includes(x.stage)&&(!x.choice||['review-defer','survey-followup'].includes(x.choice)))return x as MissionState;
-  }catch{/* invalid local save falls back to a fresh mission */}
-  return initialMission();
+  const raw=localStorage.getItem(SAVE_KEY);
+  if(raw==null)return initialMission();
+  let parsed:unknown=null;
+  try{parsed=JSON.parse(raw)}catch{backup(raw);return initialMission()}
+  const {state,repaired}=sanitizeMission(parsed);
+  if(repaired){backup(raw);saveMission(state)}
+  return state;
 }
 export function saveMission(state:MissionState){localStorage.setItem(SAVE_KEY,JSON.stringify(state))}
 export function objective(stage:MissionStage,locale:'en'|'ar'){

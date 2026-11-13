@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "snapshotId": "exhibits-v1",
+  "note": "Values copied verbatim from 04_VERIFIED_DISCOVERIES/scientific_findings.json. Rounded only for display in the UI.",
+  "records": {
+    "surface-typical": {
+      "findingId": "P2-RAD-02",
+      "sourceOrganization": "NASA",
+      "sourceUrl": "https://visualization.osdr.nasa.gov/radlab/gui/data-api/",
+      "datasetId": "MSL-RAD-Surface",
+      "observationPeriod": "2015-01-01 to 2024-06-03 UTC",
+      "environment": "Curiosity rover, Mars surface",
+      "limitations": [
+        "Sampled rover detector, not astronaut dose; unequal yearly coverage."
+      ],
+      "value": 8.223135,
+      "unit": "µGy/hour",
+      "coverageReadings": 274998,
+      "coverageFindingId": "P2-RAD-01"
+    },
+    "data-check": {
+      "findingId": "P2-RAD-08",
+      "sourceOrganization": "NASA",
+      "sourceUrl": "https://visualization.osdr.nasa.gov/radlab/gui/data-api/",
+      "datasetId": "MSL-RAD-Surface",
+      "observationPeriod": "2015-01-01 to 2024-06-03 UTC",
+      "environment": "Curiosity rover, Mars surface",
+      "limitations": [
+        "Reason for conflicts unknown."
+      ],
+      "value": 29,
+      "unit": "rows",
+      "coverageReadings": 274998,
+      "coverageFindingId": "P2-RAD-01"
+    },
+    "solar-catalog": {
+      "findingId": "SCI-0003",
+      "sourceOrganization": "NASA",
+      "sourceUrl": "https://ccmc.gsfc.nasa.gov/DONKI/guide/",
+      "datasetId": "DONKI-FLR",
+      "observationPeriod": "2024-05-01 to 2024-05-31 UTC",
+      "environment": "Solar observations and catalog modeling; not Mars surface",
+      "limitations": [
+        "Mars-directed flux",
+        "surface dose",
+        "base shielding"
+      ],
+      "counts": {
+        "FLR": 181,
+        "CME": 144,
+        "SEP": 14
+      },
+      "period": "2024-05-01 through 2024-05-31 UTC",
+      "caveat": "Catalog entry and GOES flare class; not confirmed Mars particle flux or surface dose.",
+      "causalClaim": "none"
+    },
+    "iss-environment": {
+      "findingId": "SCI-0002",
+      "sourceOrganization": "NASA",
+      "sourceUrl": "https://visualization.osdr.nasa.gov/radlab/gui/data-api/",
+      "datasetId": "ISS-DosTel",
+      "observationPeriod": "2022-04-01 to 2022-04-07 UTC",
+      "environment": "ISS, low Earth orbit",
+      "limitations": [
+        "Mars habitat detector response"
+      ],
+      "environmentNote": "ISS, low Earth orbit",
+      "datasetIdCompared": "MSL-RAD-Surface"
+    },
+    "dose-equivalent": {
+      "findingId": "P2-RAD-07",
+      "sourceOrganization": "NASA",
+      "sourceUrl": "https://visualization.osdr.nasa.gov/radlab/gui/data-api/",
+      "datasetId": "MSL-RAD-Surface",
+      "observationPeriod": "2015-01-01 to 2024-06-03 UTC",
+      "environment": "Curiosity rover, Mars surface",
+      "limitations": [
+        "Absorbed dose must not be silently converted to dose equivalent."
+      ],
+      "value": 1,
+      "unit": "fraction"
+    }
+  }
+}

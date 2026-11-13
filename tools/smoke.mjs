@@ -1,0 +1,12 @@
+import {chromium} from 'playwright';
+const url=process.argv[2]||'http://localhost:5182/';
+const browser=await chromium.launch({channel:'chrome',headless:true});
+const page=await browser.newPage({viewport:{width:1280,height:720}});
+const errors=[];page.on('pageerror',e=>errors.push('PAGE '+e.message));page.on('console',m=>{if(['error','warning'].includes(m.type()))errors.push(m.type()+' '+m.text())});
+page.on('response',r=>{if(r.status()>=400)errors.push(r.status()+' '+r.url())});
+await page.goto(url,{waitUntil:'networkidle'});
+await page.waitForFunction(()=>Boolean(window.__ripple?.scene?.player&&window.__mission),null,{timeout:15000}).catch(e=>errors.push('wait '+e.message));
+await page.waitForTimeout(800);
+await page.screenshot({path:process.env.TEMP+'/opencode/smoke.png'});
+console.log(JSON.stringify({errors,state:await page.evaluate(()=>window.__ripple?.state()),mission:await page.evaluate(()=>window.__mission?.getState())},null,1));
+await browser.close();

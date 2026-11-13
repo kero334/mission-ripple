@@ -9,10 +9,10 @@ for(const [width,height] of [[1280,720],[1920,1080]]){
   page.on('pageerror',e=>report.errors.push(e.message));
   page.on('console',m=>{if(m.type()==='error')report.errors.push(m.text())});
   await page.goto('http://localhost:5182/',{waitUntil:'networkidle'});
-  await page.waitForFunction(()=>Boolean(window.__ripple?.scene?.player));
+  await page.waitForFunction(()=>Boolean(window.__ripple?.scene?.player));await page.evaluate(()=>localStorage.clear());
   await page.waitForTimeout(550);
   const cam=await page.evaluate(()=>{const c=window.__ripple.scene.cameras.main;return {zoom:c.zoom,viewWidth:c.width/c.zoom,viewHeight:c.height/c.zoom,scrollY:c.scrollY}});
-  check(`Exterior framing ${width}x${height}`,cam.zoom===0.8&&cam.viewWidth===800&&cam.viewHeight===450,JSON.stringify(cam));
+  check(`Exterior framing ${width}x${height}`,cam.zoom===1.6&&cam.viewWidth===800&&cam.viewHeight===450,JSON.stringify(cam));
   const file=`qa-screenshots/camera/outpost-${width}x${height}.png`;await page.screenshot({path:file});report.screens.push(file);
   if(width===1280){
     const scroll=[cam.scrollY];await page.keyboard.down('w');
@@ -25,12 +25,12 @@ for(const [width,height] of [[1280,720],[1920,1080]]){
     await page.waitForFunction(()=>window.__ripple.state().nearest==='Enter Habitat');
     await page.keyboard.press('e');
     await page.waitForFunction(()=>window.__ripple.state().room==='habitat');
-    check('Interior remains at room scale',await page.evaluate(()=>window.__ripple.scene.cameras.main.zoom===1));
+    check('Interior remains at room scale',await page.evaluate(()=>window.__ripple.scene.cameras.main.zoom===2&&window.__ripple.scene.cameras.main.worldView.width===640));
     await page.evaluate(()=>window.__ripple.scene.player.setPosition(320,318));
     await page.waitForFunction(()=>window.__ripple.state().nearest==='Exit to outpost');
     await page.keyboard.press('e');
     await page.waitForFunction(()=>window.__ripple.state().room===null);
-    check('Exterior zoom restores after exit',await page.evaluate(()=>window.__ripple.scene.cameras.main.zoom===0.8));
+    check('Exterior zoom restores after exit',await page.evaluate(()=>window.__ripple.scene.cameras.main.zoom===1.6));
   }
   await page.close();
 }

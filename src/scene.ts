@@ -1,20 +1,34 @@
 import Phaser from 'phaser';
-import manifest from '../public/assets/pixel-manifest.json';
-import mapData from '../public/assets/terrain/world-map.json';
-import {BUILDINGS,SPAWN,STRINGS,WORLD_H,WORLD_W,type Building,type Locale} from './world-data';
+import {BUILDINGS,SPAWN,WORLD_H,WORLD_W,type Building,type Locale} from './world-data';
+import {EXHIBITS,type Exhibit} from './game/exhibits';
 
-type Target={x:number;y:number;radius:number;kind:'door'|'equipment'|'exit'|'field'|'nuri';building?:Building;label:string;ar:string;note?:string;noteAr?:string};
-export type GameState={room:string|null;visited:string[];inspected:string[];talkedNuri:boolean;exploredCourtyard:boolean;nearest:string|null;paused:boolean;locale:Locale;position:{x:number;y:number}};
+type TargetKind='door'|'equipment'|'exit'|'field'|'nuri'|'exhibit';
+type Target={x:number;y:number;radius:number;kind:TargetKind;building?:Building;exhibit?:Exhibit;label:string;ar:string;note?:string;noteAr?:string};
+type MapData={ground:number[][];path:number[][]};
+type Guide={kind:'door'|'equipment'|'field'|'exit'|'none';buildingId:string|null;x:number;y:number;mode:'guided'|'independent'};
+export type GameState={room:string|null;visited:string[];inspected:string[];talkedNuri:boolean;exploredCourtyard:boolean;nearest:string|null;nearestKind:TargetKind|null;nearestId:string|null;
+  guideDistance:'none'|'far'|'near'|'inRange';paused:boolean;locale:Locale;position:{x:number;y:number}};
 const emit=(name:string,detail:unknown)=>window.dispatchEvent(new CustomEvent(name,{detail}));
 const widths:Record<string,number>={habitat:236,power:188,greenhouse:206,water:188,research:184,comms:175,command:184,shelter:185,oxygen:184};
 const signY:Record<string,number>={habitat:-80,power:-57,greenhouse:-61,water:-56,research:-58,comms:-56,command:-60,shelter:-55,oxygen:-54};
-const EXTERIOR_CAMERA_ZOOM=0.8;
+// Canvas is 1280x720; zoom 1.6 shows the same 800x450 world view as the old 640x360 canvas at 0.8,
+// but text and UI inside the canvas get twice the pixels. Rooms use zoom 2 (same 640x360 view).
+const EXTERIOR_CAMERA_ZOOM=1.6,ROOM_ZOOM=2;
+const smoothText=(t:Phaser.GameObjects.Text)=>{t.setResolution(2);t.texture.setFilter(Phaser.Textures.FilterMode.LINEAR);return t};
+const SIGN_FONT={en:'VT323, monospace',ar:'Cairo, sans-serif'};
 export class MarsScene extends Phaser.Scene{
   private objects:Phaser.GameObjects.GameObject[]=[];
   private player!:Phaser.GameObjects.Image;
   private nuri!:Phaser.GameObjects.Image;
-  private marker?:Phaser.GameObjects.Image;
-  private missionTarget='habitat';
+  private nuriGlow!:Phaser.GameObjects.Ellipse;
+  private beacon!:Phaser.GameObjects.Image;
+  private ring!:Phaser.GameObjects.Image;
+  private edgeArrow!:Phaser.GameObjects.Image;
+  private guide:Guide={kind:'none',buildingId:null,x:0,y:0,mode:'guided'};
+  private revealUntil=0;
+  private highlightUntil=0;
+  private showingMe=false;
+  private signs:{text:Phaser.GameObjects.Text;b:Building}[]=[];
   private keys!:Record<string,Phaser.Input.Keyboard.Key>;
   private targets:Target[]=[];
   private blocks:Phaser.Geom.Rectangle[]=[];
@@ -34,34 +48,60 @@ export class MarsScene extends Phaser.Scene{
   private exteriorPos={...SPAWN};
   private announcement=0;
   private lastState='';
+  private guideDistance:GameState['guideDistance']='none';
   constructor(){super('MarsScene')}
-  preload(){for(const item of manifest)this.load.image(item.name,`/${item.file}`)}
+  preload(){
+    // JSON is loaded at runtime from /public (no JS import of public files).
+    for(const key of ['pixel-manifest','experience-manifest'])this.load.on(`filecomplete-json-${key}`,(_k:string,_t:string,list:{name:string;file:string}[])=>{for(const item of list)this.load.image(item.name,`/${item.file}`)});
+    this.load.json('pixel-manifest','/assets/pixel-manifest.json');
+    this.load.json('experience-manifest','/assets/experience-manifest.json');
+    this.load.json('world-map','/assets/terrain/world-map.json');
+  }
+  private get mapData(){return this.cache.json.get('world-map') as MapData}
   create(){
     this.cameras.main.setBackgroundColor('#a64e43');this.buildExterior();
+    this.nuriGlow=this.add.ellipse(SPAWN.x+38,SPAWN.y-2,16,5,0x59d5db,.32).setDepth(SPAWN.y-17);
     this.player=this.add.image(SPAWN.x,SPAWN.y,'astronaut-down-0-pixel').setOrigin(.5,1).setDepth(SPAWN.y+2);
     this.nuri=this.add.image(SPAWN.x+38,SPAWN.y-17,'nuri-idle-pixel').setOrigin(.5,1).setDepth(SPAWN.y-16);
+    this.ring=this.add.image(0,0,'guide-ring').setDepth(-300).setVisible(false);
+    this.tweens.add({targets:this.ring,scale:{from:.85,to:1.15},alpha:{from:.95,to:.45},duration:900,yoyo:true,repeat:-1});
+    this.beacon=this.add.image(0,0,'guide-beacon').setOrigin(.5,1).setDepth(5000).setVisible(false);
+    this.edgeArrow=this.add.image(0,0,'guide-arrow').setDepth(5001).setVisible(false);
     this.cameras.main.setZoom(EXTERIOR_CAMERA_ZOOM).setBounds(0,0,WORLD_W,WORLD_H);
     this.cameras.main.startFollow(this.player,false,.09,.09,0,25);
-    this.keys=this.input.keyboard!.addKeys('W,A,S,D,UP,DOWN,LEFT,RIGHT,SHIFT,E,ESC,M,L,J,B') as Record<string,Phaser.Input.Keyboard.Key>;
+    this.keys=this.input.keyboard!.addKeys('W,A,S,D,UP,DOWN,LEFT,RIGHT,SHIFT,E,ESC,M,L,J,B,H') as Record<string,Phaser.Input.Keyboard.Key>;
     this.input.keyboard!.on('keydown-E',()=>this.interact());this.input.keyboard!.on('keydown-ESC',()=>emit('ripple-pause',{}));
     this.input.keyboard!.on('keydown-M',()=>emit('ripple-map',{}));this.input.keyboard!.on('keydown-L',()=>emit('ripple-language',{}));
     this.input.keyboard!.on('keydown-J',()=>emit('ripple-journal',{}));this.input.keyboard!.on('keydown-B',()=>emit('ripple-inventory',{}));
-    window.addEventListener('ripple-control',(event)=>{const a=(event as CustomEvent).detail as {type:string;value?:Locale|boolean|string};if(a.type==='locale')this.locale=a.value as Locale;if(a.type==='pause')this.paused=Boolean(a.value);if(a.type==='mission-target'){this.missionTarget=String(a.value);this.placeMarker()}this.publish()});
+    this.input.keyboard!.on('keydown-H',()=>emit('ripple-help',{source:'key'}));
+    window.addEventListener('ripple-control',(event)=>{const a=(event as CustomEvent).detail as {type:string;value?:any};
+      if(a.type==='locale'){this.locale=a.value as Locale;this.refreshSigns()}
+      if(a.type==='pause')this.paused=Boolean(a.value);
+      if(a.type==='guide')this.guide={...this.guide,...(a.value as Partial<Guide>)};
+      if(a.type==='reveal'){this.revealUntil=this.time.now+12000;this.highlightUntil=this.time.now+(a.value==='device'?6000:0)}
+      if(a.type==='show-me')this.showMe();
+      if(a.type==='nuri-light')this.nuriGlow.setFillStyle(Number(a.value),.32);
+      this.publish()});
+    window.addEventListener('ripple-dialogue',(event)=>{const mood=(event as CustomEvent<{mood?:string}>).detail?.mood;if(mood&&this.nuri){this.nuriMood=mood;this.announcement=Date.now();this.nuri.setTexture('nuri-'+(mood==='happy'||mood==='warning'||mood==='thinking'||mood==='speak'?mood:'idle')+'-pixel')}});
     this.publish();(window as any).__ripple={scene:this,state:()=>this.snapshot(),travel:(id:string)=>{const b=BUILDINGS.find(v=>v.id===id);if(b)this.changeScene(b)}};
+    (window as any).__rippleMapPath=this.mapData.path;document.fonts?.ready.then(()=>this.refreshSigns());emit('ripple-scene-ready',{});
   }
   private track<T extends Phaser.GameObjects.GameObject>(o:T):T{this.objects.push(o);return o}
   private sprite(key:string,x:number,y:number,depth=y){return this.track(this.add.image(Math.round(x),Math.round(y),key).setOrigin(.5,1).setDepth(depth))}
   private graphics(depth=0){return this.track(this.add.graphics().setDepth(depth))}
+  private signText(b:Building){return this.locale==='en'?(b.id==='shelter'?'SHELTER':b.name.toUpperCase()):b.ar}
+  private refreshSigns(){for(const {text,b} of this.signs){text.setFontFamily(SIGN_FONT[this.locale]);text.setFontStyle(this.locale==='en'?'normal':'bold');text.setFontSize(this.room?(this.locale==='en'?17:12):this.locale==='en'?(b.id==='habitat'?15:13):(b.id==='habitat'?11:9));text.setText(this.room?(this.locale==='en'?b.name.toUpperCase():b.ar):this.signText(b));text.texture.setFilter(Phaser.Textures.FilterMode.LINEAR)}}
   private buildExterior(){
-    this.targets=[];this.blocks=[];
-    const ground=this.make.tilemap({data:mapData.ground,tileWidth:32,tileHeight:32});const set=ground.addTilesetImage('mars-tiles','mars-tiles',32,32,0,0);
+    this.targets=[];this.blocks=[];this.signs=[];
+    const map=this.mapData;
+    const ground=this.make.tilemap({data:map.ground,tileWidth:32,tileHeight:32});const set=ground.addTilesetImage('mars-tiles','mars-tiles',32,32,0,0);
     this.track(ground.createLayer(0,set!,0,0)!.setDepth(-500));
-    const roads=this.make.tilemap({data:mapData.path,tileWidth:32,tileHeight:32});const roadSet=roads.addTilesetImage('mars-tiles','mars-tiles',32,32,0,0);
+    const roads=this.make.tilemap({data:map.path,tileWidth:32,tileHeight:32});const roadSet=roads.addTilesetImage('mars-tiles','mars-tiles',32,32,0,0);
     this.track(roads.createLayer(0,roadSet!,0,0)!.setDepth(-400));
     for(let i=0;i<185;i++){
       const x=35+((i*173+Math.floor(i*i/7))%1210),y=40+((i*239+Math.floor(i*i/11))%1030);
       const nearBuilding=BUILDINGS.some(b=>Math.abs(x-b.x)<widths[b.id]/2+32&&Math.abs(y-b.y)<115);
-      if(nearBuilding||(Math.abs(x-640)<185&&Math.abs(y-530)<150)||mapData.path[Math.floor(y/32)]?.[Math.floor(x/32)]>=12)continue;
+      if(nearBuilding||(Math.abs(x-640)<185&&Math.abs(y-530)<150)||map.path[Math.floor(y/32)]?.[Math.floor(x/32)]>=12)continue;
       const key=i%13===0?'crater-pixel':i%3===0?'bush-pixel':'rock-pixel';this.sprite(key,x,y,y-2);
       if(key==='rock-pixel'&&i%5===0)this.blocks.push(new Phaser.Geom.Rectangle(x-12,y-18,24,14));
     }
@@ -74,21 +114,18 @@ export class MarsScene extends Phaser.Scene{
     for(const b of BUILDINGS){
       const w=widths[b.id],shadow=this.graphics(b.y-2);shadow.fillStyle(0x3a2332,.34);shadow.fillEllipse(b.x,b.y-3,w*.88,22);
       this.sprite(b.id+'-pixel',b.x,b.y,b.y);
-      const label=b.id==='shelter'?'SHELTER':b.name.toUpperCase();
-      const sign=this.track(this.add.text(b.x,b.y+signY[b.id],label,{fontFamily:'monospace',fontSize:b.id==='habitat'?'10px':'8px',fontStyle:'bold',color:'#fff0d3',backgroundColor:'#322936',padding:{x:3,y:1}}).setOrigin(.5).setDepth(b.y+1));sign.setResolution(1);
+      const sign=this.track(smoothText(this.add.text(b.x,b.y+signY[b.id],this.signText(b),{fontFamily:SIGN_FONT[this.locale],fontSize:this.locale==='en'?(b.id==='habitat'?'15px':'13px'):(b.id==='habitat'?'11px':'9px'),fontStyle:this.locale==='en'?'normal':'bold',color:'#fff0d3',backgroundColor:'#322936',padding:{x:4,y:1}}).setOrigin(.5).setDepth(b.y+1)));
+      this.signs.push({text:sign,b});
       this.targets.push({x:b.x,y:b.y+18,radius:42,kind:'door',building:b,label:`Enter ${b.name}`,ar:`ادخل ${b.ar}`});
       const bodyY=b.y-Math.min(70,Math.floor(w*.38)),h=Math.max(30,b.y-bodyY-12);
       this.blocks.push(new Phaser.Geom.Rectangle(b.x-w*.43,bodyY,w*.35,h));this.blocks.push(new Phaser.Geom.Rectangle(b.x+w*.08,bodyY,w*.35,h));this.blocks.push(new Phaser.Geom.Rectangle(b.x-18,b.y-70,36,32));
     }
-    const terminal=this.sprite('console-pixel',664,692,692);this.targets.push({x:664,y:690,radius:40,kind:'field',label:'Inspect field terminal',ar:'افحص وحدة الميدان',note:'This map connects every outpost facility. The science missions will use these places.',noteAr:'تربط هذه الخريطة منشآت القاعدة. ستستخدم المهمات العلمية هذه الأماكن.'});
+    const terminal=this.sprite('console-pixel',664,692,692);this.targets.push({x:664,y:690,radius:40,kind:'field',label:'Inspect field terminal',ar:'افحص شاشة الميدان',note:'This map connects every outpost facility. The science missions will use these places.',noteAr:'الشاشة دي بتوصّل كل منشآت القاعدة. المهمات العلمية هتستخدم الأماكن دي.'});
     this.tweens.add({targets:terminal,alpha:.82,duration:1100,yoyo:true,repeat:-1});
     for(const [x,y] of [[409,449],[792,476],[180,831],[1010,735]] as [number,number][]){const dust=this.sprite('dust-pixel',x,y,y+5).setAlpha(.35);this.tweens.add({targets:dust,x:x+38,alpha:.08,duration:5200,yoyo:true,repeat:-1})}
-    this.marker=this.sprite('lamp-pixel',640,483,1000).setScale(.65);this.tweens.add({targets:this.marker,alpha:.55,duration:900,yoyo:true,repeat:-1});
-    this.placeMarker();
   }
-  private placeMarker(){if(!this.marker)return;const b=BUILDINGS.find(v=>v.id===this.missionTarget);this.marker.setPosition(b?.x||664,b?b.y+29:668)}
   private buildInterior(b:Building){
-    this.targets=[];this.blocks=[];
+    this.targets=[];this.blocks=[];this.signs=[];
     const palette:Record<string,number>={habitat:0x655b65,power:0x565665,greenhouse:0x547b65,water:0x55708a,research:0x516b84,comms:0x596b7d,command:0x5b6c86,shelter:0x5d5d68,oxygen:0x557b83};
     const wall=this.graphics(-30);wall.fillStyle(0x1d2c3e);wall.fillRect(0,0,640,360);wall.fillStyle(palette[b.id]);wall.fillRect(32,68,576,244);wall.lineStyle(3,0xe9d3ad);wall.strokeRect(31,67,578,246);wall.fillStyle(0x283b51);wall.fillRect(32,38,576,35);
     for(let x=32;x<608;x+=32){wall.fillStyle(0x8497a2);wall.fillRect(x,72,1,240);wall.fillStyle(0xe0c49f);wall.fillRect(x,43,1,28)}
@@ -104,32 +141,75 @@ export class MarsScene extends Phaser.Scene{
     for(const [key,x,y] of furniture[b.id]){this.sprite(key+'-pixel',x,y,y);this.blocks.push(new Phaser.Geom.Rectangle(x-17,y-26,34,20))}
     const priorityGear:Record<string,string>={habitat:'life-support',power:'power-core',greenhouse:'grow-rack',water:'water-core',research:'research-core'};
     const gear=this.sprite((priorityGear[b.id]||b.equipment)+'-pixel',320,219,219);this.tweens.add({targets:gear,alpha:.92,duration:1300,yoyo:true,repeat:-1});
-    const sign=this.track(this.add.text(320,61,b.name.toUpperCase(),{fontFamily:'monospace',fontSize:'12px',fontStyle:'bold',color:'#ffe0a4',backgroundColor:'#26394f',padding:{x:5,y:2}}).setOrigin(.5).setDepth(200));sign.setResolution(1);
+    const sign=this.track(smoothText(this.add.text(320,61,this.locale==='en'?b.name.toUpperCase():b.ar,{fontFamily:SIGN_FONT[this.locale],fontSize:this.locale==='en'?'17px':'12px',fontStyle:this.locale==='en'?'normal':'bold',color:'#ffe0a4',backgroundColor:'#26394f',padding:{x:6,y:2}}).setOrigin(.5).setDepth(200)));
+    this.signs.push({text:sign,b:{...b,name:b.name}});
     this.targets.push({x:320,y:243,radius:45,kind:'equipment',building:b,label:`Inspect ${b.equipmentName}`,ar:`افحص ${b.equipmentAr}`,note:b.note,noteAr:b.noteAr});
-    this.targets.push({x:320,y:318,radius:36,kind:'exit',building:b,label:'Exit to outpost',ar:'اخرج إلى القاعدة'});
+    for(const ex of EXHIBITS.filter(e=>e.room===b.id)){
+      const plate=this.sprite(ex.icon,ex.x,ex.y-44,400).setScale(.75);
+      this.tweens.add({targets:plate,y:ex.y-47,duration:1100,yoyo:true,repeat:-1,ease:'Sine.easeInOut'});
+      this.targets.push({x:ex.x,y:ex.y,radius:34,kind:'exhibit',exhibit:ex,building:b,label:`Read exhibit ${ex.id}`,ar:''});
+    }
+    this.targets.push({x:320,y:318,radius:36,kind:'exit',building:b,label:'Exit to outpost',ar:'اخرج للقاعدة'});
     const exit=this.graphics(307);exit.fillStyle(0xe9b66b);exit.fillRect(287,309,66,3);exit.fillStyle(0x253c52);exit.fillRect(300,313,40,9);
     this.blocks.push(new Phaser.Geom.Rectangle(40,85,560,37));this.blocks.push(new Phaser.Geom.Rectangle(260,197,120,23));
   }
   private changeScene(b:Building|null){
     this.cameras.main.fadeOut(155,25,22,36);this.time.delayedCall(170,()=>{
-      for(const o of this.objects){this.tweens.killTweensOf(o);o.destroy()}this.objects=[];this.marker=undefined;this.room=b;this.nearest=null;
-      if(b){this.exteriorPos={x:this.player.x,y:this.player.y};this.buildInterior(b);this.player.setPosition(320,278);this.nuri.setPosition(353,256);this.visited.add(b.id);this.cameras.main.setZoom(1).setBounds(0,0,640,360);this.cameras.main.setScroll(0,0);this.nuriMood='happy';this.nuri.setTexture('nuri-happy-pixel');this.say(this.visited.size===BUILDINGS.length?STRINGS[this.locale].all:this.locale==='en'?`Inside the ${b.name}. ${b.note}`:`داخل ${b.ar}. ${b.noteAr}`)}
-      else{this.buildExterior();this.player.setPosition(this.exteriorPos.x,this.exteriorPos.y+26);this.nuri.setPosition(this.player.x+33,this.player.y-18);this.cameras.main.setZoom(EXTERIOR_CAMERA_ZOOM).setBounds(0,0,WORLD_W,WORLD_H);this.nuriMood='idle';this.nuri.setTexture('nuri-idle-pixel');this.say(this.locale==='en'?'Back outside. Where to next?':'عدنا إلى الخارج. إلى أين الآن؟')}
+      for(const o of this.objects){this.tweens.killTweensOf(o);o.destroy()}this.objects=[];this.room=b;this.nearest=null;
+      if(b){this.exteriorPos={x:this.player.x,y:this.player.y};this.buildInterior(b);this.player.setPosition(320,278);this.nuri.setPosition(353,256);this.visited.add(b.id);this.cameras.main.setZoom(ROOM_ZOOM).setBounds(0,0,640,360);this.cameras.main.centerOn(320,180);this.nuriMood='happy';this.nuri.setTexture('nuri-happy-pixel')}
+      else{this.buildExterior();this.player.setPosition(this.exteriorPos.x,this.exteriorPos.y+26);this.nuri.setPosition(this.player.x+33,this.player.y-18);this.cameras.main.setZoom(EXTERIOR_CAMERA_ZOOM).setBounds(0,0,WORLD_W,WORLD_H);this.nuriMood='idle';this.nuri.setTexture('nuri-idle-pixel')}
+      this.announcement=Date.now();
       this.cameras.main.fadeIn(180,25,22,36);this.publish();
+      emit('ripple-room',{room:b?.id||null,allVisited:this.visited.size===BUILDINGS.length});
     });
   }
   private interact(){
-    if(this.paused||!this.nearest)return;const t=this.nearest;
+    if(this.paused)return;
+    if(!this.nearest){emit('ripple-interact-miss',{room:this.room?.id||null});return}
+    const t=this.nearest;
     this.interactionUntil=this.time.now+350;this.player.setTexture('astronaut-interact-pixel');
-    if(t.kind==='door'&&t.building)this.changeScene(t.building);else if(t.kind==='exit')this.changeScene(null);
-    else if(t.kind==='nuri'){this.talkedNuri=true;this.nuriMood='happy';this.nuri.setTexture('nuri-happy-pixel');this.say(STRINGS[this.locale].command);this.publish()}
-    else{if(t.building)this.inspected.add(t.building.id);this.nuriMood=t.kind==='field'?'thinking':t.building?.id==='shelter'?'warning':'speak';this.nuri.setTexture('nuri-'+this.nuriMood+'-pixel');this.say(this.locale==='en'?t.note||'Take a closer look.':t.noteAr||'انظر عن قرب.');this.publish();emit('ripple-world-interaction',{kind:t.kind,buildingId:t.building?.id||null})}
+    if(t.kind==='door'&&t.building){emit('ripple-world-interaction',{kind:'door',buildingId:t.building.id});this.changeScene(t.building)}
+    else if(t.kind==='exit'){emit('ripple-world-interaction',{kind:'exit',buildingId:t.building?.id||null});this.changeScene(null)}
+    else if(t.kind==='nuri'){this.talkedNuri=true;this.nuriMood='happy';this.nuri.setTexture('nuri-happy-pixel');this.publish();emit('ripple-help',{source:'nuri'})}
+    else if(t.kind==='exhibit'&&t.exhibit){this.nuriMood='speak';emit('ripple-world-interaction',{kind:'exhibit',buildingId:t.building?.id||null,exhibitId:t.exhibit.id})}
+    else{if(t.building)this.inspected.add(t.building.id);this.nuriMood=t.kind==='field'?'thinking':t.building?.id==='shelter'?'warning':'speak';this.nuri.setTexture('nuri-'+this.nuriMood+'-pixel');this.publish();emit('ripple-world-interaction',{kind:t.kind,buildingId:t.building?.id||null})}
   }
-  private say(text:string){this.announcement=Date.now();emit('ripple-dialogue',{text,mood:this.nuriMood})}
-  private snapshot():GameState{return {room:this.room?.id||null,visited:[...this.visited],inspected:[...this.inspected],talkedNuri:this.talkedNuri,exploredCourtyard:this.exploredCourtyard,nearest:this.nearest?.label||null,paused:this.paused,locale:this.locale,position:{x:Math.round(this.player.x),y:Math.round(this.player.y)}}}
+  /** Briefly pans the camera to the current objective and back (the "Show me" hint). */
+  private showMe(){
+    if(this.guide.kind==='none'||this.showingMe)return;
+    this.revealUntil=this.time.now+12000;this.highlightUntil=this.time.now+5000;
+    if(this.room)return;
+    const cam=this.cameras.main;this.showingMe=true;cam.stopFollow();
+    cam.pan(this.guide.x,this.guide.y-20,700,'Sine.easeInOut',true,(_c:Phaser.Cameras.Scene2D.Camera,p:number)=>{if(p<1)return;
+      this.time.delayedCall(900,()=>cam.pan(this.player.x,this.player.y-25,600,'Sine.easeInOut',true,(_c2:Phaser.Cameras.Scene2D.Camera,p2:number)=>{if(p2<1)return;cam.startFollow(this.player,false,.09,.09,0,25);this.showingMe=false}))});
+  }
+  private snapshot():GameState{return {room:this.room?.id||null,visited:[...this.visited],inspected:[...this.inspected],talkedNuri:this.talkedNuri,exploredCourtyard:this.exploredCourtyard,nearest:this.nearest?.label||null,
+    nearestKind:this.nearest?.kind||null,nearestId:this.nearest?.exhibit?.id||this.nearest?.building?.id||null,guideDistance:this.guideDistance,paused:this.paused,locale:this.locale,position:{x:Math.round(this.player.x),y:Math.round(this.player.y)}}}
   private publish(){if(!this.player)return;const s=this.snapshot(),serial=JSON.stringify({...s,position:undefined});if(serial!==this.lastState){this.lastState=serial;emit('ripple-state',s)}}
+  private updateGuide(){
+    const g=this.guide,active=g.kind!=='none',reveal=this.time.now<this.revealUntil,guided=g.mode==='guided'||reveal;
+    const dist=active?Phaser.Math.Distance.Between(this.player.x,this.player.y,g.x,g.y):Infinity;
+    const radius=g.kind==='door'?42:g.kind==='field'?40:g.kind==='equipment'?45:36;
+    this.guideDistance=!active?'none':dist<radius?'inRange':dist<radius*2.4?'near':'far';
+    const bob=Math.sin(this.time.now/220)*3;
+    const beaconY=g.kind==='door'?g.y-(this.room?40:96):g.kind==='field'?g.y-42:g.y-46;
+    this.beacon.setVisible(active&&(guided||this.guideDistance!=='far')).setPosition(g.x,Math.round(beaconY+bob));
+    const high=this.time.now<this.highlightUntil;
+    this.beacon.setScale(high?1.35:1);
+    this.ring.setVisible(active&&(guided||this.guideDistance!=='far')).setPosition(g.x,g.kind==='door'?g.y-6:g.y+2).setDepth(g.kind==='door'?g.y-5:g.y-30);
+    this.ring.setTint(high&&Math.floor(this.time.now/250)%2?0xffffff:0xffcc68);
+    const view=this.cameras.main.worldView,onScreen=view.contains(g.x,beaconY);
+    if(active&&!onScreen&&guided&&!this.room&&!this.showingMe){
+      const m=26/this.cameras.main.zoom,cx=Phaser.Math.Clamp(g.x,view.x+m,view.right-m),cy=Phaser.Math.Clamp(beaconY,view.y+m,view.bottom-m);
+      this.edgeArrow.setVisible(true).setPosition(cx,cy).setRotation(Phaser.Math.Angle.Between(this.player.x,this.player.y-20,g.x,beaconY)).setScale(1/this.cameras.main.zoom);
+    }else this.edgeArrow.setVisible(false);
+  }
   update(_time:number,delta:number){
-    if(!this.player||this.paused)return;const step=Math.min(delta,40)/1000,speed=this.keys.SHIFT.isDown?132:92;
+    if(!this.player)return;
+    this.updateGuide();
+    this.nuriGlow.setPosition(this.nuri.x,this.nuri.y+9).setDepth(this.nuri.y-1);
+    if(this.paused){this.publish();return}
+    const step=Math.min(delta,40)/1000,speed=this.keys.SHIFT.isDown?132:92;
     let dx=Number(this.keys.D.isDown||this.keys.RIGHT.isDown)-Number(this.keys.A.isDown||this.keys.LEFT.isDown),dy=Number(this.keys.S.isDown||this.keys.DOWN.isDown)-Number(this.keys.W.isDown||this.keys.UP.isDown);
     if(dx||dy){const length=Math.hypot(dx,dy);dx/=length;dy/=length;this.facing=Math.abs(dx)>Math.abs(dy)?dx>0?'right':'left':dy>0?'down':'up';this.move(dx*speed*step,dy*speed*step);this.walkClock+=delta;if(this.walkClock>130){this.walkFrame=(this.walkFrame+1)%4;this.walkClock=0}if(this.time.now>this.interactionUntil)this.player.setTexture(`astronaut-${this.facing}-${this.walkFrame}-pixel`)}
     else{this.walkFrame=0;if(this.time.now>this.interactionUntil)this.player.setTexture(`astronaut-${this.facing}-0-pixel`)}
@@ -142,8 +222,9 @@ export class MarsScene extends Phaser.Scene{
     if(this.nuriMood==='idle')this.nuri.setTexture(Math.floor(this.time.now/2400)%7===0?'nuri-blink-pixel':'nuri-idle-pixel');
     if(Date.now()-this.announcement>6500&&this.nuriMood!=='idle'){this.nuriMood='idle';this.nuri.setTexture('nuri-idle-pixel')}
     let closest:Target|null=null,best=Infinity;for(const t of this.targets){const dist=Phaser.Math.Distance.Between(this.player.x,this.player.y,t.x,t.y);if(dist<t.radius&&dist<best){best=dist;closest=t}}
-    if(!closest&&Phaser.Math.Distance.Between(this.player.x,this.player.y,this.nuri.x,this.nuri.y)<52)closest={x:this.nuri.x,y:this.nuri.y,radius:52,kind:'nuri',label:'Talk to Nuri',ar:'تحدث إلى نوري'};
-    if(closest?.label!==this.nearest?.label){this.nearest=closest;this.publish()}if(this.marker)this.marker.setVisible(true);
+    if(!closest&&Phaser.Math.Distance.Between(this.player.x,this.player.y,this.nuri.x,this.nuri.y)<52)closest={x:this.nuri.x,y:this.nuri.y,radius:52,kind:'nuri',label:'Talk to Nuri',ar:'اتكلم مع نوري'};
+    if(closest?.label!==this.nearest?.label)this.nearest=closest;
+    this.publish();
   }
   private move(dx:number,dy:number){const bounds=this.room?{minX:47,maxX:593,minY:132,maxY:318}:{minX:20,maxX:WORLD_W-20,minY:30,maxY:WORLD_H-20};const blocked=(x:number,y:number)=>this.blocks.some(r=>r.contains(x,y-7));const nx=Phaser.Math.Clamp(this.player.x+dx,bounds.minX,bounds.maxX);if(!blocked(nx,this.player.y))this.player.x=nx;const ny=Phaser.Math.Clamp(this.player.y+dy,bounds.minY,bounds.maxY);if(!blocked(this.player.x,ny))this.player.y=ny}
 }

@@ -1,25 +1,32 @@
 {
-  "name": "mission-ripple-2d",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "vite --host 0.0.0.0 --port 5182",
-    "build": "tsc --noEmit && vite build",
-    "preview": "vite preview --host 0.0.0.0 --port 4182"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "module",
-  "dependencies": {
-    "phaser": "^3.90.0"
-  },
-  "devDependencies": {
-    "@types/node": "^26.6.6",
-    "playwright": "^1.65.0",
-    "typescript": "^7.0.2",
-    "vite": "^8.3.8"
-  }
+    "name":  "mission-ripple-2d",
+    "version":  "1.0.0",
+    "description":  "",
+    "main":  "index.js",
+    "scripts":  {
+                    "test":  "node tools/unit-tests.mjs",
+                    "dev":  "vite --host 0.0.0.0 --port 5182",
+                    "build":  "tsc --noEmit \u0026\u0026 vite build",
+                    "preview":  "vite preview --host 0.0.0.0 --port 4182",
+                    "qa:experience":  "node tools/experience-qa.mjs",
+                    "qa:science":  "node tools/science-qa.mjs",
+                    "qa:camera":  "node tools/camera-qa.mjs",
+                    "build:science-snapshots":  "node tools/build_science_series.mjs",
+                    "build:experience-art":  "python tools/build_experience_art.py"
+                },
+    "keywords":  [
+
+                 ],
+    "author":  "",
+    "license":  "ISC",
+    "type":  "module",
+    "dependencies":  {
+                         "phaser":  "^3.90.0"
+                     },
+    "devDependencies":  {
+                            "@types/node":  "^26.6.6",
+                            "playwright":  "^1.65.0",
+                            "typescript":  "^7.0.2",
+                            "vite":  "^8.3.8"
+                        }
 }

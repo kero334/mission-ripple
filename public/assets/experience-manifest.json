@@ -1,0 +1,308 @@
+[
+  {
+    "name": "science-curiosity",
+    "purpose": "Original rover illustration in the style of NASA Curiosity (not a photograph)",
+    "dimensions": "120x64",
+    "animationFrames": 1,
+    "file": "assets/science/science-curiosity.png",
+    "reuseScope": "science cards, journal",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "science-rad",
+    "purpose": "Original diagram: radiation reaching the rover detector",
+    "dimensions": "120x64",
+    "animationFrames": 1,
+    "file": "assets/science/science-rad.png",
+    "reuseScope": "science cards, journal",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ui-help-pixel",
+    "purpose": "Nuri help speech bubble icon",
+    "dimensions": "32x32",
+    "animationFrames": 1,
+    "file": "assets/ui/ui-help-pixel.png",
+    "reuseScope": "HUD help button",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ui-passport-pixel",
+    "purpose": "Science Passport booklet icon",
+    "dimensions": "32x32",
+    "animationFrames": 1,
+    "file": "assets/ui/ui-passport-pixel.png",
+    "reuseScope": "HUD and passport",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ui-xp-pixel",
+    "purpose": "Science XP star",
+    "dimensions": "16x16",
+    "animationFrames": 1,
+    "file": "assets/ui/ui-xp-pixel.png",
+    "reuseScope": "HUD, toasts, passport",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "guide-beacon",
+    "purpose": "Bobbing destination beacon shown above the current objective",
+    "dimensions": "19x24",
+    "animationFrames": 1,
+    "file": "assets/guide/guide-beacon.png",
+    "reuseScope": "world guidance",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "guide-arrow",
+    "purpose": "Screen-edge arrow pointing toward an off-screen objective",
+    "dimensions": "18x18",
+    "animationFrames": 1,
+    "file": "assets/guide/guide-arrow.png",
+    "reuseScope": "world guidance",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "guide-ring",
+    "purpose": "Pulsing ground ring under the objective target",
+    "dimensions": "48x20",
+    "animationFrames": 1,
+    "file": "assets/guide/guide-ring.png",
+    "reuseScope": "world guidance",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "science-sun",
+    "purpose": "Solar event catalog icon",
+    "dimensions": "32x32",
+    "animationFrames": 1,
+    "file": "assets/science/science-sun.png",
+    "reuseScope": "exhibits, journal",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "science-station",
+    "purpose": "Space station in low Earth orbit icon",
+    "dimensions": "32x32",
+    "animationFrames": 1,
+    "file": "assets/science/science-station.png",
+    "reuseScope": "exhibits, journal",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "science-rows",
+    "purpose": "Two data rows with the same time icon",
+    "dimensions": "32x32",
+    "animationFrames": 1,
+    "file": "assets/science/science-rows.png",
+    "reuseScope": "exhibits, journal",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "science-dials",
+    "purpose": "One filled and one empty measurement column",
+    "dimensions": "32x32",
+    "animationFrames": 1,
+    "file": "assets/science/science-dials.png",
+    "reuseScope": "exhibits, journal",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "science-mars-day",
+    "purpose": "Mars surface readings on a usual day icon",
+    "dimensions": "32x32",
+    "animationFrames": 1,
+    "file": "assets/science/science-mars-day.png",
+    "reuseScope": "exhibits, journal",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "science-compare",
+    "purpose": "Compare two days icon",
+    "dimensions": "32x32",
+    "animationFrames": 1,
+    "file": "assets/science/science-compare.png",
+    "reuseScope": "science cards, journal",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "badge-first-discovery",
+    "purpose": "Science badge: first-discovery",
+    "dimensions": "32x32",
+    "animationFrames": 1,
+    "file": "assets/badges/badge-first-discovery.png",
+    "reuseScope": "passport, toasts",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "badge-first-discovery-locked",
+    "purpose": "Locked silhouette for first-discovery",
+    "dimensions": "32x32",
+    "animationFrames": 1,
+    "file": "assets/badges/badge-first-discovery-locked.png",
+    "reuseScope": "passport",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "badge-evidence-detective",
+    "purpose": "Science badge: evidence-detective",
+    "dimensions": "32x32",
+    "animationFrames": 1,
+    "file": "assets/badges/badge-evidence-detective.png",
+    "reuseScope": "passport, toasts",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "badge-evidence-detective-locked",
+    "purpose": "Locked silhouette for evidence-detective",
+    "dimensions": "32x32",
+    "animationFrames": 1,
+    "file": "assets/badges/badge-evidence-detective-locked.png",
+    "reuseScope": "passport",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "badge-careful-scientist",
+    "purpose": "Science badge: careful-scientist",
+    "dimensions": "32x32",
+    "animationFrames": 1,
+    "file": "assets/badges/badge-careful-scientist.png",
+    "reuseScope": "passport, toasts",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "badge-careful-scientist-locked",
+    "purpose": "Locked silhouette for careful-scientist",
+    "dimensions": "32x32",
+    "animationFrames": 1,
+    "file": "assets/badges/badge-careful-scientist-locked.png",
+    "reuseScope": "passport",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "badge-second-look",
+    "purpose": "Science badge: second-look",
+    "dimensions": "32x32",
+    "animationFrames": 1,
+    "file": "assets/badges/badge-second-look.png",
+    "reuseScope": "passport, toasts",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "badge-second-look-locked",
+    "purpose": "Locked silhouette for second-look",
+    "dimensions": "32x32",
+    "animationFrames": 1,
+    "file": "assets/badges/badge-second-look-locked.png",
+    "reuseScope": "passport",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "badge-scientific-thinker",
+    "purpose": "Science badge: scientific-thinker",
+    "dimensions": "32x32",
+    "animationFrames": 1,
+    "file": "assets/badges/badge-scientific-thinker.png",
+    "reuseScope": "passport, toasts",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "badge-scientific-thinker-locked",
+    "purpose": "Locked silhouette for scientific-thinker",
+    "dimensions": "32x32",
+    "animationFrames": 1,
+    "file": "assets/badges/badge-scientific-thinker-locked.png",
+    "reuseScope": "passport",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "badge-mission-complete",
+    "purpose": "Science badge: mission-complete",
+    "dimensions": "32x32",
+    "animationFrames": 1,
+    "file": "assets/badges/badge-mission-complete.png",
+    "reuseScope": "passport, toasts",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "badge-mission-complete-locked",
+    "purpose": "Locked silhouette for mission-complete",
+    "dimensions": "32x32",
+    "animationFrames": 1,
+    "file": "assets/badges/badge-mission-complete-locked.png",
+    "reuseScope": "passport",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "badge-method-master",
+    "purpose": "Science badge: method-master",
+    "dimensions": "32x32",
+    "animationFrames": 1,
+    "file": "assets/badges/badge-method-master.png",
+    "reuseScope": "passport, toasts",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "badge-method-master-locked",
+    "purpose": "Locked silhouette for method-master",
+    "dimensions": "32x32",
+    "animationFrames": 1,
+    "file": "assets/badges/badge-method-master-locked.png",
+    "reuseScope": "passport",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "badge-outpost-explorer",
+    "purpose": "Science badge: outpost-explorer",
+    "dimensions": "32x32",
+    "animationFrames": 1,
+    "file": "assets/badges/badge-outpost-explorer.png",
+    "reuseScope": "passport, toasts",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "badge-outpost-explorer-locked",
+    "purpose": "Locked silhouette for outpost-explorer",
+    "dimensions": "32x32",
+    "animationFrames": 1,
+    "file": "assets/badges/badge-outpost-explorer-locked.png",
+    "reuseScope": "passport",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "badge-curious-mind",
+    "purpose": "Science badge: curious-mind",
+    "dimensions": "32x32",
+    "animationFrames": 1,
+    "file": "assets/badges/badge-curious-mind.png",
+    "reuseScope": "passport, toasts",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "badge-curious-mind-locked",
+    "purpose": "Locked silhouette for curious-mind",
+    "dimensions": "32x32",
+    "animationFrames": 1,
+    "file": "assets/badges/badge-curious-mind-locked.png",
+    "reuseScope": "passport",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "badge-branch-explorer",
+    "purpose": "Science badge: branch-explorer",
+    "dimensions": "32x32",
+    "animationFrames": 1,
+    "file": "assets/badges/badge-branch-explorer.png",
+    "reuseScope": "passport, toasts",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "badge-branch-explorer-locked",
+    "purpose": "Locked silhouette for branch-explorer",
+    "dimensions": "32x32",
+    "animationFrames": 1,
+    "file": "assets/badges/badge-branch-explorer-locked.png",
+    "reuseScope": "passport",
+    "productionStatus": "production sprite"
+  }
+]

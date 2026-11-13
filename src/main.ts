@@ -1,67 +1,94 @@
 import Phaser from 'phaser';
 import {MarsScene,type GameState} from './scene';
-import {BUILDINGS,STRINGS,type Locale} from './world-data';
+import {BUILDINGS} from './world-data';
 import {setupScienceUI} from './science/ui';
+import {setupPanels} from './ui/panels';
+import {createProgressStore} from './game/progress';
+import {ACHIEVEMENTS,NURI_LIGHTS,titleFor} from './game/rewards';
+import {discovery} from './content/discoveries';
+import {MISC,NURI,OBJECTIVES,PASSPORT,PROMPTS,TOAST,type Locale,type StageKey,pick} from './content/strings';
+import {$,asset,bdi,esc,modals,toast} from './ui/shell';
 import './style.css';
 
-let locale:Locale='en';
-let state:GameState={room:null,visited:[],inspected:[],talkedNuri:false,exploredCourtyard:false,nearest:null,paused:false,locale:'en',position:{x:640,y:595}};
-let panel:''|'map'|'journal'|'inventory'|'settings'='';
-let science:ReturnType<typeof setupScienceUI>|null=null;
-const $=(id:string)=>document.getElementById(id)!;
-const send=(type:string,value?:Locale|boolean|string)=>window.dispatchEvent(new CustomEvent('ripple-control',{detail:{type,value}}));
-const esc=(s:string)=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]!));
-const objectives=()=>locale==='en'?[
-  ['Explore the courtyard',state.exploredCourtyard],
-  ['Enter the Habitat',state.visited.includes('habitat')],
-  ['Inspect the Power Station',state.inspected.includes('power')],
-  ['Talk to Nuri',state.talkedNuri],
-]:[
-  ['استكشف الساحة',state.exploredCourtyard],
-  ['ادخل وحدة السكن',state.visited.includes('habitat')],
-  ['افحص محطة الطاقة',state.inspected.includes('power')],
-  ['تحدث إلى نوري',state.talkedNuri],
-];
+const progress=createProgressStore();
+let locale:Locale=progress.get().settings.locale;
+let state:GameState={room:null,visited:[],inspected:[],talkedNuri:false,exploredCourtyard:false,nearest:null,nearestKind:null,nearestId:null,guideDistance:'none',paused:false,locale,position:{x:640,y:595}};
+const send=(type:string,value?:unknown)=>window.dispatchEvent(new CustomEvent('ripple-control',{detail:{type,value}}));
+let science:ReturnType<typeof setupScienceUI>;
+
+const panels=setupPanels({locale:()=>locale,progress,mission:()=>science,position:()=>state.position,setLocale:l=>{if(l!==locale)switchLocale()}});
+science=setupScienceUI({locale:()=>locale,progress,openHelp:from=>panels.openHelp(from),openPassport:()=>panels.open('passport')});
+
+let lastMoveAt=Date.now(),lastPos='';
+function promptText():{text:string;key:boolean}|null{
+  const s=science.getState().stage as StageKey,k=state.nearestKind,id=state.nearestId,l=locale;
+  const b=id?BUILDINGS.find(v=>v.id===id):undefined,bn=b?(l==='en'?b.name:b.ar):'';
+  if(k==='field')return {key:true,text:pick(s==='monitor'?PROMPTS.examineRover:s==='ready'?PROMPTS.look:PROMPTS.reviewEvidence,l,{name:pick(PROMPTS.terminal,l)})};
+  if(k==='equipment'&&b){
+    if(b.id==='research'&&s==='research')return {key:true,text:pick(PROMPTS.studyRecord,l)};
+    if(b.id==='command'&&s==='command')return {key:true,text:pick(PROMPTS.openSchedule,l)};
+    if(b.id==='comms'&&s==='nextShift')return {key:true,text:pick(PROMPTS.readMessage,l)};
+    return {key:true,text:pick(PROMPTS.look,l,{name:l==='en'?b.equipmentName:b.equipmentAr})}}
+  if(k==='exhibit'&&id){const d=discovery(id);return {key:true,text:pick(PROMPTS.exhibit,l,{name:d?d.title[l]:''})}}
+  if(k==='door'&&b)return {key:true,text:pick(PROMPTS.enter,l,{name:bn})};
+  if(k==='exit')return {key:true,text:pick(PROMPTS.exit,l)};
+  if(state.guideDistance==='near'){const gname=s==='monitor'&&!state.room?pick(PROMPTS.terminal,l):l==='en'?'machine':'الجهاز';return {key:false,text:pick(PROMPTS.closer,l,{name:gname})}}
+  // Nuri is always nearby, so her prompt only appears when the player stands still for a moment.
+  if(k==='nuri'&&Date.now()-lastMoveAt>5000&&s!=='ready')return {key:true,text:pick(PROMPTS.nuri,l)};
+  return null;
+}
+function renderPassportChip(){
+  const xp=progress.xp(),p=progress.get();
+  $('resource-rows').innerHTML=`<button type="button" id="passport-chip" class="passport-chip"><img src="${asset('ui/ui-passport-pixel')}" alt=""/><div><small>${pick(PASSPORT.xp,locale)}</small><strong><img src="${asset('ui/ui-xp-pixel')}" alt=""/> <span id="hud-xp">${bdi(xp)}</span></strong><span class="chip-title">${esc(titleFor(xp).name[locale])}</span></div><span class="chip-badges"><b>${bdi(p.achievements.length)}</b>/${bdi(Object.keys(ACHIEVEMENTS).length)}<small>${pick(PASSPORT.badges,locale)}</small></span></button>`;
+  $('passport-chip').onclick=()=>panels.toggle('passport');
+}
 function render(){
   document.documentElement.lang=locale;document.documentElement.dir=locale==='ar'?'rtl':'ltr';
-  $('mission-title').textContent=locale==='en'?'FIELD ORIENTATION':'التعرف على القاعدة';
-  const list=objectives();$('objective-list').innerHTML=list.map(([label,done],i)=>`<div class="objective ${done?'done':!list.slice(0,i).some(v=>!v[1])?'current':''}"><span class="check">${done?'✓':''}</span><span>${esc(String(label))}</span></div>`).join('');
-  $('explored-text').textContent=locale==='en'?`${state.visited.length} / ${BUILDINGS.length} FACILITIES VISITED`:`زرت ${state.visited.length} من ${BUILDINGS.length} منشآت`;
-  $('sol-label').textContent=locale==='en'?'SOL 001':'اليوم ٠٠١';
-  $('time-label').textContent=locale==='en'?'EXPLORATION DEMO':'نسخة الاستكشاف';
-  const resourceLabels=locale==='en'?['POWER','WATER','CROPS','OXYGEN']:['الطاقة','المياه','النباتات','الأكسجين'];
-  $('resource-rows').innerHTML=resourceLabels.map((label,i)=>`<div class="resource"><img src="/assets/ui/ui-${['power','water','food','oxygen'][i]}-pixel.png" alt=""/><span>${label}</span><b>—</b></div>`).join('')+`<div class="resource-note">${locale==='en'?'Systems activate in future missions':'تُفعّل الأنظمة في المهمات القادمة'}</div>`;
+  document.body.classList.toggle('guided',progress.get().settings.guidance==='guided');
+  $('sol-label').textContent=pick(MISC.sol,locale);$('time-label').textContent=pick(MISC.demo,locale);
+  renderPassportChip();
   $('nuri-name').textContent=locale==='en'?'NURI':'نوري';
-  if(!$('nuri-text').textContent)$('nuri-text').textContent=STRINGS[locale].first;
-  const near=state.nearest;$('prompt').classList.toggle('hidden',!near||!!panel);
-  if(near){let label=near;if(locale==='ar'){const b=BUILDINGS.find(v=>near.endsWith(v.name)||near.endsWith(v.equipmentName));label=near.startsWith('Enter ')?`ادخل ${b?.ar||''}`:near.startsWith('Inspect ')?`افحص ${b?.equipmentAr||'وحدة الميدان'}`:near==='Exit to outpost'?'اخرج إلى القاعدة':near==='Talk to Nuri'?'تحدث إلى نوري': 'افحص وحدة الميدان'}$('prompt-text').textContent=label}
-  $('overlay').classList.toggle('hidden',!panel);
-  $('lang-button').textContent=locale==='en'?'العربية':'ENGLISH';
-  $('resume-button').textContent=locale==='en'?'RESUME':'متابعة';
-  $('toolbar').innerHTML=Array.from({length:10},(_,i)=>`<button class="slot" data-slot="${i}" aria-label="${locale==='en'?'Equipment slot':'خانة المعدات'} ${i+1}"><small>${(i+1)%10}</small>${i<4?`<img src="/assets/ui/ui-${['tablet','tool','scanner','sample'][i]}-pixel.png" alt=""/>`:''}</button>`).join('');
-  document.querySelectorAll<HTMLButtonElement>('.slot').forEach(button=>button.onclick=()=>openPanel('inventory'));
-  if(panel)renderPanel();
-  science?.renderHud();
+  if(!$('nuri-text').textContent)$('nuri-text').textContent=pick(OBJECTIVES[science.getState().stage as StageKey].intro,locale);
+  const pr=promptText();$('prompt').classList.toggle('hidden',!pr||modals.any());
+  if(pr){$('prompt-key').classList.toggle('hidden',!pr.key);$('prompt-move').classList.toggle('hidden',pr.key);$('prompt-text').textContent=pr.text}
+  const moved=state.exploredCourtyard||state.room!=null;$('move-hint').classList.toggle('hidden',moved||modals.any()||science.getState().stage==='ready');
+  $('move-hint-text').textContent=pick(MISC.moveHint,locale);
+  $('toolbar').innerHTML=['tablet','tool','scanner','sample'].map((n,i)=>`<button type="button" class="slot" aria-label="${esc(pick(MISC.items[i],locale))}"><small>${i+1}</small><img src="${asset('ui/ui-'+n+'-pixel')}" alt=""/></button>`).join('');
+  document.querySelectorAll<HTMLButtonElement>('.slot').forEach(b=>b.onclick=()=>panels.toggle('inventory'));
+  for(const [id,en,ar] of [['map-button','Map (M)','الخريطة (M)'],['journal-button','Science Passport (J)','جواز السفر العلمي (J)'],['inventory-button','Equipment (B)','المعدات (B)'],['pause-button','Settings (Esc)','الإعدادات (Esc)']]){const b=$(id);b.title=locale==='en'?en:ar;b.setAttribute('aria-label',b.title)}
+  science.renderHud();
+  if(panels.isOpen())panels.render();
 }
-function renderPanel(){
-  const en=locale==='en',title={map:en?'OUTPOST MAP':'خريطة القاعدة',journal:en?'FIELD JOURNAL':'سجل الاستكشاف',inventory:en?'EQUIPMENT':'المعدات',settings:en?'PAUSED · SETTINGS':'توقف · الإعدادات'};
-  $('overlay-title').textContent=panel?title[panel]:'';
-  if(panel==='map')$('overlay-content').innerHTML=`<p>${en?'Approach an airlock and press E to enter.':'اقترب من البوابة واضغط E للدخول.'}</p><div class="facility-grid">${BUILDINGS.map((b,i)=>`<div><b>${String(i+1).padStart(2,'0')}</b> ${esc(en?b.name:b.ar)} <span>${state.visited.includes(b.id)?'✓':'·'}</span></div>`).join('')}</div>`;
-  else if(panel==='journal')$('overlay-content').innerHTML=`<p>${en?'The Rover Reading is the first science mission. The remaining campaign missions are future work.':'قراءة العربة هي المهمة العلمية الأولى. بقية مهمات الحملة ستُضاف لاحقًا.'}</p><div class="journal-line">${en?'Stage':'المرحلة'}: ${science?.getState().stage||'ready'}</div><div class="journal-line">${en?'Scheduling choice':'خيار الجدولة'}: ${science?.getState().choice||'—'}</div>`;
-  else if(panel==='inventory')$('overlay-content').innerHTML=`<p>${en?'Field equipment preview. Item use is reserved for future missions.':'معاينة معدات الميدان. سيُضاف استخدامها في المهمات القادمة.'}</p><div class="inventory-grid">${['tablet','tool','scanner','sample'].map((name,i)=>`<div><img src="/assets/ui/ui-${name}-pixel.png" alt=""/><span>${en?['Research tablet','Repair tool','Scanner','Plant sample'][i]:['لوح البحث','أداة إصلاح','ماسح','عينة نبات'][i]}</span></div>`).join('')}</div>`;
-  else $('overlay-content').innerHTML=`<p>${en?'WASD or arrows · move<br>Shift · sprint<br>E · interact<br>M · map<br>J · journal<br>B · equipment<br>Esc · pause':'WASD أو الأسهم · الحركة<br>Shift · الركض<br>E · تفاعل<br>M · الخريطة<br>J · السجل<br>B · المعدات<br>Esc · توقف'}</p><p>${en?'Language can be changed below.':'يمكن تغيير اللغة أدناه.'}</p>`;
-}
-function openPanel(value:typeof panel){panel=panel===value?'':value;send('pause',!!panel);render()}
-function switchLocale(){locale=locale==='en'?'ar':'en';send('locale',locale);$('nuri-text').textContent=STRINGS[locale].first;render()}
+function switchLocale(){locale=locale==='en'?'ar':'en';progress.setting('locale',locale);send('locale',locale);$('nuri-text').textContent=pick(OBJECTIVES[science.getState().stage as StageKey].intro,locale);science.updateGuide();science.rerenderCard();render()}
+
+progress.onReward(n=>{
+  const l=locale,parts:string[]=[];
+  if(n.xp)parts.push(`<span class="t-xp"><img src="${asset('ui/ui-xp-pixel')}" alt=""/>${pick(TOAST.xp,l,{xp:n.xp})}</span>`);
+  if(n.achievement)parts.push(`<span class="t-badge"><img src="${asset('badges/badge-'+n.achievement)}" alt=""/>${esc(pick(TOAST.badge,l,{name:ACHIEVEMENTS[n.achievement].name[l]}))}</span>`);
+  for(const c of n.cards){const d=discovery(c);if(d)parts.push(`<span class="t-card"><img src="${asset(d.icon)}" alt=""/>${esc(pick(TOAST.card,l,{name:d.title[l]}))}</span>`)}
+  if(n.title)parts.push(`<span class="t-title">${esc(pick(TOAST.title,l,{name:titleFor(progress.xp()).name[l]}))}</span>`);
+  if(parts.length)toast(parts.join(''));
+  renderPassportChip();
+});
+window.addEventListener('ripple-room',e=>{const id=(e as CustomEvent<{room:string|null}>).detail.room;if(id&&progress.get().places.includes(id)&&!progress.get().flags.includes('place-toast-'+id)){progress.flag('place-toast-'+id);const b=BUILDINGS.find(v=>v.id===id)!;toast(`<span class="t-card">${esc(pick(TOAST.place,locale,{name:locale==='en'?b.name:b.ar}))}</span>`)}
+  if(progress.get().places.length===BUILDINGS.length&&progress.flag('all-places-line'))setTimeout(()=>window.dispatchEvent(new CustomEvent('ripple-dialogue',{detail:{text:pick(NURI.allPlaces,locale),mood:'happy'}})),1800)});
 window.addEventListener('ripple-state',e=>{state=(e as CustomEvent<GameState>).detail;render()});
-window.addEventListener('ripple-dialogue',e=>{const {text,mood}=(e as CustomEvent<{text:string;mood:string}>).detail;$('nuri-text').textContent=text;$('nuri-portrait').classList.toggle('warning',mood==='warning')});
-window.addEventListener('ripple-pause',()=>openPanel('settings'));
-window.addEventListener('ripple-map',()=>openPanel('map'));
-window.addEventListener('ripple-journal',()=>openPanel('journal'));
-window.addEventListener('ripple-inventory',()=>openPanel('inventory'));
+setInterval(()=>{const live=(window as any).__ripple?.state?.() as GameState|undefined;if(!live)return;const p=live.position.x+','+live.position.y;if(p!==lastPos){lastPos=p;lastMoveAt=Date.now()}state={...state,position:live.position};if(!modals.any())render()},700);
+setTimeout(()=>$('arrival-note').classList.add('fade'),7000);
+window.addEventListener('ripple-modal',()=>render());
+window.addEventListener('ripple-dialogue',e=>{const {text,mood}=(e as CustomEvent<{text:string;mood:string}>).detail;$('nuri-text').textContent=text;$('nuri-portrait').classList.toggle('warning',mood==='warning');const p=$('nuri-panel');p.classList.remove('pop');void p.offsetWidth;p.classList.add('pop')});
+// Esc closes the top overlay first; only with nothing open does it open Settings.
+window.addEventListener('ripple-pause',()=>{if(!modals.closeTop())panels.open('settings')});
+const guarded=(f:()=>void)=>()=>{if(modals.isOpen('science'))return;f()};
+window.addEventListener('ripple-map',guarded(()=>panels.toggle('map')));
+window.addEventListener('ripple-journal',guarded(()=>panels.toggle('passport')));
+window.addEventListener('ripple-inventory',guarded(()=>panels.toggle('inventory')));
+window.addEventListener('ripple-help',()=>panels.openHelp(modals.isOpen('science')?'card':'hud'));
 window.addEventListener('ripple-language',switchLocale);
-for(const [id,value] of [['map-button','map'],['journal-button','journal'],['inventory-button','inventory'],['pause-button','settings']] as const)$(id).addEventListener('click',()=>openPanel(value));
-$('close-overlay').addEventListener('click',()=>openPanel(panel));$('resume-button').addEventListener('click',()=>openPanel(panel));$('lang-button').addEventListener('click',switchLocale);
-science=setupScienceUI({locale:()=>locale,pause:value=>send('pause',value),panelOpen:()=>!!panel});
-new Phaser.Game({type:Phaser.AUTO,parent:'game',backgroundColor:'#7f4449',scale:{mode:Phaser.Scale.FIT,autoCenter:Phaser.Scale.CENTER_BOTH,width:640,height:360},render:{antialias:false,pixelArt:true,roundPixels:true},scene:[MarsScene]});
+window.addEventListener('ripple-scene-ready',()=>{send('locale',locale);send('nuri-light',NURI_LIGHTS.find(n=>n.id===progress.get().settings.nuriLight)!.color);science.updateGuide()});
+document.addEventListener('keydown',e=>{if(!modals.isOpen('science')||modals.top()!=='science')return;
+  if(e.key==='ArrowLeft'||e.key==='ArrowRight'){const rtl=locale==='ar',fwd=(e.key==='ArrowRight')!==rtl;const btn=document.querySelector<HTMLButtonElement>(fwd?'#science-content .learning-next:not([disabled])':'#science-content .card-back');if(btn&&(fwd?btn.dataset.scienceAction==='next':true)){e.preventDefault();btn.click()}}});
+for(const [id,f] of [['map-button',()=>panels.toggle('map')],['journal-button',()=>panels.toggle('passport')],['inventory-button',()=>panels.toggle('inventory')],['pause-button',()=>panels.toggle('settings')]] as const)$(id).addEventListener('click',guarded(f));
+(window as any).__progress=progress;(window as any).__panels=panels;
+new Phaser.Game({type:Phaser.AUTO,parent:'game',backgroundColor:'#7f4449',scale:{mode:Phaser.Scale.FIT,autoCenter:Phaser.Scale.CENTER_BOTH,width:1280,height:720},render:{antialias:false,pixelArt:true,roundPixels:true},scene:[MarsScene]});
 render();
