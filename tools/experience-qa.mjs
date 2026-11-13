@@ -136,7 +136,7 @@ await section('A+B',async()=>{
   const later=await sayText(p);
   check('A: delayed result says what happened AND why',/Because you chose Study first/.test(later)&&/notes are ready/.test(later),later);
   await shot(p,r,`${DIR}/11-delayed-consequence.png`);await simple(p,'A later');await fits(p,'A later');
-  await act(p,'next');check('A: real-vs-game scene (REAL chart | GAME base)',(await pageId(p))==='unchanged'&&/real NASA data/.test(await sayText(p))&&/pretend game/.test(await sayText(p))&&(await p.locator('.real-vs-game figure').count())===2);await shot(p,r,`${DIR}/11b-real-vs-game.png`);
+  await act(p,'next');check('A: real-vs-game scene (REAL chart | GAME base)',(await pageId(p))==='unchanged'&&/real NASA data/.test(await sayText(p))&&/pretend game/.test(await sayText(p))&&(await p.locator('.real-vs-game > figure').count())===2);await shot(p,r,`${DIR}/11b-real-vs-game.png`);
   await act(p,'later-done');
   check('A: debrief big idea',(await mission(p)).stage==='debrief'&&(await pageId(p))==='bigIdea'&&/measured something real/.test(await sayText(p)));
   await shot(p,r,`${DIR}/14-final-debrief.png`);await simple(p,'A bigIdea');
