@@ -151,7 +151,8 @@ export class MarsScene extends Phaser.Scene{
     if(!v?.active)return;
     const p=v.power,l=(p.lamp1?1:0)+(p.lamp2?1:0);
     // greenhouse: brightness follows its lamps; a tray of plants shows their growth stage
-    gh.setTint(l===2?0xffffff:l===1?0xb4a8bc:0x7a6c8c);
+    gh.setTint(l===2?0xffffff:l===1?0x9a8cae:0x6a5c80);
+    if(l<2){const dim=this.rTrack(this.add.ellipse(840,430,170,70,0x140c28,l===1?.28:.45).setDepth(476));this.tweens.add({targets:dim,fillAlpha:(l===1?.18:.35),duration:1600,yoyo:true,repeat:-1})}
     for(const [k,x] of [['lamp1',800],['lamp2',882]] as const)if(p[k]){const g=this.rSprite('ripple-glow-green',x,452,474).setScale(1.6).setBlendMode(Phaser.BlendModes.ADD).setAlpha(.8);this.pulse(g,.5,1400)}
     this.rSprite('ripple-plants-'+Math.max(0,Math.min(4,v.plants)),770,516);
     for(const [k,x] of [['lamp1',756],['lamp2',784]] as const){this.rSprite('ripple-lamp-'+(p[k]?'on':'off'),x,488,520);if(p[k]){const g=this.rSprite('ripple-glow',x,494,519).setScale(.5).setBlendMode(Phaser.BlendModes.ADD);this.pulse(g,.4,1100)}}

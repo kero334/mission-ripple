@@ -1,87 +1,99 @@
-# Mission Ripple campaign — the base story (updated 14 Nov 2026)
+# Mission Ripple campaign: the Ripple Effect (updated 15 Nov 2026)
 
-After **The Rover Reading (P2-M02)**, the tracker offers **NEXT MISSION**, which starts five more missions in one
-connected story. Every mission follows a research-package candidate and uses that candidate's own A/B decision
-design and delayed flag (`05_MISSION_EVIDENCE/decision_evidence.json`). Code: `src/missions/campaign-data.ts`
-(content), `src/missions/campaign.ts` (engine and save), `src/game/base-sim.ts` (pretend meters).
-Evidence snapshot: `src/science/campaign-evidence-v1.json`, built by `tools/build_campaign_snapshot.mjs` from the
-read-only package.
+After **The Rover Reading (P2-M02)**, **NEXT MISSION** starts five connected missions on one pretend training
+base. Every choice changes the base, the base is visible in the world, and the base decides the ending.
 
-## Missions
+- Code: `src/game/base-sim.ts` (pretend rules), `src/missions/campaign.ts` (engine, save, cards),
+  `src/missions/campaign-data.ts` (words), `src/scene.ts` (`drawRipple`, `runTour`: what the world shows),
+  `src/ending/` (the three ending cinematics).
+- Art: `public/assets/ripple/`, built by `tools/build_ripple_art.py`.
 
-| # | Mission | Places | Real evidence (what the child sees) | Decision (package ID) | Delayed effect (shown at the start of the next mission) |
-|---|---|---|---|---|---|
-| 1 | The Rover Reading | Glowing screen → Research → Command → Communications | Curiosity RAD, 20 May 2024 (P2-RAD-04/05/07/08) | P2-M02A / B | Same mission (Communications) |
-| 2 | Fix the Robot's Notebook | Research Lab → Command | Real same-time RAD rows from 2016-06-02 (P2-RAD-08) and a real 2-hour gap from 2024-01-06 (P2-RAD-06) | Fix gaps later (P2-M08A) / Keep going, mark gaps (P2-M08B) | `log_repair_planned` / `partial_series` |
-| 3 | Sun Storm Watch | Communications → Radiation Shelter | NASA DONKI, May 2024: 181 flares; strongest X8.7 on 14 May (SCI-0003); "a Sun list is not a Mars measurement" | Watch and check (P2-M03A) / Keep doing science (P2-M03B) | `watch_prepared` / `unresolved_alert` |
-| 4 | Plant Detectives | Greenhouse → Command | NASA OSDR OSD-615: 6 space-flight and 6 ground-control samples (P2-OSD-615); no Mars yield in the evidence (also P2-CSA-01 bonus fact) | Keep a control tray (P2-M05A) / Use all trays (P2-M05B) | `plant_control_ready` (+1 pretend food) / `plant_comparison_missing` |
-| 5 | Share the Power | Power Station → Command | NASA Mars Trek MOLA colour layer: "colours are a picture, not exact heights" (P2-TREK-01) | Scout first (P2-M07A) / Short route now (P2-M07B) | `route_recon_done` / `route_uncertainty` (−1 pretend power) |
-| 6 | The Base Plan | Command | Dose equivalent is missing from the rover export (P2-RAD-07); saying "we don't know" is good science | Share plan + questions (P2-M10A) / Pause, ask for data (P2-M10B) | Ending text |
+## The pretend base (game rules, not NASA data)
 
-Each mission has the same shape:
-1. Nuri introduces a problem, and the tracker plus the yellow beacon show where to go.
-2. At the machine, real evidence is shown as a picture, one idea per screen, with a quiz or tap activity.
-   - A wrong answer gets a friendly "try again" and costs nothing.
-   - The right answer is praised and pays XP once.
-3. "What's next" sends the child to the next building.
-4. The decision screen has two big picture buttons, each with a ✓ gain and a ⏸ wait.
-5. "You chose X. So Y." shows the meter change.
-6. A lesson screen with a badge and XP follows.
-7. The next mission opens with "Because you chose X, Z".
+- **3 power blocks.** Each block lights one thing: greenhouse lamp 1, lamp 2, the Research Lab **spare monitor**,
+  or the Communications **Sun-watch screen**. At the start, both lamps are on and 1 block is spare.
+- A **robot trip** or a **rescue** borrows 1 block for one day.
+- **Every new day** (between missions 3→4, 4→5, 5→6 and after 6): 2 lamps on → plants grow one stage;
+  fewer → they shrink one stage (Drooping, Weak, Growing, Healthy, Thriving). A watch screen that is on
+  checks the Sun alert overnight.
+- **Open problems:** notes with gaps (monitor off when the plan is written), Sun alert not checked, no fair
+  plant test, robot still stuck.
+- **Ending:**
+  - **Thrives:** plants Healthy or better, and at most 1 open problem.
+  - **Setback:** plants Weak or worse, or 3 or more open problems.
+  - **Continues:** everything else.
+  - Sharing the plan (Mission 6 A) means the next team helps with one open problem.
+- The base is **rebuilt from the saved event history**. So reloads never drift, delayed effects never apply
+  twice, and the same choices always give the same base.
 
-## Pretend base meters (game rules, not NASA data)
+## How the decisions connect
 
-Power, Water, Air and Food are whole blocks from 0 to 5, and each starts at 3. They are shown in the HUD as
-**PRETEND BASE**, and every meter screen is stamped **PRETEND PLAN**.
+| Mission | A | B | What it changes later |
+|---|---|---|---|
+| 1 Rover Reading | Study first: the robot rests | Go and check again: the robot learns a road | Mission 5: a rested robot scouts for free; a robot that knows the road never gets stuck |
+| 2 Robot's Notebook (P2-M08) | Spare monitor **on** (uses the spare block) | Keep going, mark gaps | With no spare block, Mission 3 A must **turn a greenhouse lamp off**. Monitor off at the plan = open problem |
+| 3 Sun Storm Watch (P2-M03) | Watch screen **on** (spare block, or a lamp turns off) | Keep doing science | Overnight the watch screen identifies the flare. A dark lamp shrinks the plants |
+| Day 1 → 4 Plant Detectives | **Recovery:** if a lamp is dark, turn off the watch screen or monitor to relight it, or keep the plan | | |
+| 4 Plant Detectives (P2-M05) | Control tray: fair test, +1 growth the next day | Use all trays: +1 growth now, no fair test | Fair test closes a problem |
+| Day 2 → 5 Share the Power | **Recovery:** the power check, where you tap any light on or off (max 3 blocks) | | |
+| 5 Share the Power (P2-M07) | Scout first: free if the robot rested; otherwise it borrows a block (you pick which light dims) | Short route now | B with a rested robot: the robot is **stuck by the rocks** |
+| Day 3 → 6 The Base Plan | **Recovery:** walk to the stuck robot, then send the helper robot (borrows a block for a day) or leave it | | |
+| 6 Base Plan (P2-M10) | Share the plan and the questions | Pause: monitor and watch screen turn off, both lamps on | Ending |
 
-Effects:
-- Fix gaps later: −1 power.
-- Watch and check: −1 power.
-- Use all trays: +1 food now.
-- Keep a control tray: +1 food later.
-- Share the power (spare blocks): air +2, water +2, or one each.
-- Scout first: −1 power.
-- Short route: −1 power later.
-- Pause and ask: +1 power.
+## What the player sees
 
-Unit tests enumerate all 32 choice paths and check that every meter stays within 0–5. The research package
-has **no validated parameters** for habitat power, oxygen, water or crop yield (blocked candidates
-MIS-B01/B02/B03 and P2-BLOCK-01/02/03), so no meter is ever presented as a measurement. The ending text only
-says which pretend meter was lowest.
+- **In the world:**
+  - The greenhouse glows or dims, with a shadow over it.
+  - Lamp posts turn on or off, and a plant tray outside shows the growth stage.
+  - The spare monitor and watch screen screens light up or go dark.
+  - **?** bubbles appear on unsolved problems.
+  - The robot is parked, driving, or stuck with a repair bubble; the helper robot appears during a rescue.
+  - Inside the greenhouse, the plants and lamps match the base.
+- **After a choice:** when you step outside, the camera visits each place that changed, with sparkles and a ring.
+- **Nuri reacts while you explore:** "The greenhouse is dim. Only one lamp has power."
+- **On cards:**
+  - "You chose X. So Y." with change chips (Lamp 2 off, Plants 2→1).
+  - A *new day* card showing what grew or shrank and **why** ("Remember? The watch screen is using a lamp's power").
+  - "Because you chose…" at the start of the next mission.
+  - Mission 1 is remembered at the start of Mission 2.
+- **HUD:** 3 power blocks showing what uses each, the plant stage, and the stuck robot.
 
-## Supported, partial and blocked
+## The three endings (`src/ending/EndingScene.ts`, about 15 s each, skippable, replayable)
 
-- **Implemented (evidence-backed qualitative missions):** P2-M02, P2-M01 + P2-M08, P2-M03 (with MIS-003),
-  P2-M05 (with P2-M06 / CSA as a bonus fact), P2-M07, P2-M10.
-- **Not implemented yet (supported, but would repeat lessons):**
-  - P2-M04 (one robot, two jobs)
-  - P2-M06 as its own mission (food inventory)
-  - P2-M09 (competing science windows)
-  - MIS-001, MIS-002 (partly covered by bonus facts), MIS-004
-  - P2-EDU-01, P2-EDU-02
-- **Blocked, and not implemented as science:**
-  - Rover slope/energy (MIS-B01, P2-BLOCK-01)
-  - Greenhouse yield/water loop (MIS-B02, P2-BLOCK-02)
-  - Shelter protection / human dose (MIS-B03, P2-BLOCK-03)
+| Ending | Scene |
+|---|---|
+| **The base thrives** | Dusk with stars. Every building glows and the greenhouse glows green. The plant tray grows to thriving with sparkles, the robot drives by, and the astronaut jumps while Nuri spins. Celebration sparkles over a wide view. Bright music. |
+| **The mission continues** | Daylight. Buildings with open problems are dimmed and show **?** or wrench bubbles; a stuck robot is shown if it was left. The astronaut walks to a console and repairs it, and Nuri cheers. Evening falls and Earth appears. Calm music. |
+| **A hard day for the base** | Night. Lights go out one by one, each with a green "stopped safely" check. Close-up of the weak plant tray while the astronaut and Nuri watch quietly. Nuri brightens, and the habitat light stays on: everyone is OK. Gentle music. |
 
-  These topics appear only as pretend meters or honest "we don't know" lines.
+After the cinematic, the **recap card** shows:
+- the ending title;
+- an animated **timeline of every decision, recovery and day**, with the change chips;
+- a short "How your choices led here" list ("Many days were dim, so the plants got weak. Earlier, the watch screen
+  took a lamp's power. Then you kept the plan, so the lamp stayed off.");
+- the problems that were solved.
 
-## Save, replay, rewards
+From the recap the player can play again, replay the ending, or go exploring. The tracker also offers **WATCH THE
+ENDING AGAIN**.
 
-- **Save:** `mission-ripple-campaign-v1` (version 1) stores the index, step, choices, flags, meters, revealed
-  delayed effects and power sharing. `sanitizeCampaign()` repairs bad data. It is separate from the P2-M02 and
-  progress saves.
-- **Rewards:** five new badges (Notebook Keeper, Sun Watcher, Plant Scientist, Power Planner, Base Commander)
-  and two new titles (Base Scientist 300 XP, Mars Commander 450 XP). Every reward is a once-only event ID.
-- **Replay:** "Play the base story again" resets the story but keeps earned rewards. The Passport → Missions
-  tab lists all six missions and the plans chosen.
+## Verified
 
-## Tests
+- **`npm test`** checks all **64 main paths** (Mission 1 study/trip × 32 A/B combinations):
+  - with **no recovery**: 23 thrive, 17 continue, 24 setback;
+  - with the **best recovery**: 64 thrive;
+  - no unwinnable path; every path is deterministic;
+  - at least 40 different final bases;
+  - the specific chains above;
+  - save migration from version 1.
+- **`node tools/ripple-paths.mjs`** prints every path whose ending depends on recovery.
+- **`node tools/ripple-qa.mjs`** runs real Chrome playthroughs with walking, reaching all three endings:
+  - R1 (all A, keep the plan) → setback;
+  - R2 (same choices, relight the lamp) → thrive;
+  - R3 (stuck robot rescued) → thrive;
+  - R4 → continue;
+  - R5 (Mission 1 "trip" prevents the stuck robot) → thrive;
+  - R6: a reload in the middle in Arabic at 1024×640.
 
-- `npm test`: 44 unit tests, including campaign decision IDs vs the package, quiz answers, meter bounds over all
-  32 paths, save repair, real CSV rows for the notebook and gap, and the text rules.
-- `node tools/campaign-qa.mjs`: real walking through all missions on path A and path B, the delayed effects,
-  reload mid-campaign, Arabic at 1024×640, and the help/Esc order.
-- `node tools/campaign-tour.mjs [dir] [en|ar]`: screenshots of every scene.
+  Screenshots are in `qa-screenshots/ripple/`.
 
-Still needed: playtesting with real children, and a science review of the wording of each lesson.
+Still needed: children's playtesting, a science review of the wording, and tuning of the pretend rules.

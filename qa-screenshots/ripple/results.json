@@ -1,0 +1,679 @@
+{
+  "checks": [
+    {
+      "name": "R1-setback: base view appears in the world (greenhouse lamps, robot, HUD blocks)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R1-setback M2-LOG/research: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R1-setback M2-LOG/command: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R1-setback: M2-LOG complete, badge + XP once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R1-setback M3-SUN/comms: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R1-setback M3-SUN/shelter: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R1-setback: M3-SUN complete, badge + XP once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R1: earlier choices dimmed the greenhouse (lamp 2 off, caused by the watch screen)",
+      "pass": true,
+      "detail": "{\"power\":{\"lamp1\":true,\"lamp2\":false,\"monitor\":true,\"watch\":true},\"lampCause\":\"watch\",\"plants\":1,\"plantBoost\":0,\"alert\":\"checked\",\"notes\":\"fixed\",\"fair\":null,\"m1\":\"study\",\"rover\":\"home\",\"borrow\":null,\"route\":\"none\",\"day\":1,\"finalPlan\":null,\"notesAtPlan\":null}"
+    },
+    {
+      "name": "R1: the world shows it: greenhouse tinted, lamp sprite off, plants weak",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R1-setback M4-PLANTS/greenhouse: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R1-setback M4-PLANTS/command: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R1-setback: M4-PLANTS complete, badge + XP once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R1-setback M5-POWER/power: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R1-setback M5-POWER/command: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R1-setback: M5-POWER complete, badge + XP once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R1-setback M6-PLAN/command: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R1-setback: ending is \"setback\" (engine prediction)",
+      "pass": true,
+      "detail": "setback"
+    },
+    {
+      "name": "R1-setback: HUD hidden and Skip visible during the ending",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R1-setback: ending plays to the end, then the recap card opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R1-setback: recap timeline shows every decision and day (≥ 10 cards) and explains why",
+      "pass": true,
+      "detail": "{\"title\":\"A HARD DAY FOR THE BASE\",\"tl\":11,\"why\":[\"Many days were dim, so the plants got weak.\",\"Earlier, the watch screen took a lamp’s power.\",\"Then you kept the plan, so the lamp stayed off.\"]}"
+    },
+    {
+      "name": "R1-setback: XP earned for the campaign",
+      "pass": true,
+      "detail": "320"
+    },
+    {
+      "name": "R1-setback: reload keeps the ending, decisions and base",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R1-setback: tracker offers WATCH THE ENDING AGAIN (opens recap)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R1-setback: ending is replayable and skippable",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R1: a new day shrank the plants and the fix offer appeared",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R1: Mission 1 is remembered at the start of Mission 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R2-recovered: base view appears in the world (greenhouse lamps, robot, HUD blocks)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R2-recovered M2-LOG/research: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R2-recovered M2-LOG/command: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R2-recovered: M2-LOG complete, badge + XP once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R2-recovered M3-SUN/comms: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R2-recovered M3-SUN/shelter: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R2-recovered: M3-SUN complete, badge + XP once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R2-recovered M4-PLANTS/greenhouse: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R2-recovered M4-PLANTS/command: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R2-recovered: M4-PLANTS complete, badge + XP once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R2: the recovery turned the lamp back on (watch screen off)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R2-recovered M5-POWER/power: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R2-recovered M5-POWER/command: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R2-recovered: M5-POWER complete, badge + XP once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R2-recovered M6-PLAN/command: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R2-recovered: ending is \"thrive\" (engine prediction)",
+      "pass": true,
+      "detail": "thrive"
+    },
+    {
+      "name": "R2-recovered: HUD hidden and Skip visible during the ending",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R2-recovered: ending plays to the end, then the recap card opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R2-recovered: recap timeline shows every decision and day (≥ 10 cards) and explains why",
+      "pass": true,
+      "detail": "{\"title\":\"THE BASE THRIVES\",\"tl\":11,\"why\":[\"The lamps were bright most days, so the plants grew.\"]}"
+    },
+    {
+      "name": "R2-recovered: XP earned for the campaign",
+      "pass": true,
+      "detail": "320"
+    },
+    {
+      "name": "R2-recovered: reload keeps the ending, decisions and base",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R2-recovered: tracker offers WATCH THE ENDING AGAIN (opens recap)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R2-recovered: ending is replayable and skippable",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R2: same choices as R1, different ending because of recovery",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-rescue: base view appears in the world (greenhouse lamps, robot, HUD blocks)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-rescue M2-LOG/research: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-rescue M2-LOG/command: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-rescue: M2-LOG complete, badge + XP once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-rescue M3-SUN/comms: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-rescue M3-SUN/shelter: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-rescue: M3-SUN complete, badge + XP once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-rescue M4-PLANTS/greenhouse: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-rescue M4-PLANTS/command: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-rescue: M4-PLANTS complete, badge + XP once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-rescue M5-POWER/power: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-rescue M5-POWER/command: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-rescue: M5-POWER complete, badge + XP once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3: the robot is stuck in the world, with a repair bubble, and the tracker sends you there",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-rescue: robot reachable, prompt shows",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-rescue M6-PLAN/rover: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-rescue M6-PLAN/command: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-rescue: ending is \"thrive\" (engine prediction)",
+      "pass": true,
+      "detail": "thrive"
+    },
+    {
+      "name": "R3-rescue: HUD hidden and Skip visible during the ending",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-rescue: ending plays to the end, then the recap card opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-rescue: recap timeline shows every decision and day (≥ 10 cards) and explains why",
+      "pass": true,
+      "detail": "{\"title\":\"THE BASE THRIVES\",\"tl\":11,\"why\":[\"The lamps were bright most days, so the plants grew.\",\"Our notes still have gaps.\",\"You shared the plan, so the next team will help with one problem.\"]}"
+    },
+    {
+      "name": "R3-rescue: XP earned for the campaign",
+      "pass": true,
+      "detail": "320"
+    },
+    {
+      "name": "R3-rescue: reload keeps the ending, decisions and base",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-rescue: tracker offers WATCH THE ENDING AGAIN (opens recap)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3-rescue: ending is replayable and skippable",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R3: rescue card was played",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R4-continue: base view appears in the world (greenhouse lamps, robot, HUD blocks)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R4-continue M2-LOG/research: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R4-continue M2-LOG/command: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R4-continue: M2-LOG complete, badge + XP once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R4-continue M3-SUN/comms: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R4-continue M3-SUN/shelter: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R4-continue: M3-SUN complete, badge + XP once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R4-continue M4-PLANTS/greenhouse: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R4-continue M4-PLANTS/command: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R4-continue: M4-PLANTS complete, badge + XP once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R4-continue M5-POWER/power: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R4-continue M5-POWER/command: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R4-continue: M5-POWER complete, badge + XP once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R4-continue: robot reachable, prompt shows",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R4-continue M6-PLAN/rover: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R4-continue M6-PLAN/command: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R4-continue: ending is \"continue\" (engine prediction)",
+      "pass": true,
+      "detail": "continue"
+    },
+    {
+      "name": "R4-continue: HUD hidden and Skip visible during the ending",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R4-continue: ending plays to the end, then the recap card opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R4-continue: recap timeline shows every decision and day (≥ 10 cards) and explains why",
+      "pass": true,
+      "detail": "{\"title\":\"THE MISSION CONTINUES\",\"tl\":11,\"why\":[\"The lamps were bright most days, so the plants grew.\",\"Our notes still have gaps.\",\"The Sun alert is still a mystery.\",\"The robot is still stuck.\",\"You shared the plan, so the next team will help with one problem.\"]}"
+    },
+    {
+      "name": "R4-continue: XP earned for the campaign",
+      "pass": true,
+      "detail": "320"
+    },
+    {
+      "name": "R4-continue: reload keeps the ending, decisions and base",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R4-continue: tracker offers WATCH THE ENDING AGAIN (opens recap)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R4-continue: ending is replayable and skippable",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R5-trip: base view appears in the world (greenhouse lamps, robot, HUD blocks)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R5-trip M2-LOG/research: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R5-trip M2-LOG/command: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R5-trip: M2-LOG complete, badge + XP once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R5-trip M3-SUN/comms: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R5-trip M3-SUN/shelter: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R5-trip: M3-SUN complete, badge + XP once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R5-trip M4-PLANTS/greenhouse: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R5-trip M4-PLANTS/command: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R5-trip: M4-PLANTS complete, badge + XP once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R5-trip M5-POWER/power: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R5-trip M5-POWER/command: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R5-trip: M5-POWER complete, badge + XP once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R5-trip M6-PLAN/command: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R5-trip: ending is \"thrive\" (engine prediction)",
+      "pass": true,
+      "detail": "thrive"
+    },
+    {
+      "name": "R5-trip: HUD hidden and Skip visible during the ending",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R5-trip: ending plays to the end, then the recap card opens",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R5-trip: recap timeline shows every decision and day (≥ 10 cards) and explains why",
+      "pass": true,
+      "detail": "{\"title\":\"THE BASE THRIVES\",\"tl\":10,\"why\":[\"The lamps were bright most days, so the plants grew.\",\"Our notes still have gaps.\",\"The Sun alert is still a mystery.\",\"You shared the plan, so the next team will help with one problem.\"]}"
+    },
+    {
+      "name": "R5-trip: XP earned for the campaign",
+      "pass": true,
+      "detail": "320"
+    },
+    {
+      "name": "R5-trip: reload keeps the ending, decisions and base",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R5-trip: tracker offers WATCH THE ENDING AGAIN (opens recap)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R5-trip: ending is replayable and skippable",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R5: Mission 1 changed Mission 6 — no stuck robot, no rescue step",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R6 M2-LOG/research: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R6 M2-LOG/command: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R6 M3-SUN/comms: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R6 M3-SUN/shelter: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R6: after Mission 3 the lamp is off",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R6: reload mid-campaign keeps the base, the mission and the step",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R6 M4-PLANTS/greenhouse: E opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R6: Arabic day card + fix shown",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "R6: delayed day effect not applied twice after reload",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "No browser errors or warnings",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "errors": [],
+  "screens": [
+    "R1-world-dim-greenhouse",
+    "R1-setback-world-final",
+    "R2-recovered-world-final",
+    "R3-world-robot-stuck",
+    "R3-rescue-world-final",
+    "R4-continue-world-final",
+    "R5-trip-world-final"
+  ]
+}

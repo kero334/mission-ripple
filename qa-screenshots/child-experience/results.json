@@ -438,7 +438,7 @@
     {
       "name": "A rewards: controls visible without scrolling",
       "pass": true,
-      "detail": "{\"card\":{\"top\":133,\"bottom\":587,\"left\":280,\"right\":1000,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":1}"
+      "detail": "{\"card\":{\"top\":138,\"bottom\":589,\"left\":283,\"right\":997,\"inView\":true},\"scroll\":0,\"buttonsInView\":true,\"buttons\":1}"
     },
     {
       "name": "A: Science Passport opens with XP and 7 badges",

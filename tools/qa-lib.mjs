@@ -1,7 +1,7 @@
 // Shared helpers for real-browser QA. Movement always uses real key presses against the game's
 // own collision rectangles (BFS path over scene.blocks); nothing is teleported unless a test says so.
 import {chromium} from 'playwright';
-import {mkdirSync,writeFileSync} from 'node:fs';
+import {mkdirSync,writeFileSync,appendFileSync} from 'node:fs';
 export const URL=process.env.RIPPLE_URL||'http://localhost:5182/';
 export function report(dir){
   mkdirSync(dir,{recursive:true});
@@ -14,6 +14,7 @@ export async function openGame(browser,{width=1280,height=720,errors=[],storage=
   const context=await browser.newContext({viewport:{width,height},deviceScaleFactor:1});
   if(storage)await context.addInitScript(s=>{if(!sessionStorage.getItem('__seeded')){for(const [k,v] of Object.entries(s))localStorage.setItem(k,v);sessionStorage.setItem('__seeded','1')}},storage);
   const page=await context.newPage();
+  if(process.env.VOICE_CAPTURE)await captureDialogue(page,process.env.VOICE_CAPTURE);
   page.on('pageerror',e=>errors.push('pageerror: '+e.message));
   page.on('console',m=>{if(m.type()==='error'||m.type()==='warning')errors.push(m.type()+': '+m.text())});
   page.on('response',res=>{if(res.status()>=400)errors.push(res.status()+' '+res.url())});
@@ -21,6 +22,17 @@ export async function openGame(browser,{width=1280,height=720,errors=[],storage=
   await page.goto(URL,{waitUntil:'networkidle'});
   await ready(page);
   return {context,page};
+}
+/** Voice-package check (VOICE_CAPTURE=file): records every English line Nuri or a caption shows, as JSON lines. */
+export async function captureDialogue(page,file){
+  await page.exposeFunction('__voiceCapture',(kind,text)=>appendFileSync(file,JSON.stringify({kind,text})+'\n'));
+  await page.addInitScript(()=>{
+    const SEL={nuri:'#nuri-text',card:'#science-say',more:'.say-more p',help:'.panel-help .nuri-say p,.help-scene .nuri-say p',caption:'#intro-caption,#ending-caption',why:'.why-list li',
+      option:'#science-content .chip,#campaign-content .chip',plan:'.big-choice b,.big-choice span.gain,.big-choice span.cost',slot:'.slot-btn b,.slot-btn small',disc:'.disc-detail>div>p'};
+    const seen=new Set();
+    const scan=()=>{if(document.documentElement.lang!=='en')return;for(const [k,s] of Object.entries(SEL))for(const el of document.querySelectorAll(s)){const t=(el.textContent||'').replace(/\s+/g,' ').trim();const key=k+'|'+t;if(t&&!seen.has(key)){seen.add(key);window.__voiceCapture(k,t)}}};
+    new MutationObserver(()=>scan()).observe(document,{subtree:true,childList:true,characterData:true});
+  });
 }
 /** Gets past the title screen: START + Skip Intro on a fresh save, CONTINUE otherwise. */
 export async function passTitle(page){

@@ -19,7 +19,7 @@ export class EndingScene extends Phaser.Scene{
   init(d:EndingData){this.d=d;this.finished=false}
   create(){
     const d=this.d,rm=d.reducedMotion,S=rm?.7:1,cam=this.cameras.main;
-    cam.setZoom(4).centerOn(160,90).setRoundPixels(true).setBackgroundColor('#140f1e');
+    cam.setZoom(4).centerOn(160,90).setRoundPixels(true).setBackgroundColor('#140f1e').setBounds(0,0,320,180);
     this.layer=this.add.container(0,0);
     const at=(t:number,f:()=>void)=>this.time.delayedCall(t*1000*S,()=>{if(!this.finished)f()});
     const cap=(i:number|null)=>emit('ripple-ending-caption',{kind:d.kind,i});
@@ -61,7 +61,7 @@ export class EndingScene extends Phaser.Scene{
     at(8.4,()=>{
       // confetti-like sparkles over the whole base (celebration), then a wide view of the settlement
       for(let k=0;k<26;k++){const sp=this.img('ripple-spark',20+(k*37)%290,30+(k*23)%50,.5,.5).setAlpha(0);this.tweens.add({targets:sp,alpha:1,y:'+=10',duration:700,delay:k*90,yoyo:true})}
-      if(!rm){cam.pan(160,96,3600,'Sine.easeInOut');cam.zoomTo(3.6,3600,'Sine.easeInOut')}
+      if(!rm){cam.pan(160,96,3600,'Sine.easeInOut');cam.zoomTo(4,3600,'Sine.easeInOut')}
       cap(2);
     });
   }
@@ -96,7 +96,7 @@ export class EndingScene extends Phaser.Scene{
       const dusk=this.img('ripple-sky-dusk',0,0,0,0).setAlpha(0);this.layer.sendToBack(dusk);this.layer.moveUp(dusk);
       const shade=this.add.rectangle(160,90,320,180,0x2b2050,0);this.layer.add(shade);this.tweens.add({targets:shade,fillAlpha:.25,duration:3000});
       const earth=this.add.rectangle(60,40,2,2,0xa0c8ff,0);this.layer.add(earth);this.tweens.add({targets:earth,fillAlpha:1,duration:2000,delay:800});
-      if(!rm){cam.pan(160,90,3200,'Sine.easeInOut');cam.zoomTo(3.6,3200,'Sine.easeInOut')}
+      if(!rm){cam.pan(160,90,3200,'Sine.easeInOut');cam.zoomTo(4,3200,'Sine.easeInOut')}
       cap(2);
     });
   }
@@ -129,7 +129,7 @@ export class EndingScene extends Phaser.Scene{
     });
     at(10.6,()=>{
       // quiet final shot: the habitat light stays on — the crew is fine, and can try again
-      if(!rm){cam.pan(160,92,3200,'Sine.easeInOut');cam.zoomTo(3.8,3200,'Sine.easeInOut')}
+      if(!rm){cam.pan(160,92,3200,'Sine.easeInOut');cam.zoomTo(4,3200,'Sine.easeInOut')}
       const home=lights[4];this.tweens.add({targets:home,alpha:1,scale:.75,duration:1600,yoyo:true,repeat:-1});
       cap(2);
     });

@@ -481,3 +481,10 @@ html[dir=rtl] #ending-skip{font-size:16px;font-weight:800}
 #ending-caption{position:absolute;left:50%;bottom:7%;transform:translateX(-50%);margin:0;width:min(90vw,900px);text-align:center;font-size:clamp(20px,3vw,34px);color:#fff3d6;text-shadow:3px 3px #1a1216,0 0 12px #000;opacity:0;transition:opacity .6s}
 #ending-caption.on{opacity:1}html[dir=rtl] #ending-caption{font-size:clamp(17px,2.6vw,28px);font-weight:700}
 body.ending-playing #hud>*:not(#ending-ui){visibility:hidden}
+
+.page-fix .scene-art,.page-rescue .scene-art,.page-choose .scene-art,.page-borrow .scene-art{min-height:0}
+.page-fix .garden-art .tray{width:120px;height:93px}.page-fix .garden-art .lamps img{width:30px;height:30px}.page-fix .garden-art .stage{font-size:18px}
+.page-fix .big-choice,.page-rescue .big-choice{min-height:0;padding:6px 8px;gap:2px}.page-fix .big-choice .choice-icon,.page-rescue .big-choice .choice-icon{width:44px;height:44px}
+.page-fix .big-choice b,.page-rescue .big-choice b{font-size:22px}.page-fix .big-choice span,.page-rescue .big-choice span{font-size:16px;line-height:1.05}
+html[dir=rtl] .page-fix .big-choice b,html[dir=rtl] .page-rescue .big-choice b{font-size:16px}html[dir=rtl] .page-fix .big-choice span,html[dir=rtl] .page-rescue .big-choice span{font-size:12px;line-height:1.3}
+.page-fix .power-strip .blk,.page-choose .power-strip .blk{width:28px;height:28px}.page-fix .power-strip .blk img,.page-choose .power-strip .blk img{width:20px;height:20px}
