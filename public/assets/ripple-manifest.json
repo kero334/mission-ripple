@@ -1,0 +1,299 @@
+[
+  {
+    "name": "ripple-plants-0",
+    "purpose": "Grow tray, plant stage 0 (pretend)",
+    "dimensions": "44x34",
+    "animationFrames": 1,
+    "file": "assets/ripple/plants-0.png",
+    "reuseScope": "ripple consequences + endings",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ripple-sprout-0",
+    "purpose": "Plant stage icon 0",
+    "dimensions": "16x18",
+    "animationFrames": 1,
+    "file": "assets/ripple/sprout-0.png",
+    "reuseScope": "ripple consequences + endings",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ripple-plants-1",
+    "purpose": "Grow tray, plant stage 1 (pretend)",
+    "dimensions": "44x34",
+    "animationFrames": 1,
+    "file": "assets/ripple/plants-1.png",
+    "reuseScope": "ripple consequences + endings",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ripple-sprout-1",
+    "purpose": "Plant stage icon 1",
+    "dimensions": "16x18",
+    "animationFrames": 1,
+    "file": "assets/ripple/sprout-1.png",
+    "reuseScope": "ripple consequences + endings",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ripple-plants-2",
+    "purpose": "Grow tray, plant stage 2 (pretend)",
+    "dimensions": "44x34",
+    "animationFrames": 1,
+    "file": "assets/ripple/plants-2.png",
+    "reuseScope": "ripple consequences + endings",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ripple-sprout-2",
+    "purpose": "Plant stage icon 2",
+    "dimensions": "16x18",
+    "animationFrames": 1,
+    "file": "assets/ripple/sprout-2.png",
+    "reuseScope": "ripple consequences + endings",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ripple-plants-3",
+    "purpose": "Grow tray, plant stage 3 (pretend)",
+    "dimensions": "44x34",
+    "animationFrames": 1,
+    "file": "assets/ripple/plants-3.png",
+    "reuseScope": "ripple consequences + endings",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ripple-sprout-3",
+    "purpose": "Plant stage icon 3",
+    "dimensions": "16x18",
+    "animationFrames": 1,
+    "file": "assets/ripple/sprout-3.png",
+    "reuseScope": "ripple consequences + endings",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ripple-plants-4",
+    "purpose": "Grow tray, plant stage 4 (pretend)",
+    "dimensions": "44x34",
+    "animationFrames": 1,
+    "file": "assets/ripple/plants-4.png",
+    "reuseScope": "ripple consequences + endings",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ripple-sprout-4",
+    "purpose": "Plant stage icon 4",
+    "dimensions": "16x18",
+    "animationFrames": 1,
+    "file": "assets/ripple/sprout-4.png",
+    "reuseScope": "ripple consequences + endings",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ripple-monitor-on",
+    "purpose": "Research Lab spare monitor",
+    "dimensions": "26x36",
+    "animationFrames": 1,
+    "file": "assets/ripple/monitor-on.png",
+    "reuseScope": "ripple consequences + endings",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ripple-watch-on",
+    "purpose": "Communications Sun-watch screen",
+    "dimensions": "30x38",
+    "animationFrames": 1,
+    "file": "assets/ripple/watch-on.png",
+    "reuseScope": "ripple consequences + endings",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ripple-monitor-off",
+    "purpose": "Research Lab spare monitor",
+    "dimensions": "26x36",
+    "animationFrames": 1,
+    "file": "assets/ripple/monitor-off.png",
+    "reuseScope": "ripple consequences + endings",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ripple-watch-off",
+    "purpose": "Communications Sun-watch screen",
+    "dimensions": "30x38",
+    "animationFrames": 1,
+    "file": "assets/ripple/watch-off.png",
+    "reuseScope": "ripple consequences + endings",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ripple-lamp-on",
+    "purpose": "Greenhouse lamp icon",
+    "dimensions": "16x16",
+    "animationFrames": 1,
+    "file": "assets/ripple/lamp-on.png",
+    "reuseScope": "ripple consequences + endings",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ripple-lamp-off",
+    "purpose": "Greenhouse lamp icon",
+    "dimensions": "16x16",
+    "animationFrames": 1,
+    "file": "assets/ripple/lamp-off.png",
+    "reuseScope": "ripple consequences + endings",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ripple-block",
+    "purpose": "Power block icon",
+    "dimensions": "14x14",
+    "animationFrames": 1,
+    "file": "assets/ripple/block.png",
+    "reuseScope": "ripple consequences + endings",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ripple-block-empty",
+    "purpose": "Empty power block",
+    "dimensions": "14x14",
+    "animationFrames": 1,
+    "file": "assets/ripple/block-empty.png",
+    "reuseScope": "ripple consequences + endings",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ripple-rover",
+    "purpose": "Base robot (pretend)",
+    "dimensions": "40x26",
+    "animationFrames": 1,
+    "file": "assets/ripple/rover.png",
+    "reuseScope": "ripple consequences + endings",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ripple-rover-stuck",
+    "purpose": "Robot stuck on a bump",
+    "dimensions": "48x34",
+    "animationFrames": 1,
+    "file": "assets/ripple/rover-stuck.png",
+    "reuseScope": "ripple consequences + endings",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ripple-helper",
+    "purpose": "Helper robot (rescue)",
+    "dimensions": "22x20",
+    "animationFrames": 1,
+    "file": "assets/ripple/helper.png",
+    "reuseScope": "ripple consequences + endings",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ripple-wrench",
+    "purpose": "Repair needed bubble",
+    "dimensions": "16x16",
+    "animationFrames": 1,
+    "file": "assets/ripple/wrench.png",
+    "reuseScope": "ripple consequences + endings",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ripple-safe",
+    "purpose": "Safe shutdown check",
+    "dimensions": "16x16",
+    "animationFrames": 1,
+    "file": "assets/ripple/safe.png",
+    "reuseScope": "ripple consequences + endings",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ripple-question",
+    "purpose": "Open question bubble",
+    "dimensions": "16x16",
+    "animationFrames": 1,
+    "file": "assets/ripple/question.png",
+    "reuseScope": "ripple consequences + endings",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ripple-spark",
+    "purpose": "Sparkle",
+    "dimensions": "7x7",
+    "animationFrames": 1,
+    "file": "assets/ripple/spark.png",
+    "reuseScope": "ripple consequences + endings",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ripple-glow",
+    "purpose": "Soft warm glow",
+    "dimensions": "48x48",
+    "animationFrames": 1,
+    "file": "assets/ripple/glow.png",
+    "reuseScope": "ripple consequences + endings",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ripple-glow-green",
+    "purpose": "Greenhouse grow-light glow",
+    "dimensions": "48x48",
+    "animationFrames": 1,
+    "file": "assets/ripple/glow-green.png",
+    "reuseScope": "ripple consequences + endings",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ripple-sky-day",
+    "purpose": "Ending sky (day)",
+    "dimensions": "320x180",
+    "animationFrames": 1,
+    "file": "assets/ripple/sky-day.png",
+    "reuseScope": "ripple consequences + endings",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ripple-ground-day",
+    "purpose": "Ending ground (day)",
+    "dimensions": "320x80",
+    "animationFrames": 1,
+    "file": "assets/ripple/ground-day.png",
+    "reuseScope": "ripple consequences + endings",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ripple-sky-dusk",
+    "purpose": "Ending sky (dusk)",
+    "dimensions": "320x180",
+    "animationFrames": 1,
+    "file": "assets/ripple/sky-dusk.png",
+    "reuseScope": "ripple consequences + endings",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ripple-ground-dusk",
+    "purpose": "Ending ground (dusk)",
+    "dimensions": "320x80",
+    "animationFrames": 1,
+    "file": "assets/ripple/ground-dusk.png",
+    "reuseScope": "ripple consequences + endings",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ripple-sky-night",
+    "purpose": "Ending sky (night)",
+    "dimensions": "320x180",
+    "animationFrames": 1,
+    "file": "assets/ripple/sky-night.png",
+    "reuseScope": "ripple consequences + endings",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "ripple-ground-night",
+    "purpose": "Ending ground (night)",
+    "dimensions": "320x80",
+    "animationFrames": 1,
+    "file": "assets/ripple/ground-night.png",
+    "reuseScope": "ripple consequences + endings",
+    "productionStatus": "production sprite"
+  }
+]
