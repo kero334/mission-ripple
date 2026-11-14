@@ -11,6 +11,8 @@ import {$,asset,bdi,esc,modals,toast} from './ui/shell';
 import {IntroScene} from './intro/IntroScene';
 import {setupIntro} from './intro/intro';
 import {setupCampaign} from './missions/campaign';
+import {EndingScene} from './ending/EndingScene';
+import {setupEnding} from './ending/ending';
 import './style.css';
 
 const progress=createProgressStore();
@@ -20,7 +22,9 @@ const send=(type:string,value?:unknown)=>window.dispatchEvent(new CustomEvent('r
 let science:ReturnType<typeof setupScienceUI>;
 
 let replayIntro=()=>{};
-const campaign=setupCampaign({locale:()=>locale,progress,roverDone:()=>science?.getState().stage==='complete',guided:()=>progress.get().settings.guidance==='guided',
+let ending:ReturnType<typeof setupEnding>;
+const campaign=setupCampaign({locale:()=>locale,progress,roverDone:()=>science?.getState().stage==='complete',m1:()=>science?.getState().choice==='survey-followup'?'trip':'study',
+  playEnding:(k,info,done)=>ending.play(k,info,done),guided:()=>progress.get().settings.guidance==='guided',
   openHelp:()=>panels.openHelp('card'),openPassport:()=>panels.open('passport'),onChange:()=>{science?.renderHud(true);science?.updateGuide();renderPassportChip()}});
 const panels=setupPanels({locale:()=>locale,progress,mission:()=>science,position:()=>state.position,setLocale:l=>{if(l!==locale)switchLocale()},replayIntro:()=>replayIntro(),campaign});
 science=setupScienceUI({locale:()=>locale,progress,openHelp:from=>panels.openHelp(from),openPassport:()=>panels.open('passport'),campaign});
@@ -37,6 +41,7 @@ function promptText():{text:string;key:boolean}|null{
     if(b.id==='comms'&&s==='nextShift')return {key:true,text:pick(PROMPTS.readMessage,l)};
     return {key:true,text:pick(PROMPTS.look,l,{name:l==='en'?b.equipmentName:b.equipmentAr})}}
   if(k==='exhibit'&&id){const d=discovery(id);return {key:true,text:pick(PROMPTS.exhibit,l,{name:d?d.title[l]:''})}}
+  if(k==='rover')return {key:true,text:campaign.step()?.building==='rover'?pick(campaign.step()!.task,l):l==='en'?'Look at the robot':'بُص على الروبوت'};
   if(k==='door'&&b)return {key:true,text:pick(PROMPTS.enter,l,{name:bn})};
   if(k==='exit')return {key:true,text:pick(PROMPTS.exit,l)};
   if(state.guideDistance==='near'){const gname=s==='monitor'&&!state.room?pick(PROMPTS.terminal,l):l==='en'?'machine':'الجهاز';return {key:false,text:pick(PROMPTS.closer,l,{name:gname})}}
@@ -83,7 +88,7 @@ window.addEventListener('ripple-modal',()=>render());
 window.addEventListener('ripple-dialogue',e=>{const {text,mood}=(e as CustomEvent<{text:string;mood:string}>).detail;$('nuri-text').textContent=text;$('nuri-portrait').classList.toggle('warning',mood==='warning');const p=$('nuri-panel');p.classList.remove('pop');void p.offsetWidth;p.classList.add('pop')});
 // Esc closes the top overlay first; only with nothing open does it open Settings.
 // While the title screen or the cinematic is showing, world keys do nothing.
-const live=()=>!intro.blocking();
+const live=()=>!intro.blocking()&&!ending?.playing();
 window.addEventListener('ripple-pause',()=>{if(!live())return;if(!modals.closeTop())panels.open('settings')});
 const guarded=(f:()=>void)=>()=>{if(!live()||modals.isOpen('science'))return;f()};
 window.addEventListener('ripple-map',guarded(()=>panels.toggle('map')));
@@ -96,7 +101,8 @@ document.addEventListener('keydown',e=>{if(!modals.isOpen('science')||modals.top
   if(e.key==='ArrowLeft'||e.key==='ArrowRight'){const rtl=locale==='ar',fwd=(e.key==='ArrowRight')!==rtl;const btn=document.querySelector<HTMLButtonElement>(fwd?'#science-content .learning-next:not([disabled])':'#science-content .card-back');if(btn&&(fwd?btn.dataset.scienceAction==='next':true)){e.preventDefault();btn.click()}}});
 for(const [id,f] of [['map-button',()=>panels.toggle('map')],['journal-button',()=>panels.toggle('passport')],['pause-button',()=>panels.toggle('settings')]] as const)$(id).addEventListener('click',guarded(f));
 (window as any).__progress=progress;(window as any).__panels=panels;
-const game=new Phaser.Game({type:Phaser.AUTO,parent:'game',backgroundColor:'#7f4449',scale:{mode:Phaser.Scale.FIT,autoCenter:Phaser.Scale.CENTER_BOTH,width:1280,height:720},render:{antialias:false,pixelArt:true,roundPixels:true},scene:[MarsScene,IntroScene]});
+const game=new Phaser.Game({type:Phaser.AUTO,parent:'game',backgroundColor:'#7f4449',scale:{mode:Phaser.Scale.FIT,autoCenter:Phaser.Scale.CENTER_BOTH,width:1280,height:720},render:{antialias:false,pixelArt:true,roundPixels:true},scene:[MarsScene,IntroScene,EndingScene]});
+ending=setupEnding({game:()=>game,locale:()=>locale,sound:()=>progress.get().settings.sound});
 const intro=setupIntro({game:()=>game,locale:()=>locale,toggleLocale:()=>switchLocale(),progress,stage:()=>science.getState().stage});
 replayIntro=()=>{panels.close();intro.play()};
 render();

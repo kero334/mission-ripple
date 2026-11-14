@@ -47,13 +47,13 @@ export function setupScienceUI(deps:Deps){
   let hudKey='';
   function renderHud(force=false){
     const C=deps.campaign;
-    const l=deps.locale(),s=stage(),o=OBJECTIVES[s],key=l+'|'+s+'|'+(C?JSON.stringify([C.started(),C.state().index,C.state().step]):'');if(!force&&key===hudKey)return;hudKey=key;
+    const l=deps.locale(),s=stage(),o=OBJECTIVES[s],key=l+'|'+s+'|'+(C?JSON.stringify([C.started(),C.state().index,C.state().step,C.state().ending]):'');if(!force&&key===hudKey)return;hudKey=key;
     if(C&&C.started()&&s==='complete'){const h=C.hud(l);
       $('mission-title').textContent=h.title;
       $('objective-list').innerHTML=`<button type="button" id="objective-button" class="quest" aria-label="${esc(h.task)}"><img src="${asset('guide/guide-beacon')}" alt=""/><span><strong id="objective-task">${esc(h.task)}</strong>${h.where?`<small id="objective-where">${esc(h.where)}</small>`:''}</span></button>`;
       $('explored-text').textContent='';
-      $('tracker-actions').innerHTML=(h.button?`<button type="button" id="campaign-button" class="tracker-primary">${esc(h.button)}</button>`:'')+`<button type="button" id="help-button" class="help-button" aria-label="${pick(MISSION.help,l)} (H)"><img src="${asset('ui/ui-help-pixel')}" alt=""/>${pick(MISSION.help,l)}</button>`;
-      document.getElementById('campaign-button')?.addEventListener('click',()=>C.restart());
+      $('tracker-actions').innerHTML=(h.button?`<button type="button" id="campaign-button" class="tracker-primary">${esc(h.button)}</button>`:'')+(h.button2?`<button type="button" id="campaign-button2">${esc(h.button2)}</button>`:'')+`<button type="button" id="help-button" class="help-button" aria-label="${pick(MISSION.help,l)} (H)"><img src="${asset('ui/ui-help-pixel')}" alt=""/>${pick(MISSION.help,l)}</button>`;
+      document.getElementById('campaign-button')?.addEventListener('click',()=>C.hudAction(h.action));document.getElementById('campaign-button2')?.addEventListener('click',()=>C.hudAction(h.action2));
       $('objective-button').onclick=()=>{control('reveal','device');control('show-me')};
       $('help-button').onclick=()=>deps.openHelp('hud');
       return;

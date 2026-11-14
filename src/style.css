@@ -432,3 +432,52 @@ html[dir=rtl] .hud-meters small{font-size:11px;letter-spacing:0;font-weight:700}
 #campaign-overlay{position:absolute;inset:0;background:#241b26c4;display:flex;align-items:center;justify-content:center;pointer-events:auto;z-index:20}
 #campaign-close{position:absolute;inset-inline-end:10px;top:9px;border:3px solid #a76d42;background:#5c342e;color:#ffe0ac;font-size:22px;width:34px;height:34px;line-height:1;z-index:2}
 .gap-art .dot{width:16px;height:16px}
+
+/* ===================== Ripple Effect ===================== */
+.power-strip{display:flex;gap:5px;justify-content:center;margin:6px 0}
+.power-strip .blk{width:34px;height:34px;border:3px solid #6c5a62;background:#2a2028;display:grid;place-items:center}
+.power-strip .blk.on{border-color:var(--gold);background:#4a3626;box-shadow:inset 0 0 0 2px #8a5a2a}
+.power-strip .blk img{width:24px;height:24px;object-fit:contain;image-rendering:pixelated}
+.hud-meters .power-strip{margin:0;gap:3px}.hud-meters .power-strip .blk{width:24px;height:24px;border-width:2px}.hud-meters .power-strip .blk img{width:16px;height:16px}
+.hud-plant img,.hud-rover{width:22px!important;height:22px!important;image-rendering:pixelated;object-fit:contain}
+.garden-art{display:flex;flex-direction:column;align-items:center;gap:4px}
+.garden-art .lamps{display:flex;gap:40px}.garden-art .lamps img{width:40px;height:40px;image-rendering:pixelated;filter:brightness(.7)}
+.garden-art .lamps img.lit{filter:drop-shadow(0 0 8px #ffd27a);animation:bob 1.2s steps(2) infinite}
+.garden-art .tray{width:176px;height:136px;image-rendering:pixelated}
+.garden-art .stage{font-size:22px;font-weight:400;padding:0 10px;border:2px solid #7d5a49;background:#2a1f24}
+.garden-art .stage.s0,.garden-art .stage.s1{color:#ffb08a}.garden-art .stage.s2{color:#ffe3b0}.garden-art .stage.s3,.garden-art .stage.s4{color:#9fe6a8}
+.day-art{display:flex;align-items:center;gap:14px}.day-art>.tray{width:132px;height:102px;image-rendering:pixelated;opacity:.75}
+.scene-art:has(.garden-art),.scene-art:has(.power-strip),.scene-art:has(.chips-ch){flex-direction:column}
+.chips-ch{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;margin:4px 0}
+.chip-ch{display:inline-flex;align-items:center;gap:4px;font-size:17px;padding:1px 7px;border:2px solid #7d5a49;background:#2a1f24;color:#ffe3b0;animation:pop .4s steps(3)}
+.chip-ch img{width:18px;height:18px;image-rendering:pixelated;object-fit:contain}
+.chip-ch.up{border-color:#5aa86c;color:#b8f0c0}.chip-ch.down{border-color:#b95b4c;color:#ffb8a0}
+html[dir=rtl] .chip-ch{font-size:13px;font-weight:700}
+.slot-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin:6px 0}
+.slot-btn{display:flex;flex-direction:column;align-items:center;gap:2px;border:3px solid #6c5a62;background:#2a2028;padding:6px 4px;min-height:96px;color:#cdb999}
+.slot-btn img{width:30px;height:34px;image-rendering:pixelated;object-fit:contain}.slot-btn b{font-size:20px;font-weight:400;color:#ffe3b0}.slot-btn small{font-size:14px;line-height:1.05}
+.slot-btn.on{border-color:var(--gold);background:#4a3626}.slot-btn.locked{opacity:.55}.slot-btn:hover{background:#4d3436}
+html[dir=rtl] .slot-btn b{font-size:15px;font-weight:800}html[dir=rtl] .slot-btn small{font-size:11px;line-height:1.35}
+.spare-n{margin:0;font-size:20px;color:#ffd896}html[dir=rtl] .spare-n{font-size:15px}
+.choice-row.three{grid-template-columns:repeat(3,1fr)}.big-choice.dim{opacity:.45}
+.rover-big{width:160px!important;height:112px!important}
+.timeline{list-style:none;margin:4px 0;padding:0;display:flex;gap:6px;overflow-x:auto;max-width:100%;scrollbar-color:#c48b58 #302228;padding-bottom:4px}
+.timeline .tl{flex:0 0 auto;min-width:104px;max-width:132px;border:2px solid #9a6b49;background:#2a1f24;padding:4px 5px;display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center}
+.timeline .tl img{width:26px;height:26px;image-rendering:pixelated;object-fit:contain}
+.timeline .tl small{font-size:13px;color:var(--cyan);line-height:1}.timeline .tl b{font-size:16px;font-weight:400;color:#ffe3b0;line-height:1}
+.timeline .tl.rec{border-color:#5aa86c}.timeline .tl.day{min-width:70px;border-style:dashed;border-color:#7d5a49}
+.timeline .chip-ch{font-size:13px;padding:0 4px}.timeline .chip-ch img{width:14px;height:14px}
+.timeline.anim .tl{opacity:0;animation:tlIn .35s steps(3) forwards}@keyframes tlIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+html[dir=rtl] .timeline .tl b{font-size:12px;font-weight:800;line-height:1.3}html[dir=rtl] .timeline .tl small{font-size:10px}html[dir=rtl] .timeline .chip-ch{font-size:10px}
+.end-head{display:flex;align-items:center;gap:10px;justify-content:center}.end-head img{width:44px;height:44px;image-rendering:pixelated}
+.end-head strong{font-size:34px;font-weight:400;letter-spacing:2px}.end-head.thrive strong{color:#9fe6a8}.end-head.continue strong{color:#ffd896}.end-head.setback strong{color:#c8b8ff}
+html[dir=rtl] .end-head strong{font-size:24px;font-weight:800;letter-spacing:0}
+.why-h{margin:2px 0;font-size:18px;color:var(--cyan);font-weight:400;text-align:center}html[dir=rtl] .why-h{font-size:14px;font-weight:700}
+.why-list{margin:2px 0;padding-inline-start:20px;font-size:18px;line-height:1.1;color:#f3d6b2;text-align:start}html[dir=rtl] .why-list{font-size:14px;line-height:1.45}
+.page-campaign-end .scene-art{min-height:0}
+#ending-ui{position:absolute;inset:0;pointer-events:none;z-index:55}
+#ending-skip{position:absolute;top:14px;inset-inline-end:14px;pointer-events:auto;border:3px solid #e6af72;background:#2a1d22d9;color:#ffe8c0;font-size:22px;padding:6px 16px;min-height:44px}
+html[dir=rtl] #ending-skip{font-size:16px;font-weight:800}
+#ending-caption{position:absolute;left:50%;bottom:7%;transform:translateX(-50%);margin:0;width:min(90vw,900px);text-align:center;font-size:clamp(20px,3vw,34px);color:#fff3d6;text-shadow:3px 3px #1a1216,0 0 12px #000;opacity:0;transition:opacity .6s}
+#ending-caption.on{opacity:1}html[dir=rtl] #ending-caption{font-size:clamp(17px,2.6vw,28px);font-weight:700}
+body.ending-playing #hud>*:not(#ending-ui){visibility:hidden}

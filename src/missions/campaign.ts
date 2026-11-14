@@ -5,7 +5,7 @@
 import ev from '../science/campaign-evidence-v1.json';
 import {CAMPAIGN,C_UI,CAUSE,SLOT_HINTS,SLOT_NAMES,STAGE_NAME,STAGE_SAY,dyn,type CampaignMission,type SceneDef,type Opt} from './campaign-data';
 import {SLOTS,lamps,lenders,outcome,problems,replay,spare,isSlot,type Base,type Change,type Ev,type EndingKind,type M1,type Slot} from '../game/base-sim';
-import {BUILDINGS} from '../world-data';
+import {BUILDINGS,ROVER_HOME,ROVER_STUCK} from '../world-data';
 import {CARDS,NURI,type Locale,type Tx,pick} from '../content/strings';
 import type {ProgressStore} from '../game/progress';
 import type {GuideTarget,HintStep} from '../game/guidance';
@@ -13,11 +13,9 @@ import {EQUIPMENT_POS,EXIT_POS} from '../game/guidance';
 import {$,asset,bdi,esc,modals,renderScene,type Scene} from '../ui/shell';
 
 export const CAMPAIGN_KEY='mission-ripple-campaign-v1';
-/** Where the base robot parks, and where it gets stuck on the unknown road (exterior world pixels). */
-export const ROVER_HOME={x:760,y:168},ROVER_STUCK={x:1188,y:1046};
 type E=Ev&{i?:number};
-export type CampaignState={version:2;started:boolean;index:number;step:number;m1:M1;events:E[];ending:EndingKind|null};
-export const freshCampaign=(m1:M1='study'):CampaignState=>({version:2,started:false,index:0,step:0,m1,events:[],ending:null});
+export type CampaignState={version:2;started:boolean;index:number;step:number;first:number;m1:M1;events:E[];ending:EndingKind|null};
+export const freshCampaign=(m1:M1='study'):CampaignState=>({version:2,started:false,index:0,step:0,first:0,m1,events:[],ending:null});
 const MIDS=CAMPAIGN.map(m=>m.id);
 function validEvent(e:any):e is E{
   if(!e||typeof e!=='object')return false;
@@ -40,6 +38,7 @@ export function sanitizeCampaign(x:any,m1:M1='study'):CampaignState{
     // every finished mission needs its choice; drop anything for missions not reached yet
     for(const mm of CAMPAIGN.slice(0,c.index))if(!seen.has(mm.id)){c.index=CAMPAIGN.indexOf(mm);c.step=0;break}
     c.ending=['thrive','continue','setback'].includes(x.ending)?x.ending:null;
+    c.first=Number.isInteger(x.first)&&x.first>=0&&x.first<=c.step?x.first:0;
     return c;
   }
   if(x.version===1){
@@ -86,7 +85,7 @@ export function setupCampaign(deps:Deps){
   const step=()=>mission()?.steps[s.step]||null;
   const choiceOf=(id:string)=>(s.events.find(e=>e.t==='choose'&&e.m===id) as {o:'A'|'B'}|undefined)?.o||null;
   const optOf=(m:CampaignMission)=>m.options.find(o=>o.id===choiceOf(m.id))||null;
-  const evHere=(t:Ev['t'])=>s.events.filter(e=>e.t===t&&e.i===s.index);
+  const evHere=<T extends Ev['t']>(t:T)=>s.events.filter(e=>e.t===t&&e.i===s.index) as (Extract<Ev,{t:T}>&{i?:number})[];
   const lastChanges=()=>sim().changes.at(-1)||[];
   /** Applies a player event, saves, and queues the world spots that changed (shown when the player is outside). */
   function push(e:Ev):Change[]{
@@ -116,7 +115,7 @@ export function setupCampaign(deps:Deps){
   }
   // ---------------------------------------------------------------- pictures
   function powerStrip(l:Locale,b=base()){
-    const uses:string[]=[];for(const k of SLOTS)if(b.power[k])uses.push(slotIcon(k,true));if(b.borrow&&b.borrow!=='spare'||b.borrow==='spare')uses.push('ripple/rover');
+    const uses:string[]=[];for(const k of SLOTS)if(b.power[k])uses.push(slotIcon(k,true));if(b.borrow)uses.push(b.rover==='rescue'?'ripple/helper':'ripple/rover');
     const cells=[...uses.slice(0,3),...Array(Math.max(0,3-uses.length)).fill('')];
     return `<div class="power-strip" aria-label="${l==='en'?'Power blocks':'مكعبات الطاقة'}">${cells.map(u=>`<span class="blk ${u?'on':''}">${u?`<img src="${asset(u)}" alt=""/>`:''}</span>`).join('')}</div>`}
   function gardenArt(l:Locale,b=base()){return `<div class="garden-art"><div class="lamps">${(['lamp1','lamp2'] as Slot[]).map(k=>`<img src="${asset(slotIcon(k,b.power[k]))}" alt="${esc(P_(SLOT_NAMES[k],l))}" class="${b.power[k]?'lit':''}"/>`).join('')}</div>${img(`ripple/plants-${b.plants}`,'tray')}<b class="stage s${b.plants}">${esc(P_(STAGE_NAME[b.plants],l))}</b></div>`}
@@ -166,8 +165,8 @@ export function setupCampaign(deps:Deps){
   function visibleScenes(list:SceneDef[]){const b=base();return list.filter(sc=>!sc.when||sc.when(b)||(sc.kind==='fix'&&evHere('fix').length>0))}
   function buildScenes():SceneDef[]{
     const m=mission()!,st=step()!;const list:SceneDef[]=[];
-    if(s.step===0&&s.index===0)list.push({id:'m1',art:'m1',stamp:'game',say:C_UI.m1[s.m1]});
-    if(s.step===0&&s.index>0){list.push({id:'ripple',art:'ripple',stamp:'game',say:{en:'',ar:''}});if(s.index>=2)list.push({id:'day',art:'day',stamp:'game',say:C_UI.day})}
+    if(s.step===s.first&&s.index===0)list.push({id:'m1',art:'m1',stamp:'game',say:C_UI.m1[s.m1]});
+    if(s.step===s.first&&s.index>0){list.push({id:'ripple',art:'ripple',stamp:'game',say:{en:'',ar:''}});if(s.index>=2)list.push({id:'day',art:'day',stamp:'game',say:C_UI.day})}
     list.push(...visibleScenes(st.scenes));
     if(st.decide)list.push({id:'choose',art:'choose',stamp:'game',say:C_UI.choose,more:C_UI.pretendMore},{id:'now',art:'now',stamp:'game',say:{en:'',ar:''}},{id:'lesson',art:'lesson',say:m.lesson});
     return list;
@@ -176,12 +175,13 @@ export function setupCampaign(deps:Deps){
   function show(){overlay.classList.remove('hidden');modals.open('science',close);render();requestAnimationFrame(()=>overlay.querySelector<HTMLElement>('.big-choice,.chip,.slot-btn,.learning-next')?.focus())}
   function close(){if(!seq)return;seq=null;borrow=null;overlay.classList.add('hidden');modals.closed('science')}
   const dayReport=()=>{const r=sim().reports;return r[r.length-1]||null};
+  const lastDayIdx=()=>{for(let i=s.events.length-1;i>=0;i--)if(s.events[i].t==='day')return i;return -1};
 
   function scene(l:Locale):Scene{
     const sc=seq!.scenes[page],m=mission(),n=seq!.scenes.length,pg:[number,number]=[page,n],B=CARDS.btn,b=base();
     const next=()=>({label:pick(B.next,l),action:'next'});
     if(seq!.kind==='final'){const o=outcome(b),kind=o.kind;
-      const why=[P_(C_UI.plantsWhy[o.plants],l)];const cause=firstLampCause();if(cause&&o.plants<=2){why.push(P_(WHY_CAUSE[cause],l));const fx=s.events.find(e=>e.t==='fix');if(fx)why.push(P_(fx.o==='keep'?WHY_FIX.kept:WHY_FIX.fixed,l))}
+      const why=[P_(C_UI.plantsWhy[o.plants],l)];const cause=firstLampCause();if(cause&&o.plants<=2){why.push(P_(WHY_CAUSE[cause],l));const fx=s.events.find(e=>e.t==='fix') as {o:string}|undefined;if(fx)why.push(P_(fx.o==='keep'?WHY_FIX.kept:WHY_FIX.fixed,l))}
       for(const p of o.open)why.push(P_(C_UI.open[p],l));if(o.shared&&o.open.length)why.push(P_(C_UI.shared,l));
       const solved=(['notes','alert','fair','rover'] as const).filter(p=>!o.open.includes(p)).map(p=>`<span class="chip-ch up">✓ ${esc(P_(C_UI.solved[p],l))}</span>`).join('');
       return {id:'campaign-end',stamp:'game',good:kind!=='setback',
@@ -199,7 +199,7 @@ export function setupCampaign(deps:Deps){
     if(sc.id==='day'){const r=dayReport();const lines=[r&&r.after>r.before?C_UI.grew:r&&r.lamps===0?C_UI.shrank0:r&&r.after<r.before?C_UI.shrank:C_UI.grew];
       const extra=[r?.boost?C_UI.boost:null,r?.alertChecked?C_UI.checked:null,r?.returned?C_UI.returned:null].filter(Boolean) as Tx[];
       const cause=lamps(b)<2&&b.lampCause?CAUSE[b.lampCause]:null;
-      return {id:'day',stamp:'game',art:`<div class="day-art">${r?img('ripple/plants-'+r.before,'tray'):''}<span class="rf-arrow">→</span>${gardenArt(l)}</div>${chips(sim().changes[s.events.length-1]||[],l)}`,
+      return {id:'day',stamp:'game',art:`<div class="day-art">${r?img('ripple/plants-'+r.before,'tray'):''}<span class="rf-arrow">→</span>${gardenArt(l)}</div>${chips(sim().changes[lastDayIdx()]||[],l)}`,
         say:`${esc(pick(C_UI.day,l))} ${esc(pick(lines[0],l))}`,more:[...extra.map(t=>pick(t,l)),cause?pick(cause,l):''].filter(Boolean).join(' ')||undefined,good:!!r&&r.after>r.before,grownups:grown(undefined,l),primary:next(),page:pg}}
     if(sc.kind==='garden'){const cause=lamps(b)<2&&b.lampCause?CAUSE[b.lampCause]:null;
       return {id:sc.id,stamp:'game',art:gardenArt(l)+powerStrip(l),say:pick(STAGE_SAY[b.plants],l),more:cause?pick(cause,l):undefined,good:b.plants>=3,grownups:grown(undefined,l),primary:next(),back:page>0,page:pg}}
@@ -208,7 +208,7 @@ export function setupCampaign(deps:Deps){
       const opts=(['watch','monitor'] as const).filter(k=>b.power[k]).map(k=>({k,t:k==='watch'?C_UI.fixWatch:C_UI.fixMonitor,c:k==='watch'?(b.alert==='checked'?C_UI.fixWatchOk:C_UI.fixWatchNo):C_UI.fixMonitorNo,ok:k==='watch'&&b.alert==='checked'}));
       return {id:'fix',stamp:'game',art:gardenArt(l)+powerStrip(l),say:pick(sc.say,l),grownups:grown(undefined,l),
         choices:`<div class="choice-row ${opts.length>1?'three':''}">${opts.map(o=>`<button type="button" class="big-choice" data-c-action="fix-${o.k}"><img class="scene-img choice-icon" src="${asset(slotIcon(o.k,false))}" alt=""/><b>${esc(pick(o.t,l))}</b><span class="gain"><i aria-hidden="true">✓</i>${esc(pick(C_UI.fixGain,l))}</span><span class="${o.ok?'gain':'cost'}"><i aria-hidden="true">${o.ok?'✓':'⏸'}</i>${esc(pick(o.c,l))}</span></button>`).join('')}<button type="button" class="big-choice" data-c-action="fix-keep"><img class="scene-img choice-icon" src="${asset('ripple/sprout-'+Math.max(0,b.plants-1))}" alt=""/><b>${esc(pick(C_UI.fixKeep,l))}</b><span class="gain"><i aria-hidden="true">✓</i>${esc(pick(C_UI.leaveGain,l))}</span><span class="cost"><i aria-hidden="true">⏸</i>${esc(pick(C_UI.fixKeepNo,l))}</span></button></div>`,page:pg}}
-    if(sc.kind==='power'){const full=spare(b)===0;
+    if(sc.kind==='power'){const full=spare(b)===0;if(sc.award)P.award(sc.award);
       return {id:sc.id,stamp:'game',art:powerStrip(l)+`<p class="spare-n">${esc(pick(C_UI.spareN,l,{n:spare(b)}))}${b.borrow?` · ${esc(pick(C_UI.robotBlock,l))}`:''}</p>`,say:pick1?pick1:pick(sc.say,l),more:pick(sc.more!,l),grownups:grown(undefined,l),
         choices:`<div class="slot-row four">${SLOTS.map(k=>`<button type="button" class="slot-btn ${b.power[k]?'on':''} ${!b.power[k]&&full?'locked':''}" data-c-action="toggle-${k}" aria-pressed="${b.power[k]}"><img src="${asset(slotIcon(k,b.power[k]))}" alt=""/><b>${esc(P_(SLOT_NAMES[k],l))}</b><small>${esc(P_(SLOT_HINTS[k],l))}</small></button>`).join('')}</div>`,
         primary:{label:pick(C_UI.powerDone,l),action:'next'},page:pg}}
@@ -272,7 +272,7 @@ export function setupCampaign(deps:Deps){
     if(a==='step-done'&&m){close();s.step=nextStep(Math.min(m.steps.length-1,s.step+1));save();const st=step()!;say(pick(NURI.detour,l,{task:pick(st.task,l)}));return}
     if(a==='finish'&&m){P.award('ev:mission-complete:'+m.id);
       if(s.index>=1)push({t:'day'});
-      s.index++;s.step=0;quizPick={};s.step=nextStep(0);save();close();
+      s.index++;s.step=0;quizPick={};s.step=nextStep(0);s.first=s.step;save();close();
       if(s.index>=CAMPAIGN.length){P.award('ev:campaign-complete');s.ending=outcome(base()).kind;save();playEnding(false);return}
       say(pick(mission()!.brief,l),'happy');return}
   }
@@ -333,7 +333,7 @@ export function setupCampaign(deps:Deps){
     const st=step()!;return {title:`${pick(C_UI.missionN,l,{n:s.index+2,total:CAMPAIGN.length+1})} · ${pick(m.title,l)}`,task:pick(st.task,l),where:pick(st.where,l),button:'',action:'',button2:'',action2:''};
   }
   function hudAction(a:string){if(a==='restart')restart();else if(a==='ending'){seq={scenes:[],kind:'final'};page=0;fresh=true;show()}}
-  function metersHtml(l:Locale){if(!s.started||!deps.roverDone())return '';const b=base(),o=problems(b).filter(p=>p!=='notes'||b.notes!=='none').filter(p=>p!=='fair'||b.fair!==null).filter(p=>p!=='alert'||b.alert==='mystery'||b.alert==='watching');
+  function metersHtml(l:Locale){if(!s.started||!deps.roverDone())return '';const b=base();
     return `<div class="hud-meters pixel-panel" aria-label="${esc(pick(C_UI.meters,l))}"><small>${pick(C_UI.meters,l)}</small>${powerStrip(l,b)}<span class="hud-plant" title="${esc(P_(STAGE_NAME[b.plants],l))}"><img src="${asset('ripple/sprout-'+b.plants)}" alt="${esc(P_(STAGE_NAME[b.plants],l))}"/></span>${b.rover==='stuck'?`<span title="${esc(P_(C_UI.chip.robotStuck,l))}"><img src="${asset('ripple/rover-stuck')}" alt="${esc(P_(C_UI.chip.robotStuck,l))}" class="hud-rover"/></span>`:''}</div>`}
   window.addEventListener('ripple-scene-ready',()=>sync());
   const api={state:()=>({...s,choices:Object.fromEntries(s.events.filter(e=>e.t==='choose').map(e=>[(e as any).m,(e as any).o]))}),base,outcome:()=>outcome(base()),problems:()=>problems(base()),view,

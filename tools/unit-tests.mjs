@@ -100,18 +100,54 @@ await test('campaign: 5 missions; every A/B option uses the research package dec
   for(const m of CD.CAMPAIGN){assert.deepEqual(m.options.map(o=>o.id),['A','B']);for(const o of m.options){assert.ok(de[o.decisionId],o.decisionId);assert.equal(o.flag,de[o.decisionId].delayed_effect.at_next_mission,o.decisionId)}}});
 await test('campaign: every quiz has exactly one right answer, and every mission has a decision step',()=>{for(const m of CD.CAMPAIGN){assert.ok(m.steps.some(s=>s.decide),m.id);for(const s of m.steps)for(const sc of s.scenes)if(sc.quiz)assert.equal(sc.quiz.options.filter(o=>o.ok).length,1,sc.id)}});
 await test('campaign: reward events exist for every quiz, mission and the finale',()=>{for(const m of CD.CAMPAIGN){assert.ok(R.REWARD_EVENTS['ev:mission-complete:'+m.id],m.id);for(const s of m.steps)for(const sc of s.scenes){if(sc.quiz)assert.ok(R.REWARD_EVENTS[sc.quiz.award],sc.quiz.award);if(sc.award)assert.ok(R.REWARD_EVENTS[sc.award],sc.award)}}assert.ok(R.REWARD_EVENTS['ev:campaign-complete'])});
-await test('pretend meters: whole blocks, clamped 0–5, start at 3, effects are small and documented',()=>{
-  const m=SIM.startMeters();assert.deepEqual(m,{power:3,water:3,oxygen:3,food:3});
-  assert.deepEqual(SIM.applyEffect({power:0,water:5,oxygen:3,food:3},{power:-1,water:2}),{power:0,water:5,oxygen:3,food:3});
-  for(const mm of CD.CAMPAIGN)for(const o of mm.options)for(const e of [o.effect,o.laterEffect])if(e)for(const v of Object.values(e))assert.ok(Number.isInteger(v)&&Math.abs(v)<=2,mm.id)});
-await test('pretend meters: every possible path through the campaign stays inside 0–5 and both plans stay comparable',()=>{
-  let paths=[[SIM.startMeters(),[]]];
-  for(const [i,mm] of CD.CAMPAIGN.entries()){const next=[];for(const [m,ch] of paths)for(const o of mm.options){let x=m;const prev=i?CD.CAMPAIGN[i-1].options.find(p=>p.id===ch[i-1]):null;if(prev?.laterEffect)x=SIM.applyEffect(x,prev.laterEffect);x=SIM.applyEffect(x,o.effect);if(mm.id==='M5-POWER')x=SIM.applyEffect(x,{oxygen:1,water:1});next.push([x,[...ch,o.id]])}paths=next}
-  assert.equal(paths.length,32);for(const [m] of paths)for(const v of Object.values(m))assert.ok(v>=0&&v<=5)});
-await test('campaign save: bad data repaired, unknown flags dropped, meters clamped',()=>{
-  const s=CE.sanitizeCampaign({version:1,started:true,index:99,step:-4,flags:['hack','log_repair_planned'],meters:{power:99,water:-3,oxygen:'x',food:2},choices:{'M2-LOG':'Z'}});
-  assert.equal(s.index,CD.CAMPAIGN.length);assert.deepEqual(s.flags,['log_repair_planned']);assert.deepEqual(s.meters,{power:5,water:0,oxygen:3,food:2});assert.equal(s.choices['M2-LOG'],'A');
+// The engine's event order (src/missions/campaign.ts): M2, M3, day, [lamp fix], M4, day, [power check], M5, day, [rescue], M6, day.
+const PATHS=[];for(const m1 of ['study','trip'])for(let k=0;k<32;k++)PATHS.push([m1,[...Array(5)].map((_,i)=>k>>i&1?'B':'A').join('')]);
+function play(m1,c,pol={}){const E=[];let r;const cur=()=>SIM.replay(m1,E).base;
+  E.push({t:'choose',m:'M2-LOG',o:c[0]});E.push({t:'choose',m:'M3-SUN',o:c[1]});E.push({t:'day'});
+  if(SIM.lamps(cur())<2)E.push({t:'fix',o:pol.fix&&cur().power[pol.fix]?pol.fix:'keep'});
+  E.push({t:'choose',m:'M4-PLANTS',o:c[2]});E.push({t:'day'});
+  if(pol.power){for(const s of SIM.SLOTS)if(cur().power[s]&&!pol.power.includes(s))E.push({t:'toggle',slot:s});for(const s of pol.power)if(!cur().power[s])E.push({t:'toggle',slot:s})}
+  E.push({t:'choose',m:'M5-POWER',o:c[3],...(pol.lend&&cur().power[pol.lend]?{sub:pol.lend}:{})});E.push({t:'day'});
+  if(cur().rover==='stuck')E.push({t:'rescue',o:pol.rescue?'help':'leave',...(pol.lend&&cur().power[pol.lend]?{sub:pol.lend}:{})});
+  E.push({t:'choose',m:'M6-PLAN',o:c[4]});E.push({t:'day'});
+  r=SIM.replay(m1,E);return {E,base:r.base,out:SIM.outcome(r.base),reports:r.reports}}
+const POWERS=[null,['lamp1','lamp2'],['lamp1','lamp2','monitor'],['lamp1','lamp2','watch'],['lamp1','monitor','watch'],['monitor','watch'],['lamp1','lamp2','monitor'].slice(0,2)];
+const RANK={setback:0,continue:1,thrive:2};
+function best(m1,c){let top=null;for(const fix of [null,'watch','monitor'])for(const power of POWERS)for(const rescue of [false,true])for(const lend of [null,'watch','monitor','lamp2']){const r=play(m1,c,{fix,power,rescue,lend});if(!top||RANK[r.out.kind]>RANK[top.out.kind])top={...r,pol:{fix,power,rescue,lend}}}return top}
+const TALLY={none:{thrive:0,continue:0,setback:0},best:{thrive:0,continue:0,setback:0}};const ROWS=[];
+for(const [m1,c] of PATHS){const n=play(m1,c),bst=best(m1,c);TALLY.none[n.out.kind]++;TALLY.best[bst.out.kind]++;ROWS.push({m1,c,none:n,best:bst})}
+await test('ripple: the base starts with 3 blocks (2 lamps on, 1 spare), plants "growing"',()=>{const b=SIM.startBase('study');assert.equal(SIM.spare(b),1);assert.equal(SIM.lamps(b),2);assert.equal(b.plants,2)});
+await test('ripple: the cost of a choice depends on earlier choices (M2 spare monitor → M3 watch screen turns a lamp off)',()=>{
+  const a=SIM.replay('study',[{t:'choose',m:'M2-LOG',o:'A'},{t:'choose',m:'M3-SUN',o:'A'}]),b=SIM.replay('study',[{t:'choose',m:'M2-LOG',o:'B'},{t:'choose',m:'M3-SUN',o:'A'}]);
+  assert.equal(a.base.power.lamp2,false);assert.equal(a.base.lampCause,'watch');assert.equal(b.base.power.lamp2,true);assert.equal(b.base.power.watch,true)});
+await test('ripple: a dim greenhouse shrinks the plants next day; 2 lamps grow them; the watch screen checks the alert overnight',()=>{
+  const r=SIM.replay('study',[{t:'choose',m:'M2-LOG',o:'A'},{t:'choose',m:'M3-SUN',o:'A'},{t:'day'}]);assert.equal(r.base.plants,1);assert.equal(r.base.alert,'checked');
+  const g=SIM.replay('study',[{t:'choose',m:'M2-LOG',o:'B'},{t:'choose',m:'M3-SUN',o:'B'},{t:'day'}]);assert.equal(g.base.plants,3);assert.equal(g.base.alert,'mystery')});
+await test('ripple: Mission 1 changes Mission 5 (rested robot scouts for free; a robot that learned the road is never stuck)',()=>{
+  const sA=play('study','BBBAB'),tA=play('trip','BBBAB');assert.equal(sA.base.rover,'home');assert.equal(tA.base.rover,'home');
+  assert.equal(play('study','BBBBB').base.rover,'stuck');assert.equal(play('trip','BBBBB').base.rover,'home');
+  const lend=SIM.replay('trip',[{t:'choose',m:'M2-LOG',o:'A'},{t:'choose',m:'M3-SUN',o:'B'},{t:'day'},{t:'choose',m:'M4-PLANTS',o:'A'},{t:'day'},{t:'choose',m:'M5-POWER',o:'A',sub:'lamp1'}]);
+  assert.equal(lend.base.power.lamp1,false);assert.equal(lend.base.lampCause,'rover');const back=SIM.step(lend.base,{t:'day'});assert.equal(back.base.power.lamp1,true)});
+await test('ripple: a stuck robot can be rescued (borrows a block for one day); leaving it keeps a problem open',()=>{
+  const h=play('study','BBBBA',{rescue:true}),l=play('study','BBBBA');assert.ok(!h.out.open.includes('rover'));assert.ok(l.out.open.includes('rover'))});
+await test('ripple: fix events only work when a lamp is dark and the chosen machine is on',()=>{const b=SIM.startBase('study');assert.deepEqual(SIM.step(b,{t:'fix',o:'watch'}).base,b);
+  const r=SIM.replay('study',[{t:'choose',m:'M2-LOG',o:'A'},{t:'choose',m:'M3-SUN',o:'A'},{t:'day'},{t:'fix',o:'watch'}]);assert.equal(r.base.power.watch,false);assert.equal(r.base.power.lamp2,true)});
+await test('ripple: the power check never exceeds 3 blocks',()=>{let b=SIM.startBase('study');for(const s of ['monitor','watch','lamp1','monitor'])b=SIM.step(b,{t:'toggle',slot:s}).base;assert.ok(SIM.used(b)<=3)});
+await test('ripple: all 64 main paths finish, deterministically, with a valid base',()=>{assert.equal(ROWS.length,64);for(const r of ROWS){const again=play(r.m1,r.c);assert.deepEqual(again.base,r.none.base);assert.ok(r.none.base.plants>=0&&r.none.base.plants<=4);assert.ok(SIM.used(r.none.base)<=3);assert.equal(r.none.reports.length,4)}});
+await test('ripple: all three endings are reached by main paths with no recovery',()=>{for(const k of ['thrive','continue','setback'])assert.ok(TALLY.none[k]>0,k+' '+JSON.stringify(TALLY))});
+await test('ripple: no unwinnable path — with recovery every path reaches at least "continues", most reach "thrives"',()=>{assert.equal(TALLY.best.setback,0,JSON.stringify(TALLY));assert.ok(TALLY.best.thrive>=48,JSON.stringify(TALLY));
+  assert.ok(ROWS.filter(r=>r.none.out.kind==='setback'&&r.best.out.kind==='thrive').length>=10,'recovery turns setbacks into thriving bases')});
+await test('ripple: recovery example — careful science (AAAAA) dims the greenhouse; moving the watch screen power back to the lamp saves it',()=>{
+  const k=play('study','AAAAA'),f=play('study','AAAAA',{fix:'watch'});assert.equal(k.out.kind,'setback');assert.equal(f.out.kind,'thrive');assert.ok(f.base.plants>k.base.plants)});
+await test('ripple: different decisions give different bases (choices are not just text)',()=>{const keys=new Set(ROWS.map(r=>JSON.stringify(r.none.base)));assert.ok(keys.size>=40,keys.size)});
+await test('campaign save: v1 saves migrate to the event history; bad events dropped; duplicate choices ignored',()=>{
+  const v1=CE.sanitizeCampaign({version:1,started:true,index:2,step:0,choices:{'M2-LOG':'A','M3-SUN':'Z'},meters:{power:1}});
+  assert.equal(v1.version,2);assert.deepEqual(v1.events.filter(e=>e.t==='choose').map(e=>e.o),['A','A']);assert.equal(v1.events.filter(e=>e.t==='day').length,1);
+  const v2=CE.sanitizeCampaign({version:2,started:true,index:1,step:0,m1:'trip',events:[{t:'choose',m:'M2-LOG',o:'B'},{t:'choose',m:'M2-LOG',o:'A'},{t:'hack'},{t:'toggle',slot:'x'},{t:'day'}]});
+  assert.equal(v2.m1,'trip');assert.equal(v2.events.length,2);assert.equal(v2.events[0].o,'B');
+  const gap=CE.sanitizeCampaign({version:2,started:true,index:3,events:[{t:'choose',m:'M2-LOG',o:'B'}]});assert.equal(gap.index,1);
   assert.deepEqual(CE.sanitizeCampaign(null),CE.freshCampaign())});
+console.log('    endings, no recovery:',JSON.stringify(TALLY.none),' best recovery:',JSON.stringify(TALLY.best));
 await test('campaign evidence: notebook rows and the gap are real rows from the original NASA CSVs',()=>{
   const ev=JSON.parse(readFileSync('src/science/campaign-evidence-v1.json','utf8'));
   const d=ev.log.duplicate,csvp=resolve(pkg,d.sourceRecord);if(!existsSync(csvp)){console.log('    (skipped)');return}
@@ -122,9 +158,10 @@ await test('campaign evidence: notebook rows and the gap are real rows from the 
   const fd=Object.fromEntries(JSON.parse(readFileSync(resolve(pkg,'04_VERIFIED_DISCOVERIES/scientific_findings.json'),'utf8')).map(x=>[x.id,x]));
   assert.equal(ev.log.conflictingRows,fd['P2-RAD-08'].value);assert.deepEqual(ev.sun.counts,fd['SCI-0003'].value.counts);assert.equal(ev.sun.strongest.class,'X8.7');assert.deepEqual(ev.plants.groups,fd['P2-OSD-615'].value.groups)});
 await test('campaign text: both languages, short sentences, no jargon, never safe/unsafe',()=>{
-  const lines=[];const add=(t,w)=>{if(!t)return;assert.ok(t.en.trim()&&/[\u0600-\u06FF]/.test(t.ar),w);lines.push([t.en,w])};
-  for(const m of CD.CAMPAIGN){add(m.title,m.id);add(m.brief,m.id);add(m.lesson,m.id);add(m.think,m.id);for(const s of m.steps){add(s.task,s.id);add(s.where,s.id);for(const sc of s.scenes){add(sc.say,sc.id);if(sc.quiz)for(const o of sc.quiz.options){add(o.label,sc.id);add(o.fb,sc.id)}}}for(const o of m.options){add(o.title,o.decisionId);add(o.gain,o.decisionId);add(o.cost,o.decisionId);add(o.now,o.decisionId);add(o.later,o.decisionId)}}
-  for(const [t,w] of lines){assert.ok(!JARGON.test(t),`${w}: ${t}`);assert.ok(!/\bunsafe\b|\bsafe\b/i.test(t.replace('stops safely','')),`${w}: ${t}`);for(const s of t.split(/(?<=[.!?])\s+/))assert.ok(s.split(/\s+/).length<=16,`${w}: "${s}"`)}});
+  const lines=[];const add=(t,w)=>{if(!t||!t.en&&!t.ar)return;assert.ok(t.en.trim()&&/[\u0600-\u06FF]/.test(t.ar),w);lines.push([t.en,w])};
+  for(const m of CD.CAMPAIGN){add(m.title,m.id);add(m.brief,m.id);add(m.lesson,m.id);add(m.think,m.id);for(const s of m.steps){add(s.task,s.id);add(s.where,s.id);for(const sc of s.scenes){add(sc.say,sc.id);if(sc.quiz)for(const o of sc.quiz.options){add(o.label,sc.id);add(o.fb,sc.id)}}}const bases=ROWS.slice(0,64).map(r=>r.none.base);for(const o of m.options){add(o.title,o.decisionId);add(o.now,o.decisionId);for(const k of ['gain','cost','later'])if(o[k])for(const bb of bases)add(CD.dyn(o[k],bb),o.decisionId)}}
+  const walk=(x,w)=>{if(x&&typeof x==='object'){if('en' in x&&'ar' in x)add(x,w);else for(const [k,v] of Object.entries(x))walk(v,w+'.'+k)}};walk(CD.C_UI,'C_UI');walk(CD.STAGE_SAY,'stage');walk(CD.STAGE_NAME,'stageName');walk(CD.CAUSE,'cause');walk(CD.SLOT_NAMES,'slot');walk(CD.SLOT_HINTS,'slotHint');
+  for(const [t,w] of lines){assert.ok(!JARGON.test(t),`${w}: ${t}`);assert.ok(!/\bunsafe\b|\bsafe\b|\bsafety\b|\bdanger/i.test(t),`${w}: ${t}`);for(const s of t.split(/(?<=[.!?])\s+/))assert.ok(s.split(/\s+/).length<=16,`${w}: "${s}"`)}});
 
 await server.close();
 const failed=results.filter(r=>!r[1]);
