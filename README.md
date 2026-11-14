@@ -227,8 +227,8 @@ All science content comes from public NASA and Canadian Space Agency sources.
 **Requirements:** [Node.js](https://nodejs.org/) 20.19 or newer, and a modern desktop browser (tested in Google Chrome).
 
 ```bash
-git clone <this-repository-url>
-cd mission-ripple-2d
+git clone https://github.com/kero334/mission-ripple.git
+cd mission-ripple
 npm install
 npm run dev
 ```
@@ -301,7 +301,7 @@ A saved game offers **CONTINUE**. **Settings** has *Replay cinematic*, *Replay t
 <summary><b>Project structure</b></summary>
 
 ```text
-mission-ripple-2d/
+mission-ripple/
 ├── index.html              # HUD markup
 ├── src/
 │   ├── main.ts             # HUD wiring and game start
