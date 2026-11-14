@@ -14,6 +14,8 @@ export const introSound={
     master.gain.exponentialRampToValueAtTime(0.5,ctx.currentTime+1.2);
     return true;
   },
+  /** Lowers the score while Nuri speaks (smooth, about 0.25 s). */
+  duck(on:boolean){if(!ctx||!master)return;master.gain.setTargetAtTime(on?0.18:0.5,ctx.currentTime,0.08)},
   stop(fade=0.4){
     if(!ctx||!master)return;const g=master,t=ctx.currentTime;
     g.gain.cancelScheduledValues(t);g.gain.setValueAtTime(Math.max(g.gain.value,0.0001),t);g.gain.exponentialRampToValueAtTime(0.0001,t+fade);
@@ -65,4 +67,4 @@ export const introSound={
     [26.8,27.2,27.6].forEach((t,i)=>this.chime([79,84,88][i],s(t),0.05));
   },
 };
-(window as any).__introSound=introSound;
+if(typeof window!=='undefined')(window as any).__introSound=introSound;

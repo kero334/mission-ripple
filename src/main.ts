@@ -14,6 +14,9 @@ import {setupCampaign} from './missions/campaign';
 import {EndingScene} from './ending/EndingScene';
 import {setupEnding} from './ending/ending';
 import {sfx} from './audio/sfx';
+import {introSound} from './intro/sound';
+import {setupVoice} from './audio/voice-hooks';
+import {setupCompanion} from './companion/companion';
 import './style.css';
 
 const progress=createProgressStore();
@@ -62,6 +65,7 @@ function render(){
   document.body.classList.toggle('guided',progress.get().settings.guidance==='guided');
   renderPassportChip();
   $('nuri-name').textContent=locale==='en'?'NURI':'نوري';
+  {const r=$('nuri-replay');const t=locale==='en'?'Hear Nuri again':'اسمع نوري تاني';r.title=t;r.setAttribute('aria-label',t);r.classList.toggle('hidden',locale!=='en'||!progress.get().settings.voice||!progress.get().settings.sound)}
   if(!$('nuri-text').textContent)$('nuri-text').textContent=pick(OBJECTIVES[science.getState().stage as StageKey].intro,locale);
   const pr=promptText();$('prompt').classList.toggle('hidden',!pr||modals.any());
   if(pr){$('prompt-key').classList.toggle('hidden',!pr.key);$('prompt-move').classList.toggle('hidden',pr.key);$('prompt-text').textContent=pr.text}
@@ -71,9 +75,12 @@ function render(){
   science.renderHud();
   if(panels.isOpen())panels.render();
 }
-function switchLocale(){locale=locale==='en'?'ar':'en';progress.setting('locale',locale);send('locale',locale);$('nuri-text').textContent=pick(OBJECTIVES[science.getState().stage as StageKey].intro,locale);science.updateGuide();science.rerenderCard();render()}
+function switchLocale(){voiceHooks.stop();locale=locale==='en'?'ar':'en';progress.setting('locale',locale);send('locale',locale);$('nuri-text').textContent=pick(OBJECTIVES[science.getState().stage as StageKey].intro,locale);science.updateGuide();science.rerenderCard();render()}
 
 sfx.setSource(()=>progress.get().settings.sound);
+const voiceHooks=setupVoice({enabled:()=>progress.get().settings.sound&&progress.get().settings.voice,volume:()=>progress.get().settings.voiceVolume,locale:()=>locale,
+  duck:on=>{sfx.duck(on);introSound.duck(on)},blocked:()=>{try{return intro.blocking()||ending.playing()}catch{return true}}});
+window.addEventListener('ripple-voice-settings',()=>{const s=progress.get().settings;if(!s.voice||!s.sound)voiceHooks.stop();else voiceHooks.voice.setVolume(s.voiceVolume)});
 document.addEventListener('click',e=>{const t=e.target as HTMLElement;sfx.unlock();if(t.closest('button,summary,rect[data-window]'))sfx.play('click',undefined,{gap:60})});
 document.addEventListener('keydown',()=>sfx.unlock());
 progress.onReward(n=>{
@@ -111,5 +118,8 @@ const game=new Phaser.Game({type:Phaser.AUTO,parent:'game',backgroundColor:'#7f4
 ending=setupEnding({game:()=>game,locale:()=>locale,sound:()=>progress.get().settings.sound});
 const intro=setupIntro({game:()=>game,locale:()=>locale,toggleLocale:()=>switchLocale(),progress,stage:()=>science.getState().stage});
 replayIntro=()=>{panels.close();intro.play()};
+const companion=setupCompanion({locale:()=>locale,progress,blocked:()=>intro.blocking()||ending.playing(),stage:()=>science.getState().stage,
+  voiceOn:()=>progress.get().settings.sound&&progress.get().settings.voice&&locale==='en'});
+window.addEventListener('ripple-replay-tour',()=>{panels.close();setTimeout(()=>companion.start(0),250)});
 render();
 intro.showTitle();

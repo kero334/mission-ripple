@@ -261,12 +261,12 @@ export function setupCampaign(deps:Deps){
     if(a.startsWith('quiz-')){const sc=seq!.scenes[page],i=Number(a.slice(5));quizPick[sc.id]=i;sfx.play(sc.quiz!.options[i].ok?'right':'tryAgain');if(sc.quiz!.options[i].ok)P.award(sc.quiz!.award);render();return}
     if(a.startsWith('toggle-')&&m){const k=a.slice(7) as Slot,b=base();if(!b.power[k]&&spare(b)===0){pick1=pick(C_UI.powerFull,l);sfx.play('tryAgain');render();return}
       pick1=null;push({t:'toggle',slot:k});const sc=seq!.scenes[page];if(sc.award)P.award(sc.award);render();return}
-    if(a.startsWith('fix-')&&m){if(!evHere('fix').length){sfx.play('decision');push({t:'fix',o:a.slice(4) as 'watch'|'monitor'|'keep'});say(pick(a==='fix-keep'?C_UI.kept:C_UI.fixed,l),a==='fix-keep'?'thinking':'happy')}render();return}
+    if(a.startsWith('fix-')&&m){if(!evHere('fix').length){sfx.play('decision');if(a!=='fix-keep')window.dispatchEvent(new CustomEvent('ripple-feedback',{detail:{name:'recovered'}}));push({t:'fix',o:a.slice(4) as 'watch'|'monitor'|'keep'});say(pick(a==='fix-keep'?C_UI.kept:C_UI.fixed,l),a==='fix-keep'?'thinking':'happy')}render();return}
     if(a.startsWith('rescue-')&&m){if(evHere('rescue').length){render();return}const o=a.slice(7) as 'help'|'leave',b=base();
       if(o==='help'&&spare(b)===0&&lenders(b).length>1){borrow={for:'rescue',opt:'help'};render();return}
-      sfx.play('decision');push({t:'rescue',o});say(pick(o==='help'?C_UI.helped:C_UI.left,l),o==='help'?'happy':'thinking');render();return}
+      sfx.play('decision');if(o==='help')window.dispatchEvent(new CustomEvent('ripple-feedback',{detail:{name:'recovered'}}));push({t:'rescue',o});say(pick(o==='help'?C_UI.helped:C_UI.left,l),o==='help'?'happy':'thinking');render();return}
     if(a.startsWith('lend-')&&borrow&&m){const sub=a.slice(5) as Slot,bw=borrow;borrow=null;
-      if(bw.for==='rescue'){push({t:'rescue',o:'help',sub});say(pick(C_UI.helped,l),'happy');render();return}
+      if(bw.for==='rescue'){window.dispatchEvent(new CustomEvent('ripple-feedback',{detail:{name:'recovered'}}));push({t:'rescue',o:'help',sub});say(pick(C_UI.helped,l),'happy');render();return}
       commitChoice(m,'A',sub);return}
     if(a.startsWith('choose-')&&m){const id=a.slice(7) as 'A'|'B';if(choiceOf(m.id)){page=seq!.scenes.findIndex(x=>x.id==='now');fresh=true;render();return}
       const b=base();if(m.id==='M5-POWER'&&id==='A'&&b.m1!=='study'&&spare(b)===0&&lenders(b).length>1){borrow={for:'route',opt:'A'};fresh=true;render();return}

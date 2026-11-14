@@ -173,6 +173,7 @@ export const UI={
 };
 
 export const CARDS={
+  hear:tx('Hear Nuri again','اسمع نوري تاني'),
   // Every screen = one picture + one short Nuri line + one big button.
   // Glowing screen ------------------------------------------------------------
   brief:{say:tx('A robot on Mars found a clue! Follow the yellow arrow to the glowing screen.','روبوت على المريخ لقى دليل! امشي ورا السهم الأصفر لحد الشاشة المنوّرة.')},
@@ -286,6 +287,8 @@ export const SETTINGS={
   controlsTitle:tx('Keys','الأزرار'),
   language:tx('Language','اللغة'),
   resume:tx('PLAY','العب'),
+  voice:tx('Nuri’s voice','صوت نوري'),voiceOn:tx('VOICE: ON','الصوت: شغال'),voiceOff:tx('VOICE: OFF','الصوت: مقفول'),
+  vLow:tx('Quiet','واطي'),vMid:tx('Normal','عادي'),vHigh:tx('Loud','عالي'),hearAgain:tx('Hear Nuri again','اسمع نوري تاني'),voiceEnOnly:tx('Nuri speaks in English for now.','نوري بتتكلم إنجليزي بس دلوقتي.'),
 };
 
 export const MAP={

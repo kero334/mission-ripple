@@ -56,7 +56,7 @@ export function renderScene(l:Locale,s:Scene){
   const dots=s.page&&s.page[1]>1?`<span class="pager" aria-label="${s.page[0]+1}/${s.page[1]}">${Array.from({length:s.page[1]},(_,i)=>`<i class="${i===s.page![0]?'on':i<s.page![0]?'past':''}"></i>`).join('')}</span>`:'<span></span>';
   const grown=s.grownups?`<details class="grownups"><summary>${pick(B.grownups,l)}</summary><div class="grownups-body">${s.grownups}</div></details>`:'';
   return `<div class="scene" data-page="${s.id}" aria-label="${esc(s.say.replace(/<[^>]+>/g,''))}">${art}
-    <div class="nuri-say ${s.good?'good':''}" aria-live="polite"><img src="${asset('ui/nuri-portrait-pixel')}" alt=""/><div><p id="science-say">${s.say}</p>${more}</div></div>
+    <div class="nuri-say ${s.good?'good':''}" aria-live="polite"><img src="${asset('ui/nuri-portrait-pixel')}" alt=""/><div><p id="science-say">${s.say}</p>${more}</div><button type="button" class="voice-replay" data-voice-replay="card" aria-label="${pick(CARDS.hear,l)}" title="${pick(CARDS.hear,l)}"><img src="${asset('ui/ui-voice-pixel')}" alt=""/></button></div>
     ${s.choices||''}
     <div class="scene-foot">${s.back?`<button type="button" class="card-back" data-science-action="back" aria-label="${l==='en'?'Back':'رجوع'}"><span aria-hidden="true">←</span></button>`:'<span></span>'}${dots}
       <div class="card-actions">${(s.secondary||[]).map(b=>`<button type="button" class="card-secondary" data-science-action="${b.action}">${b.label}</button>`).join('')}${s.primary?`<button type="button" class="learning-next" data-science-action="${s.primary.action}">${s.primary.label}<span aria-hidden="true">→</span></button>`:''}</div></div>

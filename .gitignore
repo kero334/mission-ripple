@@ -4,3 +4,5 @@ dist/
 .vite-cache/
 *.log
 
+
+voice-cache/

@@ -9,7 +9,7 @@ export function report(dir){
   return {r,check:(name,pass,detail='')=>{r.checks.push({name,pass:!!pass,detail:typeof detail==='string'?detail:JSON.stringify(detail)});console.log(pass?'PASS':'FAIL',name,pass?'':detail)},
     save:()=>{writeFileSync(dir+'/results.json',JSON.stringify(r,null,2));const f=r.checks.filter(c=>!c.pass);console.log(`\n${r.checks.length-f.length}/${r.checks.length} passed, ${r.errors.length} browser errors`);return f.length===0&&r.errors.length===0}};
 }
-export async function launch({headless=process.env.HEADED?false:true}={}){return chromium.launch({channel:'chrome',headless})}
+export async function launch({headless=process.env.HEADED?false:true}={}){return chromium.launch({channel:'chrome',headless,args:['--autoplay-policy=no-user-gesture-required']})}
 export async function openGame(browser,{width=1280,height=720,errors=[],storage=null}={}){
   const context=await browser.newContext({viewport:{width,height},deviceScaleFactor:1});
   if(storage)await context.addInitScript(s=>{if(!sessionStorage.getItem('__seeded')){for(const [k,v] of Object.entries(s))localStorage.setItem(k,v);sessionStorage.setItem('__seeded','1')}},storage);
@@ -32,6 +32,7 @@ export async function captureDialogue(page,file){
     const seen=new Set();
     const scan=()=>{if(document.documentElement.lang!=='en')return;for(const [k,s] of Object.entries(SEL))for(const el of document.querySelectorAll(s)){const t=(el.textContent||'').replace(/\s+/g,' ').trim();const key=k+'|'+t;if(t&&!seen.has(key)){seen.add(key);window.__voiceCapture(k,t)}}};
     new MutationObserver(()=>scan()).observe(document,{subtree:true,childList:true,characterData:true});
+    window.addEventListener('ripple-voice',e=>window.__voiceCapture('voice-'+e.detail.type,JSON.stringify(e.detail)));
   });
 }
 /** Gets past the title screen: START + Skip Intro on a fresh save, CONTINUE otherwise. */

@@ -1,0 +1,126 @@
+{
+  "checks": [
+    {
+      "name": "Voice manifest loaded: 390 recorded lines",
+      "pass": true,
+      "detail": "390"
+    },
+    {
+      "name": "Opening the mission card: Nuri speaks the card line",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Voice = the exact text in the card bubble",
+      "pass": true,
+      "detail": "{\"voice\":\"A robot on Mars found a clue! Follow the yellow arrow to the glowing screen.\",\"bubble\":\"A robot on Mars found a clue! Follow the yellow arrow to the glowing screen.\"}"
+    },
+    {
+      "name": "Music and effects are lowered while Nuri speaks",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Closing the card replaces the card line (one voice at a time)",
+      "pass": true,
+      "detail": "{\"ready\":true,\"speaking\":true,\"text\":\"Hi, Explorer! A robot on Mars found a clue. Let’s check it out!\",\"channel\":\"hud\",\"lines\":390}"
+    },
+    {
+      "name": "The HUD line plays after the card closes and matches the dialogue box",
+      "pass": true,
+      "detail": "{\"ready\":true,\"speaking\":true,\"text\":\"Hi, Explorer! A robot on Mars found a clue. Let’s check it out!\",\"channel\":\"hud\",\"lines\":390}"
+    },
+    {
+      "name": "After Nuri finishes, music/effects come back up",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Hear-again button replays the dialogue line",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Entering a building: the old line stops; the new line is the one on screen",
+      "pass": true,
+      "detail": "{\"ready\":true,\"speaking\":false,\"text\":null,\"channel\":null,\"lines\":390}"
+    },
+    {
+      "name": "Each card page speaks its own line",
+      "pass": true,
+      "detail": "[\"This is Curiosity. It’s a real NASA robot on Mars!\",\"Curiosity has a tool called RAD. It measures radiation, an invisible energy from space.\",\"Each dot is a real reading. Tap where the dots jump up!\"]"
+    },
+    {
+      "name": "Tapping the chart: the feedback line is voiced and matches",
+      "pass": true,
+      "detail": "{\"ready\":true,\"speaking\":true,\"text\":\"Here the dots stay low. Try another part!\",\"channel\":\"card\",\"lines\":390}"
+    },
+    {
+      "name": "Card hear-again button replays the card line",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Help panel: Nuri reads the tip",
+      "pass": true,
+      "detail": "{\"ready\":true,\"speaking\":true,\"text\":\"Find where the dots change.\",\"channel\":\"help\",\"lines\":390}"
+    },
+    {
+      "name": "MORE TIPS: the next tip replaces the first",
+      "pass": true,
+      "detail": "{\"ready\":true,\"speaking\":true,\"text\":\"The buttons under the graph are parts of the day.\",\"channel\":\"help\",\"lines\":390}"
+    },
+    {
+      "name": "Closing help stops the tip",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Switching to Arabic stops the English voice",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "In Arabic, Nuri is silent and the hear-again buttons are hidden",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Voice volume setting saved (Quiet = 0.5)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Voice OFF saved",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "With the voice OFF, Nuri stays silent and the hear-again button is hidden",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Voice settings survive a reload",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Never more than one voice playing at once",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "name": "No line shown to the player was missing a recording",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "No browser errors",
+      "pass": true,
+      "detail": "[]"
+    }
+  ],
+  "errors": [],
+  "screens": []
+}

@@ -163,6 +163,14 @@ await test('campaign text: both languages, short sentences, no jargon, never saf
   const walk=(x,w)=>{if(x&&typeof x==='object'){if('en' in x&&'ar' in x)add(x,w);else for(const [k,v] of Object.entries(x))walk(v,w+'.'+k)}};walk(CD.C_UI,'C_UI');walk(CD.STAGE_SAY,'stage');walk(CD.STAGE_NAME,'stageName');walk(CD.CAUSE,'cause');walk(CD.SLOT_NAMES,'slot');walk(CD.SLOT_HINTS,'slotHint');
   for(const [t,w] of lines){assert.ok(!JARGON.test(t),`${w}: ${t}`);assert.ok(!/\bunsafe\b|\bsafe\b|\bsafety\b|\bdanger/i.test(t),`${w}: ${t}`);for(const s of t.split(/(?<=[.!?])\s+/))assert.ok(s.split(/\s+/).length<=16,`${w}: "${s}"`)}});
 
+const CO=await load('/src/content/companion.ts');
+await test('companion: every line in English and Arabic, short sentences, no jargon, no "safe"',()=>{const lines=[];const walk=(x,w)=>{if(x&&typeof x==='object'){if('en' in x&&'ar' in x){assert.ok(x.en.trim()&&/[\u0600-\u06FF]/.test(x.ar),w);lines.push([x.en,w])}else for(const [k,v] of Object.entries(x))walk(v,w+'.'+k)}};
+  for(const [k,v] of Object.entries(CO))walk(v,k);assert.ok(lines.length>=40,lines.length);
+  for(const [t,w] of lines){assert.ok(!JARGON.test(t),w+': '+t);assert.ok(!/\bunsafe\b|\bsafe\b|\bdanger/i.test(t),w);for(const s of t.split(/(?<=[.!?])\s+/))assert.ok(s.split(/\s+/).length<=14,w+': '+s)}});
+await test('companion: the Ripple Effect line says exactly what was asked, and no line tells which plan wins',()=>{
+  assert.equal(CO.TOUR.ripple1.en,'Be careful, Commander! Every choice creates a ripple. Your decisions shape how our mission ends!');
+  for(const t of [...Object.values(CO.TOUR),...Object.values(CO.TIP)])assert.ok(!/plan (a|b)\b|best (plan|choice)|right (plan|choice)|choose (a|b)\b/i.test(t.en),t.en)});
+
 await server.close();
 const failed=results.filter(r=>!r[1]);
 console.log(`\n${results.length-failed.length}/${results.length} unit tests passed`);

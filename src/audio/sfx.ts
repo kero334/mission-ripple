@@ -85,11 +85,12 @@ export function buildChain(c:BaseAudioContext,dest:AudioNode,masterVol=.7){
 // ---------------------------------------------------------------- live player
 let ctx:AudioContext|null=null,chain:ReturnType<typeof buildChain>|null=null,amb:{name:string;timer:number}|null=null,source:()=>boolean=()=>true;
 const on=()=>{try{return source()}catch{return true}};
+let ducked=false;
 const last:Record<string,number>={};
 function ensure(){if(!on())return null;
   if(!ctx){const ic=introSound.ctx as AudioContext|null;if(ic)ctx=ic;else{const AC=(window as any).AudioContext||(window as any).webkitAudioContext;if(!AC)return null;ctx=new AC()}}
   if(ctx!.state==='suspended')void ctx!.resume();
-  if(!chain)chain=buildChain(ctx!,ctx!.destination);return ctx}
+  if(!chain){chain=buildChain(ctx!,ctx!.destination);if(ducked)chain.master.gain.value=.32}return ctx}
 export const sfx={
   /** Call from a click or key press (browsers only allow sound after a user gesture). */
   unlock(){if(on())ensure()},
@@ -97,6 +98,7 @@ export const sfx={
   setSource(f:()=>boolean){source=f},
   get enabled(){return on()},
   play(name:SfxName,opt?:any,{gap=40,delay=0}={}){
+    if(name==='right'||name==='tryAgain')window.dispatchEvent(new CustomEvent('ripple-feedback',{detail:{name}}));
     if(!on()||!ctx)return false;const now=performance.now();if(now-(last[name]||0)<gap)return false;last[name]=now;
     const c=ensure();if(!c||c.state!=='running'||!chain)return false;fire(c,chain,name,c.currentTime+.01+delay,opt);
     (window as any).__sfxLog?.push(name);return true},
@@ -105,6 +107,9 @@ export const sfx={
     if(!on())name=null;if(amb?.name===name)return;if(amb){clearInterval(amb.timer);amb=null}if(!name)return;
     const go=()=>{if(!on()){this.ambience(null);return}const c=ensure();if(!c||c.state!=='running'||!chain)return;fire(c,chain,name,c.currentTime+.05,9)};
     go();amb={name,timer:window.setInterval(go,7000)}},
-  get state(){return {ctx:ctx?.state||'none',enabled:on(),ambience:amb?.name||null}},
+  /** Lowers effects and ambience while Nuri speaks. */
+  duck(down:boolean){ducked=down;if(chain&&ctx)chain.master.gain.setTargetAtTime(down?.32:.7,ctx.currentTime,.08)},
+  get ducked(){return ducked},
+  get state(){return {ctx:ctx?.state||'none',enabled:on(),ambience:amb?.name||null,ducked}},
 };
-(window as any).__sfx=sfx;
+if(typeof window!=='undefined')(window as any).__sfx=sfx;

@@ -20,7 +20,7 @@ export type Progress={
   branchesSeen:Decision[];
   completions:number;
   run:{events:string[]};
-  settings:{locale:Locale;guidance:Guidance;preference:Preference;nuriLight:string;sound:boolean};
+  settings:{locale:Locale;guidance:Guidance;preference:Preference;nuriLight:string;sound:boolean;voice:boolean;voiceVolume:number};
   hintLevel:Record<string,number>;
   stats:{hintRequests:number;wrongPlaces:number;misses:number;helpOffers:number};
   flags:string[];
@@ -28,7 +28,7 @@ export type Progress={
 const PLACE_IDS=['habitat','power','greenhouse','water','research','comms','command','shelter','oxygen'];
 const EXHIBIT_IDS=['data-check','surface-typical','solar-catalog','iss-environment','crop-education','mars-map'];
 export const fresh=():Progress=>({version:1,awarded:[],achievements:[],cards:[],places:[],exhibits:[],challenges:[],branchesSeen:[],completions:0,run:{events:[]},
-  settings:{locale:'en',guidance:'guided',preference:null,nuriLight:'cyan',sound:true},hintLevel:{},stats:{hintRequests:0,wrongPlaces:0,misses:0,helpOffers:0},flags:[]});
+  settings:{locale:'en',guidance:'guided',preference:null,nuriLight:'cyan',sound:true,voice:true,voiceVolume:.85},hintLevel:{},stats:{hintRequests:0,wrongPlaces:0,misses:0,helpOffers:0},flags:[]});
 
 const uniq=<T>(a:T[])=>[...new Set(a)];
 const strings=(a:unknown,allowed?:readonly string[])=>Array.isArray(a)?uniq(a.filter((v):v is string=>typeof v==='string'&&(!allowed||allowed.includes(v)))):[];
@@ -50,7 +50,8 @@ export function sanitize(x:any):Progress{
   const s=x.settings||{};
   p.settings={locale:s.locale==='ar'?'ar':'en',guidance:s.guidance==='independent'?'independent':'guided',
     preference:['explore','solve','collect','mix'].includes(s.preference)?s.preference:null,
-    nuriLight:NURI_LIGHTS.some(n=>n.id===s.nuriLight)?s.nuriLight:'cyan',sound:s.sound!==false};
+    nuriLight:NURI_LIGHTS.some(n=>n.id===s.nuriLight)?s.nuriLight:'cyan',sound:s.sound!==false,
+    voice:s.voice!==false,voiceVolume:[.5,.85,1].includes(s.voiceVolume)?s.voiceVolume:.85};
   if(x.hintLevel&&typeof x.hintLevel==='object')for(const [k,v] of Object.entries(x.hintLevel))p.hintLevel[k]=Math.min(3,nonNeg(v));
   const st=x.stats||{};p.stats={hintRequests:nonNeg(st.hintRequests),wrongPlaces:nonNeg(st.wrongPlaces),misses:nonNeg(st.misses),helpOffers:nonNeg(st.helpOffers)};
   p.flags=strings(x.flags);

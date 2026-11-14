@@ -10,9 +10,10 @@ const OUT=resolve('voice-package');
 const server=await createServer({server:{middlewareMode:true,hmr:false,watch:null},appType:'custom',logLevel:'error',optimizeDeps:{noDiscovery:true,include:[]}});
 const L=p=>server.ssrLoadModule(p);
 const S=await L('/src/content/strings.ts'),D=await L('/src/content/discoveries.ts'),R=await L('/src/game/rewards.ts'),CD=await L('/src/missions/campaign-data.ts');
+const CO=await L('/src/content/companion.ts');
 const W=await L('/src/world-data.ts'),SIM=await L('/src/game/base-sim.ts'),SER=await L('/src/science/series.ts'),MS=await L('/src/science/mission.ts');
 await server.close();
-const SRC={strings:'src/content/strings.ts',disc:'src/content/discoveries.ts',rewards:'src/game/rewards.ts',cdata:'src/missions/campaign-data.ts',world:'src/world-data.ts',campaign:'src/missions/campaign.ts',guidance:'src/game/guidance.ts'};
+const SRC={companion:'src/content/companion.ts',strings:'src/content/strings.ts',disc:'src/content/discoveries.ts',rewards:'src/game/rewards.ts',cdata:'src/missions/campaign-data.ts',world:'src/world-data.ts',campaign:'src/missions/campaign.ts',guidance:'src/game/guidance.ts'};
 const srcText=Object.fromEntries(Object.entries(SRC).map(([k,f])=>[k,readFileSync(f,'utf8')]));
 const fill=(t,v={})=>t.replace(/\{(\w+)\}/g,(m,k)=>k in v?String(v[k]):m);
 const en=t=>t.en;
@@ -59,6 +60,7 @@ const runEvents=Object.entries(R.REWARD_EVENTS).filter(([k,v])=>v.xp&&!k.startsW
 let sums=new Set([0]);for(const x of runEvents){const n=new Set(sums);for(const s of sums)n.add(s+x);sums=n}sums.delete(0);const RUN_XP=[...sums].sort((a,b)=>a-b);
 for(const [card,obj] of Object.entries(C)){
   if(card==='btn'||card==='stamp')continue;
+  if(typeof obj.en==='string'){mark(`strings.CARDS.${card}`);refRows.push([`strings.CARDS.${card}`,obj.en,'Card button label']);continue}
   for(const [k,t] of Object.entries(obj)){const path=`strings.CARDS.${card}.${k}`;mark(path);
     const [where,trig]=M1_CARD[card]||['?','?'];const optKey=`${card}.${k}`;
     if(['unchanged.real','unchanged.game','chart.axisX','chart.axisY','chart.gap','many.line'].includes(optKey)){refRows.push([path,t.en,'Mission 1 chart / picture label']);continue}
@@ -208,20 +210,33 @@ for(const [id,t,cat,where,trig] of INLINE){const plain=t.replaceAll('\u2019',"'"
   add(t,{id,category:cat,voice:cat==='choice_option'?'optional':'required',mission:cat==='ending_recap'?'Ending':BASE,where,trigger:trig,source:SRC.campaign,key:'inline text'})}
 for(const b of C_GOALS){const t=`Follow the yellow arrow to the ${BN[b]}. Press M for the map.`;add(t,{id:`base.hint.goto.${b}`,category:'hint',mission:BASE,where:'Help panel — level WHERE?',trigger:`Help opened outdoors when the step needs the ${BN[b]}`,source:SRC.campaign,key:'inline template `Follow the yellow arrow to the ${bName}. Press M for the map.`'})}
 if(!srcText.campaign.includes('Follow the yellow arrow to the ${bName(st.building,l)}. Press M for the map.'))throw Error('goto template changed');
+// ---------------------------------------------------------------- companion: tour, tips, encouragement, badge celebrations
+const TOUR_TRIG={hello:'Tour step 1: spotlight on Nuri (starts right after the opening cinematic, first play only)',move:'Tour: spotlight on the astronaut; waits until the player walks',moveTouch:'Tour move step on a touch-only device (no keyboard)',moved:'Tour: right after the player first walks',
+  buildings:'Tour: spotlight on the Habitat',mission:'Tour: spotlight on the mission tracker',help:'Tour: spotlight on the HELP button (waits for a tap or NEXT)',xp:'Tour: spotlight on the XP chip',passport:'Tour: spotlight on the Science Passport button (waits for a tap or NEXT)',
+  passportBack:'Tour: after the player closes the Passport',map:'Tour: spotlight on the map button',settings:'Tour: spotlight on the settings button',ripple1:'Tour: the Ripple Effect (1/3)',ripple2:'Tour: the Ripple Effect (2/3)',ripple3:'Tour: the Ripple Effect (3/3)',
+  start:'Tour last step: spotlight on START MISSION',skipped:'After "Skip tour"'};
+const TIP_TRIG={door:'First time the player stands at a door',nasa:'First card with a REAL NASA DATA stamp',pretend:'First card with a PRETEND PLAN stamp (after the NASA tip)',hear:'First card with the hear-again speaker (voice on)',choice:'First plan-choice card',
+  meters:'First time the base power blocks appear in the HUD',fix:'First greenhouse lamp-fix card (recovery)',consequence:'A lamp goes dark or the robot gets stuck (at most every 90 s)',recovered:'After a recovery choice that fixes something (lamp relit, robot rescued)',badges:'First time the Passport badge grid is open'};
+for(const [k,t] of Object.entries(CO.TOUR)){mark(`companion.TOUR.${k}`);needSrc('companion',t.en);add(t.en,{id:`tour.${k}`,category:'tutorial',mission:'First-time tour',where:'Tour bubble (spotlight)',trigger:TOUR_TRIG[k]||k,source:SRC.companion,key:`TOUR.${k}`})}
+for(const [k,t] of Object.entries(CO.TIP)){mark(`companion.TIP.${k}`);needSrc('companion',t.en);add(t.en,{id:`tip.${k}`,category:'tutorial',where:'Nuri coach bubble (points at the thing)',trigger:TIP_TRIG[k]||k,source:SRC.companion,key:`TIP.${k}`})}
+for(const [k,arr] of Object.entries(CO.CHEER))arr.forEach((t,n)=>{mark(`companion.CHEER.${k}.${n}`);needSrc('companion',t.en);add(t.en,{id:`cheer.${k}${n+1}`,category:'encouragement',where:'Nuri coach bubble',trigger:k==='right'?'A right answer (rotating, at most once a minute)':k==='wrong'?'A second wrong try in a row (rotating, at most every 40 s); never gives the answer':'A mission is completed (rotating)',source:SRC.companion,key:`CHEER.${k}[${n}]`})});
+mark('companion.CELEBRATE.say');needSrc('companion',CO.CELEBRATE.say.en);
+for(const [id,a] of Object.entries(R.ACHIEVEMENTS))add(fill(CO.CELEBRATE.say.en,{name:a.name.en}),{id:`celebrate.${id}`,category:'encouragement',where:'Badge celebration (confetti card)',trigger:`The player earns the "${a.name.en}" badge (shown at the next calm moment)`,source:SRC.companion,key:'CELEBRATE.say'});
 // ---------------------------------------------------------------- everything else is on-screen text (not voiced)
 const refWalk=(x,p,why)=>{if(!x||typeof x!=='object')return;if(typeof x.en==='string'){if(!usedPaths.has(p)){usedPaths.add(p);refRows.push([p,x.en,why])}return}for(const [k,v] of Object.entries(x))refWalk(v,p+'.'+k,why)};
 const REFWHY={MISSION:'Mission tracker / buttons',PROMPTS:'"Press E" prompts above the player',TAGS:'Card tags (unused)',KIND:'Card kind labels (unused)',STEPS:'Step labels',UI:'Card buttons and labels',STAGE_STEPS:'Mission progress labels',PASSPORT:'Science Passport screen',SETTINGS:'Settings screen',MAP:'Map screen',TOAST:'Pop-up notices (XP, badges, places)',MISC:'Misc. labels',CARDS:'Card buttons / stamps'};
 for(const [k,v] of Object.entries(S))if(v&&typeof v==='object')refWalk(v,`strings.${k}`,REFWHY[k]||'On-screen text');
 for(const [k,v] of Object.entries(R))if(v&&typeof v==='object')refWalk(v,`rewards.${k}`,'Badges, titles, challenges, Nuri light names (Passport)');
 for(const [k,v] of Object.entries(CD))if(v&&typeof v==='object'&&k!=='CAMPAIGN')refWalk(v,`cdata.${k}`,'Base-mission on-screen label');
+for(const [k,v] of Object.entries(CO))if(v&&typeof v==='object')refWalk(v,`companion.${k}`,'Tour buttons and badge card labels');
 // completeness: every text object the game exports must now be classified
 const all=[];const walkAll=(x,p,seen=new Set())=>{if(!x||typeof x!=='object'||seen.has(x))return;seen.add(x);if(typeof x.en==='string'&&typeof x.ar==='string'){all.push(p);return}for(const [k,v] of Object.entries(x))walkAll(v,p+'.'+k,seen)};
-for(const [n,m] of [['strings',S],['rewards',R],['cdata',CD]])for(const [k,v] of Object.entries(m))walkAll(v,`${n}.${k}`);
+for(const [n,m] of [['strings',S],['rewards',R],['cdata',CD],['companion',CO]])for(const [k,v] of Object.entries(m))walkAll(v,`${n}.${k}`);
 for(const [i] of D.DISCOVERIES.entries()){usedPaths.add(`disc.DISCOVERIES.${i}.title`);usedPaths.add(`disc.DISCOVERIES.${i}.where`)}
 const unclassified=all.filter(p=>!usedPaths.has(p));
 if(unclassified.length)throw Error('Unclassified text objects:\n'+unclassified.join('\n'));
 // source check
-const bad=checks.filter(([f,t])=>{const s=srcText[f].replaceAll("\\'","'");return !s.includes(t)&&!s.includes(t.replaceAll('\u2019',"'"))});
+const unknownSrc=checks.filter(([f,t])=>!srcText[f]||typeof t!=="string");if(unknownSrc.length)throw Error("unknown source keys: "+JSON.stringify(unknownSrc.slice(0,3)));const bad=checks.filter(([f,t])=>{const s=srcText[f].replaceAll("\\'","'");return !s.includes(t)&&!s.includes(t.replaceAll('\u2019',"'"))});
 const placeholderTemplates=checks.filter(([,t])=>/\{\w+\}/.test(t)).length;
 if(bad.some(([,t])=>!/\{\w+\}/.test(t)))throw Error('Not found verbatim in source:\n'+bad.map(b=>b.join(': ')).join('\n'));
 
@@ -230,7 +245,7 @@ const entries=[...lines.values()];
 const ids=new Set(),files=new Set();for(const e of entries){if(ids.has(e.id)||files.has(e.file))throw Error('duplicate id/file '+e.id);ids.add(e.id);files.add(e.file)}
 rmSync(OUT,{recursive:true,force:true});mkdirSync(OUT,{recursive:true});
 const q=v=>{const s=String(v??'');return /[",\n]/.test(s)?'"'+s.replaceAll('"','""')+'"':s};
-const ORDER=['dialogue','card','quiz_feedback','consequence','world_reaction','hint','bonus_fact','ending_recap','cinematic_caption','choice_option','passport'];
+const ORDER=['tutorial','encouragement','dialogue','card','quiz_feedback','consequence','world_reaction','hint','bonus_fact','ending_recap','cinematic_caption','choice_option','passport'];
 entries.sort((a,b)=>ORDER.indexOf(a.category)-ORDER.indexOf(b.category)||a.id.localeCompare(b.id));
 const header='dialogue_id,mp3_filename,english_text,speaker,category,voice_needed,mission,first_location,first_trigger,uses,characters';
 const csv=[header,...entries.map(e=>[e.id,e.file,e.text,e.speaker,e.category,e.voice,e.usages[0].mission,e.usages[0].where,e.usages[0].trigger+(e.usages[0].condition?` [${e.usages[0].condition}]`:''),e.usages.length,e.text.length].map(q).join(','))].join('\r\n')+'\r\n';

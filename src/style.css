@@ -488,3 +488,59 @@ body.ending-playing #hud>*:not(#ending-ui){visibility:hidden}
 .page-fix .big-choice b,.page-rescue .big-choice b{font-size:22px}.page-fix .big-choice span,.page-rescue .big-choice span{font-size:16px;line-height:1.05}
 html[dir=rtl] .page-fix .big-choice b,html[dir=rtl] .page-rescue .big-choice b{font-size:16px}html[dir=rtl] .page-fix .big-choice span,html[dir=rtl] .page-rescue .big-choice span{font-size:12px;line-height:1.3}
 .page-fix .power-strip .blk,.page-choose .power-strip .blk{width:28px;height:28px}.page-fix .power-strip .blk img,.page-choose .power-strip .blk img{width:20px;height:20px}
+
+/* ===================== Nuri's voice ===================== */
+.voice-replay{flex:0 0 auto;align-self:flex-start;width:34px;height:34px;padding:0;border:3px solid #a96a3e;background:#f3d29e;display:grid;place-items:center;cursor:pointer}
+.voice-replay img{width:20px;height:20px;image-rendering:pixelated}.voice-replay:hover{background:#ffe3b0}
+#nuri-panel .voice-replay{margin-inline-start:2px}
+.nuri-say .voice-replay{margin-inline-start:6px}
+body.voice-off .voice-replay,html[dir=rtl] .voice-replay{display:none!important}
+
+/* ===================== Nuri companion: tour, tips, celebrations ===================== */
+#tour-layer{position:absolute;inset:0;z-index:58;pointer-events:none}
+#tour-layer.paused{visibility:hidden}
+.tour-hole{position:absolute;border-radius:10px;box-shadow:0 0 0 200vmax rgba(18,10,26,.66);transition:left .35s,top .35s,width .35s,height .35s;outline:3px solid #ffcc68;outline-offset:2px;animation:tourGlow 1.2s ease-in-out infinite}
+.tour-hole.none{outline:none;animation:none;box-shadow:0 0 0 200vmax rgba(18,10,26,.72)}
+@keyframes tourGlow{50%{outline-color:#fff3c0;outline-offset:6px}}
+.tour-ripple{position:absolute;left:50%;top:26%;width:0;height:0;display:none}
+#tour-layer.rippling .tour-ripple{display:block}
+.tour-ripple i{position:absolute;left:-60px;top:-60px;width:120px;height:120px;border:4px solid #59d5db;border-radius:50%;opacity:0;animation:tourRipple 2.4s ease-out infinite}
+.tour-ripple i:nth-child(2){animation-delay:.8s}.tour-ripple i:nth-child(3){animation-delay:1.6s}
+@keyframes tourRipple{0%{transform:scale(.2);opacity:.9}100%{transform:scale(2.6);opacity:0}}
+.tour-bubble{position:absolute;width:min(400px,92vw);display:flex;gap:10px;padding:12px 14px;background:var(--cream);border-color:#9d5737;color:#452a30;pointer-events:auto}
+.tour-bubble.pop{animation:tourPop .3s steps(4)}@keyframes tourPop{0%{transform:scale(.92);opacity:.4}100%{transform:none;opacity:1}}
+.tour-nuri{width:56px;height:56px;image-rendering:pixelated;flex:0 0 auto;align-self:flex-start;animation:bob 1.2s steps(2) infinite}
+.tour-copy{flex:1;min-width:0}
+#tour-text{margin:0 0 8px;font-size:25px;line-height:1.08}html[dir=rtl] #tour-text{font-size:18px;line-height:1.45;font-weight:700}
+.tour-foot{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.tour-dots{font-size:15px;color:#8a5a44;flex:1}html[dir=rtl] .tour-dots{font-size:12px}
+.tour-skip{border:2px solid #b58a6a;background:transparent;color:#6b4334;font-size:17px;padding:2px 8px;min-height:36px}html[dir=rtl] .tour-skip{font-size:13px;font-weight:700}
+.tour-next{min-height:40px;font-size:22px;padding:4px 14px}
+#tour-layer.waiting .tour-next{opacity:.85}
+.tour-arrow{position:absolute;width:26px;height:26px;display:none;transform:rotate(var(--a,0deg));animation:tourArrow .8s ease-in-out infinite}
+.tour-arrow::before{content:"";position:absolute;inset:0;background:#ffcc68;clip-path:polygon(0 30%,55% 30%,55% 0,100% 50%,55% 100%,55% 70%,0 70%);filter:drop-shadow(0 2px 0 #5b312c)}
+@keyframes tourArrow{50%{translate:calc(cos(var(--a,0deg))*6px) calc(sin(var(--a,0deg))*6px)}}
+.tour-cursor{position:absolute;width:30px;height:34px;image-rendering:pixelated;display:none;animation:tourTap 1.1s ease-in-out infinite;filter:drop-shadow(0 2px 0 #241b26)}
+@keyframes tourTap{0%,100%{transform:translate(10px,14px)}50%{transform:translate(0,0) scale(.9)}}
+#tour-layer.center .tour-bubble{width:min(520px,92vw)}
+#nuri-coach{position:absolute;inset:0;z-index:57;pointer-events:none}
+#nuri-coach .coach-bubble{position:absolute;max-width:min(360px,90vw);display:flex;gap:8px;align-items:center;padding:8px 10px;background:var(--cream);border-color:#9d5737;color:#452a30;pointer-events:auto}
+#nuri-coach .coach-bubble.pop{animation:tourPop .3s steps(4)}
+#nuri-coach .coach-bubble img{width:40px;height:40px;image-rendering:pixelated}
+#nuri-coach p{margin:0;font-size:21px;line-height:1.08;flex:1}html[dir=rtl] #nuri-coach p{font-size:15px;line-height:1.45;font-weight:700}
+#nuri-coach .coach-ok{border:2px solid #a96a3e;background:#f3d29e;font-size:16px;min-width:40px;min-height:34px;padding:0 8px}
+#nuri-coach .coach-arrow{position:absolute;width:16px;height:12px;display:none;background:#f9e0b8;clip-path:polygon(50% 100%,0 0,100% 0);filter:drop-shadow(0 2px 0 #9d5737)}
+#nuri-coach .coach-arrow.up{clip-path:polygon(50% 0,0 100%,100% 100%)}
+#celebrate{position:absolute;inset:0;z-index:59;display:grid;place-items:center;pointer-events:none;background:radial-gradient(circle at center,#ffcc6826 0,transparent 60%)}
+#celebrate .party-card{position:relative;pointer-events:auto;width:min(340px,88vw);padding:18px 18px 14px;text-align:center;background:#302228;color:#f9e9cb;display:flex;flex-direction:column;align-items:center;gap:4px;animation:partyIn .45s cubic-bezier(.2,1.6,.4,1)}
+@keyframes partyIn{0%{transform:scale(.3) rotate(-8deg);opacity:0}100%{transform:none;opacity:1}}
+.party-rays{position:absolute;left:50%;top:62px;width:220px;height:220px;margin:-110px 0 0 -110px;background:repeating-conic-gradient(#ffcc6844 0 12deg,transparent 12deg 30deg);border-radius:50%;animation:spin 6s linear infinite;pointer-events:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+.party-badge{position:relative;width:96px;height:96px;image-rendering:pixelated;animation:bob 1s steps(2) infinite}
+#celebrate small{position:relative;font-size:18px;letter-spacing:3px;color:var(--cyan)}#celebrate strong{position:relative;font-size:34px;font-weight:400;color:var(--gold);line-height:1}
+#celebrate p{position:relative;margin:2px 0 8px;font-size:20px;line-height:1.1;color:#f3d6b2}
+html[dir=rtl] #celebrate strong{font-size:24px;font-weight:800}html[dir=rtl] #celebrate p{font-size:15px;line-height:1.45}html[dir=rtl] #celebrate small{letter-spacing:0;font-size:14px;font-weight:700}
+.party-confetti{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.party-confetti i{position:absolute;top:-12px;left:calc(var(--i)*5.5% + 2%);width:8px;height:12px;background:hsl(calc(var(--i)*47) 80% 65%);animation:fall calc(1.6s + var(--i)*.07s) linear forwards;animation-delay:calc(var(--i)*.05s)}
+@keyframes fall{to{transform:translateY(105vh) rotate(540deg)}}
+@media(max-width:600px){#tour-text{font-size:21px}.tour-nuri{width:44px;height:44px}}
