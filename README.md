@@ -132,7 +132,7 @@ Children practise the habits of real scientists:
 | **Cause and effect** | Following one decision through several days |
 | **Real versus model** | Telling NASA data apart from pretend game rules |
 
-## 🖼️ Gameplay gallery
+## 📸 Gameplay gallery
 
 All images below are **real, unedited screenshots** captured from the running game in Chrome.
 
@@ -339,7 +339,7 @@ mission-ripple/
 **Status:** all features above are built and covered by automated tests. Testing with children, a science review of
 the wording, and tuning of the pretend rules are the next steps.
 
-## 👩‍🚀 Team MARO
+## 👥 Team MARO
 
 <div align="center">
 
