@@ -1,0 +1,926 @@
+{
+  "checks": [
+    {
+      "name": "1366x768 title: every title button and line fits",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1366x768 intro: Skip and caption inside the window",
+      "pass": true,
+      "detail": "[{\"sel\":\"#intro-skip\",\"off\":false,\"clip\":false,\"box\":[1226,14,1352,58]},{\"sel\":\"#intro-caption\",\"off\":false,\"clip\":false,\"box\":[431,678,935,714]}]"
+    },
+    {
+      "name": "1366x768 intro: the 320×180 film frame is shown whole (letterboxed if needed)",
+      "pass": false,
+      "detail": "{\"zoom\":4.91212459482253,\"vp\":[0,0,1280,720],\"view\":[261,147]}"
+    },
+    {
+      "name": "1366x768 explore: camera shows a comfortable slice of the world",
+      "pass": true,
+      "detail": "{\"zoom\":1.6,\"view\":[800,450],\"vp\":[0,0,1280,720]}"
+    },
+    {
+      "name": "1366x768 explore: canvas fills the window",
+      "pass": true,
+      "detail": "[1365,768]"
+    },
+    {
+      "name": "1366x768 explore: HUD fully inside the window",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1366x768 explore: HUD panels do not overlap",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1366x768 explore: no clipped HUD text",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1366x768 explore: astronaut on screen and not under a HUD panel",
+      "pass": true,
+      "detail": "{\"x\":683,\"y\":393,\"hit\":[]}"
+    },
+    {
+      "name": "1366x768 brief card: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[323,159,1043,609],\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1366x768 brief card: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1366x768 after brief: HUD fully inside the window",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1366x768 after brief: HUD panels do not overlap",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1366x768 after brief: no clipped HUD text",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1366x768 field card 0: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[323,135,1043,633],\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1366x768 field card 0: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1366x768 field card 1: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[323,135,1043,633],\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1366x768 field card 1: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1366x768 field card 2: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[323,127,1043,641],\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1366x768 field card 2: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1366x768 map panel: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[303,71,1063,697],\"n\":1,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1366x768 map panel: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":1,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1366x768 passport panel: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[303,63,1063,706],\"n\":1,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1366x768 passport panel: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":1,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1366x768 help panel: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[403,236,963,532],\"n\":3,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1366x768 help panel: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":3,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1366x768 settings panel: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[303,147,1063,621],\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1366x768 settings panel: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1366x768 room: camera shows the room (whole room, or follows the astronaut on narrow screens)",
+      "pass": true,
+      "detail": "{\"zoom\":2,\"view\":[640,360],\"vp\":[0,0,1280,720]}"
+    },
+    {
+      "name": "1366x768 room: HUD fully inside the window",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1366x768 room: HUD panels do not overlap",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1366x768 room: no clipped HUD text",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1366x768 room Arabic: HUD fully inside the window",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1366x768 room Arabic: HUD panels do not overlap",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1366x768 room Arabic: no clipped HUD text",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1366x768: no browser errors",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1366x768 campaign offer: HUD fully inside the window",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1366x768 campaign offer: HUD panels do not overlap",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1366x768 campaign offer: no clipped HUD text",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1366x768 campaign HUD: HUD fully inside the window",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1366x768 campaign HUD: HUD panels do not overlap",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1366x768 campaign HUD: no clipped HUD text",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1366x768 campaign quiz: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[323,117,1043,651],\"n\":5,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1366x768 campaign quiz: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":5,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1366x768 campaign choice: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[323,148,1043,620],\"n\":3,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1366x768 campaign choice: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":3,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1920x1080 title: every title button and line fits",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1920x1080 intro: Skip and caption inside the window",
+      "pass": true,
+      "detail": "[{\"sel\":\"#intro-skip\",\"off\":false,\"clip\":false,\"box\":[1780,14,1906,58]},{\"sel\":\"#intro-caption\",\"off\":false,\"clip\":false,\"box\":[708,968,1212,1004]}]"
+    },
+    {
+      "name": "1920x1080 intro: the 320×180 film frame is shown whole (letterboxed if needed)",
+      "pass": false,
+      "detail": "{\"zoom\":4.931937391705946,\"vp\":[0,0,1280,720],\"view\":[260,146]}"
+    },
+    {
+      "name": "1920x1080 explore: camera shows a comfortable slice of the world",
+      "pass": true,
+      "detail": "{\"zoom\":1.6,\"view\":[800,450],\"vp\":[0,0,1280,720]}"
+    },
+    {
+      "name": "1920x1080 explore: canvas fills the window",
+      "pass": true,
+      "detail": "[1920,1080]"
+    },
+    {
+      "name": "1920x1080 explore: HUD fully inside the window",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1920x1080 explore: HUD panels do not overlap",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1920x1080 explore: no clipped HUD text",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1920x1080 explore: astronaut on screen and not under a HUD panel",
+      "pass": true,
+      "detail": "{\"x\":960,\"y\":552,\"hit\":[]}"
+    },
+    {
+      "name": "1920x1080 brief card: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[600,315,1320,765],\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1920x1080 brief card: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1920x1080 after brief: HUD fully inside the window",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1920x1080 after brief: HUD panels do not overlap",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1920x1080 after brief: no clipped HUD text",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1920x1080 field card 0: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[600,291,1320,789],\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1920x1080 field card 0: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1920x1080 field card 1: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[600,291,1320,789],\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1920x1080 field card 1: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1920x1080 field card 2: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[600,283,1320,797],\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1920x1080 field card 2: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1920x1080 map panel: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[580,160,1340,920],\"n\":1,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1920x1080 map panel: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":1,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1920x1080 passport panel: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[580,219,1340,862],\"n\":1,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1920x1080 passport panel: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":1,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1920x1080 help panel: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[680,392,1240,688],\"n\":3,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1920x1080 help panel: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":3,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1920x1080 settings panel: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[580,303,1340,777],\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1920x1080 settings panel: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1920x1080 room: camera shows the room (whole room, or follows the astronaut on narrow screens)",
+      "pass": true,
+      "detail": "{\"zoom\":2,\"view\":[640,360],\"vp\":[0,0,1280,720]}"
+    },
+    {
+      "name": "1920x1080 room: HUD fully inside the window",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1920x1080 room: HUD panels do not overlap",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1920x1080 room: no clipped HUD text",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1920x1080 room Arabic: HUD fully inside the window",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1920x1080 room Arabic: HUD panels do not overlap",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1920x1080 room Arabic: no clipped HUD text",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1920x1080: no browser errors",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1920x1080 campaign offer: HUD fully inside the window",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1920x1080 campaign offer: HUD panels do not overlap",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1920x1080 campaign offer: no clipped HUD text",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1920x1080 campaign HUD: HUD fully inside the window",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1920x1080 campaign HUD: HUD panels do not overlap",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1920x1080 campaign HUD: no clipped HUD text",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1920x1080 campaign quiz: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[600,273,1320,807],\"n\":5,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1920x1080 campaign quiz: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":5,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1920x1080 campaign choice: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[600,304,1320,776],\"n\":3,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1920x1080 campaign choice: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":3,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1024x640 title: every title button and line fits",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1024x640 intro: Skip and caption inside the window",
+      "pass": true,
+      "detail": "[{\"sel\":\"#intro-skip\",\"off\":false,\"clip\":false,\"box\":[884,14,1010,58]},{\"sel\":\"#intro-caption\",\"off\":false,\"clip\":false,\"box\":[268,560,756,595]}]"
+    },
+    {
+      "name": "1024x640 intro: the 320×180 film frame is shown whole (letterboxed if needed)",
+      "pass": false,
+      "detail": "{\"zoom\":4.907788949755669,\"vp\":[0,0,1280,720],\"view\":[261,147]}"
+    },
+    {
+      "name": "1024x640 explore: camera shows a comfortable slice of the world",
+      "pass": true,
+      "detail": "{\"zoom\":1.6,\"view\":[800,450],\"vp\":[0,0,1280,720]}"
+    },
+    {
+      "name": "1024x640 explore: canvas fills the window",
+      "pass": false,
+      "detail": "[1024,576]"
+    },
+    {
+      "name": "1024x640 explore: HUD fully inside the window",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1024x640 explore: HUD panels do not overlap",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1024x640 explore: no clipped HUD text",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1024x640 explore: astronaut on screen and not under a HUD panel",
+      "pass": true,
+      "detail": "{\"x\":512,\"y\":342,\"hit\":[]}"
+    },
+    {
+      "name": "1024x640 brief card: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[152,124,872,516],\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1024x640 brief card: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1024x640 after brief: HUD fully inside the window",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1024x640 after brief: HUD panels do not overlap",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1024x640 after brief: no clipped HUD text",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1024x640 field card 0: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[152,111,872,529],\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1024x640 field card 0: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1024x640 field card 1: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[152,103,872,537],\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1024x640 field card 1: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1024x640 field card 2: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[152,114,872,526],\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1024x640 field card 2: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1024x640 map panel: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[132,47,892,593],\"n\":1,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1024x640 map panel: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":1,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1024x640 passport panel: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[132,19,892,621],\"n\":1,\"scroll\":41,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1024x640 passport panel: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":1,\"scroll\":41,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1024x640 help panel: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[232,174,792,466],\"n\":3,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1024x640 help panel: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":3,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1024x640 settings panel: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[132,83,892,557],\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1024x640 settings panel: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1024x640 room: camera shows the room (whole room, or follows the astronaut on narrow screens)",
+      "pass": true,
+      "detail": "{\"zoom\":2,\"view\":[640,360],\"vp\":[0,0,1280,720]}"
+    },
+    {
+      "name": "1024x640 room: HUD fully inside the window",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1024x640 room: HUD panels do not overlap",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1024x640 room: no clipped HUD text",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1024x640 room Arabic: HUD fully inside the window",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1024x640 room Arabic: HUD panels do not overlap",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1024x640 room Arabic: no clipped HUD text",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1024x640: no browser errors",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1024x640 campaign offer: HUD fully inside the window",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1024x640 campaign offer: HUD panels do not overlap",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1024x640 campaign offer: no clipped HUD text",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1024x640 campaign HUD: HUD fully inside the window",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1024x640 campaign HUD: HUD panels do not overlap",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1024x640 campaign HUD: no clipped HUD text",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "1024x640 campaign quiz: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[152,82,872,558],\"n\":5,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1024x640 campaign quiz: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":5,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1024x640 campaign choice: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[152,97,872,543],\"n\":3,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "1024x640 campaign choice: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":3,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "390x844 title: every title button and line fits",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "390x844 intro: Skip and caption inside the window",
+      "pass": true,
+      "detail": "[{\"sel\":\"#intro-skip\",\"off\":false,\"clip\":false,\"box\":[250,14,376,58]},{\"sel\":\"#intro-caption\",\"off\":false,\"clip\":false,\"box\":[20,763,371,785]}]"
+    },
+    {
+      "name": "390x844 intro: the 320×180 film frame is shown whole (letterboxed if needed)",
+      "pass": false,
+      "detail": "{\"zoom\":4.893575090839313,\"vp\":[0,0,1280,720],\"view\":[262,147]}"
+    },
+    {
+      "name": "390x844 explore: camera shows a comfortable slice of the world",
+      "pass": true,
+      "detail": "{\"zoom\":1.6,\"view\":[800,450],\"vp\":[0,0,1280,720]}"
+    },
+    {
+      "name": "390x844 explore: canvas fills the window",
+      "pass": false,
+      "detail": "[390,219]"
+    },
+    {
+      "name": "390x844 explore: HUD fully inside the window",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "390x844 explore: HUD panels do not overlap",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "390x844 explore: no clipped HUD text",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "390x844 explore: astronaut on screen and not under a HUD panel",
+      "pass": true,
+      "detail": "{\"x\":195,\"y\":580,\"hit\":[]}"
+    },
+    {
+      "name": "390x844 brief card: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[12,148,378,696],\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "390x844 brief card: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "390x844 after brief: HUD fully inside the window",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "390x844 after brief: HUD panels do not overlap",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "390x844 after brief: no clipped HUD text",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "390x844 field card 0: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[12,140,378,704],\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "390x844 field card 0: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "390x844 field card 1: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[12,108,378,736],\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "390x844 field card 1: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "390x844 field card 2: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[12,173,378,671],\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "390x844 field card 2: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "390x844 map panel: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[12,198,378,646],\"n\":1,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "390x844 map panel: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":1,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "390x844 passport panel: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[12,25,378,819],\"n\":1,\"scroll\":227,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "390x844 passport panel: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":1,\"scroll\":227,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "390x844 help panel: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[12,241,378,603],\"n\":3,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "390x844 help panel: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":3,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "390x844 settings panel: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[12,120,378,724],\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "390x844 settings panel: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":2,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "390x844 room: camera shows the room (whole room, or follows the astronaut on narrow screens)",
+      "pass": true,
+      "detail": "{\"zoom\":2,\"view\":[640,360],\"vp\":[0,0,1280,720]}"
+    },
+    {
+      "name": "390x844 room: HUD fully inside the window",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "390x844 room: HUD panels do not overlap",
+      "pass": false,
+      "detail": "[\"#mission-panel × #toasts .toast\"]"
+    },
+    {
+      "name": "390x844 room: no clipped HUD text",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "390x844 room Arabic: HUD fully inside the window",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "390x844 room Arabic: HUD panels do not overlap",
+      "pass": false,
+      "detail": "[\"#mission-panel × #toasts .toast\"]"
+    },
+    {
+      "name": "390x844 room Arabic: no clipped HUD text",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "390x844: no browser errors",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "390x844 campaign offer: HUD fully inside the window",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "390x844 campaign offer: HUD panels do not overlap",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "390x844 campaign offer: no clipped HUD text",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "390x844 campaign HUD: HUD fully inside the window",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "390x844 campaign HUD: HUD panels do not overlap",
+      "pass": false,
+      "detail": "[\"#mission-panel × #resource-rows\"]"
+    },
+    {
+      "name": "390x844 campaign HUD: no clipped HUD text",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "390x844 campaign quiz: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[12,99,378,745],\"n\":5,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "390x844 campaign quiz: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":5,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "390x844 campaign choice: card inside the window, main button visible without scrolling",
+      "pass": true,
+      "detail": "{\"card\":[12,26,378,818],\"n\":3,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    },
+    {
+      "name": "390x844 campaign choice: buttons are at least 32 px (touch friendly)",
+      "pass": true,
+      "detail": "{\"n\":3,\"scroll\":0,\"primaryVisible\":true,\"small\":0}"
+    }
+  ],
+  "errors": [],
+  "screens": []
+}
