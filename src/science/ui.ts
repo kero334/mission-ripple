@@ -8,9 +8,10 @@ import {BUILDINGS} from '../world-data';
 import {guideTarget,IDLE_OFFER_MS,MISSION_BUILDING} from '../game/guidance';
 import type {ProgressStore} from '../game/progress';
 import {chartSvg} from '../ui/chart';
+import type {Campaign} from '../missions/campaign';
 import {$,asset,bdi,esc,modals,renderScene,type Scene} from '../ui/shell';
 
-type Deps={locale:()=>Locale;progress:ProgressStore;openHelp:(from:'card'|'hud')=>void;openPassport:()=>void};
+type Deps={locale:()=>Locale;progress:ProgressStore;openHelp:(from:'card'|'hud')=>void;openPassport:()=>void;campaign?:Campaign};
 type Seq='brief'|'field'|'research'|'decide'|'later'|'debrief'|'status'|`exhibit:${string}`;
 const MID:StageKey[]=['monitor','research','command','nextShift'];
 const say=(text:string,mood='speak')=>window.dispatchEvent(new CustomEvent('ripple-dialogue',{detail:{text,mood}}));
@@ -39,21 +40,33 @@ export function setupScienceUI(deps:Deps){
   const guided=()=>P.get().settings.guidance==='guided';
   const touch=()=>{lastProgress=Date.now()};
   function save(next:MissionState){const changed=next.stage!==mission.stage;mission=next;saveMission(next);if(changed){touch();arrived={}}renderHud();updateGuide()}
-  function updateGuide(){const l=deps.locale(),g=guideTarget(stage(),room,l);control('guide',{kind:g.kind,buildingId:g.buildingId,x:g.x,y:g.y,mode:P.get().settings.guidance})}
+  function updateGuide(){const l=deps.locale(),g=(stage()==='complete'&&deps.campaign?.guide(l))||guideTarget(stage(),room,l);control('guide',{kind:g.kind,buildingId:g.buildingId,x:g.x,y:g.y,mode:P.get().settings.guidance})}
   const award=(id:string)=>P.award(id);
 
   // ------------------------------------------------------------------ HUD: one task line + one button
   let hudKey='';
   function renderHud(force=false){
-    const l=deps.locale(),s=stage(),o=OBJECTIVES[s],key=l+'|'+s;if(!force&&key===hudKey)return;hudKey=key;
+    const C=deps.campaign;
+    const l=deps.locale(),s=stage(),o=OBJECTIVES[s],key=l+'|'+s+'|'+(C?JSON.stringify([C.started(),C.state().index,C.state().step]):'');if(!force&&key===hudKey)return;hudKey=key;
+    if(C&&C.started()&&s==='complete'){const h=C.hud(l);
+      $('mission-title').textContent=h.title;
+      $('objective-list').innerHTML=`<button type="button" id="objective-button" class="quest" aria-label="${esc(h.task)}"><img src="${asset('guide/guide-beacon')}" alt=""/><span><strong id="objective-task">${esc(h.task)}</strong>${h.where?`<small id="objective-where">${esc(h.where)}</small>`:''}</span></button>`;
+      $('explored-text').textContent='';
+      $('tracker-actions').innerHTML=(h.button?`<button type="button" id="campaign-button" class="tracker-primary">${esc(h.button)}</button>`:'')+`<button type="button" id="help-button" class="help-button" aria-label="${pick(MISSION.help,l)} (H)"><img src="${asset('ui/ui-help-pixel')}" alt=""/>${pick(MISSION.help,l)}</button>`;
+      document.getElementById('campaign-button')?.addEventListener('click',()=>C.restart());
+      $('objective-button').onclick=()=>{control('reveal','device');control('show-me')};
+      $('help-button').onclick=()=>deps.openHelp('hud');
+      return;
+    }
     $('mission-title').textContent=pick(MISSION.name,l);
     $('objective-list').innerHTML=`<button type="button" id="objective-button" class="quest" aria-label="${esc(pick(o.task,l))}"><img src="${asset('guide/guide-beacon')}" alt=""/><span><strong id="objective-task">${esc(pick(s==='ready'?o.why:o.task,l))}</strong>${s==='ready'?'':`<small id="objective-where">${esc(pick(o.where,l))}</small>`}</span></button>`;
     $('explored-text').textContent='';
     const actions=$('tracker-actions');
     actions.innerHTML=(s==='ready'?`<button type="button" id="science-mission-button" class="tracker-primary">${pick(MISSION.start,l)}</button>`
-      :s==='complete'?`<button type="button" id="science-mission-button" class="tracker-primary">${pick(MISSION.replay,l)}</button>`:'')
+      :s==='complete'?`<button type="button" id="campaign-start" class="tracker-primary">${pick(CARDS.btn.nextMission,l)}</button><button type="button" id="science-mission-button">${pick(MISSION.replay,l)}</button>`:'')
       +`<button type="button" id="help-button" class="help-button" aria-label="${pick(MISSION.help,l)} (H)"><img src="${asset('ui/ui-help-pixel')}" alt=""/>${pick(MISSION.help,l)}</button>`;
     document.getElementById('science-mission-button')?.addEventListener('click',missionButton);
+    document.getElementById('campaign-start')?.addEventListener('click',()=>{deps.campaign?.start();renderHud(true);updateGuide()});
     $('objective-button').onclick=()=>{if(mission.stage==='ready'||mission.stage==='complete')missionButton();else if(mission.stage==='debrief')show('debrief');else show('status')};
     $('help-button').onclick=()=>deps.openHelp('hud');
   }
@@ -176,7 +189,8 @@ export function setupScienceUI(deps:Deps){
 
   // ------------------------------------------------------------------ world events
   window.addEventListener('ripple-world-interaction',event=>{
-    const d=(event as CustomEvent<{kind:string;buildingId:string|null;exhibitId?:string}>).detail,l=deps.locale(),s=mission.stage;touch();
+    const d=(event as CustomEvent<{kind:string;buildingId:string|null;exhibitId?:string;handled?:boolean}>).detail,l=deps.locale(),s=mission.stage;touch();
+    if(d.handled)return;
     if(d.kind==='door'||d.kind==='exit')return;
     if(d.kind==='exhibit'&&d.exhibitId){P.readExhibit(d.exhibitId);show(`exhibit:${d.exhibitId}`);return}
     if(d.kind==='field'){
@@ -196,6 +210,7 @@ export function setupScienceUI(deps:Deps){
   });
   window.addEventListener('ripple-room',event=>{
     const d=(event as CustomEvent<{room:string|null;allVisited:boolean}>).detail,l=deps.locale(),s=stage();room=d.room;updateGuide();
+    if(deps.campaign?.active()){if(d.room)P.visitPlace(d.room);return}
     if(d.room){
       P.visitPlace(d.room);
       const b=BUILDINGS.find(v=>v.id===d.room)!,goal=MISSION_BUILDING[s];

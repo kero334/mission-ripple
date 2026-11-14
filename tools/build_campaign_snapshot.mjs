@@ -20,9 +20,9 @@ for(const f of readdirSync(resolve(pkg,radDir)).filter(n=>/^MSL_RAD_surface_\d{4
   if(dup)break;
 }
 if(!dup)throw Error('no duplicate pair found');
-// 2) one real gap of 45–120 minutes in 2024 (P2-RAD-06 excludes gaps > 30 min)
+// 2) one real multi-hour gap in 2024 (P2-RAD-06 integrates only intervals <= 30 min)
 const p24=`${radDir}/MSL_RAD_surface_2024.csv`,r24=rows(p24);let gap=null;
-for(let i=1;i<r24.length;i++){const g=(Date.parse(r24[i][0]+'Z')-Date.parse(r24[i-1][0]+'Z'))/60000;if(g>=45&&g<=120){gap={sourceRecord:p24,sourceSha256:sha(p24),before:r24.slice(Math.max(0,i-3),i).map(x=>x.slice(0,3)),after:r24.slice(i,i+3).map(x=>x.slice(0,3)),minutes:Math.round(g)};break}}
+for(let i=1;i<r24.length;i++){const g=(Date.parse(r24[i][0]+'Z')-Date.parse(r24[i-1][0]+'Z'))/60000;if(g>=120&&g<=600){gap={sourceRecord:p24,sourceSha256:sha(p24),before:r24.slice(Math.max(0,i-3),i).map(x=>x.slice(0,3)),after:r24.slice(i,i+3).map(x=>x.slice(0,3)),minutes:Math.round(g)};break}}
 if(!gap)throw Error('no gap found');
 const sci3=need('SCI-0003'),osd=need('P2-OSD-615'),trek=need('P2-TREK-01'),r06=need('P2-RAD-06'),r08=need('P2-RAD-08'),r07=need('P2-RAD-07');
 const snap={schemaVersion:1,snapshotId:'campaign-evidence-v1',note:'Values copied from original RadLab CSV rows or 04_VERIFIED_DISCOVERIES/scientific_findings.json. Game meters and outcomes are NOT in this file: they are pretend game rules (src/game/base-sim.ts).',

@@ -323,7 +323,33 @@ def em_fork(d):
     d.polygon(((18, 6), (22, 6), (20, 10)), fill=ORANGE, outline=INK)
 
 
+def em_sun(d):
+    d.ellipse((11, 8, 20, 17), fill=GOLD, outline=INK)
+    for a, b, c, e in ((15, 4, 15, 6), (15, 19, 15, 21), (7, 12, 9, 12), (22, 12, 24, 12)):
+        d.line((a, b, c, e), fill=ORANGE, width=2)
+
+
+def em_plant(d):
+    d.line((15, 20, 15, 11), fill=(47, 138, 82), width=2)
+    d.ellipse((9, 9, 15, 14), fill=GREEN, outline=INK); d.ellipse((15, 6, 21, 11), fill=GREEN, outline=INK)
+    d.rectangle((11, 19, 20, 22), fill=RUST, outline=INK)
+
+
+def em_bolt(d):
+    d.polygon(((17, 5), (10, 14), (15, 14), (12, 22), (21, 11), (16, 11)), fill=GOLD, outline=INK)
+
+
+def em_star(d):
+    pts = [(15, 5), (17, 11), (23, 11), (18, 15), (20, 21), (15, 17), (10, 21), (12, 15), (7, 11), (13, 11)]
+    d.polygon(pts, fill=GOLD, outline=INK)
+
+
 BADGES = [
+    ('log-keeper', em_book, CYAN, '#c9f4f2'),
+    ('sun-watcher', em_sun, ORANGE, '#ffd29a'),
+    ('plant-scientist', em_plant, CYAN, '#c9f4f2'),
+    ('power-planner', em_bolt, ORANGE, '#ffd29a'),
+    ('base-commander', em_star, GOLD, '#ffe7a8'),
     ('first-discovery', em_magnifier, GOLD, '#ffe7a8'),
     ('evidence-detective', em_chart, GOLD, '#ffe7a8'),
     ('careful-scientist', em_check, ORANGE, '#ffd29a'),

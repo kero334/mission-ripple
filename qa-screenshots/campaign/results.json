@@ -1,0 +1,762 @@
+{
+  "checks": [
+    {
+      "name": "A: after The Rover Reading the tracker offers NEXT MISSION and PLAY AGAIN",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: NEXT MISSION starts mission 2",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: pretend meters appear in the HUD, all 3",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: tracker shows the mission and where to go",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: beacon on the machine inside research",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: E on the machine opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A notebook: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":1,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "A dupes: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "A dupes: quiz has a right answer that earns praise",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A gap: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "A gap: quiz has a right answer that earns praise",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A go-command: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "A: beacon on the machine inside command",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: E on the machine opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A choose: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":0,\"scroll\":0}"
+    },
+    {
+      "name": "A now: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "A lesson: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "A: M2-LOG complete, badge + XP awarded once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: beacon on the machine inside comms",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: E on the machine opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A ripple: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":1,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "A sun: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "A sunToMars: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "A sunToMars: quiz has a right answer that earns praise",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A go-shelter: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":1,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "A: beacon on the machine inside shelter",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: E on the machine opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A pretendShelter: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "A choose: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":0,\"scroll\":0}"
+    },
+    {
+      "name": "A now: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "A lesson: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "A: M3-SUN complete, badge + XP awarded once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: beacon on the machine inside greenhouse",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: E on the machine opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A ripple: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "A study: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "A control: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":1,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "A control: quiz has a right answer that earns praise",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A noYield: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "A go-command: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":1,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "A: beacon on the machine inside command",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: E on the machine opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A choose: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":0,\"scroll\":0}"
+    },
+    {
+      "name": "A now: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "A lesson: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":1,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "A: M4-PLANTS complete, badge + XP awarded once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: beacon on the machine inside power",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: E on the machine opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A ripple: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "A meters: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "A share: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":0,\"scroll\":0}"
+    },
+    {
+      "name": "A go-command: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "A: beacon on the machine inside command",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: E on the machine opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A map: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "A map: quiz has a right answer that earns praise",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A choose: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":0,\"scroll\":0}"
+    },
+    {
+      "name": "A now: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "A lesson: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "A: M5-POWER complete, badge + XP awarded once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: beacon on the machine inside command",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: E on the machine opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A ripple: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "A story: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "A missing: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "A choose: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":0,\"scroll\":0}"
+    },
+    {
+      "name": "A now: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "A lesson: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":1,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "A: M6-PLAN complete, badge + XP awarded once",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: final scene “every mission” shown",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: all A choices + flags recorded",
+      "pass": true,
+      "detail": "{\"version\":1,\"started\":true,\"index\":5,\"step\":0,\"choices\":{\"M2-LOG\":\"A\",\"M3-SUN\":\"A\",\"M4-PLANTS\":\"A\",\"M5-POWER\":\"A\",\"M6-PLAN\":\"A\"},\"flags\":[\"log_repair_planned\",\"watch_prepared\",\"plant_control_ready\",\"route_recon_done\",\"operations_plan_published\"],\"meters\":{\"power\":0,\"water\":4,\"oxygen\":4,\"food\":4},\"revealed\":[\"M2-LOG\",\"M3-SUN\",\"M4-PLANTS\",\"M5-POWER\"],\"alloc\":{\"M5-POWER\":\"E\"}}"
+    },
+    {
+      "name": "A: pretend meters follow the written rules (power 3−1−1−1=0, food +1 later, air/water +1)",
+      "pass": true,
+      "detail": "{\"power\":0,\"water\":4,\"oxygen\":4,\"food\":4}"
+    },
+    {
+      "name": "A: Base Commander badge",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: campaign XP earned",
+      "pass": true,
+      "detail": "320"
+    },
+    {
+      "name": "A: reload keeps the finished campaign and XP",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "A: Passport lists all 6 missions with choices",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B: beacon on the machine inside research",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B: E on the machine opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B notebook: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":1,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "B dupes: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "B dupes: quiz has a right answer that earns praise",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B gap: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "B gap: quiz has a right answer that earns praise",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B go-command: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "B: beacon on the machine inside command",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B: E on the machine opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B choose: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":0,\"scroll\":0}"
+    },
+    {
+      "name": "B now: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "B lesson: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "B: mission 3 active",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B: next mission opens with the delayed effect of the earlier choice",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B: reload mid-campaign resumes mission 3 step 1",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B: delayed effect is not applied twice after reload",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B: beacon on the machine inside comms",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B: E on the machine opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B ripple: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "B sun: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "B sunToMars: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "B sunToMars: quiz has a right answer that earns praise",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B go-shelter: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":1,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "B: beacon on the machine inside shelter",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B: E on the machine opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B pretendShelter: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "B choose: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":0,\"scroll\":0}"
+    },
+    {
+      "name": "B now: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "B lesson: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "B: beacon on the machine inside greenhouse",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B: E on the machine opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B ripple: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "B study: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "B control: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":1,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "B control: quiz has a right answer that earns praise",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B noYield: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "B go-command: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":1,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "B: beacon on the machine inside command",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B: E on the machine opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B choose: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":0,\"scroll\":0}"
+    },
+    {
+      "name": "B now: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "B lesson: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":1,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "B: beacon on the machine inside power",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B: E on the machine opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B ripple: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "B meters: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "B share: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":0,\"scroll\":0}"
+    },
+    {
+      "name": "B go-command: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "B: beacon on the machine inside command",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B: E on the machine opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B map: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "B map: quiz has a right answer that earns praise",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B choose: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":0,\"scroll\":0}"
+    },
+    {
+      "name": "B now: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "B lesson: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "B: beacon on the machine inside command",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B: E on the machine opens the mission scene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "B ripple: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "B story: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "B missing: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "B choose: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":0,\"scroll\":0}"
+    },
+    {
+      "name": "B now: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "B lesson: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":1,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "B: all B choices + flags recorded",
+      "pass": true,
+      "detail": "{\"version\":1,\"started\":true,\"index\":5,\"step\":0,\"choices\":{\"M2-LOG\":\"B\",\"M3-SUN\":\"B\",\"M4-PLANTS\":\"B\",\"M5-POWER\":\"B\",\"M6-PLAN\":\"B\"},\"flags\":[\"partial_series\",\"unresolved_alert\",\"plant_comparison_missing\",\"route_uncertainty\",\"safe_early_termination\"],\"meters\":{\"power\":3,\"water\":4,\"oxygen\":4,\"food\":4},\"revealed\":[\"M2-LOG\",\"M3-SUN\",\"M4-PLANTS\",\"M5-POWER\"],\"alloc\":{\"M5-POWER\":\"E\"}}"
+    },
+    {
+      "name": "B: pretend meters follow the rules (food +1 now, bump −1 later, pause +1)",
+      "pass": true,
+      "detail": "{\"power\":3,\"water\":4,\"oxygen\":4,\"food\":4}"
+    },
+    {
+      "name": "C: Arabic campaign tracker",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "C: Arabic scene text",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "C ar dupes 1024x640: one idea, fits on screen",
+      "pass": true,
+      "detail": "{\"bubbles\":1,\"sentences\":2,\"primaries\":1,\"scroll\":0}"
+    },
+    {
+      "name": "C: help over a campaign card shows one Nuri bubble",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "C: Esc closes help first, campaign card stays",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "No browser errors or warnings",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "errors": [],
+  "screens": [
+    "qa-screenshots/campaign/A-00-offer.png",
+    "qa-screenshots/campaign/A-M2-LOG-lesson.png",
+    "qa-screenshots/campaign/A-M3-SUN-lesson.png",
+    "qa-screenshots/campaign/A-M4-PLANTS-lesson.png",
+    "qa-screenshots/campaign/A-M5-POWER-lesson.png",
+    "qa-screenshots/campaign/A-M6-PLAN-lesson.png",
+    "qa-screenshots/campaign/A-99-campaign-end.png",
+    "qa-screenshots/campaign/A-passport-missions.png",
+    "qa-screenshots/campaign/B-M2-LOG-lesson.png",
+    "qa-screenshots/campaign/B-ripple.png",
+    "qa-screenshots/campaign/B-M3-SUN-lesson.png",
+    "qa-screenshots/campaign/B-M4-PLANTS-lesson.png",
+    "qa-screenshots/campaign/B-M5-POWER-lesson.png",
+    "qa-screenshots/campaign/B-M6-PLAN-lesson.png",
+    "qa-screenshots/campaign/C-ar-dupes-1024.png"
+  ]
+}

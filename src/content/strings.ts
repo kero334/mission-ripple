@@ -228,7 +228,7 @@ export const CARDS={
   done:{say:tx('Mission complete! You earned {xp} Science XP!','المهمة خلصت! كسبت {xp} نقطة علوم!'),
     none:tx('Mission complete! You keep everything you earned.','المهمة خلصت! وكل اللي كسبته معاك.')},
   // Buttons -------------------------------------------------------------------
-  btn:{next:tx('NEXT','التالي'),go:tx('LET’S GO!','يلا بينا!'),skip:tx('SKIP','تخطّي'),finish:tx('FINISH','خلّص'),
+  btn:{next:tx('NEXT','التالي'),nextMission:tx('NEXT MISSION','المهمة الجاية'),go:tx('LET’S GO!','يلا بينا!'),skip:tx('SKIP','تخطّي'),finish:tx('FINISH','خلّص'),
     replay:tx('PLAY AGAIN','العب تاني'),explore:tx('KEEP EXPLORING','كمّل استكشاف'),badges:tx('MY BADGES','شاراتي'),
     done:tx('DONE','تمام'),more:tx('Tell me more','قولي أكتر'),grownups:tx('For grown-ups','للكبار'),showWay:tx('SHOW ME THE WAY','ورّيني الطريق'),
     look:tx('LOOK AGAIN','بُص تاني')},

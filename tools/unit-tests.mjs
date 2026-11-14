@@ -89,6 +89,43 @@ await test('reading level: no jargon in anything a child reads first',()=>{for(c
 await test('reading level: short sentences (≤ 14 words each)',()=>{for(const [t,w] of childLines())for(const s of t.split(/(?<=[.!?])\s+/)){const n=s.split(/\s+/).filter(x=>/[A-Za-z0-9]/.test(x)).length;assert.ok(n<=14,`${w} (${n} words): "${s}"`)}});
 await test('reading level: no decimals or big numbers in child text',()=>{for(const [t,w] of childLines())assert.ok(!/\d+\.\d+|\d{4,}|\d{1,3},\d{3}/.test(t.replace(/2024/g,'')),`${w}: "${t}"`)});
 
+// ---------------------------------------------------------------- campaign missions
+const SIM=await load('/src/game/base-sim.ts');
+const CD=await load('/src/missions/campaign-data.ts');
+const CE=await load('/src/missions/campaign.ts');
+await test('campaign: 5 missions; every A/B option uses the research package decision design and its delayed flag',()=>{
+  assert.equal(CD.CAMPAIGN.length,5);
+  const f=resolve(pkg,'05_MISSION_EVIDENCE/decision_evidence.json');if(!existsSync(f)){console.log('    (skipped)');return}
+  const de=Object.fromEntries(JSON.parse(readFileSync(f,'utf8')).map(d=>[d.decision_id,d]));
+  for(const m of CD.CAMPAIGN){assert.deepEqual(m.options.map(o=>o.id),['A','B']);for(const o of m.options){assert.ok(de[o.decisionId],o.decisionId);assert.equal(o.flag,de[o.decisionId].delayed_effect.at_next_mission,o.decisionId)}}});
+await test('campaign: every quiz has exactly one right answer, and every mission has a decision step',()=>{for(const m of CD.CAMPAIGN){assert.ok(m.steps.some(s=>s.decide),m.id);for(const s of m.steps)for(const sc of s.scenes)if(sc.quiz)assert.equal(sc.quiz.options.filter(o=>o.ok).length,1,sc.id)}});
+await test('campaign: reward events exist for every quiz, mission and the finale',()=>{for(const m of CD.CAMPAIGN){assert.ok(R.REWARD_EVENTS['ev:mission-complete:'+m.id],m.id);for(const s of m.steps)for(const sc of s.scenes){if(sc.quiz)assert.ok(R.REWARD_EVENTS[sc.quiz.award],sc.quiz.award);if(sc.award)assert.ok(R.REWARD_EVENTS[sc.award],sc.award)}}assert.ok(R.REWARD_EVENTS['ev:campaign-complete'])});
+await test('pretend meters: whole blocks, clamped 0–5, start at 3, effects are small and documented',()=>{
+  const m=SIM.startMeters();assert.deepEqual(m,{power:3,water:3,oxygen:3,food:3});
+  assert.deepEqual(SIM.applyEffect({power:0,water:5,oxygen:3,food:3},{power:-1,water:2}),{power:0,water:5,oxygen:3,food:3});
+  for(const mm of CD.CAMPAIGN)for(const o of mm.options)for(const e of [o.effect,o.laterEffect])if(e)for(const v of Object.values(e))assert.ok(Number.isInteger(v)&&Math.abs(v)<=2,mm.id)});
+await test('pretend meters: every possible path through the campaign stays inside 0–5 and both plans stay comparable',()=>{
+  let paths=[[SIM.startMeters(),[]]];
+  for(const [i,mm] of CD.CAMPAIGN.entries()){const next=[];for(const [m,ch] of paths)for(const o of mm.options){let x=m;const prev=i?CD.CAMPAIGN[i-1].options.find(p=>p.id===ch[i-1]):null;if(prev?.laterEffect)x=SIM.applyEffect(x,prev.laterEffect);x=SIM.applyEffect(x,o.effect);if(mm.id==='M5-POWER')x=SIM.applyEffect(x,{oxygen:1,water:1});next.push([x,[...ch,o.id]])}paths=next}
+  assert.equal(paths.length,32);for(const [m] of paths)for(const v of Object.values(m))assert.ok(v>=0&&v<=5)});
+await test('campaign save: bad data repaired, unknown flags dropped, meters clamped',()=>{
+  const s=CE.sanitizeCampaign({version:1,started:true,index:99,step:-4,flags:['hack','log_repair_planned'],meters:{power:99,water:-3,oxygen:'x',food:2},choices:{'M2-LOG':'Z'}});
+  assert.equal(s.index,CD.CAMPAIGN.length);assert.deepEqual(s.flags,['log_repair_planned']);assert.deepEqual(s.meters,{power:5,water:0,oxygen:3,food:2});assert.equal(s.choices['M2-LOG'],'A');
+  assert.deepEqual(CE.sanitizeCampaign(null),CE.freshCampaign())});
+await test('campaign evidence: notebook rows and the gap are real rows from the original NASA CSVs',()=>{
+  const ev=JSON.parse(readFileSync('src/science/campaign-evidence-v1.json','utf8'));
+  const d=ev.log.duplicate,csvp=resolve(pkg,d.sourceRecord);if(!existsSync(csvp)){console.log('    (skipped)');return}
+  const lines=readFileSync(csvp,'utf8').trim().split(/\r?\n/).map(l=>l.replaceAll('"',''));
+  for(const r of [d.before,d.a,d.b])assert.ok(lines.some(l=>l.startsWith(r.join(','))),r.join(','));assert.equal(d.a[0],d.b[0]);assert.notEqual(d.a[2],d.b[2]);
+  const g=ev.log.gap,l24=readFileSync(resolve(pkg,g.sourceRecord),'utf8').trim().split(/\r?\n/).map(l=>l.replaceAll('"','').split(',')[0]);
+  const i=l24.indexOf(g.before.at(-1)[0]);assert.equal(l24[i+1],g.after[0][0]);assert.equal(Math.round((Date.parse(g.after[0][0]+'Z')-Date.parse(g.before.at(-1)[0]+'Z'))/60000),g.minutes);
+  const fd=Object.fromEntries(JSON.parse(readFileSync(resolve(pkg,'04_VERIFIED_DISCOVERIES/scientific_findings.json'),'utf8')).map(x=>[x.id,x]));
+  assert.equal(ev.log.conflictingRows,fd['P2-RAD-08'].value);assert.deepEqual(ev.sun.counts,fd['SCI-0003'].value.counts);assert.equal(ev.sun.strongest.class,'X8.7');assert.deepEqual(ev.plants.groups,fd['P2-OSD-615'].value.groups)});
+await test('campaign text: both languages, short sentences, no jargon, never safe/unsafe',()=>{
+  const lines=[];const add=(t,w)=>{if(!t)return;assert.ok(t.en.trim()&&/[\u0600-\u06FF]/.test(t.ar),w);lines.push([t.en,w])};
+  for(const m of CD.CAMPAIGN){add(m.title,m.id);add(m.brief,m.id);add(m.lesson,m.id);add(m.think,m.id);for(const s of m.steps){add(s.task,s.id);add(s.where,s.id);for(const sc of s.scenes){add(sc.say,sc.id);if(sc.quiz)for(const o of sc.quiz.options){add(o.label,sc.id);add(o.fb,sc.id)}}}for(const o of m.options){add(o.title,o.decisionId);add(o.gain,o.decisionId);add(o.cost,o.decisionId);add(o.now,o.decisionId);add(o.later,o.decisionId)}}
+  for(const [t,w] of lines){assert.ok(!JARGON.test(t),`${w}: ${t}`);assert.ok(!/\bunsafe\b|\bsafe\b/i.test(t.replace('stops safely','')),`${w}: ${t}`);for(const s of t.split(/(?<=[.!?])\s+/))assert.ok(s.split(/\s+/).length<=16,`${w}: "${s}"`)}});
+
 await server.close();
 const failed=results.filter(r=>!r[1]);
 console.log(`\n${results.length-failed.length}/${results.length} unit tests passed`);

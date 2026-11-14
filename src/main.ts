@@ -10,6 +10,7 @@ import {MISC,NURI,OBJECTIVES,PASSPORT,PROMPTS,TOAST,type Locale,type StageKey,pi
 import {$,asset,bdi,esc,modals,toast} from './ui/shell';
 import {IntroScene} from './intro/IntroScene';
 import {setupIntro} from './intro/intro';
+import {setupCampaign} from './missions/campaign';
 import './style.css';
 
 const progress=createProgressStore();
@@ -19,8 +20,10 @@ const send=(type:string,value?:unknown)=>window.dispatchEvent(new CustomEvent('r
 let science:ReturnType<typeof setupScienceUI>;
 
 let replayIntro=()=>{};
-const panels=setupPanels({locale:()=>locale,progress,mission:()=>science,position:()=>state.position,setLocale:l=>{if(l!==locale)switchLocale()},replayIntro:()=>replayIntro()});
-science=setupScienceUI({locale:()=>locale,progress,openHelp:from=>panels.openHelp(from),openPassport:()=>panels.open('passport')});
+const campaign=setupCampaign({locale:()=>locale,progress,roverDone:()=>science?.getState().stage==='complete',guided:()=>progress.get().settings.guidance==='guided',
+  openHelp:()=>panels.openHelp('card'),openPassport:()=>panels.open('passport'),onChange:()=>{science?.renderHud(true);science?.updateGuide();renderPassportChip()}});
+const panels=setupPanels({locale:()=>locale,progress,mission:()=>science,position:()=>state.position,setLocale:l=>{if(l!==locale)switchLocale()},replayIntro:()=>replayIntro(),campaign});
+science=setupScienceUI({locale:()=>locale,progress,openHelp:from=>panels.openHelp(from),openPassport:()=>panels.open('passport'),campaign});
 
 let lastMoveAt=Date.now(),lastPos='';
 function promptText():{text:string;key:boolean}|null{
@@ -28,6 +31,7 @@ function promptText():{text:string;key:boolean}|null{
   const b=id?BUILDINGS.find(v=>v.id===id):undefined,bn=b?(l==='en'?b.name:b.ar):'';
   if(k==='field')return {key:true,text:pick(s==='monitor'?PROMPTS.examineRover:s==='ready'?PROMPTS.look:PROMPTS.reviewEvidence,l,{name:pick(PROMPTS.terminal,l)})};
   if(k==='equipment'&&b){
+    if(campaign.active()&&campaign.step()?.building===b.id)return {key:true,text:pick(campaign.step()!.task,l)};
     if(b.id==='research'&&s==='research')return {key:true,text:pick(PROMPTS.studyRecord,l)};
     if(b.id==='command'&&s==='command')return {key:true,text:pick(PROMPTS.openSchedule,l)};
     if(b.id==='comms'&&s==='nextShift')return {key:true,text:pick(PROMPTS.readMessage,l)};
@@ -43,6 +47,7 @@ function promptText():{text:string;key:boolean}|null{
 function renderPassportChip(){
   const xp=progress.xp();
   $('resource-rows').innerHTML=`<button type="button" id="passport-chip" class="passport-chip pixel-panel" aria-label="${esc(pick(PASSPORT.xp,locale))}: ${xp}"><img src="${asset('ui/ui-xp-pixel')}" alt=""/><strong id="hud-xp">${bdi(xp)}</strong><small>XP</small></button>`;
+  $('resource-rows').insertAdjacentHTML('beforeend',campaign.metersHtml(locale));
   $('passport-chip').onclick=()=>panels.toggle('passport');
 }
 function render(){

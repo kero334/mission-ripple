@@ -1,0 +1,135 @@
+{
+  "schemaVersion": 1,
+  "snapshotId": "campaign-evidence-v1",
+  "note": "Values copied from original RadLab CSV rows or 04_VERIFIED_DISCOVERIES/scientific_findings.json. Game meters and outcomes are NOT in this file: they are pretend game rules (src/game/base-sim.ts).",
+  "log": {
+    "findingIds": [
+      "P2-RAD-08",
+      "P2-RAD-06"
+    ],
+    "sourceUrl": "https://visualization.osdr.nasa.gov/radlab/gui/data-api/",
+    "datasetId": "MSL-RAD-Surface",
+    "unit": "µGy/hour",
+    "duplicate": {
+      "sourceRecord": "01_ORIGINAL_DATA/RADLAB/phase2/MSL_RAD_surface_2016.csv",
+      "sourceSha256": "e46345150c1dede1b390db6c93d6ea87d0c90ef2d4e873b0f46286c17bb5d002",
+      "before": [
+        "2016-06-02T15:52:48",
+        "MSL-RAD-Surface",
+        "8.421698"
+      ],
+      "a": [
+        "2016-06-02T16:09:53",
+        "MSL-RAD-Surface",
+        "7.5507655"
+      ],
+      "b": [
+        "2016-06-02T16:09:53",
+        "MSL-RAD-Surface",
+        "8.396218"
+      ]
+    },
+    "gap": {
+      "sourceRecord": "01_ORIGINAL_DATA/RADLAB/phase2/MSL_RAD_surface_2024.csv",
+      "sourceSha256": "baea6261262f499f02259fbfba986973038c88a7b03f4f1b2136d6e346132a11",
+      "before": [
+        [
+          "2024-01-06T00:33:41",
+          "MSL-RAD-Surface",
+          "4.5120964"
+        ],
+        [
+          "2024-01-06T00:50:47",
+          "MSL-RAD-Surface",
+          "5.1327696"
+        ],
+        [
+          "2024-01-06T01:07:53",
+          "MSL-RAD-Surface",
+          "5.3648705"
+        ]
+      ],
+      "after": [
+        [
+          "2024-01-06T03:09:08",
+          "MSL-RAD-Surface",
+          "4.9592137"
+        ],
+        [
+          "2024-01-06T03:26:13",
+          "MSL-RAD-Surface",
+          "5.24825"
+        ],
+        [
+          "2024-01-06T03:43:18",
+          "MSL-RAD-Surface",
+          "4.6461205"
+        ]
+      ],
+      "minutes": 121
+    },
+    "conflictingRows": 29,
+    "coveredHours": 74447.50444444444,
+    "limitation": "Reason for conflicts unknown.",
+    "method": "trapezoid of neighboring rates only for <=30 minute unambiguous intervals"
+  },
+  "sun": {
+    "findingIds": [
+      "SCI-0003"
+    ],
+    "sourceUrl": "https://ccmc.gsfc.nasa.gov/DONKI/guide/",
+    "datasetId": "DONKI-FLR",
+    "period": "2024-05-01 through 2024-05-31 UTC",
+    "counts": {
+      "FLR": 181,
+      "CME": 144,
+      "SEP": 14
+    },
+    "strongest": {
+      "event_id": "2024-05-14T16:46:00-FLR-001",
+      "class": "X8.7",
+      "begin_utc": "2024-05-14 16:46:00+00:00",
+      "end_utc": "2024-05-14 17:02:00+00:00",
+      "duration_minutes": 16,
+      "source_location": "S19W90",
+      "source_url": "https://ccmc.gsfc.nasa.gov/DONKI/view/FLR/30849/-1"
+    },
+    "caveat": "Catalog entry and GOES flare class; not confirmed Mars particle flux or surface dose.",
+    "environment": "Solar observations and catalog modeling; not Mars surface"
+  },
+  "plants": {
+    "findingIds": [
+      "P2-OSD-615"
+    ],
+    "sourceUrl": "https://visualization.osdr.nasa.gov/biodata/api/v2/dataset/OSD-615/",
+    "datasetId": "OSD-615",
+    "samples": 12,
+    "groups": {
+      "growth time": {
+        "6": 6,
+        "11": 6
+      },
+      "spaceflight": {
+        "Space Flight": 6,
+        "Ground Control": 6
+      }
+    },
+    "limitation": "Experimental design only; outcome assay CSVs are outside allowlisted redirect boundary."
+  },
+  "map": {
+    "findingIds": [
+      "P2-TREK-01"
+    ],
+    "sourceUrl": "https://trek.nasa.gov/tiles/apidoc/trekAPI.html?body=mars",
+    "datasetId": "Mars Trek MOLA color-shaded WMTS",
+    "format": "image/jpeg",
+    "limitation": "Color-shaded raster is not numeric elevation or validated slope."
+  },
+  "dose": {
+    "findingIds": [
+      "P2-RAD-07"
+    ],
+    "sourceUrl": "https://visualization.osdr.nasa.gov/radlab/gui/data-api/",
+    "limitation": "Absorbed dose must not be silently converted to dose equivalent."
+  }
+}

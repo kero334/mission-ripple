@@ -11,6 +11,8 @@
                     "qa:experience":  "node tools/experience-qa.mjs",
                     "qa:science":  "node tools/science-qa.mjs",
                     "qa:camera":  "node tools/camera-qa.mjs",
+                    "qa:intro":  "node tools/intro-qa.mjs",
+                    "qa:campaign":  "node tools/campaign-qa.mjs",
                     "build:science-snapshots":  "node tools/build_science_series.mjs",
                     "build:experience-art":  "python tools/build_experience_art.py"
                 },

@@ -6,9 +6,11 @@ import {DISCOVERIES,discovery} from '../content/discoveries';
 import {CARDS,HELP,INTRO,MAP,MISSION,OBJECTIVES,PASSPORT,SETTINGS,STAGE_STEPS,type Locale,type StageKey,pick} from '../content/strings';
 import {BUILDINGS,WORLD_H,WORLD_W} from '../world-data';
 import {$,asset,bdi,esc,modals,nuriLine} from './shell';
+import type {Campaign} from '../missions/campaign';
+import {CAMPAIGN} from '../missions/campaign-data';
 
 type Mission={getState:()=>{stage:string;choice:string|null};room:()=>string|null;card:()=>{seq:string;page:number}|null;highlightRise:()=>void;graphVisible:()=>boolean;updateGuide:()=>void};
-type Deps={locale:()=>Locale;progress:ProgressStore;mission:()=>Mission;position:()=>{x:number;y:number};setLocale:(l:Locale)=>void;replayIntro:()=>void};
+type Deps={locale:()=>Locale;progress:ProgressStore;mission:()=>Mission;position:()=>{x:number;y:number};setLocale:(l:Locale)=>void;replayIntro:()=>void;campaign?:Campaign};
 const control=(type:string,value?:unknown)=>window.dispatchEvent(new CustomEvent('ripple-control',{detail:{type,value}}));
 
 export function setupPanels(deps:Deps){
@@ -29,9 +31,9 @@ export function setupPanels(deps:Deps){
 
   // ------------------------------------------------------------------ help
   function help(l:Locale){
-    const m=deps.mission(),stage=m.getState().stage as StageKey,room=m.room(),seq=cardSeq(),ladder=hintLadder(stage,room,l,seq),level=P.hintLevel(hintKey());
+    const m=deps.mission(),stage=m.getState().stage as StageKey,room=m.room(),seq=cardSeq(),C=deps.campaign,useC=!!C?.active()&&!m.card(),ladder=useC?C!.hints(l):hintLadder(stage,room,l,seq),level=P.hintLevel(hintKey());
     const h=ladder[level],icon={goal:'guide/guide-beacon',nav:'ui/ui-map-pixel',control:'ui/ui-help-pixel',science:'ui/science-question'}[h.category];
-    const showMe=level>=1&&!['ready','debrief','complete'].includes(stage)&&!m.card();
+    const showMe=level>=1&&(useC?!C!.isOpen():!['ready','debrief','complete'].includes(stage)&&!m.card());
     const graph=level>=3&&m.graphVisible();
     return `<h2 id="panel-title" class="sr-only">${pick(HELP.title,l)}</h2>
       <div class="help-scene hint-${h.category}"><img class="help-icon" src="${asset(icon)}" alt=""/><b class="help-level">${pick(HELP.levels[level],l)}</b>${nuriLine(esc(h.text),l)}</div>
@@ -42,7 +44,7 @@ export function setupPanels(deps:Deps){
   }
   // Hints opened over a science card describe that card; otherwise they describe the world objective.
   function cardSeq(){const c=deps.mission().card();return c&&['field','research','decide','later','debrief'].includes(c.seq)?c.seq:null}
-  function hintKey(){const s=cardSeq();return deps.mission().getState().stage+(s?':'+s:'')}
+  function hintKey(){const C=deps.campaign;if(C?.active()&&!deps.mission().card())return 'c:'+C.mission()!.id+':'+C.state().step;const s=cardSeq();return deps.mission().getState().stage+(s?':'+s:'')}
   function openHelp(from:'card'|'hud'){helpFrom=from;P.count('hintRequests');if(current==='help')render();else{if(current)close();open('help')}}
 
   // ------------------------------------------------------------------ passport
@@ -63,6 +65,7 @@ export function setupPanels(deps:Deps){
       const order=['ready','monitor','research','command','nextShift','debrief','complete'],cur=order.indexOf(stage);
       body=`<h3>${pick(PASSPORT.current,l)}: ${pick(MISSION.name,l)}</h3><div class="status-goal"><div><small>${pick(MISSION.now,l)}</small><strong>${esc(pick(o.task,l))}</strong></div><div><small>${pick(MISSION.where,l)}</small><span>${esc(pick(o.where,l))}</span></div></div>
         <ol class="status-steps">${STAGE_STEPS.map(v=>{const i=order.indexOf(v.stage);return `<li class="${cur>i?'done':cur===i?'now':''}"><b>${cur>i?'✓':''}</b>${esc(pick(v.label,l))}</li>`}).join('')}</ol>
+        ${campaignList(l)}
         <h3>${pick(PASSPORT.challenges,l)}</h3><ul class="challenge-list">${CHALLENGES.map(c=>`<li class="${s.challenges.includes(c.id)?'done':''}"><b>${s.challenges.includes(c.id)?'✓':'○'}</b><div><strong>${esc(c.name[l])}</strong><span>${esc(c.how[l])}</span></div></li>`).join('')}</ul>
         <h3>${pick(PASSPORT.outcomes,l)}</h3><div class="outcome-grid">${(['review-defer','survey-followup'] as const).map(c=>{const seen=s.branchesSeen.includes(c),D=CARDS.decide;return `<div class="outcome ${seen?'seen':''}"><strong>${pick(c==='review-defer'?D.aTitle:D.bTitle,l)}</strong>${seen?`<span>${pick(c==='review-defer'?CARDS.now.aNow:CARDS.now.bNow,l)}</span><span>${pick(c==='review-defer'?CARDS.later.aLater:CARDS.later.bLater,l)}</span>`:`<span>${pick(PASSPORT.notSeen,l)}</span>`}</div>`}).join('')}</div>`;
     }else{
@@ -71,6 +74,11 @@ export function setupPanels(deps:Deps){
     }
     return `<h2 id="panel-title"><img src="${asset('ui/ui-passport-pixel')}" alt=""/>${pick(PASSPORT.title,l)}</h2><div class="tabs" role="tablist">${tabs}</div><div class="pp-body">${body}</div><p class="card-note">${pick(PASSPORT.noPublic,l)}</p>`;
   }
+  function campaignList(l:Locale){const C=deps.campaign;if(!C)return '';const cs=C.state(),rover=deps.mission().getState().stage==='complete';
+    const rows=[`<li class="${rover?'done':'now'}"><b>${rover?'✓':'1'}</b><div><strong>${esc(pick(MISSION.name,l))}</strong><span>P2-M02 · NASA RAD</span></div></li>`]
+      .concat(CAMPAIGN.map((mm,i)=>{const done=cs.started&&cs.index>i,now=cs.started&&cs.index===i,ch=cs.choices[mm.id],o=mm.options.find(x=>x.id===ch);
+        return `<li class="${done?'done':now?'now':''}"><b>${done?'✓':i+2}</b><div><strong>${esc(pick(mm.title,l))}</strong><span>${done&&o?esc((l==='en'?'You chose: ':'اخترت: ')+pick(o.title,l)):esc(mm.refs.join(' · '))}</span></div></li>`}));
+    return `<h3>${l==='en'?'Base missions':'مهمات القاعدة'}</h3><ol class="challenge-list campaign-list">${rows.join('')}</ol>`}
   function suggest(l:Locale){
     const s=P.get(),pref=s.settings.preference,m=deps.mission().getState(),o=OBJECTIVES[m.stage as StageKey];
     let text=pick(o.task,l);
@@ -85,7 +93,7 @@ export function setupPanels(deps:Deps){
   // ------------------------------------------------------------------ map
   function map(l:Locale){
     const S=0.36,w=WORLD_W*S,h=WORLD_H*S,pos=deps.position(),s=P.get(),m=deps.mission(),stage=m.getState().stage;
-    const goal=stage==='monitor'?'field':stage==='research'?'research':stage==='command'?'command':stage==='nextShift'?'comms':null;
+    const goal=deps.campaign?.active()?deps.campaign.step()!.building:stage==='monitor'?'field':stage==='research'?'research':stage==='command'?'command':stage==='nextShift'?'comms':null;
     const tiles=(window as any).__rippleMapPath as number[][]|undefined;
     const roads=tiles?tiles.flatMap((row,y)=>row.map((v,x)=>v>=12?`<rect x="${x*32*S}" y="${y*32*S}" width="${32*S+.5}" height="${32*S+.5}" class="mp-road"/>`:'')).join(''):'';
     const blds=BUILDINGS.map(b=>{const bw=70,bh=30,isGoal=goal===b.id;return `<g class="mp-b ${isGoal?'goal':''} ${s.places.includes(b.id)?'visited':''}"><rect x="${b.x*S-bw/2}" y="${b.y*S-bh}" width="${bw}" height="${bh}" rx="2"/><text x="${b.x*S}" y="${b.y*S-bh/2+4}" text-anchor="middle">${esc(l==='en'?b.name:b.ar)}</text>${s.places.includes(b.id)?`<text x="${b.x*S+bw/2-6}" y="${b.y*S-bh+9}" class="mp-check">✓</text>`:''}</g>`}).join('');
@@ -96,7 +104,7 @@ export function setupPanels(deps:Deps){
       <rect width="${w}" height="${h}" class="mp-ground"/>${roads}${blds}${field}
       ${gp?`<circle cx="${gp.x*S}" cy="${(gp.y-(goal==='field'?4:20))*S}" r="14" class="mp-goal-ring"/>`:''}
       <g class="mp-you"><circle cx="${you.x*S}" cy="${(you.y-(room?20:0))*S}" r="5"/><text x="${you.x*S}" y="${(you.y-(room?20:0))*S-9}" text-anchor="middle">${pick(MAP.you,l)}</text></g></svg></div>
-      <div class="map-legend"><span><i class="lg-you"></i>${pick(MAP.you,l)}</span>${gp?`<span><i class="lg-goal"></i>${pick(MAP.goal,l)}: ${esc(pick(OBJECTIVES[stage as StageKey].where,l))}</span>`:''}<span>${pick(MAP.visited,l,{n:bdi(s.places.length),total:bdi(BUILDINGS.length)})}</span></div><p class="card-note">${pick(MAP.help,l)}</p>`;
+      <div class="map-legend"><span><i class="lg-you"></i>${pick(MAP.you,l)}</span>${gp?`<span><i class="lg-goal"></i>${pick(MAP.goal,l)}: ${esc(deps.campaign?.active()?pick(deps.campaign.step()!.where,l):pick(OBJECTIVES[stage as StageKey].where,l))}</span>`:''}<span>${pick(MAP.visited,l,{n:bdi(s.places.length),total:bdi(BUILDINGS.length)})}</span></div><p class="card-note">${pick(MAP.help,l)}</p>`;
   }
 
   // ------------------------------------------------------------------ settings & inventory
@@ -116,7 +124,7 @@ export function setupPanels(deps:Deps){
     const l=deps.locale(),m=deps.mission();
     if(a==='close'){close();return}
     if(a==='more'){const st=m.getState().stage,key=hintKey();const lv=Math.min(3,P.hintLevel(key)+1);P.setHintLevel(key,lv);P.count('hintRequests');
-      const step=hintLadder(st as StageKey,m.room(),l,cardSeq())[lv];if(step?.visual==='beacon')control('reveal','beacon');if(step?.visual==='device')control('reveal','device');render();return}
+      const C=deps.campaign,step=(C?.active()&&!m.card()?C.hints(l):hintLadder(st as StageKey,m.room(),l,cardSeq()))[lv];if(step?.visual==='beacon')control('reveal','beacon');if(step?.visual==='device')control('reveal','device');render();return}
     if(a==='show-me'){close();control('reveal','device');control('show-me');return}
     if(a==='show-graph'){close();m.highlightRise();return}
     if(a.startsWith('tab-')){tab=a.slice(4) as typeof tab;openCard=null;render();return}

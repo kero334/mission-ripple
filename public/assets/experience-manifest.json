@@ -126,6 +126,96 @@
     "productionStatus": "production sprite"
   },
   {
+    "name": "badge-log-keeper",
+    "purpose": "Science badge: log-keeper",
+    "dimensions": "32x32",
+    "animationFrames": 1,
+    "file": "assets/badges/badge-log-keeper.png",
+    "reuseScope": "passport, toasts",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "badge-log-keeper-locked",
+    "purpose": "Locked silhouette for log-keeper",
+    "dimensions": "32x32",
+    "animationFrames": 1,
+    "file": "assets/badges/badge-log-keeper-locked.png",
+    "reuseScope": "passport",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "badge-sun-watcher",
+    "purpose": "Science badge: sun-watcher",
+    "dimensions": "32x32",
+    "animationFrames": 1,
+    "file": "assets/badges/badge-sun-watcher.png",
+    "reuseScope": "passport, toasts",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "badge-sun-watcher-locked",
+    "purpose": "Locked silhouette for sun-watcher",
+    "dimensions": "32x32",
+    "animationFrames": 1,
+    "file": "assets/badges/badge-sun-watcher-locked.png",
+    "reuseScope": "passport",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "badge-plant-scientist",
+    "purpose": "Science badge: plant-scientist",
+    "dimensions": "32x32",
+    "animationFrames": 1,
+    "file": "assets/badges/badge-plant-scientist.png",
+    "reuseScope": "passport, toasts",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "badge-plant-scientist-locked",
+    "purpose": "Locked silhouette for plant-scientist",
+    "dimensions": "32x32",
+    "animationFrames": 1,
+    "file": "assets/badges/badge-plant-scientist-locked.png",
+    "reuseScope": "passport",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "badge-power-planner",
+    "purpose": "Science badge: power-planner",
+    "dimensions": "32x32",
+    "animationFrames": 1,
+    "file": "assets/badges/badge-power-planner.png",
+    "reuseScope": "passport, toasts",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "badge-power-planner-locked",
+    "purpose": "Locked silhouette for power-planner",
+    "dimensions": "32x32",
+    "animationFrames": 1,
+    "file": "assets/badges/badge-power-planner-locked.png",
+    "reuseScope": "passport",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "badge-base-commander",
+    "purpose": "Science badge: base-commander",
+    "dimensions": "32x32",
+    "animationFrames": 1,
+    "file": "assets/badges/badge-base-commander.png",
+    "reuseScope": "passport, toasts",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "badge-base-commander-locked",
+    "purpose": "Locked silhouette for base-commander",
+    "dimensions": "32x32",
+    "animationFrames": 1,
+    "file": "assets/badges/badge-base-commander-locked.png",
+    "reuseScope": "passport",
+    "productionStatus": "production sprite"
+  },
+  {
     "name": "badge-first-discovery",
     "purpose": "Science badge: first-discovery",
     "dimensions": "32x32",
