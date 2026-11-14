@@ -18,13 +18,16 @@ const map=JSON.parse(readFileSync('voice-package/nuri_audio_map.json','utf8'));
 let lines=Object.entries(map.files).filter(([,f])=>f.speaker==='Nuri'&&f.voice==='required').map(([file,f])=>({file,...f}));
 if(opt('--pilot'))lines=lines.filter(l=>opt('--pilot').split(',').includes(l.id));
 if(opt('--limit'))lines=lines.slice(0,+opt('--limit'));
-// What the voice reads. The displayed text is unchanged; only symbols a voice would read badly are spoken as pauses.
+// What the voice reads. The displayed text is unchanged; only symbols a voice would read badly are spoken as pauses,
+// plus per-line pronunciation hints (pauses) where a take ran words together.
+const SPOKEN={'m6.rover.go-command.say':'Now let’s write the base plan, at Command!','m1.hint.research.goal':'Learn... what it means. Research Lab.'};
+const speakOf=l=>SPOKEN[l.id]||speak(l.text);
 const speak=t=>t.replaceAll(' · ','. ');
 // Per-line seed overrides (voice-cache/seeds.json) re-take a bad recording; --regen id1,id2 bumps their seed once.
 const seedsF=`${CACHE}/seeds.json`,SEEDS=existsSync(seedsF)?JSON.parse(readFileSync(seedsF,'utf8')):{};
 if(opt('--regen')){for(const id of opt('--regen').split(','))SEEDS[id]=(SEEDS[id]||1234)+1111;writeFileSync(seedsF,JSON.stringify(SEEDS,null,1));lines=lines.filter(l=>opt('--regen').split(',').includes(l.id))}
 const seedOf=l=>SEEDS[l.id]||1234;
-const key=l=>createHash('sha256').update(JSON.stringify(seedOf(l)===1234?[MODEL,creds().voice,SETTINGS,FORMAT,speak(l.text)]:[MODEL,creds().voice,SETTINGS,FORMAT,speak(l.text),seedOf(l)])).digest('hex').slice(0,24);
+const key=l=>createHash('sha256').update(JSON.stringify(seedOf(l)===1234?[MODEL,creds().voice,SETTINGS,FORMAT,speakOf(l)]:[MODEL,creds().voice,SETTINGS,FORMAT,speakOf(l),seedOf(l)])).digest('hex').slice(0,24);
 const ledgerF=`${CACHE}/ledger.json`,ledger=existsSync(ledgerF)?JSON.parse(readFileSync(ledgerF,'utf8')):{requests:0,characters:0,costHeaders:{},items:{}};
 const saveLedger=()=>writeFileSync(ledgerF,JSON.stringify(ledger,null,2));
 async function tts(l){
@@ -33,10 +36,10 @@ async function tts(l){
   if(args.includes('--dry'))return {h,raw,dry:true};
   const {voice}=creds();let err;
   for(let attempt=0;attempt<5;attempt++){
-    try{const r=await api(`/v1/text-to-speech/${voice}?output_format=${FORMAT}`,{method:'POST',accept:'audio/mpeg',body:{text:speak(l.text),model_id:MODEL,voice_settings:SETTINGS,seed:seedOf(l),apply_text_normalization:'auto'}});
-      writeFileSync(raw,r.buf);ledger.requests++;ledger.characters+=speak(l.text).length;
+    try{const r=await api(`/v1/text-to-speech/${voice}?output_format=${FORMAT}`,{method:'POST',accept:'audio/mpeg',body:{text:speakOf(l),model_id:MODEL,voice_settings:SETTINGS,seed:seedOf(l),apply_text_normalization:'auto'}});
+      writeFileSync(raw,r.buf);ledger.requests++;ledger.characters+=speakOf(l).length;
       for(const k of ['character-cost','x-character-count','request-id','current-concurrent-requests','maximum-concurrent-requests'])if(r.headers.get(k))ledger.costHeaders[k]=k==='character-cost'?(+(ledger.costHeaders[k]||0)+ +r.headers.get(k)):r.headers.get(k);
-      ledger.items[h]={id:l.id,chars:speak(l.text).length,cost:r.headers.get('character-cost')};saveLedger();return {h,raw,cached:false}}
+      ledger.items[h]={id:l.id,chars:speakOf(l).length,cost:r.headers.get('character-cost')};saveLedger();return {h,raw,cached:false}}
     catch(e){err=e;if(e.status===429||e.status===409||e.status>=500){await new Promise(r=>setTimeout(r,1500*(attempt+1)));continue}throw e}}
   throw err;
 }

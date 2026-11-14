@@ -1,0 +1,343 @@
+﻿text_key,english_text,where_it_appears
+strings.CARDS.hear,Hear Nuri again,Card button label
+strings.CARDS.chart.axisY,Radiation reading,Mission 1 chart / picture label
+strings.CARDS.chart.axisX,Time of day · 20 May 2024,Mission 1 chart / picture label
+strings.CARDS.chart.gap,No dots here,Mission 1 chart / picture label
+strings.CARDS.many.line,Counting line,Mission 1 chart / picture label
+strings.CARDS.unchanged.real,REAL,Mission 1 chart / picture label
+strings.CARDS.unchanged.game,GAME,Mission 1 chart / picture label
+strings.OBJECTIVES.ready.task,Start the mission,Mission tracker text (top-left)
+strings.OBJECTIVES.ready.where,Press START MISSION,Mission tracker text (top-left)
+strings.OBJECTIVES.ready.why,A robot on Mars found a clue!,Mission tracker text (top-left)
+strings.OBJECTIVES.monitor.task,Look at the robot’s data,Mission tracker text (top-left)
+strings.OBJECTIVES.monitor.where,Glowing screen · near you,Mission tracker text (top-left)
+strings.OBJECTIVES.monitor.why,See what the robot measured.,Mission tracker text (top-left)
+strings.OBJECTIVES.research.task,Learn what it means,Mission tracker text (top-left)
+strings.OBJECTIVES.research.where,Research Lab,Mission tracker text (top-left)
+strings.OBJECTIVES.research.why,"Find what we know, and what we don’t.",Mission tracker text (top-left)
+strings.OBJECTIVES.command.task,Make a plan,Mission tracker text (top-left)
+strings.OBJECTIVES.command.where,Command Hub · top of the map,Mission tracker text (top-left)
+strings.OBJECTIVES.command.why,Pick what the team does next.,Mission tracker text (top-left)
+strings.OBJECTIVES.nextShift.task,See what happened,Mission tracker text (top-left)
+strings.OBJECTIVES.nextShift.where,Communications · bottom right,Mission tracker text (top-left)
+strings.OBJECTIVES.nextShift.why,Your choice changed something!,Mission tracker text (top-left)
+strings.OBJECTIVES.debrief.task,See what you learned,Mission tracker text (top-left)
+strings.OBJECTIVES.debrief.where,Press MISSION,Mission tracker text (top-left)
+strings.OBJECTIVES.debrief.why,Put the clues together.,Mission tracker text (top-left)
+strings.OBJECTIVES.complete.task,Mission complete!,Mission tracker text (top-left)
+strings.OBJECTIVES.complete.where,"Explore, or play again",Mission tracker text (top-left)
+strings.OBJECTIVES.complete.why,Try the other plan next time!,Mission tracker text (top-left)
+strings.HELP.title,NURI’S HELP,Help panel button / title
+strings.HELP.goal,YOUR GOAL,Help panel button / title
+strings.HELP.nav,WHERE TO GO,Help panel button / title
+strings.HELP.control,HOW,Help panel button / title
+strings.HELP.science,THINK LIKE A SCIENTIST,Help panel button / title
+strings.HELP.more,MORE HELP,Help panel button / title
+strings.HELP.showMe,SHOW ME,Help panel button / title
+strings.HELP.showGraph,SHOW ME ON THE GRAPH,Help panel button / title
+strings.HELP.back,BACK,Help panel button / title
+strings.HELP.levels.0,GOAL,Help panel level label
+strings.HELP.levels.1,WHERE?,Help panel level label
+strings.HELP.levels.2,HOW?,Help panel level label
+strings.HELP.levels.3,THINK,Help panel level label
+strings.INTRO.title,MISSION RIPPLE,Title screen / cinematic button
+strings.INTRO.tagline,A Mars science adventure,Title screen / cinematic button
+strings.INTRO.start,START GAME,Title screen / cinematic button
+strings.INTRO.continue,CONTINUE,Title screen / cinematic button
+strings.INTRO.watch,WATCH INTRO,Title screen / cinematic button
+strings.INTRO.replay,REPLAY CINEMATIC,Title screen / cinematic button
+strings.INTRO.skip,SKIP INTRO,Title screen / cinematic button
+strings.INTRO.soundOn,SOUND: ON,Title screen / cinematic button
+strings.INTRO.soundOff,SOUND: OFF,Title screen / cinematic button
+strings.INTRO.fiction,A made-up story about the future. The Mars data in the game is real NASA data.,Title screen / cinematic button
+disc.curiosity-rover.title,Curiosity Rover,Discovery card title
+disc.curiosity-rover.where,Field terminal,Discovery card: where it is found
+disc.rad-instrument.title,RAD Instrument,Discovery card title
+disc.rad-instrument.where,Field terminal,Discovery card: where it is found
+disc.may20-readings.title,The 20 May Readings,Discovery card title
+disc.may20-readings.where,Field terminal,Discovery card: where it is found
+disc.compare-days.title,Comparing Two Days,Discovery card title
+disc.compare-days.where,Research Lab,Discovery card: where it is found
+disc.rover-vs-person.title,Robot Reading ≠ Person,Discovery card title
+disc.rover-vs-person.where,Research Lab,Discovery card: where it is found
+disc.many-readings.title,Many High Dots,Discovery card title
+disc.many-readings.where,Research Lab,Discovery card: where it is found
+disc.data-check.title,Data Detectives,Discovery card title
+disc.data-check.where,Research Lab · left screen,Discovery card: where it is found
+disc.surface-typical.title,A Usual Day on Mars,Discovery card title
+disc.surface-typical.where,Radiation Shelter · right screen,Discovery card: where it is found
+disc.solar-catalog.title,The Sun Storm List,Discovery card title
+disc.solar-catalog.where,Command Hub · left screen,Discovery card: where it is found
+disc.iss-environment.title,"Different Places, Different Readings",Discovery card title
+disc.iss-environment.where,Habitat · left screen,Discovery card: where it is found
+disc.crop-education.title,Growing Food in Space,Discovery card title
+disc.crop-education.where,Greenhouse · left plants,Discovery card: where it is found
+disc.mars-map.title,A Map of Mars,Discovery card title
+disc.mars-map.where,Communications · left dish,Discovery card: where it is found
+cdata.CAMPAIGN.0.title,Fix the Robot’s Notebook,"Mission title (tracker, Passport)"
+cdata.CAMPAIGN.0.steps.0.task,Check the robot’s notebook,Mission tracker task
+cdata.CAMPAIGN.0.steps.0.where,Research Lab,Mission tracker place
+cdata.CAMPAIGN.0.steps.1.task,Plan for missing hours,Mission tracker task
+cdata.CAMPAIGN.0.steps.1.where,Command Hub,Mission tracker place
+cdata.CAMPAIGN.1.title,Sun Storm Watch,"Mission title (tracker, Passport)"
+cdata.CAMPAIGN.1.steps.0.task,Check the Sun alert,Mission tracker task
+cdata.CAMPAIGN.1.steps.0.where,Communications,Mission tracker place
+cdata.CAMPAIGN.1.steps.1.task,Plan for the alert,Mission tracker task
+cdata.CAMPAIGN.1.steps.1.where,Radiation Shelter · bottom left,Mission tracker place
+cdata.CAMPAIGN.2.title,Plant Detectives,"Mission title (tracker, Passport)"
+cdata.CAMPAIGN.2.steps.0.task,Check on the plants,Mission tracker task
+cdata.CAMPAIGN.2.steps.0.where,Greenhouse,Mission tracker place
+cdata.CAMPAIGN.2.steps.1.task,Plan the greenhouse trays,Mission tracker task
+cdata.CAMPAIGN.2.steps.1.where,Command Hub,Mission tracker place
+cdata.CAMPAIGN.3.title,Share the Power,"Mission title (tracker, Passport)"
+cdata.CAMPAIGN.3.steps.0.task,Do the power check,Mission tracker task
+cdata.CAMPAIGN.3.steps.0.where,Power Station,Mission tracker place
+cdata.CAMPAIGN.3.steps.1.task,Plan the robot trip,Mission tracker task
+cdata.CAMPAIGN.3.steps.1.where,Command Hub,Mission tracker place
+cdata.CAMPAIGN.4.title,The Base Plan,"Mission title (tracker, Passport)"
+cdata.CAMPAIGN.4.steps.0.task,Help the stuck robot,Mission tracker task
+cdata.CAMPAIGN.4.steps.0.where,By the rocks · follow the arrow,Mission tracker place
+cdata.CAMPAIGN.4.steps.1.task,Write the base plan,Mission tracker task
+cdata.CAMPAIGN.4.steps.1.where,Command Hub,Mission tracker place
+cdata.C_UI.nextMission,NEXT MISSION,Base-mission on-screen label
+cdata.C_UI.missionN,MISSION {n} OF {total},Base-mission on-screen label
+cdata.C_UI.lessonTitle,What we learned,Base-mission on-screen label
+cdata.C_UI.playStory,PLAY THE BASE STORY AGAIN,Base-mission on-screen label
+cdata.C_UI.watchEnding,WATCH THE ENDING AGAIN,Base-mission on-screen label
+cdata.C_UI.seeEnding,SEE THE ENDING,Base-mission on-screen label
+cdata.C_UI.meters,PRETEND BASE,Base-mission on-screen label
+cdata.C_UI.spareN,{n} spare,Base-mission on-screen label
+cdata.C_UI.robotBlock,The robot is using 1 block,Base-mission on-screen label
+cdata.C_UI.powerDone,DONE,Base-mission on-screen label
+cdata.C_UI.endTitle.thrive,THE BASE THRIVES,Base-mission on-screen label
+cdata.C_UI.endTitle.continue,THE MISSION CONTINUES,Base-mission on-screen label
+cdata.C_UI.endTitle.setback,A HARD DAY FOR THE BASE,Base-mission on-screen label
+cdata.C_UI.why,How your choices led here,Base-mission on-screen label
+cdata.C_UI.solved.notes,Fewer gaps in our notes,Base-mission on-screen label
+cdata.C_UI.solved.alert,The Sun alert was a flare,Base-mission on-screen label
+cdata.C_UI.solved.fair,A fair plant test,Base-mission on-screen label
+cdata.C_UI.solved.rover,The robot is home,Base-mission on-screen label
+cdata.C_UI.pretendEnd,"This ending is from our pretend base, not from NASA data.",Base-mission on-screen label
+cdata.C_UI.skip,SKIP,Base-mission on-screen label
+cdata.C_UI.tl.m1,Mission 1,Base-mission on-screen label
+cdata.C_UI.tl.fix,Lamp fix,Base-mission on-screen label
+cdata.C_UI.tl.check,Power check,Base-mission on-screen label
+cdata.C_UI.tl.rescue,Robot rescue,Base-mission on-screen label
+cdata.C_UI.tl.day,New day,Base-mission on-screen label
+cdata.C_UI.chip.on,on,Base-mission on-screen label
+cdata.C_UI.chip.off,off,Base-mission on-screen label
+cdata.C_UI.chip.plants,Plants,Base-mission on-screen label
+cdata.C_UI.chip.robotOut,Robot out,Base-mission on-screen label
+cdata.C_UI.chip.robotHome,Robot home,Base-mission on-screen label
+cdata.C_UI.chip.robotStuck,Robot stuck,Base-mission on-screen label
+cdata.C_UI.chip.helper,Helper sent,Base-mission on-screen label
+cdata.C_UI.chip.checked,Alert: flare,Base-mission on-screen label
+cdata.C_UI.chip.rested,Robot rested,Base-mission on-screen label
+cdata.C_UI.chip.road,Robot learned a road,Base-mission on-screen label
+cdata.C_UI.chip.kept,Kept plan,Base-mission on-screen label
+cdata.C_UI.chip.left,Robot waits,Base-mission on-screen label
+cdata.STAGE_NAME.0,Drooping,Plant stage label
+cdata.STAGE_NAME.1,Weak,Plant stage label
+cdata.STAGE_NAME.2,Growing,Plant stage label
+cdata.STAGE_NAME.3,Healthy,Plant stage label
+cdata.STAGE_NAME.4,Thriving,Plant stage label
+strings.MISSION.name,THE ROVER READING,Mission tracker / buttons
+strings.MISSION.kicker,MISSION,Mission tracker / buttons
+strings.MISSION.start,START MISSION,Mission tracker / buttons
+strings.MISSION.brief,MISSION,Mission tracker / buttons
+strings.MISSION.replay,PLAY AGAIN,Mission tracker / buttons
+strings.MISSION.help,HELP,Mission tracker / buttons
+strings.MISSION.step,Step {n} of {total},Mission tracker / buttons
+strings.MISSION.now,NOW,Mission tracker / buttons
+strings.MISSION.where,WHERE,Mission tracker / buttons
+strings.MISSION.why,WHY,Mission tracker / buttons
+strings.PROMPTS.pressE,Press E,"""Press E"" prompts above the player"
+strings.PROMPTS.examineRover,Look at the robot’s data,"""Press E"" prompts above the player"
+strings.PROMPTS.studyRecord,Learn what it means,"""Press E"" prompts above the player"
+strings.PROMPTS.openSchedule,Make a plan,"""Press E"" prompts above the player"
+strings.PROMPTS.readMessage,See what happened,"""Press E"" prompts above the player"
+strings.PROMPTS.reviewEvidence,Look at the data again,"""Press E"" prompts above the player"
+strings.PROMPTS.enter,Go into {name},"""Press E"" prompts above the player"
+strings.PROMPTS.exit,Go outside,"""Press E"" prompts above the player"
+strings.PROMPTS.look,Look at the {name},"""Press E"" prompts above the player"
+strings.PROMPTS.exhibit,Bonus fact: {name},"""Press E"" prompts above the player"
+strings.PROMPTS.nuri,Talk to Nuri,"""Press E"" prompts above the player"
+strings.PROMPTS.closer,Walk a little closer to the {name},"""Press E"" prompts above the player"
+strings.PROMPTS.move,Move,"""Press E"" prompts above the player"
+strings.PROMPTS.terminal,screen,"""Press E"" prompts above the player"
+strings.TAGS.nasa,REAL NASA DATA,Card tags (unused)
+strings.TAGS.sim,PRETEND GAME PLAN,Card tags (unused)
+strings.TAGS.choice,YOUR CHOICE,Card tags (unused)
+strings.TAGS.learn,WHAT WE LEARN,Card tags (unused)
+strings.KIND.observation,NASA CLUE,Card kind labels (unused)
+strings.KIND.meaning,WHAT IT MEANS,Card kind labels (unused)
+strings.KIND.think,LOOK CLOSELY,Card kind labels (unused)
+strings.KIND.uncertainty,STILL A MYSTERY,Card kind labels (unused)
+strings.KIND.decision,YOUR CHOICE,Card kind labels (unused)
+strings.KIND.consequence,WHAT HAPPENED,Card kind labels (unused)
+strings.KIND.discovery,YOU DISCOVERED,Card kind labels (unused)
+strings.KIND.exhibit,BONUS FACT,Card kind labels (unused)
+strings.KIND.status,MISSION,Card kind labels (unused)
+strings.STEPS.0,SEE,Step labels
+strings.STEPS.1,LEARN,Step labels
+strings.STEPS.2,THINK,Step labels
+strings.STEPS.3,CHOOSE,Step labels
+strings.STEPS.4,WATCH,Step labels
+strings.STEPS.5,EXPLAIN,Step labels
+strings.UI.next,NEXT,Card buttons and labels
+strings.UI.back,BACK,Card buttons and labels
+strings.UI.close,DONE,Card buttons and labels
+strings.UI.skip,SKIP,Card buttons and labels
+strings.UI.tellMore,Tell me more,Card buttons and labels
+strings.UI.details,For grown-ups: exact numbers and NASA source,Card buttons and labels
+strings.UI.askNuri,ASK NURI,Card buttons and labels
+strings.UI.openSource,Open the NASA source ↗,Card buttons and labels
+strings.UI.illustration,A drawing of Curiosity. Not a photo.,Card buttons and labels
+strings.UI.illustrationRad,A drawing. Real radiation is invisible!,Card buttons and labels
+strings.UI.unit,µGy/hour,Card buttons and labels
+strings.UI.utc,UTC,Card buttons and labels
+strings.UI.reviewMode,LOOKING AGAIN · no new XP,Card buttons and labels
+strings.CARDS.btn.next,NEXT,Card buttons / stamps
+strings.CARDS.btn.nextMission,NEXT MISSION,Card buttons / stamps
+strings.CARDS.btn.go,LET’S GO!,Card buttons / stamps
+strings.CARDS.btn.skip,SKIP,Card buttons / stamps
+strings.CARDS.btn.finish,FINISH,Card buttons / stamps
+strings.CARDS.btn.replay,PLAY AGAIN,Card buttons / stamps
+strings.CARDS.btn.explore,KEEP EXPLORING,Card buttons / stamps
+strings.CARDS.btn.badges,MY BADGES,Card buttons / stamps
+strings.CARDS.btn.done,DONE,Card buttons / stamps
+strings.CARDS.btn.more,Tell me more,Card buttons / stamps
+strings.CARDS.btn.grownups,For grown-ups,Card buttons / stamps
+strings.CARDS.btn.showWay,SHOW ME THE WAY,Card buttons / stamps
+strings.CARDS.btn.look,LOOK AGAIN,Card buttons / stamps
+strings.CARDS.stamp.nasa,REAL NASA DATA,Card buttons / stamps
+strings.CARDS.stamp.game,PRETEND PLAN,Card buttons / stamps
+strings.STAGE_STEPS.0.label,See the data,Mission progress labels
+strings.STAGE_STEPS.1.label,Learn,Mission progress labels
+strings.STAGE_STEPS.2.label,Make a plan,Mission progress labels
+strings.STAGE_STEPS.3.label,See what happened,Mission progress labels
+strings.STAGE_STEPS.4.label,Big idea,Mission progress labels
+strings.PASSPORT.title,SCIENCE PASSPORT,Science Passport screen
+strings.PASSPORT.tabs.achievements,BADGES,Science Passport screen
+strings.PASSPORT.tabs.missions,MISSIONS,Science Passport screen
+strings.PASSPORT.tabs.discoveries,CARDS,Science Passport screen
+strings.PASSPORT.xp,Science XP,Science Passport screen
+strings.PASSPORT.titleL,Your title,Science Passport screen
+strings.PASSPORT.nextTitle,{xp} more XP to “{title}”,Science Passport screen
+strings.PASSPORT.maxTitle,Top title! Wow!,Science Passport screen
+strings.PASSPORT.badges,Badges,Science Passport screen
+strings.PASSPORT.locked,Not yet,Science Passport screen
+strings.PASSPORT.nuriLight,Nuri’s light color,Science Passport screen
+strings.PASSPORT.unlockWith,Get it with: {badge},Science Passport screen
+strings.PASSPORT.current,Mission,Science Passport screen
+strings.PASSPORT.challenges,Extra challenges,Science Passport screen
+strings.PASSPORT.outcomes,Plans you tried,Science Passport screen
+strings.PASSPORT.notSeen,Not tried yet. Play again to see!,Science Passport screen
+strings.PASSPORT.science,Science cards,Science Passport screen
+strings.PASSPORT.places,Places,Science Passport screen
+strings.PASSPORT.foundIn,Find it: {where},Science Passport screen
+strings.PASSPORT.source,Source,Science Passport screen
+strings.PASSPORT.suggested,Try next,Science Passport screen
+strings.PASSPORT.backToList,BACK,Science Passport screen
+strings.PASSPORT.close,CLOSE,Science Passport screen
+strings.PASSPORT.noPublic,Your progress stays on this computer. No sharing.,Science Passport screen
+strings.SETTINGS.title,PAUSED · SETTINGS,Settings screen
+strings.SETTINGS.guidance,Help style,Settings screen
+strings.SETTINGS.guided,Show me the way,Settings screen
+strings.SETTINGS.guidedD,The yellow arrow is always on. Nuri helps more.,Settings screen
+strings.SETTINGS.independent,I’ll explore on my own,Settings screen
+strings.SETTINGS.independentD,Fewer arrows. Press H for help anytime.,Settings screen
+strings.SETTINGS.same,Both have the same science.,Settings screen
+strings.SETTINGS.enjoy,What do you like most? (You can change it.),Settings screen
+strings.SETTINGS.pExplore,Finding new things,Settings screen
+strings.SETTINGS.pSolve,Solving missions,Settings screen
+strings.SETTINGS.pCollect,Getting badges,Settings screen
+strings.SETTINGS.pMix,A bit of everything,Settings screen
+strings.SETTINGS.controls,WASD or arrows · move<br>Shift · run<br>E · use / talk<br>H · help<br>M · map<br>J · Science Passport<br>B · tools<br>Esc · pause<br>L · language,Settings screen
+strings.SETTINGS.controlsTitle,Keys,Settings screen
+strings.SETTINGS.language,Language,Settings screen
+strings.SETTINGS.resume,PLAY,Settings screen
+strings.SETTINGS.voice,Nuri’s voice,Settings screen
+strings.SETTINGS.voiceOn,VOICE: ON,Settings screen
+strings.SETTINGS.voiceOff,VOICE: OFF,Settings screen
+strings.SETTINGS.vLow,Quiet,Settings screen
+strings.SETTINGS.vMid,Normal,Settings screen
+strings.SETTINGS.vHigh,Loud,Settings screen
+strings.SETTINGS.hearAgain,Hear Nuri again,Settings screen
+strings.SETTINGS.voiceEnOnly,Nuri speaks in English for now.,Settings screen
+strings.MAP.title,MAP,Map screen
+strings.MAP.you,You,Map screen
+strings.MAP.goal,Go here,Map screen
+strings.MAP.visited,You visited {n} of {total} places,Map screen
+strings.MAP.help,Walk to a door. Press E to go in.,Map screen
+strings.MAP.field,Glowing screen,Map screen
+strings.TOAST.xp,+{xp} Science XP,"Pop-up notices (XP, badges, places)"
+strings.TOAST.badge,New badge: {name},"Pop-up notices (XP, badges, places)"
+strings.TOAST.card,New card: {name},"Pop-up notices (XP, badges, places)"
+strings.TOAST.place,New place: {name},"Pop-up notices (XP, badges, places)"
+strings.TOAST.title,New title: {name},"Pop-up notices (XP, badges, places)"
+strings.TOAST.challenge,Challenge done: {name},"Pop-up notices (XP, badges, places)"
+strings.MISC.sol,SOL 001,Misc. labels
+strings.MISC.demo,SCIENCE MISSION,Misc. labels
+strings.MISC.equipment,TOOLS,Misc. labels
+strings.MISC.equipmentNote,You’ll use these tools in future missions.,Misc. labels
+strings.MISC.items.0,Tablet,Misc. labels
+strings.MISC.items.1,Wrench,Misc. labels
+strings.MISC.items.2,Scanner,Misc. labels
+strings.MISC.items.3,Plant,Misc. labels
+strings.MISC.moveHint,Move,Misc. labels
+rewards.ACHIEVEMENTS.first-discovery.name,First Clue,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.ACHIEVEMENTS.first-discovery.how,Look at real NASA data.,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.ACHIEVEMENTS.evidence-detective.name,Evidence Detective,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.ACHIEVEMENTS.evidence-detective.how,Find where the dots jump up.,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.ACHIEVEMENTS.careful-scientist.name,Careful Scientist,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.ACHIEVEMENTS.careful-scientist.how,Pick a strong clue for your plan.,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.ACHIEVEMENTS.second-look.name,Second Look,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.ACHIEVEMENTS.second-look.how,Look at the dots again.,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.ACHIEVEMENTS.scientific-thinker.name,Big Thinker,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.ACHIEVEMENTS.scientific-thinker.how,Know that a robot reading is not a person’s.,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.ACHIEVEMENTS.mission-complete.name,Mission Complete,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.ACHIEVEMENTS.mission-complete.how,Finish the mission.,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.ACHIEVEMENTS.method-master.name,Clue Master,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.ACHIEVEMENTS.method-master.how,Answer the new robot question.,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.ACHIEVEMENTS.outpost-explorer.name,Outpost Explorer,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.ACHIEVEMENTS.outpost-explorer.how,Visit all 9 places.,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.ACHIEVEMENTS.curious-mind.name,Curious Mind,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.ACHIEVEMENTS.curious-mind.how,Find 3 bonus facts.,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.ACHIEVEMENTS.branch-explorer.name,Two Paths,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.ACHIEVEMENTS.branch-explorer.how,Try both plans. Play again!,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.ACHIEVEMENTS.log-keeper.name,Notebook Keeper,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.ACHIEVEMENTS.log-keeper.how,Fix the robot’s notebook.,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.ACHIEVEMENTS.sun-watcher.name,Sun Watcher,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.ACHIEVEMENTS.sun-watcher.how,Finish Sun Storm Watch.,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.ACHIEVEMENTS.plant-scientist.name,Plant Scientist,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.ACHIEVEMENTS.plant-scientist.how,Learn what a fair plant test needs.,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.ACHIEVEMENTS.power-planner.name,Power Planner,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.ACHIEVEMENTS.power-planner.how,Share the base power.,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.ACHIEVEMENTS.base-commander.name,Base Commander,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.ACHIEVEMENTS.base-commander.how,Finish every base mission.,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.CHALLENGES.0.name,Check the Clue,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.CHALLENGES.0.how,Find what changed in the dots.,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.CHALLENGES.1.name,Why This Plan?,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.CHALLENGES.1.how,Pick the clue that helped you.,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.CHALLENGES.2.name,Two Paths,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.CHALLENGES.2.how,Play again and try the other plan.,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.TITLES.0.name,Junior Researcher,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.TITLES.1.name,Data Observer,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.TITLES.2.name,Evidence Detective,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.TITLES.3.name,Science Investigator,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.TITLES.4.name,Mars Explorer,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.TITLES.5.name,Base Scientist,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.TITLES.6.name,Mars Commander,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.NURI_LIGHTS.0.name,Cyan,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.NURI_LIGHTS.1.name,Gold,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.NURI_LIGHTS.2.name,Mint,"Badges, titles, challenges, Nuri light names (Passport)"
+rewards.NURI_LIGHTS.3.name,Coral,"Badges, titles, challenges, Nuri light names (Passport)"
+companion.CELEBRATE.title,NEW BADGE!,Tour buttons and badge card labels
+companion.CELEBRATE.close,YAY!,Tour buttons and badge card labels
+companion.TOUR_UI.next,NEXT,Tour buttons and badge card labels
+companion.TOUR_UI.skip,Skip tour,Tour buttons and badge card labels
+companion.TOUR_UI.done,LET’S GO!,Tour buttons and badge card labels
+companion.TOUR_UI.tryIt,Try it!,Tour buttons and badge card labels
+companion.TOUR_UI.step,Step {n} of {total},Tour buttons and badge card labels
+companion.TOUR_UI.replay,REPLAY THE TOUR,Tour buttons and badge card labels

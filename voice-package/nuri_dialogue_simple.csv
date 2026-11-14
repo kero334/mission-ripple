@@ -1,0 +1,540 @@
+﻿dialogue_id,english_text,mp3_filename
+tip.badges,These are your badges. Gray ones are still waiting for you!,nuri_tip_badges.mp3
+tip.choice,Think carefully. What could happen next?,nuri_tip_choice.mp3
+tip.consequence,Interesting! Let’s see why that happened.,nuri_tip_consequence.mp3
+tip.door,Press E to go inside!,nuri_tip_door.mp3
+tip.fix,Good news: you can fix problems! Pick how to help.,nuri_tip_fix.mp3
+tip.hear,Tap the speaker to hear me again.,nuri_tip_hear.mp3
+tip.meters,These blocks show our base power. Watch them change!,nuri_tip_meters.mp3
+tip.nasa,See this stamp? It means real NASA data!,nuri_tip_nasa.mp3
+tip.pretend,"This stamp means pretend. It is part of our game, not NASA data.",nuri_tip_pretend.mp3
+tip.recovered,You did it! We fixed the problem!,nuri_tip_recovered.mp3
+tour.buildings,These are our buildings. Walk to a door and press E to go inside.,nuri_tour_buildings.mp3
+tour.hello,"Hi, Commander! I’m Nuri, your robot helper. I’ll stay with you on Mars.",nuri_tour_hello.mp3
+tour.help,"Stuck? Press this help button, or H. Asking for help is always OK!",nuri_tour_help.mp3
+tour.map,Lost? The map shows where to go. You can also press M.,nuri_tour_map.mp3
+tour.mission,This is your mission. It always tells you what to do next.,nuri_tour_mission.mp3
+tour.move,"Walk with the arrow keys, or W, A, S and D. Try it now!",nuri_tour_move.mp3
+tour.moved,"Great job, Commander!",nuri_tour_moved.mp3
+tour.moveTouch,Walking needs a keyboard for now. Tap NEXT to keep going.,nuri_tour_movetouch.mp3
+tour.passport,Your badges live in your Science Passport. Tap it to peek!,nuri_tour_passport.mp3
+tour.passportBack,Nice! You can check your badges anytime.,nuri_tour_passportback.mp3
+tour.ripple1,"Be careful, Commander! Every choice creates a ripple. Your decisions shape how our mission ends!",nuri_tour_ripple1.mp3
+tour.ripple2,Some changes happen right away. Others show up later.,nuri_tour_ripple2.mp3
+tour.ripple3,"If something goes wrong, you can often fix it. Different journeys lead to different endings!",nuri_tour_ripple3.mp3
+tour.settings,"Here you can change help, language, sound, and my voice.",nuri_tour_settings.mp3
+tour.skipped,Okay! You can replay the tour in Settings anytime.,nuri_tour_skipped.mp3
+tour.start,"Ready? Press START MISSION, and follow the yellow arrow!",nuri_tour_start.mp3
+tour.xp,You earn Science XP when you learn something new.,nuri_tour_xp.mp3
+celebrate.base-commander,Yay! You earned the Base Commander badge!,nuri_celebrate_base_commander.mp3
+celebrate.branch-explorer,Yay! You earned the Two Paths badge!,nuri_celebrate_branch_explorer.mp3
+celebrate.careful-scientist,Yay! You earned the Careful Scientist badge!,nuri_celebrate_careful_scientist.mp3
+celebrate.curious-mind,Yay! You earned the Curious Mind badge!,nuri_celebrate_curious_mind.mp3
+celebrate.evidence-detective,Yay! You earned the Evidence Detective badge!,nuri_celebrate_evidence_detective.mp3
+celebrate.first-discovery,Yay! You earned the First Clue badge!,nuri_celebrate_first_discovery.mp3
+celebrate.log-keeper,Yay! You earned the Notebook Keeper badge!,nuri_celebrate_log_keeper.mp3
+celebrate.method-master,Yay! You earned the Clue Master badge!,nuri_celebrate_method_master.mp3
+celebrate.mission-complete,Yay! You earned the Mission Complete badge!,nuri_celebrate_mission_complete.mp3
+celebrate.outpost-explorer,Yay! You earned the Outpost Explorer badge!,nuri_celebrate_outpost_explorer.mp3
+celebrate.plant-scientist,Yay! You earned the Plant Scientist badge!,nuri_celebrate_plant_scientist.mp3
+celebrate.power-planner,Yay! You earned the Power Planner badge!,nuri_celebrate_power_planner.mp3
+celebrate.scientific-thinker,Yay! You earned the Big Thinker badge!,nuri_celebrate_scientific_thinker.mp3
+celebrate.second-look,Yay! You earned the Second Look badge!,nuri_celebrate_second_look.mp3
+celebrate.sun-watcher,Yay! You earned the Sun Watcher badge!,nuri_celebrate_sun_watcher.mp3
+cheer.complete1,"Amazing teamwork, Commander!",nuri_cheer_complete1.mp3
+cheer.complete2,Mission done! I’m so proud of you!,nuri_cheer_complete2.mp3
+cheer.right1,Wow! You found something important!,nuri_cheer_right1.mp3
+cheer.right2,Great thinking!,nuri_cheer_right2.mp3
+cheer.right3,You think like a real scientist!,nuri_cheer_right3.mp3
+cheer.wrong1,That’s okay! Scientists learn by trying again!,nuri_cheer_wrong1.mp3
+cheer.wrong2,Good try! Look one more time.,nuri_cheer_wrong2.mp3
+cheer.wrong3,Mistakes help us learn. Try again!,nuri_cheer_wrong3.mp3
+help.offer,Need help? Press H!,nuri_help_offer.mp3
+intro.welcome,"Welcome to Mars, Explorer!",nuri_intro_welcome.mp3
+m1.stage.command.intro,Time to make a plan! Go to Command.,nuri_m1_stage_command_intro.mp3
+m1.stage.complete.intro,"Great job, scientist! Explore, or play again with the other plan.",nuri_m1_stage_complete_intro.mp3
+m1.stage.debrief.intro,Let’s put the clues together!,nuri_m1_stage_debrief_intro.mp3
+m1.stage.monitor.intro,Follow the yellow arrow to the glowing screen!,nuri_m1_stage_monitor_intro.mp3
+m1.stage.nextShift.intro,Your plan is ready. Let’s see what happens! Go to Communications.,nuri_m1_stage_nextshift_intro.mp3
+m1.stage.ready.intro,"Hi, Explorer! A robot on Mars found a clue. Let’s check it out!",nuri_m1_stage_ready_intro.mp3
+m1.stage.research.intro,Next stop: the Research Lab!,nuri_m1_stage_research_intro.mp3
+m2.brief,The robot’s notebook has two problems. Let’s find them in the Research Lab!,nuri_m2_brief.mp3
+m3.brief,NASA’s Sun list has a big alert! Let’s check it at Communications.,nuri_m3_brief.mp3
+m4.brief,A new day! Let’s see how our plants are doing in the Greenhouse.,nuri_m4_brief.mp3
+m5.brief,Time for the power check! Let’s go to the Power Station.,nuri_m5_brief.mp3
+m6.brief,Last day! Let’s write our base plan for the next team at Command.,nuri_m6_brief.mp3
+nuri.allPlaces,You visited every place! Wow!,nuri_allplaces.mp3
+nuri.arrivedInside,We’re here! Walk to the glowing machine. Tap E.,nuri_arrivedinside.mp3
+nuri.arrivedNear,There it is! Walk closer and tap E.,nuri_arrivednear.mp3
+nuri.back,We’re outside. Where to next?,nuri_back.mp3
+nuri.detour.check_on_the_plants,Our mission is waiting: Check on the plants!,nuri_detour_check_on_the_plants.mp3
+nuri.detour.check_the_robot_s_notebook,Our mission is waiting: Check the robot’s notebook!,nuri_detour_check_the_robot_s_notebook.mp3
+nuri.detour.check_the_sun_alert,Our mission is waiting: Check the Sun alert!,nuri_detour_check_the_sun_alert.mp3
+nuri.detour.do_the_power_check,Our mission is waiting: Do the power check!,nuri_detour_do_the_power_check.mp3
+nuri.detour.help_the_stuck_robot,Our mission is waiting: Help the stuck robot!,nuri_detour_help_the_stuck_robot.mp3
+nuri.detour.learn_what_it_means,Our mission is waiting: Learn what it means!,nuri_detour_learn_what_it_means.mp3
+nuri.detour.look_at_the_robot_s_data,Our mission is waiting: Look at the robot’s data!,nuri_detour_look_at_the_robot_s_data.mp3
+nuri.detour.make_a_plan,Our mission is waiting: Make a plan!,nuri_detour_make_a_plan.mp3
+nuri.detour.plan_for_missing_hours,Our mission is waiting: Plan for missing hours!,nuri_detour_plan_for_missing_hours.mp3
+nuri.detour.plan_for_the_alert,Our mission is waiting: Plan for the alert!,nuri_detour_plan_for_the_alert.mp3
+nuri.detour.plan_the_greenhouse_trays,Our mission is waiting: Plan the greenhouse trays!,nuri_detour_plan_the_greenhouse_trays.mp3
+nuri.detour.plan_the_robot_trip,Our mission is waiting: Plan the robot trip!,nuri_detour_plan_the_robot_trip.mp3
+nuri.detour.see_what_happened,Our mission is waiting: See what happened!,nuri_detour_see_what_happened.mp3
+nuri.detour.write_the_base_plan,Our mission is waiting: Write the base plan!,nuri_detour_write_the_base_plan.mp3
+nuri.inside.command,This is the Command Hub. The team plans its work here.,nuri_inside_command.mp3
+nuri.inside.comms,This is the Communications. Messages and shift reports for our team arrive here.,nuri_inside_comms.mp3
+nuri.inside.greenhouse,This is the Greenhouse. Plants grow under lamps here. Plant missions come later.,nuri_inside_greenhouse.mp3
+nuri.inside.habitat,"This is the Habitat. The crew sleeps and eats here. In our pretend outpost, this is home.",nuri_inside_habitat.mp3
+nuri.inside.oxygen,This is the Oxygen Lab. Future oxygen experiments will happen here. This lab is not used yet.,nuri_inside_oxygen.mp3
+nuri.inside.power,This is the Power Station. Our pretend outpost keeps its solar power and batteries here.,nuri_inside_power.mp3
+nuri.inside.research,"This is the Research Lab. Scientists study data here, like the rover’s readings.",nuri_inside_research.mp3
+nuri.inside.shelter,This is the Radiation Shelter. A pretend shielded room. Our game does not measure how well it protects anyone.,nuri_inside_shelter.mp3
+nuri.inside.water,This is the Water Recovery. Here the outpost cleans water so it can be used again.,nuri_inside_water.mp3
+nuri.lockCommand,"First, learn about the data. Then make a plan!",nuri_lockcommand.mp3
+nuri.lockComms,No message yet. Make your plan in Command first!,nuri_lockcomms.mp3
+nuri.lockResearch,"First, look at the robot’s data on the glowing screen.",nuri_lockresearch.mp3
+nuri.lockStart,"First, press START MISSION!",nuri_lockstart.mp3
+nuri.miss,Nothing here. Walk closer until you see E!,nuri_miss.mp3
+nuri.note.greenhouse,Plants grow under lamps here. Plant missions come later.,nuri_note_greenhouse.mp3
+nuri.note.habitat,"The crew sleeps and eats here. In our pretend outpost, this is home.",nuri_note_habitat.mp3
+nuri.note.oxygen,Future oxygen experiments will happen here. This lab is not used yet.,nuri_note_oxygen.mp3
+nuri.note.power,Our pretend outpost keeps its solar power and batteries here.,nuri_note_power.mp3
+nuri.note.shelter,A pretend shielded room. Our game does not measure how well it protects anyone.,nuri_note_shelter.mp3
+nuri.note.water,Here the outpost cleans water so it can be used again.,nuri_note_water.mp3
+nuri.reviewdone.command,You did this already! Next: Command Hub · top of the map.,nuri_reviewdone_command.mp3
+nuri.reviewdone.complete,"You did this already! Next: Explore, or play again.",nuri_reviewdone_complete.mp3
+nuri.reviewdone.debrief,You did this already! Next: Press MISSION.,nuri_reviewdone_debrief.mp3
+nuri.reviewdone.nextShift,You did this already! Next: Communications · bottom right.,nuri_reviewdone_nextshift.mp3
+nuri.wrongplace.command.to.comms,This is the Command Hub. Our clue is in the Communications!,nuri_wrongplace_command_to_comms.mp3
+nuri.wrongplace.command.to.greenhouse,This is the Command Hub. Our clue is in the Greenhouse!,nuri_wrongplace_command_to_greenhouse.mp3
+nuri.wrongplace.command.to.power,This is the Command Hub. Our clue is in the Power Station!,nuri_wrongplace_command_to_power.mp3
+nuri.wrongplace.command.to.research,This is the Command Hub. Our clue is in the Research Lab!,nuri_wrongplace_command_to_research.mp3
+nuri.wrongplace.command.to.shelter,This is the Command Hub. Our clue is in the Radiation Shelter!,nuri_wrongplace_command_to_shelter.mp3
+nuri.wrongplace.comms.to.command,This is the Communications. Our clue is in the Command Hub!,nuri_wrongplace_comms_to_command.mp3
+nuri.wrongplace.comms.to.greenhouse,This is the Communications. Our clue is in the Greenhouse!,nuri_wrongplace_comms_to_greenhouse.mp3
+nuri.wrongplace.comms.to.power,This is the Communications. Our clue is in the Power Station!,nuri_wrongplace_comms_to_power.mp3
+nuri.wrongplace.comms.to.research,This is the Communications. Our clue is in the Research Lab!,nuri_wrongplace_comms_to_research.mp3
+nuri.wrongplace.comms.to.shelter,This is the Communications. Our clue is in the Radiation Shelter!,nuri_wrongplace_comms_to_shelter.mp3
+nuri.wrongplace.greenhouse.to.command,This is the Greenhouse. Our clue is in the Command Hub!,nuri_wrongplace_greenhouse_to_command.mp3
+nuri.wrongplace.greenhouse.to.comms,This is the Greenhouse. Our clue is in the Communications!,nuri_wrongplace_greenhouse_to_comms.mp3
+nuri.wrongplace.greenhouse.to.power,This is the Greenhouse. Our clue is in the Power Station!,nuri_wrongplace_greenhouse_to_power.mp3
+nuri.wrongplace.greenhouse.to.research,This is the Greenhouse. Our clue is in the Research Lab!,nuri_wrongplace_greenhouse_to_research.mp3
+nuri.wrongplace.greenhouse.to.shelter,This is the Greenhouse. Our clue is in the Radiation Shelter!,nuri_wrongplace_greenhouse_to_shelter.mp3
+nuri.wrongplace.habitat.to.command,This is the Habitat. Our clue is in the Command Hub!,nuri_wrongplace_habitat_to_command.mp3
+nuri.wrongplace.habitat.to.comms,This is the Habitat. Our clue is in the Communications!,nuri_wrongplace_habitat_to_comms.mp3
+nuri.wrongplace.habitat.to.greenhouse,This is the Habitat. Our clue is in the Greenhouse!,nuri_wrongplace_habitat_to_greenhouse.mp3
+nuri.wrongplace.habitat.to.power,This is the Habitat. Our clue is in the Power Station!,nuri_wrongplace_habitat_to_power.mp3
+nuri.wrongplace.habitat.to.research,This is the Habitat. Our clue is in the Research Lab!,nuri_wrongplace_habitat_to_research.mp3
+nuri.wrongplace.habitat.to.shelter,This is the Habitat. Our clue is in the Radiation Shelter!,nuri_wrongplace_habitat_to_shelter.mp3
+nuri.wrongplace.oxygen.to.command,This is the Oxygen Lab. Our clue is in the Command Hub!,nuri_wrongplace_oxygen_to_command.mp3
+nuri.wrongplace.oxygen.to.comms,This is the Oxygen Lab. Our clue is in the Communications!,nuri_wrongplace_oxygen_to_comms.mp3
+nuri.wrongplace.oxygen.to.greenhouse,This is the Oxygen Lab. Our clue is in the Greenhouse!,nuri_wrongplace_oxygen_to_greenhouse.mp3
+nuri.wrongplace.oxygen.to.power,This is the Oxygen Lab. Our clue is in the Power Station!,nuri_wrongplace_oxygen_to_power.mp3
+nuri.wrongplace.oxygen.to.research,This is the Oxygen Lab. Our clue is in the Research Lab!,nuri_wrongplace_oxygen_to_research.mp3
+nuri.wrongplace.oxygen.to.shelter,This is the Oxygen Lab. Our clue is in the Radiation Shelter!,nuri_wrongplace_oxygen_to_shelter.mp3
+nuri.wrongplace.power.to.command,This is the Power Station. Our clue is in the Command Hub!,nuri_wrongplace_power_to_command.mp3
+nuri.wrongplace.power.to.comms,This is the Power Station. Our clue is in the Communications!,nuri_wrongplace_power_to_comms.mp3
+nuri.wrongplace.power.to.greenhouse,This is the Power Station. Our clue is in the Greenhouse!,nuri_wrongplace_power_to_greenhouse.mp3
+nuri.wrongplace.power.to.research,This is the Power Station. Our clue is in the Research Lab!,nuri_wrongplace_power_to_research.mp3
+nuri.wrongplace.power.to.shelter,This is the Power Station. Our clue is in the Radiation Shelter!,nuri_wrongplace_power_to_shelter.mp3
+nuri.wrongplace.research.to.command,This is the Research Lab. Our clue is in the Command Hub!,nuri_wrongplace_research_to_command.mp3
+nuri.wrongplace.research.to.comms,This is the Research Lab. Our clue is in the Communications!,nuri_wrongplace_research_to_comms.mp3
+nuri.wrongplace.research.to.greenhouse,This is the Research Lab. Our clue is in the Greenhouse!,nuri_wrongplace_research_to_greenhouse.mp3
+nuri.wrongplace.research.to.power,This is the Research Lab. Our clue is in the Power Station!,nuri_wrongplace_research_to_power.mp3
+nuri.wrongplace.research.to.shelter,This is the Research Lab. Our clue is in the Radiation Shelter!,nuri_wrongplace_research_to_shelter.mp3
+nuri.wrongplace.shelter.to.command,This is the Radiation Shelter. Our clue is in the Command Hub!,nuri_wrongplace_shelter_to_command.mp3
+nuri.wrongplace.shelter.to.comms,This is the Radiation Shelter. Our clue is in the Communications!,nuri_wrongplace_shelter_to_comms.mp3
+nuri.wrongplace.shelter.to.greenhouse,This is the Radiation Shelter. Our clue is in the Greenhouse!,nuri_wrongplace_shelter_to_greenhouse.mp3
+nuri.wrongplace.shelter.to.power,This is the Radiation Shelter. Our clue is in the Power Station!,nuri_wrongplace_shelter_to_power.mp3
+nuri.wrongplace.shelter.to.research,This is the Radiation Shelter. Our clue is in the Research Lab!,nuri_wrongplace_shelter_to_research.mp3
+nuri.wrongplace.water.to.command,This is the Water Recovery. Our clue is in the Command Hub!,nuri_wrongplace_water_to_command.mp3
+nuri.wrongplace.water.to.comms,This is the Water Recovery. Our clue is in the Communications!,nuri_wrongplace_water_to_comms.mp3
+nuri.wrongplace.water.to.greenhouse,This is the Water Recovery. Our clue is in the Greenhouse!,nuri_wrongplace_water_to_greenhouse.mp3
+nuri.wrongplace.water.to.power,This is the Water Recovery. Our clue is in the Power Station!,nuri_wrongplace_water_to_power.mp3
+nuri.wrongplace.water.to.research,This is the Water Recovery. Our clue is in the Research Lab!,nuri_wrongplace_water_to_research.mp3
+nuri.wrongplace.water.to.shelter,This is the Water Recovery. Our clue is in the Radiation Shelter!,nuri_wrongplace_water_to_shelter.mp3
+nuri.wrongplacefield.command,This is the Command Hub. Our clue is on the screen outside!,nuri_wrongplacefield_command.mp3
+nuri.wrongplacefield.comms,This is the Communications. Our clue is on the screen outside!,nuri_wrongplacefield_comms.mp3
+nuri.wrongplacefield.greenhouse,This is the Greenhouse. Our clue is on the screen outside!,nuri_wrongplacefield_greenhouse.mp3
+nuri.wrongplacefield.habitat,This is the Habitat. Our clue is on the screen outside!,nuri_wrongplacefield_habitat.mp3
+nuri.wrongplacefield.oxygen,This is the Oxygen Lab. Our clue is on the screen outside!,nuri_wrongplacefield_oxygen.mp3
+nuri.wrongplacefield.power,This is the Power Station. Our clue is on the screen outside!,nuri_wrongplacefield_power.mp3
+nuri.wrongplacefield.research,This is the Research Lab. Our clue is on the screen outside!,nuri_wrongplacefield_research.mp3
+nuri.wrongplacefield.shelter,This is the Radiation Shelter. Our clue is on the screen outside!,nuri_wrongplacefield_shelter.mp3
+nuri.wrongplacefield.water,This is the Water Recovery. Our clue is on the screen outside!,nuri_wrongplacefield_water.mp3
+nuri.xpIntro,"Ooh, Science XP! Press J to see it.",nuri_xpintro.mp3
+base.boost,The better tray helped them grow extra!,nuri_base_boost.mp3
+base.borrow,There is no spare block. Which light turns off for one day?,nuri_base_borrow.mp3
+base.checked,The watch screen found it: the alert was a Sun flare!,nuri_base_checked.mp3
+base.choose,The team has time for one plan. Which do you pick?,nuri_base_choose.mp3
+base.day,A new day on our base!,nuri_base_day.mp3
+base.grew,"Both lamps were on, so the plants grew!",nuri_base_grew.mp3
+base.powerFull,No spare block! Turn something off first.,nuri_base_powerfull.mp3
+base.pretendMore,"This plan is pretend, just for our game.",nuri_base_pretendmore.mp3
+base.remember,Remember last mission?,nuri_base_remember.mp3
+base.rememberM1,Remember Mission 1?,nuri_base_rememberm1.mp3
+base.returned,The borrowed block came back!,nuri_base_returned.mp3
+base.shrank,"Only one lamp was on, so the plants shrank a little.",nuri_base_shrank.mp3
+base.shrank0,"The lamps were off, so the plants shrank a little.",nuri_base_shrank0.mp3
+m1.bigIdea.other,You tried both plans. NASA’s dots never changed!,nuri_m1_bigidea_other.mp3
+m1.bigIdea.say,NASA’s robot measured something real. You used it to think like a scientist!,nuri_m1_bigidea_say.mp3
+m1.brief.say,A robot on Mars found a clue! Follow the yellow arrow to the glowing screen.,nuri_m1_brief_say.mp3
+m1.chart.falling,Here the dots go down. Look a bit earlier!,nuri_m1_chart_falling.mp3
+m1.chart.found,"Yes! The dots jumped way up, super fast!",nuri_m1_chart_found.mp3
+m1.chart.low,Here the dots stay low. Try another part!,nuri_m1_chart_low.mp3
+m1.chart.more,The top dot was about 300. Every dot is real. We didn’t make any up.,nuri_m1_chart_more.mp3
+m1.chart.say,Each dot is a real reading. Tap where the dots jump up!,nuri_m1_chart_say.mp3
+m1.choose.more,"This plan is pretend, just for our game. Each plan gives one thing and waits on another.",nuri_m1_choose_more.mp3
+m1.choose.say,The team has time for one job. Which plan do you pick?,nuri_m1_choose_say.mp3
+m1.compare.say,Orange dots are 20 May. They went much higher than the blue dots from the day before!,nuri_m1_compare_say.mp3
+m1.done.none,Mission complete! You keep everything you earned.,nuri_m1_done_none.mp3
+m1.done.say.xp10,Mission complete! You earned 10 Science XP!,nuri_m1_done_say_xp10.mp3
+m1.done.say.xp100,Mission complete! You earned 100 Science XP!,nuri_m1_done_say_xp100.mp3
+m1.done.say.xp105,Mission complete! You earned 105 Science XP!,nuri_m1_done_say_xp105.mp3
+m1.done.say.xp110,Mission complete! You earned 110 Science XP!,nuri_m1_done_say_xp110.mp3
+m1.done.say.xp115,Mission complete! You earned 115 Science XP!,nuri_m1_done_say_xp115.mp3
+m1.done.say.xp120,Mission complete! You earned 120 Science XP!,nuri_m1_done_say_xp120.mp3
+m1.done.say.xp125,Mission complete! You earned 125 Science XP!,nuri_m1_done_say_xp125.mp3
+m1.done.say.xp130,Mission complete! You earned 130 Science XP!,nuri_m1_done_say_xp130.mp3
+m1.done.say.xp135,Mission complete! You earned 135 Science XP!,nuri_m1_done_say_xp135.mp3
+m1.done.say.xp140,Mission complete! You earned 140 Science XP!,nuri_m1_done_say_xp140.mp3
+m1.done.say.xp145,Mission complete! You earned 145 Science XP!,nuri_m1_done_say_xp145.mp3
+m1.done.say.xp15,Mission complete! You earned 15 Science XP!,nuri_m1_done_say_xp15.mp3
+m1.done.say.xp150,Mission complete! You earned 150 Science XP!,nuri_m1_done_say_xp150.mp3
+m1.done.say.xp155,Mission complete! You earned 155 Science XP!,nuri_m1_done_say_xp155.mp3
+m1.done.say.xp160,Mission complete! You earned 160 Science XP!,nuri_m1_done_say_xp160.mp3
+m1.done.say.xp165,Mission complete! You earned 165 Science XP!,nuri_m1_done_say_xp165.mp3
+m1.done.say.xp170,Mission complete! You earned 170 Science XP!,nuri_m1_done_say_xp170.mp3
+m1.done.say.xp175,Mission complete! You earned 175 Science XP!,nuri_m1_done_say_xp175.mp3
+m1.done.say.xp180,Mission complete! You earned 180 Science XP!,nuri_m1_done_say_xp180.mp3
+m1.done.say.xp185,Mission complete! You earned 185 Science XP!,nuri_m1_done_say_xp185.mp3
+m1.done.say.xp190,Mission complete! You earned 190 Science XP!,nuri_m1_done_say_xp190.mp3
+m1.done.say.xp195,Mission complete! You earned 195 Science XP!,nuri_m1_done_say_xp195.mp3
+m1.done.say.xp20,Mission complete! You earned 20 Science XP!,nuri_m1_done_say_xp20.mp3
+m1.done.say.xp200,Mission complete! You earned 200 Science XP!,nuri_m1_done_say_xp200.mp3
+m1.done.say.xp210,Mission complete! You earned 210 Science XP!,nuri_m1_done_say_xp210.mp3
+m1.done.say.xp25,Mission complete! You earned 25 Science XP!,nuri_m1_done_say_xp25.mp3
+m1.done.say.xp30,Mission complete! You earned 30 Science XP!,nuri_m1_done_say_xp30.mp3
+m1.done.say.xp35,Mission complete! You earned 35 Science XP!,nuri_m1_done_say_xp35.mp3
+m1.done.say.xp40,Mission complete! You earned 40 Science XP!,nuri_m1_done_say_xp40.mp3
+m1.done.say.xp45,Mission complete! You earned 45 Science XP!,nuri_m1_done_say_xp45.mp3
+m1.done.say.xp50,Mission complete! You earned 50 Science XP!,nuri_m1_done_say_xp50.mp3
+m1.done.say.xp55,Mission complete! You earned 55 Science XP!,nuri_m1_done_say_xp55.mp3
+m1.done.say.xp60,Mission complete! You earned 60 Science XP!,nuri_m1_done_say_xp60.mp3
+m1.done.say.xp65,Mission complete! You earned 65 Science XP!,nuri_m1_done_say_xp65.mp3
+m1.done.say.xp70,Mission complete! You earned 70 Science XP!,nuri_m1_done_say_xp70.mp3
+m1.done.say.xp75,Mission complete! You earned 75 Science XP!,nuri_m1_done_say_xp75.mp3
+m1.done.say.xp80,Mission complete! You earned 80 Science XP!,nuri_m1_done_say_xp80.mp3
+m1.done.say.xp85,Mission complete! You earned 85 Science XP!,nuri_m1_done_say_xp85.mp3
+m1.done.say.xp90,Mission complete! You earned 90 Science XP!,nuri_m1_done_say_xp90.mp3
+m1.done.say.xp95,Mission complete! You earned 95 Science XP!,nuri_m1_done_say_xp95.mp3
+m1.explain.f1,Great clue! Many dots tell us more than one.,nuri_m1_explain_f1.mp3
+m1.explain.f2,Smart! Knowing what we don’t know helps us plan.,nuri_m1_explain_f2.mp3
+m1.explain.f3,That’s a clue! But one dot is only a small part.,nuri_m1_explain_f3.mp3
+m1.explain.say,Nice! Which clue helped you most?,nuri_m1_explain_say.mp3
+m1.goCommand.say,Now let’s make a plan. Next stop: Command!,nuri_m1_gocommand_say.mp3
+m1.goComms.say,Something will change later. Let’s go to Communications!,nuri_m1_gocomms_say.mp3
+m1.goResearch.say,What does it mean? Let’s find out in the Research Lab!,nuri_m1_goresearch_say.mp3
+m1.later.aLater,"Because you chose Study first, our notes are ready! But the robot trip is still waiting.",nuri_m1_later_alater.mp3
+m1.later.bLater,"Because you chose Go and check again, the robot trip happened! But we still need one more reading.",nuri_m1_later_blater.mp3
+m1.many.more,92 dots were above the dashed counting line. The line does not mean “safe” or “unsafe”.,nuri_m1_many_more.mp3
+m1.many.say,It wasn’t just one dot. Lots of dots stayed high for about 14 hours!,nuri_m1_many_say.mp3
+m1.now.aNow,"You chose Study first. So right now, the team is studying the data.",nuri_m1_now_anow.mp3
+m1.now.bNow,"You chose Go and check again. So right now, the robot trip goes on.",nuri_m1_now_bnow.mp3
+m1.outside.more,"It can’t tell us about people, either.",nuri_m1_outside_more.mp3
+m1.outside.say,"The robot measured outside, on Mars. It can’t tell us what happened inside our base.",nuri_m1_outside_say.mp3
+m1.q1.right,"Right! The robot measured outside, not inside.",nuri_m1_q1_right.mp3
+m1.q1.say,Quick question! Can the robot tell us how much radiation an astronaut got inside the base?,nuri_m1_q1_say.mp3
+m1.q1.try,Good try! The robot was outside. Inside is a different place.,nuri_m1_q1_try.mp3
+m1.q2.aF,Yes! Lots of clues show the whole picture.,nuri_m1_q2_af.mp3
+m1.q2.bF,"Hmm, one number can trick us. Try again!",nuri_m1_q2_bf.mp3
+m1.q2.cF,Wait! We need more clues first. Try again!,nuri_m1_q2_cf.mp3
+m1.q2.say,A new robot sees a strange number. What should scientists do first?,nuri_m1_q2_say.mp3
+m1.rad.more,There are many kinds of radiation. Scientists measure it to learn about Mars.,nuri_m1_rad_more.mp3
+m1.rad.say,"Curiosity has a tool called RAD. It measures radiation, an invisible energy from space.",nuri_m1_rad_say.mp3
+m1.rover.more,Our base in this game is pretend. Curiosity is real!,nuri_m1_rover_more.mp3
+m1.rover.say,This is Curiosity. It’s a real NASA robot on Mars!,nuri_m1_rover_say.mp3
+m1.status.command,Now: Make a plan. Go to: Command Hub · top of the map.,nuri_m1_status_command.mp3
+m1.status.monitor,Now: Look at the robot’s data. Go to: Glowing screen · near you.,nuri_m1_status_monitor.mp3
+m1.status.nextShift,Now: See what happened. Go to: Communications · bottom right.,nuri_m1_status_nextshift.mp3
+m1.status.research,Now: Learn what it means. Go to: Research Lab.,nuri_m1_status_research.mp3
+m1.unchanged.say,The dots are real NASA data. Your plan only changed our pretend game!,nuri_m1_unchanged_say.mp3
+m1.why.say,Why did the dots jump? We don’t know yet. Good scientists say so!,nuri_m1_why_say.mp3
+m2.lesson,Good scientists never make up missing readings. They mark what is missing.,nuri_m2_lesson.mp3
+m2.log.dupes.say,Look at these real rows. What’s strange?,nuri_m2_log_dupes_say.mp3
+m2.log.gap.say,"Here, two hours have no readings. Should we fill them with a guess?",nuri_m2_log_gap_say.mp3
+m2.log.go-command.say,Now let’s make a plan. Go to Command!,nuri_m2_log_go_command_say.mp3
+m2.log.notebook.say,"Curiosity writes every reading in a long list, like a notebook.",nuri_m2_log_notebook_say.mp3
+m3.alert.go-shelter.say,Let’s make a plan at the Radiation Shelter.,nuri_m3_alert_go_shelter_say.mp3
+m3.alert.sun.say,NASA keeps a list of storms on the Sun. In May 2024 it listed a very big flare!,nuri_m3_alert_sun_say.mp3
+m3.alert.sunToMars.say,The flare happened on the Sun. Does the list tell us the radiation on Mars?,nuri_m3_alert_suntomars_say.mp3
+m3.lesson,A Sun storm list is a clue. It is not a measurement on Mars.,nuri_m3_lesson.mp3
+m3.plan.pretendShelter.say,"In our game, this shelter is a practice room. We don’t know how well it would protect.",nuri_m3_plan_pretendshelter_say.mp3
+m4.lesson,A fair test compares with a control group.,nuri_m4_lesson.mp3
+m4.study.control.say,Why grow the same plants on the ground too?,nuri_m4_study_control_say.mp3
+m4.study.fix.say,"One lamp is off, so the plants are shrinking. Can we move power back?",nuri_m4_study_fix_say.mp3
+m4.study.go-command.say,Let’s plan our plant trays at Command!,nuri_m4_study_go_command_say.mp3
+m4.study.noYield.say,This study tells us how it was set up. It doesn’t tell us how much food plants make on Mars.,nuri_m4_study_noyield_say.mp3
+m4.study.study.say,"NASA grew plants in space, and the same kind on the ground. 6 and 6!",nuri_m4_study_study_say.mp3
+m5.check.go-command.say,Now the robot trip. Let’s look at the map in Command!,nuri_m5_check_go_command_say.mp3
+m5.check.power.more,We have 3 blocks. Each block lights one thing.,nuri_m5_check_power_more.mp3
+m5.check.power.say,This is our power check. Tap a light to turn it on or off.,nuri_m5_check_power_say.mp3
+m5.lesson,"Every plan has a trade-off. A colored map is a picture, not exact numbers.",nuri_m5_lesson.mp3
+m5.route.map.say,NASA’s Mars Trek makes maps of Mars. Colors show high and low places.,nuri_m5_route_map_say.mp3
+m6.lesson,"A good plan says what we know, and what we still need to find out.",nuri_m6_lesson.mp3
+m6.plan.missing.say,"We still don’t have some real numbers, like a person’s radiation dose. Saying so is good science!",nuri_m6_plan_missing_say.mp3
+m6.plan.story.say,Here is your base story so far. Every icon is one of your choices!,nuri_m6_plan_story_say.mp3
+m6.rover.go-command.say,Now let’s write the base plan at Command!,nuri_m6_rover_go_command_say.mp3
+m6.rover.rescue.say,How should we help?,nuri_m6_rover_rescue_say.mp3
+m6.rover.stuck.more,Remember? You chose Short route now.,nuri_m6_rover_stuck_more.mp3
+m6.rover.stuck.say,Oh no! The robot is stuck on a bump. The road was unknown.,nuri_m6_rover_stuck_say.mp3
+m2.dupes.answer1.feedback,"Yes, same time but different numbers! Scientists keep both and check.",nuri_m2_dupes_answer1_feedback.mp3
+m2.dupes.answer2.feedback,Look again at the times on the left.,nuri_m2_dupes_answer2_feedback.mp3
+m2.dupes.answer3.feedback,Look closely. Two rows share something.,nuri_m2_dupes_answer3_feedback.mp3
+m2.gap.answer1.feedback,Right! We never make up readings.,nuri_m2_gap_answer1_feedback.mp3
+m2.gap.answer2.feedback,"Careful, a guess is not a measurement! Try again.",nuri_m2_gap_answer2_feedback.mp3
+m3.sunToMars.answer1.feedback,"Right! A Sun list is a clue, not a Mars measurement.",nuri_m3_suntomars_answer1_feedback.mp3
+m3.sunToMars.answer2.feedback,"Hmm, the list is about the Sun, not Mars. Try again!",nuri_m3_suntomars_answer2_feedback.mp3
+m4.control.answer1.feedback,"Yes, that’s a control group! It makes the test fair.",nuri_m4_control_answer1_feedback.mp3
+m4.control.answer2.feedback,"More plants is nice, but think about comparing. Try again!",nuri_m4_control_answer2_feedback.mp3
+m4.control.answer3.feedback,There is a good reason! Think about a fair test.,nuri_m4_control_answer3_feedback.mp3
+m5.map.answer1.feedback,Right! The colors can’t tell us exactly how steep it is.,nuri_m5_map_answer1_feedback.mp3
+m5.map.answer2.feedback,"Not exactly, the map is a colored picture! Try again.",nuri_m5_map_answer2_feedback.mp3
+base.cause.helper,Remember? The helper robot borrowed a lamp’s power.,nuri_base_cause_helper.mp3
+base.cause.rover,Remember? The robot borrowed a lamp’s power.,nuri_base_cause_rover.mp3
+base.cause.watch,Remember? The watch screen is using a lamp’s power.,nuri_base_cause_watch.mp3
+base.cause.you,You turned a lamp off at the power check.,nuri_base_cause_you.mp3
+base.fixed,The lamp is back on! The plants can grow again.,nuri_base_fixed.mp3
+base.helped,The helper robot is on its way! Our robot will be home tomorrow.,nuri_base_helped.mp3
+base.kept,OK! We keep the plan. Let’s watch the plants tomorrow.,nuri_base_kept.mp3
+base.left,OK. The robot waits by the rocks. We write it in our plan.,nuri_base_left.mp3
+base.now.lampoff,"To power it, one greenhouse lamp turned off.",nuri_base_now_lampoff.mp3
+m2.mission1.study,"Because you chose Study first, the robot rested. It is parked and fully charged!",nuri_m2_mission1_study.mp3
+m2.mission1.trip,"Because you chose Go and check again, the robot drove out. It learned part of a road!",nuri_m2_mission1_trip.mp3
+m2.planA.later,"Because the spare monitor is on, our new notes have fewer gaps!",nuri_m2_plana_later.mp3
+m2.planA.now,"You chose the spare monitor. Look, it’s on outside the lab!",nuri_m2_plana_now.mp3
+m2.planB.later,"Because you kept going, our notes still have marked gaps. That’s honest!",nuri_m2_planb_later.mp3
+m2.planB.now,You chose Keep going. We marked the gaps and kept our spare block.,nuri_m2_planb_now.mp3
+m3.planA.later,"Because you watched, we know the alert was a Sun flare. No mystery!",nuri_m3_plana_later.mp3
+m3.planA.now,You chose Watch and check. The watch screen at Communications is on!,nuri_m3_plana_now.mp3
+m3.planB.later,"Because you kept doing science, the Sun alert is still a mystery.",nuri_m3_planb_later.mp3
+m3.planB.now,You chose Keep doing science. We wrote the alert down for later.,nuri_m3_planb_now.mp3
+m4.planA.later,"Because you kept a control tray, we found the better tray. The plants grew extra!",nuri_m4_plana_later.mp3
+m4.planA.now,"You chose Keep a control tray. One tray stays the same, for comparing.",nuri_m4_plana_now.mp3
+m4.planB.later,"Because you used all trays, we can’t tell what helped the plants.",nuri_m4_planb_later.mp3
+m4.planB.now,"You chose Use all trays. Look, the plants grew a little!",nuri_m4_planb_now.mp3
+m5.planA.later,The robot is back! It checked the road for us.,nuri_m5_plana_later.mp3
+m5.planA.now,You chose Scout first. The robot drove off to check the road!,nuri_m5_plana_now.mp3
+m5.planB.later.v1,"The robot knew this road from Mission 1, so the trip went fine!",nuri_m5_planb_later_v1.mp3
+m5.planB.later.v2,Oh no! The robot hit a bump on the unknown road. It’s stuck!,nuri_m5_planb_later_v2.mp3
+m5.planB.now,You chose Short route now. The robot drove off on the short road.,nuri_m5_planb_now.mp3
+m6.planA.now,"You chose Share the plan. We wrote what we know, and what we don’t.",nuri_m6_plana_now.mp3
+m6.planB.now,You chose Pause. Extra machines stopped safely. The lamps are bright!,nuri_m6_planb_now.mp3
+base.nearBright,Look how bright the greenhouse is!,nuri_base_nearbright.mp3
+base.nearDark,The greenhouse is dark. The plants need their lamps!,nuri_base_neardark.mp3
+base.nearDim,The greenhouse is dim. Only one lamp has power.,nuri_base_neardim.mp3
+base.nearMonitor,The spare monitor is on. Fewer gaps in our notes!,nuri_base_nearmonitor.mp3
+base.nearMystery,The Sun alert is still a mystery. The watch screen is off.,nuri_base_nearmystery.mp3
+base.nearStuck,"There’s our robot, stuck by the rocks!",nuri_base_nearstuck.mp3
+base.nearWatch,The watch screen is on. It keeps an eye on the Sun list.,nuri_base_nearwatch.mp3
+base.plants.stage0,The plants are drooping. They need light!,nuri_base_plants_stage0.mp3
+base.plants.stage1,The plants look weak. The greenhouse is dim.,nuri_base_plants_stage1.mp3
+base.plants.stage2,The plants are growing. Nice!,nuri_base_plants_stage2.mp3
+base.plants.stage3,The plants look healthy!,nuri_base_plants_stage3.mp3
+base.plants.stage4,The plants are thriving! Both lamps are bright.,nuri_base_plants_stage4.mp3
+base.hint.control,"Go inside, walk to the big machine in the middle, and tap E.",nuri_base_hint_control.mp3
+base.hint.exit,"Walk to the exit at the bottom of this room, then follow the yellow arrow.",nuri_base_hint_exit.mp3
+base.hint.goto.command,Follow the yellow arrow to the Command Hub. Press M for the map.,nuri_base_hint_goto_command.mp3
+base.hint.goto.comms,Follow the yellow arrow to the Communications. Press M for the map.,nuri_base_hint_goto_comms.mp3
+base.hint.goto.greenhouse,Follow the yellow arrow to the Greenhouse. Press M for the map.,nuri_base_hint_goto_greenhouse.mp3
+base.hint.goto.power,Follow the yellow arrow to the Power Station. Press M for the map.,nuri_base_hint_goto_power.mp3
+base.hint.goto.research,Follow the yellow arrow to the Research Lab. Press M for the map.,nuri_base_hint_goto_research.mp3
+base.hint.goto.shelter,Follow the yellow arrow to the Radiation Shelter. Press M for the map.,nuri_base_hint_goto_shelter.mp3
+base.hint.rover,Follow the yellow arrow to the robot by the rocks. Press M for the map.,nuri_base_hint_rover.mp3
+base.hint.rover.control,Walk up to the robot and tap E.,nuri_base_hint_rover_control.mp3
+hint.the_field_terminal_is_outside_walk_to_th,The field terminal is outside. Walk to the exit at the bottom of this room.,nuri_hint_the_field_terminal_is_outside_walk_to_th.mp3
+hint.walk_to_the_exit_at_the_bottom_of_this_r,"Walk to the exit at the bottom of this room, then follow the yellow beacon.",nuri_hint_walk_to_the_exit_at_the_bottom_of_this_r.mp3
+hint.you_are_in_the_right_place,You are in the right place!,nuri_hint_you_are_in_the_right_place.mp3
+m1.cardhint.debrief.control,The questions are just for fun. Press the orange button.,nuri_m1_cardhint_debrief_control.mp3
+m1.cardhint.debrief.goal,Look at all your clues.,nuri_m1_cardhint_debrief_goal.mp3
+m1.cardhint.debrief.nav,Each box is one thing you found.,nuri_m1_cardhint_debrief_nav.mp3
+m1.cardhint.decide.control,Click the plan you like. No plan is wrong!,nuri_m1_cardhint_decide_control.mp3
+m1.cardhint.decide.goal,Pick a plan for the team.,nuri_m1_cardhint_decide_goal.mp3
+m1.cardhint.decide.nav,Each big card shows what happens now and later.,nuri_m1_cardhint_decide_nav.mp3
+m1.cardhint.field.control,"Click a button, or click the graph. Then press NEXT.",nuri_m1_cardhint_field_control.mp3
+m1.cardhint.field.goal,Find where the dots change.,nuri_m1_cardhint_field_goal.mp3
+m1.cardhint.field.nav,The buttons under the graph are parts of the day.,nuri_m1_cardhint_field_nav.mp3
+m1.cardhint.later.control,Press the orange button.,nuri_m1_cardhint_later_control.mp3
+m1.cardhint.later.goal,See what your choice changed.,nuri_m1_cardhint_later_goal.mp3
+m1.cardhint.later.nav,First card: your choice. Arrow: what happened.,nuri_m1_cardhint_later_nav.mp3
+m1.cardhint.research.control,“Tell me more” is extra. You can skip it.,nuri_m1_cardhint_research_control.mp3
+m1.cardhint.research.goal,"Learn what we know, and what we don’t.",nuri_m1_cardhint_research_goal.mp3
+m1.cardhint.research.nav,Read one card. Then press NEXT.,nuri_m1_cardhint_research_nav.mp3
+m1.hint.command.control,"Inside, walk to the big machine. Tap E.",nuri_m1_hint_command_control.mp3
+m1.hint.command.goal,Make a plan · Command Hub · top of the map,nuri_m1_hint_command_goal.mp3
+m1.hint.command.nav,Command is at the very top. Walk around the Habitat.,nuri_m1_hint_command_nav.mp3
+m1.hint.command.science,"Both plans are OK. Which one do you like, and why?",nuri_m1_hint_command_science.mp3
+m1.hint.complete.control,Press J to see your Science Passport.,nuri_m1_hint_complete_control.mp3
+m1.hint.complete.goal,"Mission complete! · Explore, or play again",nuri_m1_hint_complete_goal.mp3
+m1.hint.complete.nav,Visit any building you like!,nuri_m1_hint_complete_nav.mp3
+m1.hint.complete.science,"Before you decide, look at lots of clues!",nuri_m1_hint_complete_science.mp3
+m1.hint.debrief.control,Click the orange button to go on.,nuri_m1_hint_debrief_control.mp3
+m1.hint.debrief.goal,See what you learned · Press MISSION,nuri_m1_hint_debrief_goal.mp3
+m1.hint.debrief.nav,Press MISSION at the top left.,nuri_m1_hint_debrief_nav.mp3
+m1.hint.debrief.science,"Where was the robot when it measured? Inside our base, or outside?",nuri_m1_hint_debrief_science.mp3
+m1.hint.monitor.control,"Walk to the screen. When you see E, tap E.",nuri_m1_hint_monitor_control.mp3
+m1.hint.monitor.goal,Look at the robot’s data · Glowing screen · near you,nuri_m1_hint_monitor_goal.mp3
+m1.hint.monitor.nav,The glowing screen is just below you. Follow the yellow arrow. Press M for the map.,nuri_m1_hint_monitor_nav.mp3
+m1.hint.monitor.science,"On the graph, look for where the dots jump up.",nuri_m1_hint_monitor_science.mp3
+m1.hint.nextShift.control,Go inside. Walk to the dish. Tap E.,nuri_m1_hint_nextshift_control.mp3
+m1.hint.nextShift.goal,See what happened · Communications · bottom right,nuri_m1_hint_nextshift_goal.mp3
+m1.hint.nextShift.nav,"Communications is at the bottom right, past the solar panels.",nuri_m1_hint_nextshift_nav.mp3
+m1.hint.nextShift.science,Remember your plan? What do you think changed?,nuri_m1_hint_nextshift_science.mp3
+m1.hint.ready.control,Click START MISSION.,nuri_m1_hint_ready_control.mp3
+m1.hint.ready.goal,Start the mission · Press START MISSION,nuri_m1_hint_ready_goal.mp3
+m1.hint.ready.nav,The START button is at the top left.,nuri_m1_hint_ready_nav.mp3
+m1.hint.ready.science,A clue is something that helps us learn.,nuri_m1_hint_ready_science.mp3
+m1.hint.research.control,Go inside. Walk to the big table. Tap E.,nuri_m1_hint_research_control.mp3
+m1.hint.research.goal,Learn what it means · Research Lab,nuri_m1_hint_research_goal.mp3
+m1.hint.research.nav,The Research Lab is to the right. Its door is at the bottom.,nuri_m1_hint_research_nav.mp3
+m1.hint.research.science,"Was it one high dot, or lots of high dots?",nuri_m1_hint_research_science.mp3
+m2.hint.log.goal,Check the robot’s notebook · Research Lab,nuri_m2_hint_log_goal.mp3
+m2.hint.plan.goal,Plan for missing hours · Command Hub,nuri_m2_hint_plan_goal.mp3
+m2.hint.think,"If a number is missing, should we guess it? What would a good scientist do?",nuri_m2_hint_think.mp3
+m3.hint.alert.goal,Check the Sun alert · Communications,nuri_m3_hint_alert_goal.mp3
+m3.hint.plan.goal,Plan for the alert · Radiation Shelter · bottom left,nuri_m3_hint_plan_goal.mp3
+m3.hint.think,Something happened on the Sun. Does that tell us what happened on Mars?,nuri_m3_hint_think.mp3
+m4.hint.plan.goal,Plan the greenhouse trays · Command Hub,nuri_m4_hint_plan_goal.mp3
+m4.hint.study.goal,Check on the plants · Greenhouse,nuri_m4_hint_study_goal.mp3
+m4.hint.think,"To know what helped a plant, what do we need to compare it with?",nuri_m4_hint_think.mp3
+m5.hint.check.goal,Do the power check · Power Station,nuri_m5_hint_check_goal.mp3
+m5.hint.route.goal,Plan the robot trip · Command Hub,nuri_m5_hint_route_goal.mp3
+m5.hint.think,Can a colorful map tell us exactly how steep a hill is?,nuri_m5_hint_think.mp3
+m6.hint.plan.goal,Write the base plan · Command Hub,nuri_m6_hint_plan_goal.mp3
+m6.hint.rover.goal,Help the stuck robot · By the rocks · follow the arrow,nuri_m6_hint_rover_goal.mp3
+m6.hint.think,Is it OK to say “we don’t know yet” in a plan?,nuri_m6_hint_think.mp3
+exhibit.crop-education,"The Canadian Space Agency teaches how to grow food for space trips. Our science files have no real Mars harvests yet, so our plants are pretend!",nuri_exhibit_crop_education.mp3
+exhibit.data-check,Sometimes two readings have the same time. Scientists check them. They don’t guess!,nuri_exhibit_data_check.mp3
+exhibit.iss-environment,"Space station readings come from near Earth, not Mars. Different place, different readings!",nuri_exhibit_iss_environment.mp3
+exhibit.mars-map,"NASA’s Mars Trek makes maps of Mars from real data. The colors are a picture, not exact heights.",nuri_exhibit_mars_map.mp3
+exhibit.solar-catalog,NASA keeps a list of storms on the Sun. Happening at the same time does not prove one thing caused the other.,nuri_exhibit_solar_catalog.mp3
+exhibit.surface-typical,"On most days, the robot’s readings are low. 20 May was very different!",nuri_exhibit_surface_typical.mp3
+base.shared,"You shared the plan, so the next team will help with one problem.",nuri_base_shared.mp3
+ending.continue.more,"Next time, try fixing one more problem.",nuri_ending_continue_more.mp3
+ending.continue.say,"The base works, but some problems are still open.",nuri_ending_continue_say.mp3
+ending.setback.more,Try a different plan. Watch how the base changes!,nuri_ending_setback_more.mp3
+ending.setback.say,Weak plants or many open problems. Every scientist has hard days!,nuri_ending_setback_say.mp3
+ending.thrive.more,Your choices helped the whole base grow.,nuri_ending_thrive_more.mp3
+ending.thrive.say,Healthy plants and few open problems. Great teamwork!,nuri_ending_thrive_say.mp3
+ending.why.cause.helper,The helper robot borrowed a lamp’s power.,nuri_ending_why_cause_helper.mp3
+ending.why.cause.rover,The robot trip borrowed a lamp’s power.,nuri_ending_why_cause_rover.mp3
+ending.why.cause.watch,"Earlier, the watch screen took a lamp’s power.",nuri_ending_why_cause_watch.mp3
+ending.why.cause.you,A lamp was turned off at the power check.,nuri_ending_why_cause_you.mp3
+ending.why.fix.fixed,Then you moved power back to the lamps!,nuri_ending_why_fix_fixed.mp3
+ending.why.fix.kept,"Then you kept the plan, so the lamp stayed off.",nuri_ending_why_fix_kept.mp3
+ending.why.open.alert,The Sun alert is still a mystery.,nuri_ending_why_open_alert.mp3
+ending.why.open.fair,We could not compare the plant trays.,nuri_ending_why_open_fair.mp3
+ending.why.open.notes,Our notes still have gaps.,nuri_ending_why_open_notes.mp3
+ending.why.open.rover,The robot is still stuck.,nuri_ending_why_open_rover.mp3
+ending.why.plants0,"Many days were dim, so the plants got weak.",nuri_ending_why_plants0.mp3
+ending.why.plants2,"Some days were dim, so the plants grew only a little.",nuri_ending_why_plants2.mp3
+ending.why.plants3,"The lamps were bright most days, so the plants grew.",nuri_ending_why_plants3.mp3
+ending.continue.caption1,"The base is working, but some jobs are still open.",narration_ending_continue_caption1.mp3
+ending.continue.caption2,One repair at a time.,narration_ending_continue_caption2.mp3
+ending.continue.caption3,The mission continues.,narration_ending_continue_caption3.mp3
+ending.setback.caption1,Our base had a hard day.,narration_ending_setback_caption1.mp3
+ending.setback.caption2,The machines stopped safely. Everyone is OK.,narration_ending_setback_caption2.mp3
+ending.setback.caption3,"We can learn, change our plan, and try again.",narration_ending_setback_caption3.mp3
+ending.thrive.caption1,The greenhouse is glowing. Our plants are thriving!,narration_ending_thrive_caption1.mp3
+ending.thrive.caption2,"Science, plants and robots, all working together.",narration_ending_thrive_caption2.mp3
+ending.thrive.caption3,Our base on Mars is thriving!,narration_ending_thrive_caption3.mp3
+intro.caption.days,Days…,narration_intro_caption_days.mp3
+intro.caption.dream,Every explorer starts with a dream…,narration_intro_caption_dream.mp3
+intro.caption.future,"One day, in the future…",narration_intro_caption_future.mp3
+intro.caption.mars,Mars.,narration_intro_caption_mars.mp3
+intro.caption.months,"Months in space, on the way to Mars.",narration_intro_caption_months.mp3
+intro.caption.weeks,Weeks…,narration_intro_caption_weeks.mp3
+intro.caption.years,Years later…,narration_intro_caption_years.mp3
+base.option.fixGain,A lamp turns back on,nuri_base_option_fixgain.mp3
+base.option.fixKeep,Keep the plan,nuri_base_option_fixkeep.mp3
+base.option.fixKeepNo,The plants keep shrinking,nuri_base_option_fixkeepno.mp3
+base.option.fixMonitor,Turn off the spare monitor,nuri_base_option_fixmonitor.mp3
+base.option.fixMonitorNo,New notes may get gaps,nuri_base_option_fixmonitorno.mp3
+base.option.fixWatch,Turn off the watch screen,nuri_base_option_fixwatch.mp3
+base.option.fixWatchNo,The alert check stops,nuri_base_option_fixwatchno.mp3
+base.option.fixWatchOk,We already know it was a flare,nuri_base_option_fixwatchok.mp3
+base.option.help,Send the helper robot,nuri_base_option_help.mp3
+base.option.helpGain,Our robot comes home,nuri_base_option_helpgain.mp3
+base.option.leave,Leave it for now,nuri_base_option_leave.mp3
+base.option.leaveCost,The robot stays stuck,nuri_base_option_leavecost.mp3
+base.slot.lamp1,Lamp 1,nuri_base_slot_lamp1.mp3
+base.slot.lamp2,Lamp 2,nuri_base_slot_lamp2.mp3
+base.slot.monitor,Spare monitor,nuri_base_slot_monitor.mp3
+base.slot.watch,Watch screen,nuri_base_slot_watch.mp3
+base.slothint.lamp1,2 lamps on: plants grow,nuri_base_slothint_lamp1.mp3
+base.slothint.monitor,On: fewer gaps in notes,nuri_base_slothint_monitor.mp3
+base.slothint.watch,On: checks the Sun alert,nuri_base_slothint_watch.mp3
+m1.decide.aCost,The robot trip waits,nuri_m1_decide_acost.mp3
+m1.decide.aGain,We get notes about the data,nuri_m1_decide_again.mp3
+m1.decide.aTitle,Study first,nuri_m1_decide_atitle.mp3
+m1.decide.bCost,We need one more reading later,nuri_m1_decide_bcost.mp3
+m1.decide.bGain,The robot trip goes on,nuri_m1_decide_bgain.mp3
+m1.decide.bTitle,Go and check again,nuri_m1_decide_btitle.mp3
+m1.explain.c1,The dots stayed high for hours,nuri_m1_explain_c1.mp3
+m1.explain.c2,We don’t know about inside the base,nuri_m1_explain_c2.mp3
+m1.explain.c3,One dot was very high,nuri_m1_explain_c3.mp3
+m1.q1.no,No,nuri_m1_q1_no.mp3
+m1.q1.yes,Yes,nuri_m1_q1_yes.mp3
+m1.q2.a,Look at lots of readings,nuri_m1_q2_a.mp3
+m1.q2.b,Decide from one number,nuri_m1_q2_b.mp3
+m1.q2.c,Say it’s dangerous,nuri_m1_q2_c.mp3
+m2.dupes.answer1,Two readings have the same time,nuri_m2_dupes_answer1.mp3
+m2.dupes.answer2,One number is too big,nuri_m2_dupes_answer2.mp3
+m2.dupes.answer3,Nothing is strange,nuri_m2_dupes_answer3.mp3
+m2.gap.answer1,"No, mark them as missing",nuri_m2_gap_answer1.mp3
+m2.gap.answer2,"Yes, guess a number",nuri_m2_gap_answer2.mp3
+m2.planA.cost,Uses our spare power block,nuri_m2_plana_cost.mp3
+m2.planA.gain,Fewer gaps in new notes,nuri_m2_plana_gain.mp3
+m2.planA.title,Turn on a spare monitor,nuri_m2_plana_title.mp3
+m2.planB.cost,New notes may have gaps,nuri_m2_planb_cost.mp3
+m2.planB.gain,Our spare block stays free,nuri_m2_planb_gain.mp3
+m2.planB.title,"Keep going, mark gaps",nuri_m2_planb_title.mp3
+m3.planA.cost.v2,No spare block! One greenhouse lamp turns off,nuri_m3_plana_cost_v2.mp3
+m3.planA.gain,We learn what the alert was,nuri_m3_plana_gain.mp3
+m3.planA.title,Watch and check,nuri_m3_plana_title.mp3
+m3.planB.cost,The alert stays a mystery,nuri_m3_planb_cost.mp3
+m3.planB.gain,No power used,nuri_m3_planb_gain.mp3
+m3.planB.title,Keep doing science,nuri_m3_planb_title.mp3
+m3.sunToMars.answer1,"No, it’s a list about the Sun",nuri_m3_suntomars_answer1.mp3
+m3.sunToMars.answer2,"Yes, it shows Mars radiation",nuri_m3_suntomars_answer2.mp3
+m4.control.answer1,To compare them,nuri_m4_control_answer1.mp3
+m4.control.answer2,To have more plants,nuri_m4_control_answer2.mp3
+m4.control.answer3,No reason,nuri_m4_control_answer3.mp3
+m4.planA.cost,Extra growth comes tomorrow,nuri_m4_plana_cost.mp3
+m4.planA.gain,We can compare fairly,nuri_m4_plana_gain.mp3
+m4.planA.title,Keep a control tray,nuri_m4_plana_title.mp3
+m4.planB.cost,We can’t compare,nuri_m4_planb_cost.mp3
+m4.planB.gain,Plants grow a bit more now,nuri_m4_planb_gain.mp3
+m4.planB.title,Use all trays,nuri_m4_planb_title.mp3
+m5.map.answer1,"No, colors are only a picture",nuri_m5_map_answer1.mp3
+m5.map.answer2,"Yes, colors give exact steepness",nuri_m5_map_answer2.mp3
+m5.planA.cost.v1,Free! The robot rested in Mission 1,nuri_m5_plana_cost_v1.mp3
+m5.planA.cost.v2,Uses the spare block for one day,nuri_m5_plana_cost_v2.mp3
+m5.planA.cost.v3,Borrows one light’s power for one day,nuri_m5_plana_cost_v3.mp3
+m5.planA.gain,We learn the road first,nuri_m5_plana_gain.mp3
+m5.planA.title,Scout first,nuri_m5_plana_title.mp3
+m5.planB.cost.v1,The ground is unknown,nuri_m5_planb_cost_v1.mp3
+m5.planB.cost.v2,No problem! The robot knows this road from Mission 1,nuri_m5_planb_cost_v2.mp3
+m5.planB.title,Short route now,nuri_m5_planb_title.mp3
+m6.planA.cost,Machines stay as they are,nuri_m6_plana_cost.mp3
+m6.planA.gain,The next team helps with one problem,nuri_m6_plana_gain.mp3
+m6.planA.title,Share the plan + questions,nuri_m6_plana_title.mp3
+m6.planB.cost,The monitor and watch screen turn off,nuri_m6_planb_cost.mp3
+m6.planB.gain,All power goes to the greenhouse lamps,nuri_m6_planb_gain.mp3
+m6.planB.title,"Pause, ask for data",nuri_m6_planb_title.mp3
+discovery.compare-days,20 May was much higher than the day before.,nuri_discovery_compare_days.mp3
+discovery.curiosity-rover,A real NASA robot that drives on Mars.,nuri_discovery_curiosity_rover.mp3
+discovery.many-readings,Lots of high readings is a stronger clue than one.,nuri_discovery_many_readings.mp3
+discovery.may20-readings,"On 20 May 2024, the robot’s readings jumped way up!",nuri_discovery_may20_readings.mp3
+discovery.rad-instrument,A tool on Curiosity that measures radiation.,nuri_discovery_rad_instrument.mp3
+discovery.rover-vs-person,A robot’s reading is not a person’s reading.,nuri_discovery_rover_vs_person.mp3

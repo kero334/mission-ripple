@@ -662,14 +662,11 @@
     },
     {
       "name": "No browser errors or warnings",
-      "pass": false,
-      "detail": "failed http://localhost:5182/assets/voice/en/nuri_base_nearbright.mp3 | failed http://localhost:5182/assets/voice/en/nuri_base_nearbright.mp3"
+      "pass": true,
+      "detail": ""
     }
   ],
-  "errors": [
-    "failed http://localhost:5182/assets/voice/en/nuri_base_nearbright.mp3",
-    "failed http://localhost:5182/assets/voice/en/nuri_base_nearbright.mp3"
-  ],
+  "errors": [],
   "screens": [
     "R1-world-dim-greenhouse",
     "R1-setback-world-final",

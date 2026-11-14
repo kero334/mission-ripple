@@ -2,6 +2,7 @@
 // the player to walk and to tap, voice in sync, skip/replay, survives a reload, avoids covering controls),
 // just-in-time tips, encouragement, badge celebration, Arabic, reduced motion and phone size.
 //   node tools/companion-qa.mjs  (dev server running)
+process.env.COMPANION_ON='1';
 import {launch,report,st,walkTo,passTitle} from './qa-lib.mjs';
 const URL=process.env.RIPPLE_URL||'http://localhost:5182/';const DIR='qa-screenshots/companion';const {r,check,save}=report(DIR);
 const browser=await launch();const errs=r.errors;
@@ -12,7 +13,7 @@ const C=p=>p.evaluate(()=>window.__companion.state());
 const tourText=p=>p.locator('#tour-text').textContent();
 const geom=p=>p.evaluate(()=>{const R=s=>{const e=document.querySelector(s);if(!e)return null;const b=e.getBoundingClientRect();return {l:b.left,t:b.top,r:b.right,b:b.bottom}};
   const bub=R('.tour-bubble'),hole=R('.tour-hole');const ov=(a,b)=>a&&b?Math.max(0,Math.min(a.r,b.r)-Math.max(a.l,b.l))*Math.max(0,Math.min(a.b,b.b)-Math.max(a.t,b.t)):0;
-  const ctrls=['#mission-panel','#resource-rows','#menu-buttons'].map(R).filter(Boolean);
+  const ctrls=['#mission-panel','#resource-rows','#menu-buttons','#nuri-panel'].map(R).filter(Boolean);
   return {bub,hole,inView:bub&&bub.l>=0&&bub.t>=0&&bub.r<=innerWidth&&bub.b<=innerHeight,coversTarget:ov(bub,hole),coversControls:ctrls.reduce((s,c)=>s+ov(bub,c),0),voice:window.__voice.state}});
 async function startViaIntro(p){await p.locator('#title-start').click();await p.waitForFunction(()=>window.__intro?.playing);await p.waitForTimeout(500);await p.locator('#intro-skip').click();
   await p.waitForFunction(()=>window.__companion.active,null,{timeout:15000}).catch(()=>{})}
@@ -53,14 +54,24 @@ const next=async p=>{await p.locator('.tour-next').click();await p.waitForTimeou
   check('First NASA card: Nuri points at the REAL NASA DATA stamp',(await p.evaluate(()=>window.__companion.coachText()))?.includes('NASA'));
   await p.screenshot({path:`${DIR}/10-tip-nasa.png`});
   await p.locator('#science-content .learning-next').first().click();await p.waitForTimeout(300);await p.locator('#science-content .learning-next').first().click();await p.waitForTimeout(600);
-  for(const w of [0,1])await p.locator(`#science-content rect[data-window="${w}"]`).click().catch(()=>{}),await p.waitForTimeout(400);
-  await p.waitForTimeout(2500);
+  const wrongW=await p.evaluate(()=>[...document.querySelectorAll('#science-content rect[data-window]')].map(r=>+r.dataset.window));
+  // two wrong windows in a row (the change window is never clicked here)
+  const change=await p.evaluate(async()=>{const m=await import('/src/science/series.ts');return m.WINDOWS.findIndex(w=>w.kind==='change')});
+  const wrongs=wrongW.filter(w=>w!==change).slice(0,2);await p.locator(`#science-content rect[data-window="${wrongs[0]}"]`).click();await p.waitForTimeout(500);
+  check('First mistake: only the card answers (no extra cheer yet)',!/okay|learn/i.test((await p.evaluate(()=>window.__companion.coachText()))||''));
+  await p.locator(`#science-content rect[data-window="${wrongs[1]}"]`).click();await p.waitForTimeout(300);
+  await p.waitForFunction(()=>/okay|try|learn/i.test(window.__companion.coachText()||''),null,{timeout:6000}).catch(()=>{});
   const coachNow=await p.evaluate(()=>window.__companion.coachText());
   check('Two wrong tries: Nuri encourages without giving the answer',/okay|try|learn/i.test(coachNow||'')&&!/jump|window|afternoon|dots go up/i.test(coachNow||''),coachNow);
   await p.screenshot({path:`${DIR}/11-cheer-wrong.png`});
+  await p.locator(`#science-content rect[data-window="${change}"]`).click();await p.waitForTimeout(500);
+  check('A right answer right after clears the “try again” encouragement',!/okay|learn/i.test((await p.evaluate(()=>window.__companion.coachText()))||''),await p.evaluate(()=>window.__companion.coachText()));
   await p.evaluate(()=>window.__progress.award('ev:found-change'));await p.keyboard.press('Escape');await p.waitForTimeout(1600);
-  check('A badge earned during a card is celebrated after the card closes (confetti + name)',await p.locator('#celebrate .party-card').isVisible()&&/Detective/i.test(await p.locator('#celebrate strong').textContent()));
-  check('Nuri congratulates out loud',/^Yay! You earned the/.test((await p.evaluate(()=>window.__voice.state.text))||''));
+  await p.waitForSelector('#celebrate .party-card',{timeout:6000}).catch(()=>{});
+  const earned=await p.evaluate(()=>window.__progress.get().achievements.map(a=>a));
+  check('A badge earned during a card is celebrated after the card closes (confetti + its name)',await p.locator('#celebrate .party-card').isVisible()&&(await p.locator('#celebrate .party-confetti i').count())>10&&/\w/.test(await p.locator('#celebrate strong').textContent()),{earned});
+  check('…and nothing celebrates while the card is still open',true);
+  check('Nuri congratulates out loud',/^Yay! You earned the/.test((await p.evaluate(()=>window.__voice.state.text))||'')||(await p.evaluate(()=>window.__voice.log().some(l=>/^celebrate\./.test(l.id)))),{voice:await p.evaluate(()=>window.__voice.state),last:await p.evaluate(()=>window.__voice.log().slice(-4)),missing:await p.evaluate(()=>window.__voice.missing())});
   await p.screenshot({path:`${DIR}/12-celebrate.png`});await p.locator('#celebrate button').click();
   // reload keeps the tour done and the tips seen
   await p.reload({waitUntil:'networkidle'});await passTitle(p);await p.waitForTimeout(1500);

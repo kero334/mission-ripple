@@ -6,3 +6,12 @@ dist/
 
 
 voice-cache/
+
+# Secrets and local deployment state
+.env
+.env.*
+.vercel/
+
+# Large rendered video projects (kept on disk, too big for GitHub)
+MISSION_RIPPLE_FINAL_VIDEO/
+MISSION_RIPPLE_FINAL_30S_VIDEO/

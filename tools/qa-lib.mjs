@@ -9,7 +9,13 @@ export function report(dir){
   return {r,check:(name,pass,detail='')=>{r.checks.push({name,pass:!!pass,detail:typeof detail==='string'?detail:JSON.stringify(detail)});console.log(pass?'PASS':'FAIL',name,pass?'':detail)},
     save:()=>{writeFileSync(dir+'/results.json',JSON.stringify(r,null,2));const f=r.checks.filter(c=>!c.pass);console.log(`\n${r.checks.length-f.length}/${r.checks.length} passed, ${r.errors.length} browser errors`);return f.length===0&&r.errors.length===0}};
 }
-export async function launch({headless=process.env.HEADED?false:true}={}){return chromium.launch({channel:'chrome',headless,args:['--autoplay-policy=no-user-gesture-required']})}
+export async function launch({headless=process.env.HEADED?false:true}={}){
+  const b=await chromium.launch({channel:'chrome',headless,args:['--autoplay-policy=no-user-gesture-required']});
+  // Suites for other features run with Nuri's companion quiet (no tour, tips or celebrations over their buttons).
+  // tools/companion-qa.mjs sets COMPANION_ON=1 and tests the companion itself.
+  if(!process.env.COMPANION_ON){const nc=b.newContext.bind(b);b.newContext=async(o)=>{const c=await nc(o);await c.addInitScript(()=>{if(!localStorage.getItem('mission-ripple-companion-v1'))localStorage.setItem('mission-ripple-companion-v1',JSON.stringify({v:1,tour:'done',step:0,tips:[],cheer:{},lastCheer:0,quiet:true}))});return c};
+    const np=b.newPage.bind(b);b.newPage=async(o)=>{const c=await b.newContext(o);return c.newPage()}}
+  return b}
 export async function openGame(browser,{width=1280,height=720,errors=[],storage=null}={}){
   const context=await browser.newContext({viewport:{width,height},deviceScaleFactor:1});
   if(storage)await context.addInitScript(s=>{if(!sessionStorage.getItem('__seeded')){for(const [k,v] of Object.entries(s))localStorage.setItem(k,v);sessionStorage.setItem('__seeded','1')}},storage);
@@ -18,11 +24,18 @@ export async function openGame(browser,{width=1280,height=720,errors=[],storage=
   page.on('pageerror',e=>errors.push('pageerror: '+e.message));
   page.on('console',m=>{if(m.type()==='error'||m.type()==='warning')errors.push(m.type()+': '+m.text())});
   page.on('response',res=>{if(res.status()>=400)errors.push(res.status()+' '+res.url())});
-  page.on('requestfailed',q=>{if(!q.url().includes('fonts.g'))errors.push('failed '+q.url())});
+  // A media request cut off by the game itself (a voice line stopped or replaced mid-load) fails with
+  // net::ERR_ABORTED. That is expected and recorded separately; checkAborted() later proves each file really exists.
+  // Every other failed request — including a non-media ERR_ABORTED — is still an error.
+  page.on('requestfailed',q=>{if(q.url().includes('fonts.g'))return;const why=q.failure()?.errorText||'';
+    if(why==='net::ERR_ABORTED'&&q.resourceType()==='media'){(errors.aborted||=new Set()).add(q.url());return}
+    errors.push('failed '+q.url()+' '+why)});
   await page.goto(URL,{waitUntil:'networkidle'});
   await ready(page);
   return {context,page};
 }
+/** Expected media cancellations must point at real files: each aborted URL is fetched again and must return 200. */
+export async function checkAborted(errors){const urls=[...(errors.aborted||[])];for(const u of urls){const r=await fetch(u);if(r.status!==200)errors.push(`aborted media is really missing: ${u} → ${r.status}`)}return urls.length}
 /** Voice-package check (VOICE_CAPTURE=file): records every English line Nuri or a caption shows, as JSON lines. */
 export async function captureDialogue(page,file){
   await page.exposeFunction('__voiceCapture',(kind,text)=>appendFileSync(file,JSON.stringify({kind,text})+'\n'));

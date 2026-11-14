@@ -3,7 +3,7 @@
 import {readFileSync} from 'node:fs';
 import {createHash} from 'node:crypto';
 import {resolve} from 'node:path';
-import {launch,openGame,report,mission,act,cardTitle} from './qa-lib.mjs';
+import {launch,openGame,report,mission,act,cardTitle,checkAborted} from './qa-lib.mjs';
 const DIR='qa-screenshots/science';
 const {r,check,save}=report(DIR);
 const pkg=resolve('../NASA-Science-to-Mission-Engine/MISSION_RIPPLE_COMPLETE_SCIENTIFIC_DATA');
@@ -69,5 +69,6 @@ check('After the choice: REAL (NASA chart) vs GAME (base) shown side by side',/r
 const ev=await p.evaluate(()=>JSON.stringify(window.__mission.getEvidence()));
 check('NASA snapshot unchanged by the decision',ev===JSON.stringify(evidence));
 await browser.close();
+const abortedMedia=await checkAborted(r.errors);console.log('expected media cancellations (verified files exist):',abortedMedia);
 check('No browser errors',r.errors.length===0,r.errors.join(' | '));
 process.exit(save()?0:1);

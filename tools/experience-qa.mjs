@@ -1,6 +1,6 @@
 // Child-experience QA: real Chrome playthroughs of The Rover Reading using the simple "Nuri scene" cards.
 // Run while the dev server is up:  node tools/experience-qa.mjs   → qa-screenshots/child-experience/
-import {launch,openGame,report,st,mission,xp,prog,walkTo,enter,exitRoom,useEquipment,useAt,act,layout,shot,ready} from './qa-lib.mjs';
+import {launch,openGame,report,st,mission,xp,prog,walkTo,enter,exitRoom,useEquipment,useAt,act,layout,shot,ready,checkAborted} from './qa-lib.mjs';
 const DIR='qa-screenshots/child-experience';
 const {r,check,save}=report(DIR);
 const browser=await launch();
@@ -312,6 +312,7 @@ await section('F',async()=>{
   check('F: the offer does not change XP',await xp(p)===0);
   await context.close();
 });
+const abortedMedia=await checkAborted(errs);console.log('expected media cancellations (verified files exist):',abortedMedia);
 check('No browser errors, warnings or failed requests',errs.length===0,errs.join(' | '));
 await browser.close();
 process.exit(save()?0:1);

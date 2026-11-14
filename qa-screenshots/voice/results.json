@@ -2,8 +2,8 @@
   "checks": [
     {
       "name": "Voice manifest loaded: 390 recorded lines",
-      "pass": true,
-      "detail": "390"
+      "pass": false,
+      "detail": "440"
     },
     {
       "name": "Opening the mission card: Nuri speaks the card line",
@@ -23,12 +23,12 @@
     {
       "name": "Closing the card replaces the card line (one voice at a time)",
       "pass": true,
-      "detail": "{\"ready\":true,\"speaking\":true,\"text\":\"Hi, Explorer! A robot on Mars found a clue. Let’s check it out!\",\"channel\":\"hud\",\"lines\":390}"
+      "detail": "{\"ready\":true,\"speaking\":true,\"text\":\"Hi, Explorer! A robot on Mars found a clue. Let’s check it out!\",\"channel\":\"hud\",\"lines\":440}"
     },
     {
       "name": "The HUD line plays after the card closes and matches the dialogue box",
       "pass": true,
-      "detail": "{\"ready\":true,\"speaking\":true,\"text\":\"Hi, Explorer! A robot on Mars found a clue. Let’s check it out!\",\"channel\":\"hud\",\"lines\":390}"
+      "detail": "{\"ready\":true,\"speaking\":true,\"text\":\"Hi, Explorer! A robot on Mars found a clue. Let’s check it out!\",\"channel\":\"hud\",\"lines\":440}"
     },
     {
       "name": "After Nuri finishes, music/effects come back up",
@@ -43,7 +43,7 @@
     {
       "name": "Entering a building: the old line stops; the new line is the one on screen",
       "pass": true,
-      "detail": "{\"ready\":true,\"speaking\":false,\"text\":null,\"channel\":null,\"lines\":390}"
+      "detail": "{\"ready\":true,\"speaking\":false,\"text\":null,\"channel\":null,\"lines\":440}"
     },
     {
       "name": "Each card page speaks its own line",
@@ -53,7 +53,7 @@
     {
       "name": "Tapping the chart: the feedback line is voiced and matches",
       "pass": true,
-      "detail": "{\"ready\":true,\"speaking\":true,\"text\":\"Here the dots stay low. Try another part!\",\"channel\":\"card\",\"lines\":390}"
+      "detail": "{\"ready\":true,\"speaking\":true,\"text\":\"Here the dots stay low. Try another part!\",\"channel\":\"card\",\"lines\":440}"
     },
     {
       "name": "Card hear-again button replays the card line",
@@ -63,12 +63,12 @@
     {
       "name": "Help panel: Nuri reads the tip",
       "pass": true,
-      "detail": "{\"ready\":true,\"speaking\":true,\"text\":\"Find where the dots change.\",\"channel\":\"help\",\"lines\":390}"
+      "detail": "{\"ready\":true,\"speaking\":true,\"text\":\"Find where the dots change.\",\"channel\":\"help\",\"lines\":440}"
     },
     {
       "name": "MORE TIPS: the next tip replaces the first",
       "pass": true,
-      "detail": "{\"ready\":true,\"speaking\":true,\"text\":\"The buttons under the graph are parts of the day.\",\"channel\":\"help\",\"lines\":390}"
+      "detail": "{\"ready\":true,\"speaking\":true,\"text\":\"The buttons under the graph are parts of the day.\",\"channel\":\"help\",\"lines\":440}"
     },
     {
       "name": "Closing help stops the tip",
@@ -114,6 +114,11 @@
       "name": "No line shown to the player was missing a recording",
       "pass": true,
       "detail": "[]"
+    },
+    {
+      "name": "A missing voice file is reported as a real error (console + event), and the game carries on",
+      "pass": true,
+      "detail": "{\"vErr\":[{\"type\":\"error\",\"file\":\"/assets/voice/en/nuri_m1_brief_say.mp3\",\"code\":4}],\"e2\":[\"404 http://localhost:5182/assets/voice/en/nuri_m1_brief_say.mp3\",\"error: Failed to load resource: the server responded with a status of 404 (Not Found)\",\"error: [voice] could not play /assets/voice/en/nuri_m1_brief_say.mp3 code 4 MEDIA_ELEMENT_ERROR: Format error\",\"error: [voice] play failed nuri_m1_brief_say.mp3 NotSupportedError\"]}"
     },
     {
       "name": "No browser errors",

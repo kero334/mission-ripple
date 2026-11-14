@@ -11,7 +11,8 @@ import {sfx} from '../audio/sfx';
 import {$,asset,esc} from '../ui/shell';
 
 export const COMPANION_KEY='mission-ripple-companion-v1';
-type Save={v:1;tour:'new'|'active'|'done'|'skipped';step:number;tips:string[];cheer:Record<string,number>;lastCheer:number};
+// quiet: set only by the automated tests of OTHER features, so tips cannot cover the buttons those tests click.
+type Save={v:1;tour:'new'|'active'|'done'|'skipped';step:number;tips:string[];cheer:Record<string,number>;lastCheer:number;quiet?:boolean};
 const fresh=():Save=>({v:1,tour:'new',step:0,tips:[],cheer:{},lastCheer:0});
 type R={left:number;top:number;right:number;bottom:number;width:number;height:number};
 type Step={id:string;say:Tx;target?:()=>R|null;wait?:'move'|'click';click?:string;after?:Tx;when?:()=>boolean;center?:boolean;ripple?:boolean};
@@ -94,10 +95,13 @@ export function setupCompanion(d:Deps){
       const bw=bub.offsetWidth,bh=bub.offsetHeight;bub.style.left=`${Math.round((W-bw)/2)}px`;bub.style.top=`${Math.round(Math.max(12,H*.42-bh/2))}px`;return}
     hole.classList.remove('none');const h=inflate(tr,8);hole.style.cssText=`left:${h.left}px;top:${h.top}px;width:${h.width}px;height:${h.height}px`;
     const bw=bub.offsetWidth,bh=bub.offsetHeight,gap=22,m=10;
-    const obstacles=CONTROLS.map(visible).filter(Boolean).filter(r=>overlap(r!,tr)<tr.width*tr.height*.5) as R[];
-    const cands=[{side:'below',x:(h.left+h.right)/2-bw/2,y:h.bottom+gap},{side:'above',x:(h.left+h.right)/2-bw/2,y:h.top-gap-bh},{side:'right',x:h.right+gap,y:(h.top+h.bottom)/2-bh/2},{side:'left',x:h.left-gap-bw,y:(h.top+h.bottom)/2-bh/2}]
+    // stay clear of every HUD control, including the panel the target sits in (try sides of the target and of that panel)
+    const obstacles=CONTROLS.map(visible).filter(Boolean) as R[];
+    const box=obstacles.filter(o=>overlap(o,h)>0).reduce((u,o)=>({left:Math.min(u.left,o.left),top:Math.min(u.top,o.top),right:Math.max(u.right,o.right),bottom:Math.max(u.bottom,o.bottom),width:0,height:0}),h);
+    const sides=(b:R)=>[{side:'below',x:(h.left+h.right)/2-bw/2,y:b.bottom+gap},{side:'above',x:(h.left+h.right)/2-bw/2,y:b.top-gap-bh},{side:'right',x:b.right+gap,y:(h.top+h.bottom)/2-bh/2},{side:'left',x:b.left-gap-bw,y:(h.top+h.bottom)/2-bh/2}];
+    const cands=[...sides(h),...sides(box)]
       .map(c=>{const x=Math.max(m,Math.min(W-bw-m,c.x)),y=Math.max(m,Math.min(H-bh-m,c.y));const r={left:x,top:y,right:x+bw,bottom:y+bh,width:bw,height:bh};
-        const cover=overlap(r,h)*10+obstacles.reduce((s,o)=>s+overlap(r,o),0)+(Math.abs(x-c.x)+Math.abs(y-c.y))*2;return {...c,x,y,cover}}).sort((a,b)=>a.cover-b.cover);
+        const cover=overlap(r,h)*10+obstacles.reduce((s,o)=>s+overlap(r,o),0)*3+(Math.abs(x-c.x)+Math.abs(y-c.y))*2+Math.hypot((x+bw/2)-(h.left+h.right)/2,(y+bh/2)-(h.top+h.bottom)/2)*.05;return {...c,x,y,cover}}).sort((a,b)=>a.cover-b.cover);
     const c=cands[0];bub.style.left=`${Math.round(c.x)}px`;bub.style.top=`${Math.round(c.y)}px`;
     // arrow from the bubble edge toward the target centre
     const tx=(h.left+h.right)/2,ty=(h.top+h.bottom)/2,ax=c.side==='left'?c.x+bw+4:c.side==='right'?c.x-30:Math.max(c.x+20,Math.min(c.x+bw-46,tx-13)),ay=c.side==='above'?c.y+bh+2:c.side==='below'?c.y-30:Math.max(c.y+10,Math.min(c.y+bh-36,ty-13));
@@ -116,13 +120,14 @@ export function setupCompanion(d:Deps){
   q('.tour-next').addEventListener('click',()=>{const list=steps();if(current()?.id==='start'||idx>=list.length-1){end();return}next()});
   q('.tour-skip').addEventListener('click',()=>end(true));
   // a click on the highlighted control counts as trying it (the click itself still goes to the game)
-  document.addEventListener('click',e=>{if(!active||waiting!=='click')return;const st=current();if(st.click&&(e.target as HTMLElement).closest(st.click))clicked=true},true);
+  document.addEventListener('click',e=>{if(!active||waiting!=='click')return;const st=current();if(!st.click||!(e.target as HTMLElement).closest(st.click))return;
+    if(st.id==='start'){setTimeout(()=>end(),0);return}clicked=true},true);
   window.addEventListener('resize',()=>{place();placeCoach()});
   // ---------------------------------------------------------------- coach bubble (tips and cheers, no dimming)
-  let coachTimer=0,coachAnchor:(()=>R|null)|null=null;const tipQueue:{text:string;anchor:(()=>R|null)|null;key:string;ms:number;inModal:boolean}[]=[];
-  function hideCoach(){coach.classList.add('hidden');coachAnchor=null;clearTimeout(coachTimer)}
+  let coachTimer=0,coachShownAt=0,coachAnchor:(()=>R|null)|null=null;const tipQueue:{text:string;anchor:(()=>R|null)|null;key:string;ms:number;inModal:boolean;until?:number;kind?:string}[]=[];let coachKind='';
+  function hideCoach(){coach.classList.add('hidden');coachAnchor=null;coachKind='';clearTimeout(coachTimer)}
   function coachSay(text:string,anchor:(()=>R|null)|null,{key='',ms=5200,inModal=false}={}){
-    if(active)return false;coachAnchor=anchor;q('p',coach).textContent=text;coach.classList.remove('hidden');coach.classList.toggle('in-modal',inModal);
+    if(active)return false;coachShownAt=Date.now();coachAnchor=anchor;q('p',coach).textContent=text;coach.classList.remove('hidden');coach.classList.toggle('in-modal',inModal);
     const b=q('.coach-bubble',coach);b.classList.remove('pop');void b.offsetWidth;b.classList.add('pop');placeCoach();speak(text,false);
     clearTimeout(coachTimer);coachTimer=window.setTimeout(()=>{hideCoach();pump()},ms);if(key)(coach as any).dataset.tip=key;return true}
   function placeCoach(){if(coach.classList.contains('hidden'))return;const b=q('.coach-bubble',coach),a=q('.coach-arrow',coach),r=coachAnchor?.()||null,W=innerWidth,H=innerHeight,bw=b.offsetWidth,bh=b.offsetHeight;
@@ -131,14 +136,17 @@ export function setupCompanion(d:Deps){
     b.style.left=`${Math.round(x)}px`;b.style.top=`${Math.round(y)}px`;a.style.display='block';a.classList.toggle('up',below);a.style.left=`${Math.round((r.left+r.right)/2-8)}px`;a.style.top=`${Math.round(below?y-12:y+bh)}px`}
   q('.coach-ok',coach).addEventListener('click',()=>{hideCoach();pump()});
   function tip(key:string,text:Tx,anchor:(()=>R|null)|null,{inModal=false,ms=5200}={}){
-    if(S.tips.includes(key))return;S.tips.push(key);save();tipQueue.push({text:T(text),anchor,key,ms,inModal});pump()}
-  function pump(){if(active||!coach.classList.contains('hidden')||!tipQueue.length||d.blocked())return;
-    const nx=tipQueue[0];if(!nx.inModal&&document.body.classList.contains('modal-open'))return;tipQueue.shift();coachSay(nx.text,nx.anchor,{key:nx.key,ms:nx.ms,inModal:nx.inModal})}
+    if(S.quiet||S.tips.includes(key))return;S.tips.push(key);save();tipQueue.push({text:T(text),anchor,key,ms,inModal});pump()}
+  function pump(){const now=Date.now();for(let i=tipQueue.length-1;i>=0;i--)if(tipQueue[i].until&&tipQueue[i].until!<now)tipQueue.splice(i,1);
+    if(active||!tipQueue.length||d.blocked())return;
+    // a cheer replaces a tip that has already been on screen for a while, so encouragement is never late
+    if(!coach.classList.contains('hidden')){if(tipQueue[0].until&&Date.now()-coachShownAt>1800){hideCoach()}else return}
+    const nx=tipQueue[0];if(!nx.inModal&&document.body.classList.contains('modal-open'))return;tipQueue.shift();coachKind=nx.kind||'';coachSay(nx.text,nx.anchor,{key:nx.key,ms:nx.ms,inModal:nx.inModal})}
   setInterval(()=>{pump();placeCoach()},400);
   /** Varied encouragement: rotates through the pool, never more than one every `gap` ms. */
   function cheer(kind:'right'|'wrong'|'complete',{gap=45000,anchor=null as (()=>R|null)|null,inModal=true}={}){
-    const now=Date.now();if(now-(S.lastCheer||0)<gap)return;S.lastCheer=now;const pool=CHEER[kind],i=(S.cheer[kind]||0)%pool.length;S.cheer[kind]=i+1;save();
-    tipQueue.push({text:T(pool[i]),anchor,key:'',ms:3800,inModal});pump()}
+    const now=Date.now();if(S.quiet||now-(S.lastCheer||0)<gap)return;S.lastCheer=now;const pool=CHEER[kind],i=(S.cheer[kind]||0)%pool.length;S.cheer[kind]=i+1;save();
+    tipQueue.unshift({text:T(pool[i]),anchor,key:'',ms:3800,inModal,until:now+6000,kind});pump()}
   // ---------------------------------------------------------------- just-in-time tips (first time a system appears)
   const modalOpen=()=>document.body.classList.contains('modal-open');
   const cardRoot='#science-overlay:not(.hidden),#campaign-overlay:not(.hidden)';
@@ -162,19 +170,21 @@ export function setupCompanion(d:Deps){
   let prevBase:any=null,lastSurprise=0;
   window.addEventListener('ripple-control',e=>{const a=(e as CustomEvent<{type:string;value?:any}>).detail;if(a.type!=='base')return;const v=a.value;
     if(prevBase?.active&&v.active){const lampsBefore=(prevBase.power.lamp1?1:0)+(prevBase.power.lamp2?1:0),lampsNow=(v.power.lamp1?1:0)+(v.power.lamp2?1:0);
-      if((lampsNow<lampsBefore||(v.rover==='stuck'&&prevBase.rover!=='stuck'))&&Date.now()-lastSurprise>90000){lastSurprise=Date.now();tipQueue.push({text:T(TIP.consequence),anchor:null,key:'',ms:3800,inModal:false});pump()}}
+      if(!S.quiet&&(lampsNow<lampsBefore||(v.rover==='stuck'&&prevBase.rover!=='stuck'))&&Date.now()-lastSurprise>90000){lastSurprise=Date.now();tipQueue.push({text:T(TIP.consequence),anchor:null,key:'',ms:3800,inModal:false});pump()}}
     prevBase=v});
   // learning feedback from the game (sounds are separate: these fire even with the sound off)
   let wrongRun=0;
   window.addEventListener('ripple-feedback',e=>{const n=(e as CustomEvent<{name:string}>).detail.name;if(active)return;
-    if(n==='tryAgain'){wrongRun++;if(wrongRun>=2||!S.cheer.wrong)cheer('wrong',{gap:40000})}
-    else if(n==='right'){wrongRun=0;cheer('right',{gap:60000})}
-    else if(n==='recovered'){S.lastCheer=0;tipQueue.unshift({text:T(TIP.recovered),anchor:null,key:'',ms:3800,inModal:true});pump()}});
+    // the card already answers a first mistake; Nuri adds encouragement only after a second try in a row
+    if(n==='tryAgain'){wrongRun++;if(wrongRun>=2)cheer('wrong',{gap:40000})}
+    else if(n==='right'){wrongRun=0;for(let i=tipQueue.length-1;i>=0;i--)if(tipQueue[i].kind==='wrong')tipQueue.splice(i,1);
+      if(coachKind==='wrong'){hideCoach();voice.stop('coach')}cheer('right',{gap:60000})}
+    else if(n==='recovered'&&!S.quiet){S.lastCheer=0;tipQueue.unshift({text:T(TIP.recovered),anchor:null,key:'',ms:3800,inModal:true});pump()}});
   // ---------------------------------------------------------------- badge celebrations (wait for a calm moment)
   const parties:AchievementId[]=[];
   P.onReward(n=>{if(n.eventId.startsWith('ev:mission-complete:')){S.lastCheer=0;cheer('complete',{gap:0})}if(n.achievement)parties.push(n.achievement)});
   let partyTimer=0;
-  function celebrate(){if(!party.classList.contains('hidden')||!parties.length||active||d.blocked()||modalOpen()||voice.state.channel==='card')return;
+  function celebrate(){if(S.quiet)parties.length=0;if(!party.classList.contains('hidden')||!parties.length||active||d.blocked()||modalOpen()||voice.state.channel==='card')return;
     const id=parties.shift()!,a=ACHIEVEMENTS[id];const name=pick(a.name,L());
     party.innerHTML=`<div class="party-confetti">${Array.from({length:18},(_,i)=>`<i style="--i:${i}"></i>`).join('')}</div><section class="party-card pixel-panel" role="status"><div class="party-rays"></div><img class="party-badge" src="${asset('badges/badge-'+id)}" alt=""/><small>${esc(T(CELEBRATE.title))}</small><strong>${esc(name)}</strong><p>${esc(pick(a.how,L()))}</p><button type="button" class="learning-next">${esc(T(CELEBRATE.close))}</button></section>`;
     party.classList.remove('hidden');sfx.play('cheer');speak(T(CELEBRATE.say,{name}),true);
@@ -182,8 +192,8 @@ export function setupCompanion(d:Deps){
   setInterval(celebrate,600);
   // ---------------------------------------------------------------- start: fresh players after the cinematic; resume an unfinished tour
   const whenPlaying=(f:()=>void)=>{const t=setInterval(()=>{if((window as any).__title?.state?.()==='play'&&!d.blocked()){clearInterval(t);f()}},250)};
-  window.addEventListener('ripple-intro-done',()=>{if(S.tour==='new'&&P.get().awarded.length===0)whenPlaying(()=>setTimeout(()=>{if(!active&&S.tour==='new')start(0)},1700))});
-  if(S.tour==='active')whenPlaying(()=>setTimeout(()=>start(Math.max(0,S.step)),900));
+  window.addEventListener('ripple-intro-done',()=>{if(!S.quiet&&S.tour==='new'&&P.get().awarded.length===0)whenPlaying(()=>setTimeout(()=>{if(!active&&S.tour==='new')start(0)},1700))});
+  if(S.tour==='active'&&!S.quiet)whenPlaying(()=>setTimeout(()=>start(Math.max(0,S.step)),900));
   const api={start:(at=0)=>start(at),end,skip:()=>end(true),get active(){return active},state:()=>({...S,active,step:active?current()?.id:null,steps:steps().map(s=>s.id)}),
     tip,cheer,reset(){S=fresh();save()},coachText:()=>coach.classList.contains('hidden')?null:q('p',coach).textContent};
   (window as any).__companion=api;return api;

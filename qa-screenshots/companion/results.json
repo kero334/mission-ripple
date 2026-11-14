@@ -1,0 +1,176 @@
+{
+  "checks": [
+    {
+      "name": "Tour starts by itself right after the cinematic (fresh player)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Tour only covers systems that exist (12–13 steps)",
+      "pass": true,
+      "detail": "[\"hello\",\"move\",\"buildings\",\"mission\",\"help\",\"xp\",\"passport\",\"map\",\"settings\",\"ripple1\",\"ripple2\",\"ripple3\",\"start\"]"
+    },
+    {
+      "name": "Step 1: Nuri introduces herself, with her voice in sync",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Step 2 asks the player to walk",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Movement spotlight sits on the astronaut (camera-aware) and the bubble does not cover it",
+      "pass": true,
+      "detail": "{\"bub\":{\"l\":440,\"t\":430,\"r\":840,\"b\":564},\"hole\":{\"l\":601.59375,\"t\":315.1875,\"r\":678.390625,\"b\":407.984375},\"inView\":true,\"coversTarget\":0,\"coversControls\":0,\"voice\":{\"ready\":true,\"speaking\":true,\"text\":\"Walk with the arrow keys, or W, A, S and D. Try it now!\",\"channel\":\"coach\",\"lines\":440}}"
+    },
+    {
+      "name": "Walking is noticed: \"Great job, Commander!\"",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "…then the tour moves on by itself",
+      "pass": true,
+      "detail": "buildings"
+    },
+    {
+      "name": "Tapping the highlighted HELP opens help; the tour pauses",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Closing help continues the tour",
+      "pass": true,
+      "detail": "xp"
+    },
+    {
+      "name": "Passport tip waits until the tour… (no coach bubble during the tour)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "After the Passport: \"Nice! You can check your badges anytime.\"",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "The Ripple Effect is explained in Nuri’s words",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Ripple animation shows",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Every tour bubble stays on screen and never covers its target or the HUD controls",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "Tapping START MISSION on the last step ends the tour and starts the mission",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "All tour lines were spoken (voice has every tour recording)",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "name": "First NASA card: Nuri points at the REAL NASA DATA stamp",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "First mistake: only the card answers (no extra cheer yet)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Two wrong tries: Nuri encourages without giving the answer",
+      "pass": true,
+      "detail": "That’s okay! Scientists learn by trying again!"
+    },
+    {
+      "name": "A right answer right after clears the “try again” encouragement",
+      "pass": true,
+      "detail": "null"
+    },
+    {
+      "name": "A badge earned during a card is celebrated after the card closes (confetti + its name)",
+      "pass": true,
+      "detail": "{\"earned\":[\"first-discovery\",\"evidence-detective\"]}"
+    },
+    {
+      "name": "…and nothing celebrates while the card is still open",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Nuri congratulates out loud",
+      "pass": true,
+      "detail": "{\"voice\":{\"ready\":true,\"speaking\":true,\"text\":\"Yay! You earned the First Clue badge!\",\"channel\":\"coach\",\"lines\":440},\"last\":[{\"channel\":\"card\",\"id\":\"m1.chart.falling\",\"text\":\"Here the dots go down. Look a bit earlier!\"},{\"channel\":\"card\",\"id\":\"m1.chart.found\",\"text\":\"Yes! The dots jumped way up, super fast!\"},{\"channel\":\"hud\",\"id\":\"nuri.xpIntro\",\"text\":\"Ooh, Science XP! Press J to see it.\"},{\"channel\":\"coach\",\"id\":\"celebrate.first-discovery\",\"text\":\"Yay! You earned the First Clue badge!\"}],\"missing\":[]}"
+    },
+    {
+      "name": "Reload: the tour does not start again; tips are not repeated",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Settings → REPLAY THE TOUR starts it again",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Skip tour works at any step and says where to replay it",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Reload mid-tour resumes at the same step",
+      "pass": true,
+      "detail": "{\"at\":\"mission\",\"now\":\"mission\"}"
+    },
+    {
+      "name": "Arabic tour text",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "No English voice in Arabic",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Touch-only phone: the move step explains a keyboard is needed (no fake controls)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Phone: tour bubble fits on screen",
+      "pass": true,
+      "detail": "{\"bub\":{\"l\":16,\"t\":399,\"r\":374.796875,\"b\":537.1875},\"hole\":{\"l\":177.734375,\"t\":558.78125,\"r\":212.25,\"b\":598.171875},\"inView\":true,\"coversTarget\":0,\"coversControls\":0,\"voice\":{\"ready\":true,\"speaking\":false,\"text\":null,\"channel\":null,\"lines\":440}}"
+    },
+    {
+      "name": "Reduced motion: no tour animations",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Returning player: no tour after CONTINUE",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "No browser errors",
+      "pass": true,
+      "detail": "[]"
+    }
+  ],
+  "errors": [],
+  "screens": []
+}

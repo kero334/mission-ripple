@@ -2,7 +2,7 @@
 // endings, recovery actions, the stuck-robot rescue, reloads mid-campaign, and Arabic.
 // Every Chrome run is compared with the engine's own prediction (src/game/base-sim.ts), the same rules the
 // unit tests use for all 64 main paths.
-import {launch,openGame,report,st,xp,prog,enter,exitRoom,useEquipment,walkTo,ready} from './qa-lib.mjs';
+import {launch,openGame,report,st,xp,prog,enter,exitRoom,useEquipment,walkTo,ready,checkAborted} from './qa-lib.mjs';
 import {mkdirSync} from 'node:fs';
 const DIR='qa-screenshots/ripple';mkdirSync(DIR,{recursive:true});
 const {r,check,save}=report(DIR);
@@ -102,5 +102,6 @@ await section('R6',async()=>{const {page:p,context}=await openGame(browser,{erro
   check('R6: Arabic day card + fix shown',seen.includes('M4-PLANTS:day')&&seen.includes('M4-PLANTS:fix'));
   check('R6: delayed day effect not applied twice after reload',(await C(p)).s.events.filter(e=>e.t==='day').length===1);
   await context.close()});
+const abortedMedia=await checkAborted(errs);console.log('expected media cancellations (verified files exist):',abortedMedia);
 check('No browser errors or warnings',errs.length===0,errs.join(' | '));
 await browser.close();process.exit(save()?0:1);

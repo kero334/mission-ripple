@@ -127,12 +127,10 @@
     },
     {
       "name": "No browser errors",
-      "pass": false,
-      "detail": "failed http://localhost:5182/assets/voice/en/nuri_xpintro.mp3"
+      "pass": true,
+      "detail": ""
     }
   ],
-  "errors": [
-    "failed http://localhost:5182/assets/voice/en/nuri_xpintro.mp3"
-  ],
+  "errors": [],
   "screens": []
 }

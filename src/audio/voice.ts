@@ -18,12 +18,18 @@ function resolve(text:string):Line[]|null{
 function setDuck(on:boolean){if(on!==ducked){ducked=on;try{opts?.duck(on)}catch{/* audio not ready */}}}
 function playNext(){
   const l=queue.shift();if(!l||!opts){current=null;setDuck(false);return}
-  if(!audio){audio=new Audio();audio.preload='auto';audio.addEventListener('ended',()=>playNext());audio.addEventListener('error',()=>playNext())}
+  if(!audio){audio=new Audio();audio.preload='auto';audio.addEventListener('ended',()=>playNext());
+    // A load cut short by stop() or a new line is expected (MEDIA_ERR_ABORTED, or the element was emptied on purpose).
+    // Anything else — a missing or broken file — is a real problem: report it, then go on with the next line.
+    audio.addEventListener('error',()=>{const a=audio!,err=a.error;if(!a.getAttribute('src')||!err||err.code===MediaError.MEDIA_ERR_ABORTED)return;
+      const file=a.getAttribute('src');console.error('[voice] could not play',file,'code',err.code,err.message||'');window.dispatchEvent(new CustomEvent('ripple-voice',{detail:{type:'error',file,code:err.code}}));playNext()})}
   audio.src=`/assets/voice/en/${l.file}`;audio.volume=Math.max(0,Math.min(1,opts.volume()));setDuck(true);
   log.push({channel:current?.channel||'',id:l.id,text:current?.text||''});
   window.dispatchEvent(new CustomEvent('ripple-voice',{detail:{type:'play',id:l.id,channel:current?.channel||'',text:current?.text||''}}));
   const token=++playToken;
-  audio.play().catch(e=>{if(token!==playToken||(e&&e.name==='AbortError'))return;current=null;queue=[];setDuck(false)});
+  // play() rejects with AbortError when the line is replaced or stopped before it starts: expected, nothing to do.
+  audio.play().catch(e=>{if(token!==playToken||(e&&e.name==='AbortError'))return;if(e&&e.name==='NotAllowedError'){current=null;queue=[];setDuck(false);return}
+    console.error('[voice] play failed',l.file,e?.name||e);current=null;queue=[];setDuck(false)});
 }
 export const voice={
   async init(o:Opts){opts=o;try{const m=await (await fetch('/assets/voice/en/manifest.json')).json();lines={};for(const [t,v] of Object.entries(m.lines as Record<string,Line>))lines[norm(t)]=v;

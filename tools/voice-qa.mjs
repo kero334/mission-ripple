@@ -1,7 +1,7 @@
 // Nuri voice QA in real Chrome: the voice matches the bubble, never overlaps, stops when the screen changes,
 // follows mute/volume/language, ducks music and effects, and the hear-again buttons work.
 //   node tools/voice-qa.mjs   (dev server running)
-import {launch,openGame,report,st,enter,exitRoom,useEquipment,walkTo,passTitle} from './qa-lib.mjs';
+import {launch,openGame,report,st,enter,exitRoom,useEquipment,walkTo,passTitle,checkAborted} from './qa-lib.mjs';
 const DIR='qa-screenshots/voice';const {r,check,save}=report(DIR);
 const browser=await launch();const errs=r.errors;
 const V=p=>p.evaluate(()=>({...window.__voice.state,src:(()=>{const a=[...document.querySelectorAll('audio')];return null})(),duck:window.__sfx.ducked}));
@@ -71,5 +71,13 @@ const OVERLAP=()=>{window.__playing=new Set();window.__maxPlaying=0;const P=HTML
   check('No line shown to the player was missing a recording',(await p.evaluate(()=>window.__voice.missing())).length===0,await p.evaluate(()=>window.__voice.missing()));
   await p.screenshot({path:`${DIR}/hud-replay-button.png`});
   await context.close()}
+// a genuinely missing recording must still be reported (not hidden by the expected-cancellation rule)
+{const e2=[];const {page:p,context}=await openGame(browser,{errors:e2});
+  await p.route('**/assets/voice/en/nuri_m1_brief_say.mp3',r=>r.fulfill({status:404,body:'missing'}));
+  const vErr=[];await p.exposeFunction('__vErr',d=>vErr.push(d));await p.evaluate(()=>window.addEventListener('ripple-voice',e=>{if(e.detail.type==='error')window.__vErr(e.detail)}));
+  await p.locator('#science-mission-button').click();await p.waitForTimeout(1500);
+  check('A missing voice file is reported as a real error (console + event), and the game carries on',vErr.length===1&&e2.some(x=>/404|could not play/.test(x))&&await p.evaluate(()=>!!document.querySelector('#science-overlay:not(.hidden)')),{vErr,e2});
+  await context.close()}
+const abortedMedia=await checkAborted(errs);console.log('expected media cancellations (verified files exist):',abortedMedia);
 check('No browser errors',errs.length===0,errs);
 await browser.close();process.exit(save()?0:1);
