@@ -11,6 +11,7 @@ import type {ProgressStore} from '../game/progress';
 import type {GuideTarget,HintStep} from '../game/guidance';
 import {EQUIPMENT_POS,EXIT_POS} from '../game/guidance';
 import {$,asset,bdi,esc,modals,renderScene,type Scene} from '../ui/shell';
+import {sfx} from '../audio/sfx';
 
 export const CAMPAIGN_KEY='mission-ripple-campaign-v1';
 type E=Ev&{i?:number};
@@ -75,6 +76,7 @@ export function setupCampaign(deps:Deps){
   const base=()=>sim().base;
   const save=()=>{try{localStorage.setItem(CAMPAIGN_KEY,JSON.stringify(s))}catch{/* keep playing */}sync();deps.onChange()};
   let seq:{scenes:SceneDef[];kind:'step'|'final'}|null=null,page=0,fresh=true,quizPick:Record<string,number>={},room:string|null=null;
+  let dayChimed=-1;
   let borrow:{for:'route'|'rescue';opt:'A'|'help'}|null=null,pick1:string|null=null,showQueue:{x:number;y:number}[]=[];
   const overlay=document.createElement('div');overlay.id='campaign-overlay';overlay.className='hidden';
   overlay.innerHTML='<article class="science-card pixel-panel scene-card" role="dialog" aria-modal="true" aria-describedby="science-say"><button id="campaign-close" type="button" aria-label="Close">×</button><div id="campaign-content"></div></article>';
@@ -196,7 +198,7 @@ export function setupCampaign(deps:Deps){
     if(sc.id==='ripple'){const prev=CAMPAIGN[s.index-1],o=optOf(prev)!;
       return {id:'ripple',stamp:'game',art:`<div class="ripple-art">${img(prev.icon,'icon-big')}<span class="rf-arrow">→</span>${img(o.icon,'icon-big bob')}</div>${prev.id==='M5-POWER'?`<div class="vs-art one">${img(b.rover==='stuck'?'ripple/rover-stuck':'ripple/rover','icon-big')}</div>`:''}`,
         say:pick(dyn(o.later!,b),l),more:pick(C_UI.remember,l),good:!(prev.id==='M5-POWER'&&b.rover==='stuck'),primary:next(),page:pg}}
-    if(sc.id==='day'){const r=dayReport();const lines=[r&&r.after>r.before?C_UI.grew:r&&r.lamps===0?C_UI.shrank0:r&&r.after<r.before?C_UI.shrank:C_UI.grew];
+    if(sc.id==='day'){const r=dayReport();if(dayChimed!==s.events.length){dayChimed=s.events.length;sfx.play('newDay')}const lines=[r&&r.after>r.before?C_UI.grew:r&&r.lamps===0?C_UI.shrank0:r&&r.after<r.before?C_UI.shrank:C_UI.grew];
       const extra=[r?.boost?C_UI.boost:null,r?.alertChecked?C_UI.checked:null,r?.returned?C_UI.returned:null].filter(Boolean) as Tx[];
       const cause=lamps(b)<2&&b.lampCause?CAUSE[b.lampCause]:null;
       return {id:'day',stamp:'game',art:`<div class="day-art">${r?img('ripple/plants-'+r.before,'tray'):''}<span class="rf-arrow">→</span>${gardenArt(l)}</div>${chips(sim().changes[lastDayIdx()]||[],l)}`,
@@ -256,13 +258,13 @@ export function setupCampaign(deps:Deps){
     if(a==='passport'){close();deps.openPassport();return}
     if(a==='restart'){close();restart();return}
     if(a==='replay-ending'){close();playEnding(true);return}
-    if(a.startsWith('quiz-')){const sc=seq!.scenes[page],i=Number(a.slice(5));quizPick[sc.id]=i;if(sc.quiz!.options[i].ok)P.award(sc.quiz!.award);render();return}
-    if(a.startsWith('toggle-')&&m){const k=a.slice(7) as Slot,b=base();if(!b.power[k]&&spare(b)===0){pick1=pick(C_UI.powerFull,l);render();return}
+    if(a.startsWith('quiz-')){const sc=seq!.scenes[page],i=Number(a.slice(5));quizPick[sc.id]=i;sfx.play(sc.quiz!.options[i].ok?'right':'tryAgain');if(sc.quiz!.options[i].ok)P.award(sc.quiz!.award);render();return}
+    if(a.startsWith('toggle-')&&m){const k=a.slice(7) as Slot,b=base();if(!b.power[k]&&spare(b)===0){pick1=pick(C_UI.powerFull,l);sfx.play('tryAgain');render();return}
       pick1=null;push({t:'toggle',slot:k});const sc=seq!.scenes[page];if(sc.award)P.award(sc.award);render();return}
-    if(a.startsWith('fix-')&&m){if(!evHere('fix').length){push({t:'fix',o:a.slice(4) as 'watch'|'monitor'|'keep'});say(pick(a==='fix-keep'?C_UI.kept:C_UI.fixed,l),a==='fix-keep'?'thinking':'happy')}render();return}
+    if(a.startsWith('fix-')&&m){if(!evHere('fix').length){sfx.play('decision');push({t:'fix',o:a.slice(4) as 'watch'|'monitor'|'keep'});say(pick(a==='fix-keep'?C_UI.kept:C_UI.fixed,l),a==='fix-keep'?'thinking':'happy')}render();return}
     if(a.startsWith('rescue-')&&m){if(evHere('rescue').length){render();return}const o=a.slice(7) as 'help'|'leave',b=base();
       if(o==='help'&&spare(b)===0&&lenders(b).length>1){borrow={for:'rescue',opt:'help'};render();return}
-      push({t:'rescue',o});say(pick(o==='help'?C_UI.helped:C_UI.left,l),o==='help'?'happy':'thinking');render();return}
+      sfx.play('decision');push({t:'rescue',o});say(pick(o==='help'?C_UI.helped:C_UI.left,l),o==='help'?'happy':'thinking');render();return}
     if(a.startsWith('lend-')&&borrow&&m){const sub=a.slice(5) as Slot,bw=borrow;borrow=null;
       if(bw.for==='rescue'){push({t:'rescue',o:'help',sub});say(pick(C_UI.helped,l),'happy');render();return}
       commitChoice(m,'A',sub);return}
@@ -277,7 +279,7 @@ export function setupCampaign(deps:Deps){
       say(pick(mission()!.brief,l),'happy');return}
   }
   function commitChoice(m:CampaignMission,id:'A'|'B',sub?:Slot){const l=deps.locale(),o=m.options.find(x=>x.id===id)!;
-    push({t:'choose',m:m.id,o:id,...(sub?{sub}:{})});P.award('ev:choice:'+m.id);
+    sfx.play('decision');push({t:'choose',m:m.id,o:id,...(sub?{sub}:{})});P.award('ev:choice:'+m.id);
     page=seq!.scenes.findIndex(x=>x.id==='now');fresh=true;render();say(pick(o.now,l),'happy')}
   function playEnding(again:boolean){const o=outcome(base()),b=base();
     deps.playEnding(o.kind,{plants:b.plants,power:b.power,open:o.open,rover:b.rover,alert:b.alert},()=>{seq={scenes:[],kind:'final'};page=0;fresh=true;show();if(!again)say(pick(C_UI.endSay[o.kind],deps.locale()),o.kind==='setback'?'thinking':'happy')})}

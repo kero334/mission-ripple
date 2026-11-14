@@ -2,6 +2,7 @@ import Phaser from 'phaser';
 import {BUILDINGS,SPAWN,WORLD_H,WORLD_W,type Building,type Locale} from './world-data';
 import {EXHIBITS,type Exhibit} from './game/exhibits';
 import {ROVER_HOME,ROVER_STUCK} from './world-data';
+import {sfx} from './audio/sfx';
 // What the pretend base looks like (sent by the campaign as 'base'); drives the visible consequences.
 type BaseView={active:boolean;power:{lamp1:boolean;lamp2:boolean;monitor:boolean;watch:boolean};borrow:string|null;plants:number;alert:string;notes:string;rover:string;monitorQ:boolean;alertQ:boolean;roverTarget:boolean};
 
@@ -91,7 +92,10 @@ export class MarsScene extends Phaser.Scene{
       if(a.type==='reveal'){this.revealUntil=this.time.now+12000;this.highlightUntil=this.time.now+(a.value==='device'?6000:0)}
       if(a.type==='show-me')this.showMe();
       if(a.type==='nuri-light')this.nuriGlow.setFillStyle(Number(a.value),.32);
-      if(a.type==='base'){this.baseView=a.value as BaseView;this.drawRipple()}
+      if(a.type==='base'){const prev=this.baseView,v=a.value as BaseView;this.baseView=v;this.drawRipple();
+        if(prev?.active&&v.active){const ups=(['lamp1','lamp2','monitor','watch'] as const).filter(k=>v.power[k]&&!prev.power[k]).length,downs=(['lamp1','lamp2','monitor','watch'] as const).filter(k=>!v.power[k]&&prev.power[k]).length;
+          if(downs)sfx.play('powerDown');if(ups)sfx.play('powerUp',undefined,{delay:downs?.35:0});
+          if(v.rover!==prev.rover)sfx.play(v.rover==='stuck'?'stuck':v.rover==='rescue'?'helper':v.rover==='home'?'helper':'rover',undefined,{delay:.2})}}
       if(a.type==='ripple-show')for(const p of a.value as {x:number;y:number}[])if(!this.tour.some(q=>q.x===p.x&&q.y===p.y))this.tour.push(p);
       this.publish()});
     window.addEventListener('ripple-dialogue',(event)=>{const mood=(event as CustomEvent<{mood?:string}>).detail?.mood;if(mood&&this.nuri){this.nuriMood=mood;this.announcement=Date.now();this.nuri.setTexture('nuri-'+(mood==='happy'||mood==='warning'||mood==='thinking'||mood==='speak'?mood:'idle')+'-pixel')}});
@@ -185,7 +189,7 @@ export class MarsScene extends Phaser.Scene{
     if(!this.tour.length||this.room||this.paused||this.showingMe)return;
     const stops=this.tour.splice(0,4),cam=this.cameras.main;this.showingMe=true;cam.stopFollow();
     const visit=(i:number)=>{if(i>=stops.length){cam.pan(this.player.x,this.player.y-25,600,'Sine.easeInOut',true,(_c:Phaser.Cameras.Scene2D.Camera,q:number)=>{if(q<1)return;cam.startFollow(this.player,false,.09,.09,0,25);this.showingMe=false});return}
-      const s=stops[i];cam.pan(s.x,s.y-20,650,'Sine.easeInOut',true,(_c:Phaser.Cameras.Scene2D.Camera,q:number)=>{if(q<1)return;
+      const s=stops[i];cam.pan(s.x,s.y-20,650,'Sine.easeInOut',true,(_c:Phaser.Cameras.Scene2D.Camera,q:number)=>{if(q<1)return;sfx.play('ripple',undefined,{gap:200});
         for(let k=0;k<6;k++){const sp=this.rSprite('ripple-spark',s.x+Math.cos(k)*26,s.y-30+Math.sin(k*2)*16,6001);this.tweens.add({targets:sp,y:'-=14',alpha:0,duration:900,delay:k*60})}
         const ring=this.rTrack(this.add.image(s.x,s.y-10,'guide-ring').setDepth(5999).setTint(0x9ff3f5));this.tweens.add({targets:ring,scale:2.2,alpha:0,duration:900});
         this.time.delayedCall(1100,()=>visit(i+1))})};
@@ -221,6 +225,7 @@ export class MarsScene extends Phaser.Scene{
     this.blocks.push(new Phaser.Geom.Rectangle(40,85,560,37));this.blocks.push(new Phaser.Geom.Rectangle(260,197,120,23));
   }
   private changeScene(b:Building|null){
+    sfx.play(b?'doorOpen':'doorClose');
     this.cameras.main.fadeOut(155,25,22,36);this.time.delayedCall(170,()=>{
       for(const o of this.objects){this.tweens.killTweensOf(o);o.destroy()}this.objects=[];this.room=b;this.nearest=null;
       for(const o of this.rippleObjs){this.tweens.killTweensOf(o);o.destroy()}this.rippleObjs=[];this.rippleTargets=[];this.bSprites={};
@@ -233,14 +238,14 @@ export class MarsScene extends Phaser.Scene{
   }
   private interact(){
     if(this.paused)return;
-    if(!this.nearest){emit('ripple-interact-miss',{room:this.room?.id||null});return}
+    if(!this.nearest){sfx.play('miss',undefined,{gap:300});emit('ripple-interact-miss',{room:this.room?.id||null});return}
     const t=this.nearest;
     this.interactionUntil=this.time.now+350;this.player.setTexture('astronaut-interact-pixel');
     if(t.kind==='door'&&t.building){emit('ripple-world-interaction',{kind:'door',buildingId:t.building.id});this.changeScene(t.building)}
     else if(t.kind==='exit'){emit('ripple-world-interaction',{kind:'exit',buildingId:t.building?.id||null});this.changeScene(null)}
-    else if(t.kind==='nuri'){this.talkedNuri=true;this.nuriMood='happy';this.nuri.setTexture('nuri-happy-pixel');this.publish();emit('ripple-help',{source:'nuri'})}
-    else if(t.kind==='exhibit'&&t.exhibit){this.nuriMood='speak';emit('ripple-world-interaction',{kind:'exhibit',buildingId:t.building?.id||null,exhibitId:t.exhibit.id})}
-    else{if(t.building)this.inspected.add(t.building.id);this.nuriMood=t.kind==='field'?'thinking':t.building?.id==='shelter'?'warning':'speak';this.nuri.setTexture('nuri-'+this.nuriMood+'-pixel');this.publish();emit('ripple-world-interaction',{kind:t.kind,buildingId:t.building?.id||null})}
+    else if(t.kind==='nuri'){sfx.play('pop');this.talkedNuri=true;this.nuriMood='happy';this.nuri.setTexture('nuri-happy-pixel');this.publish();emit('ripple-help',{source:'nuri'})}
+    else if(t.kind==='exhibit'&&t.exhibit){sfx.play('exhibit');this.nuriMood='speak';emit('ripple-world-interaction',{kind:'exhibit',buildingId:t.building?.id||null,exhibitId:t.exhibit.id})}
+    else{sfx.play('equipment');if(t.building)this.inspected.add(t.building.id);this.nuriMood=t.kind==='field'?'thinking':t.building?.id==='shelter'?'warning':'speak';this.nuri.setTexture('nuri-'+this.nuriMood+'-pixel');this.publish();emit('ripple-world-interaction',{kind:t.kind,buildingId:t.building?.id||null})}
   }
   /** End of the opening cinematic: the camera starts close on the astronaut (matching the last low shot)
    *  and rises into the normal top-down view while Nuri flies in. */
@@ -291,7 +296,7 @@ export class MarsScene extends Phaser.Scene{
     if(this.paused){this.publish();return}
     const step=Math.min(delta,40)/1000,speed=this.keys.SHIFT.isDown?132:92;
     let dx=Number(this.keys.D.isDown||this.keys.RIGHT.isDown)-Number(this.keys.A.isDown||this.keys.LEFT.isDown),dy=Number(this.keys.S.isDown||this.keys.DOWN.isDown)-Number(this.keys.W.isDown||this.keys.UP.isDown);
-    if(dx||dy){const length=Math.hypot(dx,dy);dx/=length;dy/=length;this.facing=Math.abs(dx)>Math.abs(dy)?dx>0?'right':'left':dy>0?'down':'up';this.move(dx*speed*step,dy*speed*step);this.walkClock+=delta;if(this.walkClock>130){this.walkFrame=(this.walkFrame+1)%4;this.walkClock=0}if(this.time.now>this.interactionUntil)this.player.setTexture(`astronaut-${this.facing}-${this.walkFrame}-pixel`)}
+    if(dx||dy){const length=Math.hypot(dx,dy);dx/=length;dy/=length;this.facing=Math.abs(dx)>Math.abs(dy)?dx>0?'right':'left':dy>0?'down':'up';this.move(dx*speed*step,dy*speed*step);this.walkClock+=delta;if(this.walkClock>130){this.walkFrame=(this.walkFrame+1)%4;this.walkClock=0;if(this.walkFrame%2===1)sfx.play(this.room?'stepMetal':'stepDust',this.walkFrame+(this.player.x%3),{gap:150})}if(this.time.now>this.interactionUntil)this.player.setTexture(`astronaut-${this.facing}-${this.walkFrame}-pixel`)}
     else{this.walkFrame=0;if(this.time.now>this.interactionUntil)this.player.setTexture(`astronaut-${this.facing}-0-pixel`)}
     this.player.setPosition(Math.round(this.player.x),Math.round(this.player.y));this.player.setDepth(this.player.y+2);
     if(!this.room&&!this.exploredCourtyard&&Phaser.Math.Distance.Between(this.player.x,this.player.y,SPAWN.x,SPAWN.y)>38){this.exploredCourtyard=true;this.publish()}

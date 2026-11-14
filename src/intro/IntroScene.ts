@@ -5,6 +5,7 @@
 // are reused on purpose so the cinematic matches the game.
 import Phaser from 'phaser';
 import {introSound} from './sound';
+import {sfx} from '../audio/sfx';
 
 export type IntroOptions={reducedMotion:boolean;sound:boolean};
 const emit=(name:string,detail:unknown)=>window.dispatchEvent(new CustomEvent(name,{detail}));
@@ -24,6 +25,7 @@ export class IntroScene extends Phaser.Scene{
     if(this.opts.sound){introSound.score(S)}
     const at=(t:number,f:()=>void)=>this.time.delayedCall(t*1000*S,()=>{if(!this.finished)f()});
     const cap=(key:string|null)=>emit('ripple-intro-caption',{key});
+    if(this.opts.sound)for(const [t,n,o] of [[9.4,'ignition'],[9.6,'rumble',4.6],[11.2,'whoosh'],[14.6,'whoosh'],[19.0,'thrusters'],[19.7,'touchdown'],[20.4,'hatch'],[21.2,'bootStep'],[22.6,'bootStep'],[25.4,'sparkle']] as [number,any,number?][])at(t,()=>sfx.play(n,o,{gap:0}));
     (window as any).__intro={scene:this,playing:true,reducedMotion:rm,startedAt:Date.now(),scale:S,skip:()=>this.skip()};
 
     // ---------------- Scene 1 · The dream

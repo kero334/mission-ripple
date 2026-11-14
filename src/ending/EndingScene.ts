@@ -3,6 +3,7 @@
 // which lights are on, the robot, and the problems still open. Pretend training base, not NASA data.
 import Phaser from 'phaser';
 import {introSound} from '../intro/sound';
+import {sfx} from '../audio/sfx';
 import type {EndingKind} from '../game/base-sim';
 
 export type EndingData={kind:EndingKind;plants:number;power:{lamp1:boolean;lamp2:boolean;monitor:boolean;watch:boolean};open:string[];rover:string;reducedMotion:boolean;sound:boolean};
@@ -24,7 +25,10 @@ export class EndingScene extends Phaser.Scene{
     const at=(t:number,f:()=>void)=>this.time.delayedCall(t*1000*S,()=>{if(!this.finished)f()});
     const cap=(i:number|null)=>emit('ripple-ending-caption',{kind:d.kind,i});
     (window as any).__ending={scene:this,playing:true,kind:d.kind,skip:()=>this.skip()};
-    if(d.sound)this.music(d.kind,S);
+    if(d.sound){this.music(d.kind,S);const fx:Record<EndingKind,[number,any][]>={thrive:[[3.2,'sparkle'],[4.4,'rover'],[5.6,'cheer'],[8.4,'sparkle'],[9.4,'sparkle']],
+      continue:[[3.8,'stepDust'],[4.2,'stepDust'],[4.6,'stepDust'],[5.0,'stepDust'],[5.4,'stepDust'],[5.8,'stepDust'],[6.3,'repair'],[8.0,'powerUp'],[8.2,'cheer']],
+      setback:[[2.2,'shutdown'],[3.1,'shutdown'],[4.0,'shutdown'],[4.9,'shutdown'],[9.4,'helper'],[10.8,'sparkle']]};
+      for(const [t,n] of fx[d.kind])at(t,()=>sfx.play(n,undefined,{gap:0}))}
     cam.fadeIn(rm?200:700,20,15,30);
     if(d.kind==='thrive')this.thrive(at,cap,rm);else if(d.kind==='continue')this.continueScene(at,cap,rm);else this.setback(at,cap,rm);
     at(ENDING_LENGTH[d.kind]-.9,()=>{cap(null);cam.fadeOut(rm?300:800,20,15,30);cam.once('camerafadeoutcomplete',()=>this.finish(false))});

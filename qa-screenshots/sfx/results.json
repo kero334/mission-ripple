@@ -1,0 +1,695 @@
+{
+  "checks": [
+    {
+      "name": "sfx stepDust (foot): no clipping (peak ≤ −1 dBFS) and not silent",
+      "pass": true,
+      "detail": "{\"cat\":\"foot\",\"peakDb\":-22.4,\"loudDb\":-33.9,\"nan\":false}"
+    },
+    {
+      "name": "sfx stepDust (foot): loudness in the foot window -39…-29 dB",
+      "pass": true,
+      "detail": "{\"cat\":\"foot\",\"peakDb\":-22.4,\"loudDb\":-33.9,\"nan\":false}"
+    },
+    {
+      "name": "sfx stepMetal (foot): no clipping (peak ≤ −1 dBFS) and not silent",
+      "pass": true,
+      "detail": "{\"cat\":\"foot\",\"peakDb\":-21.6,\"loudDb\":-34,\"nan\":false}"
+    },
+    {
+      "name": "sfx stepMetal (foot): loudness in the foot window -39…-29 dB",
+      "pass": true,
+      "detail": "{\"cat\":\"foot\",\"peakDb\":-21.6,\"loudDb\":-34,\"nan\":false}"
+    },
+    {
+      "name": "sfx doorOpen (world): no clipping (peak ≤ −1 dBFS) and not silent",
+      "pass": true,
+      "detail": "{\"cat\":\"world\",\"peakDb\":-13,\"loudDb\":-25.8,\"nan\":false}"
+    },
+    {
+      "name": "sfx doorOpen (world): loudness in the world window -31…-21 dB",
+      "pass": true,
+      "detail": "{\"cat\":\"world\",\"peakDb\":-13,\"loudDb\":-25.8,\"nan\":false}"
+    },
+    {
+      "name": "sfx doorClose (world): no clipping (peak ≤ −1 dBFS) and not silent",
+      "pass": true,
+      "detail": "{\"cat\":\"world\",\"peakDb\":-11.7,\"loudDb\":-24,\"nan\":false}"
+    },
+    {
+      "name": "sfx doorClose (world): loudness in the world window -31…-21 dB",
+      "pass": true,
+      "detail": "{\"cat\":\"world\",\"peakDb\":-11.7,\"loudDb\":-24,\"nan\":false}"
+    },
+    {
+      "name": "sfx equipment (world): no clipping (peak ≤ −1 dBFS) and not silent",
+      "pass": true,
+      "detail": "{\"cat\":\"world\",\"peakDb\":-15.3,\"loudDb\":-25.9,\"nan\":false}"
+    },
+    {
+      "name": "sfx equipment (world): loudness in the world window -31…-21 dB",
+      "pass": true,
+      "detail": "{\"cat\":\"world\",\"peakDb\":-15.3,\"loudDb\":-25.9,\"nan\":false}"
+    },
+    {
+      "name": "sfx exhibit (world): no clipping (peak ≤ −1 dBFS) and not silent",
+      "pass": true,
+      "detail": "{\"cat\":\"world\",\"peakDb\":-14.7,\"loudDb\":-25.7,\"nan\":false}"
+    },
+    {
+      "name": "sfx exhibit (world): loudness in the world window -31…-21 dB",
+      "pass": true,
+      "detail": "{\"cat\":\"world\",\"peakDb\":-14.7,\"loudDb\":-25.7,\"nan\":false}"
+    },
+    {
+      "name": "sfx miss (ui): no clipping (peak ≤ −1 dBFS) and not silent",
+      "pass": true,
+      "detail": "{\"cat\":\"ui\",\"peakDb\":-19.8,\"loudDb\":-31,\"nan\":false}"
+    },
+    {
+      "name": "sfx miss (ui): loudness in the ui window -36…-26 dB",
+      "pass": true,
+      "detail": "{\"cat\":\"ui\",\"peakDb\":-19.8,\"loudDb\":-31,\"nan\":false}"
+    },
+    {
+      "name": "sfx click (ui): no clipping (peak ≤ −1 dBFS) and not silent",
+      "pass": true,
+      "detail": "{\"cat\":\"ui\",\"peakDb\":-18.2,\"loudDb\":-31.1,\"nan\":false}"
+    },
+    {
+      "name": "sfx click (ui): loudness in the ui window -36…-26 dB",
+      "pass": true,
+      "detail": "{\"cat\":\"ui\",\"peakDb\":-18.2,\"loudDb\":-31.1,\"nan\":false}"
+    },
+    {
+      "name": "sfx open (ui): no clipping (peak ≤ −1 dBFS) and not silent",
+      "pass": true,
+      "detail": "{\"cat\":\"ui\",\"peakDb\":-19.7,\"loudDb\":-31.4,\"nan\":false}"
+    },
+    {
+      "name": "sfx open (ui): loudness in the ui window -36…-26 dB",
+      "pass": true,
+      "detail": "{\"cat\":\"ui\",\"peakDb\":-19.7,\"loudDb\":-31.4,\"nan\":false}"
+    },
+    {
+      "name": "sfx close (ui): no clipping (peak ≤ −1 dBFS) and not silent",
+      "pass": true,
+      "detail": "{\"cat\":\"ui\",\"peakDb\":-17.1,\"loudDb\":-31.1,\"nan\":false}"
+    },
+    {
+      "name": "sfx close (ui): loudness in the ui window -36…-26 dB",
+      "pass": true,
+      "detail": "{\"cat\":\"ui\",\"peakDb\":-17.1,\"loudDb\":-31.1,\"nan\":false}"
+    },
+    {
+      "name": "sfx page (ui): no clipping (peak ≤ −1 dBFS) and not silent",
+      "pass": true,
+      "detail": "{\"cat\":\"ui\",\"peakDb\":-16,\"loudDb\":-31,\"nan\":false}"
+    },
+    {
+      "name": "sfx page (ui): loudness in the ui window -36…-26 dB",
+      "pass": true,
+      "detail": "{\"cat\":\"ui\",\"peakDb\":-16,\"loudDb\":-31,\"nan\":false}"
+    },
+    {
+      "name": "sfx pop (ui): no clipping (peak ≤ −1 dBFS) and not silent",
+      "pass": true,
+      "detail": "{\"cat\":\"ui\",\"peakDb\":-20.5,\"loudDb\":-30.7,\"nan\":false}"
+    },
+    {
+      "name": "sfx pop (ui): loudness in the ui window -36…-26 dB",
+      "pass": true,
+      "detail": "{\"cat\":\"ui\",\"peakDb\":-20.5,\"loudDb\":-30.7,\"nan\":false}"
+    },
+    {
+      "name": "sfx right (reward): no clipping (peak ≤ −1 dBFS) and not silent",
+      "pass": true,
+      "detail": "{\"cat\":\"reward\",\"peakDb\":-14.9,\"loudDb\":-26.7,\"nan\":false}"
+    },
+    {
+      "name": "sfx right (reward): loudness in the reward window -31…-21 dB",
+      "pass": true,
+      "detail": "{\"cat\":\"reward\",\"peakDb\":-14.9,\"loudDb\":-26.7,\"nan\":false}"
+    },
+    {
+      "name": "sfx tryAgain (reward): no clipping (peak ≤ −1 dBFS) and not silent",
+      "pass": true,
+      "detail": "{\"cat\":\"reward\",\"peakDb\":-15.4,\"loudDb\":-28.1,\"nan\":false}"
+    },
+    {
+      "name": "sfx tryAgain (reward): loudness in the reward window -31…-21 dB",
+      "pass": true,
+      "detail": "{\"cat\":\"reward\",\"peakDb\":-15.4,\"loudDb\":-28.1,\"nan\":false}"
+    },
+    {
+      "name": "sfx xp (reward): no clipping (peak ≤ −1 dBFS) and not silent",
+      "pass": true,
+      "detail": "{\"cat\":\"reward\",\"peakDb\":-15.9,\"loudDb\":-27,\"nan\":false}"
+    },
+    {
+      "name": "sfx xp (reward): loudness in the reward window -31…-21 dB",
+      "pass": true,
+      "detail": "{\"cat\":\"reward\",\"peakDb\":-15.9,\"loudDb\":-27,\"nan\":false}"
+    },
+    {
+      "name": "sfx badge (reward): no clipping (peak ≤ −1 dBFS) and not silent",
+      "pass": true,
+      "detail": "{\"cat\":\"reward\",\"peakDb\":-12.4,\"loudDb\":-26.2,\"nan\":false}"
+    },
+    {
+      "name": "sfx badge (reward): loudness in the reward window -31…-21 dB",
+      "pass": true,
+      "detail": "{\"cat\":\"reward\",\"peakDb\":-12.4,\"loudDb\":-26.2,\"nan\":false}"
+    },
+    {
+      "name": "sfx decision (world): no clipping (peak ≤ −1 dBFS) and not silent",
+      "pass": true,
+      "detail": "{\"cat\":\"world\",\"peakDb\":-14.2,\"loudDb\":-25.7,\"nan\":false}"
+    },
+    {
+      "name": "sfx decision (world): loudness in the world window -31…-21 dB",
+      "pass": true,
+      "detail": "{\"cat\":\"world\",\"peakDb\":-14.2,\"loudDb\":-25.7,\"nan\":false}"
+    },
+    {
+      "name": "sfx powerUp (world): no clipping (peak ≤ −1 dBFS) and not silent",
+      "pass": true,
+      "detail": "{\"cat\":\"world\",\"peakDb\":-13.5,\"loudDb\":-26.2,\"nan\":false}"
+    },
+    {
+      "name": "sfx powerUp (world): loudness in the world window -31…-21 dB",
+      "pass": true,
+      "detail": "{\"cat\":\"world\",\"peakDb\":-13.5,\"loudDb\":-26.2,\"nan\":false}"
+    },
+    {
+      "name": "sfx powerDown (world): no clipping (peak ≤ −1 dBFS) and not silent",
+      "pass": true,
+      "detail": "{\"cat\":\"world\",\"peakDb\":-16.1,\"loudDb\":-26.1,\"nan\":false}"
+    },
+    {
+      "name": "sfx powerDown (world): loudness in the world window -31…-21 dB",
+      "pass": true,
+      "detail": "{\"cat\":\"world\",\"peakDb\":-16.1,\"loudDb\":-26.1,\"nan\":false}"
+    },
+    {
+      "name": "sfx ripple (world): no clipping (peak ≤ −1 dBFS) and not silent",
+      "pass": true,
+      "detail": "{\"cat\":\"world\",\"peakDb\":-15,\"loudDb\":-26.3,\"nan\":false}"
+    },
+    {
+      "name": "sfx ripple (world): loudness in the world window -31…-21 dB",
+      "pass": true,
+      "detail": "{\"cat\":\"world\",\"peakDb\":-15,\"loudDb\":-26.3,\"nan\":false}"
+    },
+    {
+      "name": "sfx newDay (world): no clipping (peak ≤ −1 dBFS) and not silent",
+      "pass": true,
+      "detail": "{\"cat\":\"world\",\"peakDb\":-15,\"loudDb\":-26.3,\"nan\":false}"
+    },
+    {
+      "name": "sfx newDay (world): loudness in the world window -31…-21 dB",
+      "pass": true,
+      "detail": "{\"cat\":\"world\",\"peakDb\":-15,\"loudDb\":-26.3,\"nan\":false}"
+    },
+    {
+      "name": "sfx rover (world): no clipping (peak ≤ −1 dBFS) and not silent",
+      "pass": true,
+      "detail": "{\"cat\":\"world\",\"peakDb\":-13.5,\"loudDb\":-26.1,\"nan\":false}"
+    },
+    {
+      "name": "sfx rover (world): loudness in the world window -31…-21 dB",
+      "pass": true,
+      "detail": "{\"cat\":\"world\",\"peakDb\":-13.5,\"loudDb\":-26.1,\"nan\":false}"
+    },
+    {
+      "name": "sfx stuck (world): no clipping (peak ≤ −1 dBFS) and not silent",
+      "pass": true,
+      "detail": "{\"cat\":\"world\",\"peakDb\":-14,\"loudDb\":-26.2,\"nan\":false}"
+    },
+    {
+      "name": "sfx stuck (world): loudness in the world window -31…-21 dB",
+      "pass": true,
+      "detail": "{\"cat\":\"world\",\"peakDb\":-14,\"loudDb\":-26.2,\"nan\":false}"
+    },
+    {
+      "name": "sfx helper (world): no clipping (peak ≤ −1 dBFS) and not silent",
+      "pass": true,
+      "detail": "{\"cat\":\"world\",\"peakDb\":-14.4,\"loudDb\":-26.4,\"nan\":false}"
+    },
+    {
+      "name": "sfx helper (world): loudness in the world window -31…-21 dB",
+      "pass": true,
+      "detail": "{\"cat\":\"world\",\"peakDb\":-14.4,\"loudDb\":-26.4,\"nan\":false}"
+    },
+    {
+      "name": "sfx ignition (cine): no clipping (peak ≤ −1 dBFS) and not silent",
+      "pass": true,
+      "detail": "{\"cat\":\"cine\",\"peakDb\":-12.2,\"loudDb\":-21.9,\"nan\":false}"
+    },
+    {
+      "name": "sfx ignition (cine): loudness in the cine window -27…-17 dB",
+      "pass": true,
+      "detail": "{\"cat\":\"cine\",\"peakDb\":-12.2,\"loudDb\":-21.9,\"nan\":false}"
+    },
+    {
+      "name": "sfx rumble (cine): no clipping (peak ≤ −1 dBFS) and not silent",
+      "pass": true,
+      "detail": "{\"cat\":\"cine\",\"peakDb\":-11.5,\"loudDb\":-21.8,\"nan\":false}"
+    },
+    {
+      "name": "sfx rumble (cine): loudness in the cine window -27…-17 dB",
+      "pass": true,
+      "detail": "{\"cat\":\"cine\",\"peakDb\":-11.5,\"loudDb\":-21.8,\"nan\":false}"
+    },
+    {
+      "name": "sfx whoosh (cine): no clipping (peak ≤ −1 dBFS) and not silent",
+      "pass": true,
+      "detail": "{\"cat\":\"cine\",\"peakDb\":-8.2,\"loudDb\":-23.4,\"nan\":false}"
+    },
+    {
+      "name": "sfx whoosh (cine): loudness in the cine window -27…-17 dB",
+      "pass": true,
+      "detail": "{\"cat\":\"cine\",\"peakDb\":-8.2,\"loudDb\":-23.4,\"nan\":false}"
+    },
+    {
+      "name": "sfx thrusters (cine): no clipping (peak ≤ −1 dBFS) and not silent",
+      "pass": true,
+      "detail": "{\"cat\":\"cine\",\"peakDb\":-9.3,\"loudDb\":-22.4,\"nan\":false}"
+    },
+    {
+      "name": "sfx thrusters (cine): loudness in the cine window -27…-17 dB",
+      "pass": true,
+      "detail": "{\"cat\":\"cine\",\"peakDb\":-9.3,\"loudDb\":-22.4,\"nan\":false}"
+    },
+    {
+      "name": "sfx touchdown (cine): no clipping (peak ≤ −1 dBFS) and not silent",
+      "pass": true,
+      "detail": "{\"cat\":\"cine\",\"peakDb\":-11.1,\"loudDb\":-20.9,\"nan\":false}"
+    },
+    {
+      "name": "sfx touchdown (cine): loudness in the cine window -27…-17 dB",
+      "pass": true,
+      "detail": "{\"cat\":\"cine\",\"peakDb\":-11.1,\"loudDb\":-20.9,\"nan\":false}"
+    },
+    {
+      "name": "sfx hatch (cine): no clipping (peak ≤ −1 dBFS) and not silent",
+      "pass": true,
+      "detail": "{\"cat\":\"cine\",\"peakDb\":-8.7,\"loudDb\":-22.2,\"nan\":false}"
+    },
+    {
+      "name": "sfx hatch (cine): loudness in the cine window -27…-17 dB",
+      "pass": true,
+      "detail": "{\"cat\":\"cine\",\"peakDb\":-8.7,\"loudDb\":-22.2,\"nan\":false}"
+    },
+    {
+      "name": "sfx bootStep (cine): no clipping (peak ≤ −1 dBFS) and not silent",
+      "pass": true,
+      "detail": "{\"cat\":\"cine\",\"peakDb\":-12,\"loudDb\":-22.4,\"nan\":false}"
+    },
+    {
+      "name": "sfx bootStep (cine): loudness in the cine window -27…-17 dB",
+      "pass": true,
+      "detail": "{\"cat\":\"cine\",\"peakDb\":-12,\"loudDb\":-22.4,\"nan\":false}"
+    },
+    {
+      "name": "sfx sparkle (cine): no clipping (peak ≤ −1 dBFS) and not silent",
+      "pass": true,
+      "detail": "{\"cat\":\"cine\",\"peakDb\":-11.8,\"loudDb\":-22.1,\"nan\":false}"
+    },
+    {
+      "name": "sfx sparkle (cine): loudness in the cine window -27…-17 dB",
+      "pass": true,
+      "detail": "{\"cat\":\"cine\",\"peakDb\":-11.8,\"loudDb\":-22.1,\"nan\":false}"
+    },
+    {
+      "name": "sfx cheer (cine): no clipping (peak ≤ −1 dBFS) and not silent",
+      "pass": true,
+      "detail": "{\"cat\":\"cine\",\"peakDb\":-9.9,\"loudDb\":-22.9,\"nan\":false}"
+    },
+    {
+      "name": "sfx cheer (cine): loudness in the cine window -27…-17 dB",
+      "pass": true,
+      "detail": "{\"cat\":\"cine\",\"peakDb\":-9.9,\"loudDb\":-22.9,\"nan\":false}"
+    },
+    {
+      "name": "sfx repair (cine): no clipping (peak ≤ −1 dBFS) and not silent",
+      "pass": true,
+      "detail": "{\"cat\":\"cine\",\"peakDb\":-8.3,\"loudDb\":-23.1,\"nan\":false}"
+    },
+    {
+      "name": "sfx repair (cine): loudness in the cine window -27…-17 dB",
+      "pass": true,
+      "detail": "{\"cat\":\"cine\",\"peakDb\":-8.3,\"loudDb\":-23.1,\"nan\":false}"
+    },
+    {
+      "name": "sfx shutdown (cine): no clipping (peak ≤ −1 dBFS) and not silent",
+      "pass": true,
+      "detail": "{\"cat\":\"cine\",\"peakDb\":-11.3,\"loudDb\":-22.9,\"nan\":false}"
+    },
+    {
+      "name": "sfx shutdown (cine): loudness in the cine window -27…-17 dB",
+      "pass": true,
+      "detail": "{\"cat\":\"cine\",\"peakDb\":-11.3,\"loudDb\":-22.9,\"nan\":false}"
+    },
+    {
+      "name": "sfx wind (amb): no clipping (peak ≤ −1 dBFS) and not silent",
+      "pass": true,
+      "detail": "{\"cat\":\"amb\",\"peakDb\":-25.7,\"loudDb\":-38.4,\"nan\":false}"
+    },
+    {
+      "name": "sfx wind (amb): loudness in the amb window -43…-33 dB",
+      "pass": true,
+      "detail": "{\"cat\":\"amb\",\"peakDb\":-25.7,\"loudDb\":-38.4,\"nan\":false}"
+    },
+    {
+      "name": "sfx hum (amb): no clipping (peak ≤ −1 dBFS) and not silent",
+      "pass": true,
+      "detail": "{\"cat\":\"amb\",\"peakDb\":-25.6,\"loudDb\":-38.1,\"nan\":false}"
+    },
+    {
+      "name": "sfx hum (amb): loudness in the amb window -43…-33 dB",
+      "pass": true,
+      "detail": "{\"cat\":\"amb\",\"peakDb\":-25.6,\"loudDb\":-38.1,\"nan\":false}"
+    },
+    {
+      "name": "sfx category foot: consistent volume (spread ≤ 8 dB)",
+      "pass": true,
+      "detail": "{\"spread\":0.1,\"a\":[-33.9,-34]}"
+    },
+    {
+      "name": "sfx category world: consistent volume (spread ≤ 8 dB)",
+      "pass": true,
+      "detail": "{\"spread\":2.4,\"a\":[-25.8,-24,-25.9,-25.7,-25.7,-26.2,-26.1,-26.3,-26.3,-26.1,-26.2,-26.4]}"
+    },
+    {
+      "name": "sfx category ui: consistent volume (spread ≤ 8 dB)",
+      "pass": true,
+      "detail": "{\"spread\":0.7,\"a\":[-31,-31.1,-31.4,-31.1,-31,-30.7]}"
+    },
+    {
+      "name": "sfx category reward: consistent volume (spread ≤ 8 dB)",
+      "pass": true,
+      "detail": "{\"spread\":1.9,\"a\":[-26.7,-28.1,-27,-26.2]}"
+    },
+    {
+      "name": "sfx category cine: consistent volume (spread ≤ 8 dB)",
+      "pass": true,
+      "detail": "{\"spread\":2.5,\"a\":[-21.9,-21.8,-23.4,-22.4,-20.9,-22.2,-22.4,-22.1,-22.9,-23.1,-22.9]}"
+    },
+    {
+      "name": "sfx category amb: consistent volume (spread ≤ 8 dB)",
+      "pass": true,
+      "detail": "{\"spread\":0.3,\"a\":[-38.4,-38.1]}"
+    },
+    {
+      "name": "No sound before the first click (browser autoplay rule)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Start click unlocks sound",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Cinematic plays launch sounds (ignition, rumble)",
+      "pass": true,
+      "detail": "[\"click\",\"ignition\",\"rumble\"]"
+    },
+    {
+      "name": "Outdoor ambience (wind) after arriving",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Footsteps while walking (about 3 per second)",
+      "pass": true,
+      "detail": "3"
+    },
+    {
+      "name": "Opening a card plays a soft \"open\" sound",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Buttons click",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Doors: open sound when entering",
+      "pass": true,
+      "detail": "[\"stepDust\",\"pop\",\"stepDust\",\"stepDust\",\"stepDust\",\"doorOpen\"]"
+    },
+    {
+      "name": "Indoor ambience (hum) inside a building",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Indoor footsteps sound metallic",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Doors: close sound when leaving",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Sound OFF in Settings silences every effect and the ambience",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "No browser errors",
+      "pass": true,
+      "detail": "[]"
+    }
+  ],
+  "errors": [],
+  "screens": [],
+  "levels": {
+    "stepDust": {
+      "cat": "foot",
+      "peakDb": -22.4,
+      "loudDb": -33.9,
+      "nan": false
+    },
+    "stepMetal": {
+      "cat": "foot",
+      "peakDb": -21.6,
+      "loudDb": -34,
+      "nan": false
+    },
+    "doorOpen": {
+      "cat": "world",
+      "peakDb": -13,
+      "loudDb": -25.8,
+      "nan": false
+    },
+    "doorClose": {
+      "cat": "world",
+      "peakDb": -11.7,
+      "loudDb": -24,
+      "nan": false
+    },
+    "equipment": {
+      "cat": "world",
+      "peakDb": -15.3,
+      "loudDb": -25.9,
+      "nan": false
+    },
+    "exhibit": {
+      "cat": "world",
+      "peakDb": -14.7,
+      "loudDb": -25.7,
+      "nan": false
+    },
+    "miss": {
+      "cat": "ui",
+      "peakDb": -19.8,
+      "loudDb": -31,
+      "nan": false
+    },
+    "click": {
+      "cat": "ui",
+      "peakDb": -18.2,
+      "loudDb": -31.1,
+      "nan": false
+    },
+    "open": {
+      "cat": "ui",
+      "peakDb": -19.7,
+      "loudDb": -31.4,
+      "nan": false
+    },
+    "close": {
+      "cat": "ui",
+      "peakDb": -17.1,
+      "loudDb": -31.1,
+      "nan": false
+    },
+    "page": {
+      "cat": "ui",
+      "peakDb": -16,
+      "loudDb": -31,
+      "nan": false
+    },
+    "pop": {
+      "cat": "ui",
+      "peakDb": -20.5,
+      "loudDb": -30.7,
+      "nan": false
+    },
+    "right": {
+      "cat": "reward",
+      "peakDb": -14.9,
+      "loudDb": -26.7,
+      "nan": false
+    },
+    "tryAgain": {
+      "cat": "reward",
+      "peakDb": -15.4,
+      "loudDb": -28.1,
+      "nan": false
+    },
+    "xp": {
+      "cat": "reward",
+      "peakDb": -15.9,
+      "loudDb": -27,
+      "nan": false
+    },
+    "badge": {
+      "cat": "reward",
+      "peakDb": -12.4,
+      "loudDb": -26.2,
+      "nan": false
+    },
+    "decision": {
+      "cat": "world",
+      "peakDb": -14.2,
+      "loudDb": -25.7,
+      "nan": false
+    },
+    "powerUp": {
+      "cat": "world",
+      "peakDb": -13.5,
+      "loudDb": -26.2,
+      "nan": false
+    },
+    "powerDown": {
+      "cat": "world",
+      "peakDb": -16.1,
+      "loudDb": -26.1,
+      "nan": false
+    },
+    "ripple": {
+      "cat": "world",
+      "peakDb": -15,
+      "loudDb": -26.3,
+      "nan": false
+    },
+    "newDay": {
+      "cat": "world",
+      "peakDb": -15,
+      "loudDb": -26.3,
+      "nan": false
+    },
+    "rover": {
+      "cat": "world",
+      "peakDb": -13.5,
+      "loudDb": -26.1,
+      "nan": false
+    },
+    "stuck": {
+      "cat": "world",
+      "peakDb": -14,
+      "loudDb": -26.2,
+      "nan": false
+    },
+    "helper": {
+      "cat": "world",
+      "peakDb": -14.4,
+      "loudDb": -26.4,
+      "nan": false
+    },
+    "ignition": {
+      "cat": "cine",
+      "peakDb": -12.2,
+      "loudDb": -21.9,
+      "nan": false
+    },
+    "rumble": {
+      "cat": "cine",
+      "peakDb": -11.5,
+      "loudDb": -21.8,
+      "nan": false
+    },
+    "whoosh": {
+      "cat": "cine",
+      "peakDb": -8.2,
+      "loudDb": -23.4,
+      "nan": false
+    },
+    "thrusters": {
+      "cat": "cine",
+      "peakDb": -9.3,
+      "loudDb": -22.4,
+      "nan": false
+    },
+    "touchdown": {
+      "cat": "cine",
+      "peakDb": -11.1,
+      "loudDb": -20.9,
+      "nan": false
+    },
+    "hatch": {
+      "cat": "cine",
+      "peakDb": -8.7,
+      "loudDb": -22.2,
+      "nan": false
+    },
+    "bootStep": {
+      "cat": "cine",
+      "peakDb": -12,
+      "loudDb": -22.4,
+      "nan": false
+    },
+    "sparkle": {
+      "cat": "cine",
+      "peakDb": -11.8,
+      "loudDb": -22.1,
+      "nan": false
+    },
+    "cheer": {
+      "cat": "cine",
+      "peakDb": -9.9,
+      "loudDb": -22.9,
+      "nan": false
+    },
+    "repair": {
+      "cat": "cine",
+      "peakDb": -8.3,
+      "loudDb": -23.1,
+      "nan": false
+    },
+    "shutdown": {
+      "cat": "cine",
+      "peakDb": -11.3,
+      "loudDb": -22.9,
+      "nan": false
+    },
+    "wind": {
+      "cat": "amb",
+      "peakDb": -25.7,
+      "loudDb": -38.4,
+      "nan": false
+    },
+    "hum": {
+      "cat": "amb",
+      "peakDb": -25.6,
+      "loudDb": -38.1,
+      "nan": false
+    }
+  }
+}

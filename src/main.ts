@@ -13,6 +13,7 @@ import {setupIntro} from './intro/intro';
 import {setupCampaign} from './missions/campaign';
 import {EndingScene} from './ending/EndingScene';
 import {setupEnding} from './ending/ending';
+import {sfx} from './audio/sfx';
 import './style.css';
 
 const progress=createProgressStore();
@@ -56,6 +57,7 @@ function renderPassportChip(){
   $('passport-chip').onclick=()=>panels.toggle('passport');
 }
 function render(){
+  try{sfx.ambience(intro.blocking()||ending.playing()?null:state.room?'hum':'wind')}catch{/* not set up yet */}
   document.documentElement.lang=locale;document.documentElement.dir=locale==='ar'?'rtl':'ltr';
   document.body.classList.toggle('guided',progress.get().settings.guidance==='guided');
   renderPassportChip();
@@ -71,7 +73,11 @@ function render(){
 }
 function switchLocale(){locale=locale==='en'?'ar':'en';progress.setting('locale',locale);send('locale',locale);$('nuri-text').textContent=pick(OBJECTIVES[science.getState().stage as StageKey].intro,locale);science.updateGuide();science.rerenderCard();render()}
 
+sfx.setSource(()=>progress.get().settings.sound);
+document.addEventListener('click',e=>{const t=e.target as HTMLElement;sfx.unlock();if(t.closest('button,summary,rect[data-window]'))sfx.play('click',undefined,{gap:60})});
+document.addEventListener('keydown',()=>sfx.unlock());
 progress.onReward(n=>{
+  if(n.achievement)sfx.play('badge',undefined,{delay:.15});else if(n.xp)sfx.play('xp',undefined,{delay:.1});
   const l=locale,parts:string[]=[];
   if(n.xp)parts.push(`<span class="t-xp"><img src="${asset('ui/ui-xp-pixel')}" alt=""/>${pick(TOAST.xp,l,{xp:n.xp})}</span>`);
   if(n.achievement)parts.push(`<span class="t-badge"><img src="${asset('badges/badge-'+n.achievement)}" alt=""/>${esc(ACHIEVEMENTS[n.achievement].name[l])}</span>`);
@@ -85,7 +91,7 @@ window.addEventListener('ripple-state',e=>{state=(e as CustomEvent<GameState>).d
 setInterval(()=>{const live=(window as any).__ripple?.state?.() as GameState|undefined;if(!live)return;const p=live.position.x+','+live.position.y;if(p!==lastPos){lastPos=p;lastMoveAt=Date.now()}state={...state,position:live.position};if(!modals.any())render()},700);
 setTimeout(()=>$('arrival-note').classList.add('fade'),7000);
 window.addEventListener('ripple-modal',()=>render());
-window.addEventListener('ripple-dialogue',e=>{const {text,mood}=(e as CustomEvent<{text:string;mood:string}>).detail;$('nuri-text').textContent=text;$('nuri-portrait').classList.toggle('warning',mood==='warning');const p=$('nuri-panel');p.classList.remove('pop');void p.offsetWidth;p.classList.add('pop')});
+window.addEventListener('ripple-dialogue',e=>{const {text,mood}=(e as CustomEvent<{text:string;mood:string}>).detail;if(live())sfx.play('pop',undefined,{gap:1500});$('nuri-text').textContent=text;$('nuri-portrait').classList.toggle('warning',mood==='warning');const p=$('nuri-panel');p.classList.remove('pop');void p.offsetWidth;p.classList.add('pop')});
 // Esc closes the top overlay first; only with nothing open does it open Settings.
 // While the title screen or the cinematic is showing, world keys do nothing.
 const live=()=>!intro.blocking()&&!ending?.playing();

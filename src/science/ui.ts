@@ -8,6 +8,7 @@ import {BUILDINGS} from '../world-data';
 import {guideTarget,IDLE_OFFER_MS,MISSION_BUILDING} from '../game/guidance';
 import type {ProgressStore} from '../game/progress';
 import {chartSvg} from '../ui/chart';
+import {sfx} from '../audio/sfx';
 import type {Campaign} from '../missions/campaign';
 import {$,asset,bdi,esc,modals,renderScene,type Scene} from '../ui/shell';
 
@@ -175,13 +176,13 @@ export function setupScienceUI(deps:Deps){
     if(action==='replay'){close();replay();return}
     if(action==='show-way'){close();control('reveal','device');control('show-me');return}
     if(action==='review-field'){show('field','chart',true);return}
-    if(action.startsWith('window-')){selected=Number(action.slice(7));if(WINDOWS[selected].kind==='change')award('ev:found-change');renderCard_();return}
-    if(action.startsWith('explain-')){explainPick=Number(action.slice(8));if(explainPick<=2)award('ev:explain-choice');renderCard_();return}
-    if(action==='reflect-yes'||action==='reflect-no'){q1=action==='reflect-no'?'no':'yes';if(q1==='no')award('ev:reflect-dose');renderCard_();return}
-    if(action.startsWith('transfer-')){q2=action.slice(9) as 'a'|'b'|'c';if(q2==='a')award('ev:transfer');renderCard_();return}
+    if(action.startsWith('window-')){selected=Number(action.slice(7));sfx.play(WINDOWS[selected].kind==='change'?'right':'tryAgain');if(WINDOWS[selected].kind==='change')award('ev:found-change');renderCard_();return}
+    if(action.startsWith('explain-')){explainPick=Number(action.slice(8));sfx.play(explainPick<=2?'right':'tryAgain');if(explainPick<=2)award('ev:explain-choice');renderCard_();return}
+    if(action==='reflect-yes'||action==='reflect-no'){q1=action==='reflect-no'?'no':'yes';sfx.play(q1==='no'?'right':'tryAgain');if(q1==='no')award('ev:reflect-dose');renderCard_();return}
+    if(action.startsWith('transfer-')){q2=action.slice(9) as 'a'|'b'|'c';sfx.play(q2==='a'?'right':'tryAgain');if(q2==='a')award('ev:transfer');renderCard_();return}
     if(action==='field-done'){if(mission.stage!=='monitor'){close();return}save(transition(mission,'monitor-reviewed'));close();say(pick(OBJECTIVES.research.intro,l));return}
     if(action==='research-done'){if(mission.stage!=='research'){close();return}save(transition(mission,'research-reviewed'));close();say(pick(OBJECTIVES.command.intro,l));return}
-    if(action==='review-defer'||action==='survey-followup'){const nx=transition(mission,action);if(nx===mission)return;save(nx);P.seeBranch(action);explainPick=null;page=pages().indexOf('explain');fresh=true;renderCard_();focusPrimary();say(pick(CARDS.explain.say,l),'happy');return}
+    if(action==='review-defer'||action==='survey-followup'){const nx=transition(mission,action);if(nx===mission)return;sfx.play('decision');save(nx);P.seeBranch(action);explainPick=null;page=pages().indexOf('explain');fresh=true;renderCard_();focusPrimary();say(pick(CARDS.explain.say,l),'happy');return}
     if(action==='later-done'){if(mission.stage!=='nextShift'){close();return}save(transition(mission,'next-shift-reviewed'));q1=null;q2=null;show('debrief');say(pick(OBJECTIVES.debrief.intro,l),'happy');return}
     if(action==='finish'){const nx=transition(mission,'finish');if(nx===mission)return;save(nx);P.completeRun();page=pages().indexOf('done');fresh=true;renderCard_();focusPrimary();say(pick(OBJECTIVES.complete.intro,l),'happy');return}
   }

@@ -1,5 +1,6 @@
 // Shared DOM helpers: modal stack with a single pause owner, toasts, and the simple "Nuri scene" card.
 import {CARDS,type Locale,type Tx,pick} from '../content/strings';
+import {sfx} from '../audio/sfx';
 
 export const $=(id:string)=>document.getElementById(id)!;
 export const esc=(s:string)=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]!));
@@ -13,8 +14,8 @@ const send=(type:string,value?:unknown)=>window.dispatchEvent(new CustomEvent('r
 const stack:{id:string;close:()=>void}[]=[];
 const changed=()=>{send('pause',stack.length>0);document.body.classList.toggle('modal-open',stack.length>0);window.dispatchEvent(new CustomEvent('ripple-modal',{detail:{open:stack.map(m=>m.id)}}))};
 export const modals={
-  open(id:string,close:()=>void){if(!stack.some(m=>m.id===id))stack.push({id,close});changed()},
-  closed(id:string){const i=stack.findIndex(m=>m.id===id);if(i>=0)stack.splice(i,1);changed()},
+  open(id:string,close:()=>void){if(!stack.some(m=>m.id===id)){stack.push({id,close});sfx.play('open',undefined,{gap:200})}changed()},
+  closed(id:string){const i=stack.findIndex(m=>m.id===id);if(i>=0){stack.splice(i,1);sfx.play('close',undefined,{gap:200})}changed()},
   top:()=>stack.at(-1)?.id||null,
   any:()=>stack.length>0,
   isOpen:(id:string)=>stack.some(m=>m.id===id),
