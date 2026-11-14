@@ -52,9 +52,10 @@ export class MarsScene extends Phaser.Scene{
   constructor(){super('MarsScene')}
   preload(){
     // JSON is loaded at runtime from /public (no JS import of public files).
-    for(const key of ['pixel-manifest','experience-manifest'])this.load.on(`filecomplete-json-${key}`,(_k:string,_t:string,list:{name:string;file:string}[])=>{for(const item of list)this.load.image(item.name,`/${item.file}`)});
+    for(const key of ['pixel-manifest','experience-manifest','intro-manifest'])this.load.on(`filecomplete-json-${key}`,(_k:string,_t:string,list:{name:string;file:string}[])=>{for(const item of list)this.load.image(item.name,`/${item.file}`)});
     this.load.json('pixel-manifest','/assets/pixel-manifest.json');
     this.load.json('experience-manifest','/assets/experience-manifest.json');
+    this.load.json('intro-manifest','/assets/intro-manifest.json');
     this.load.json('world-map','/assets/terrain/world-map.json');
   }
   private get mapData(){return this.cache.json.get('world-map') as MapData}
@@ -173,6 +174,18 @@ export class MarsScene extends Phaser.Scene{
     else if(t.kind==='nuri'){this.talkedNuri=true;this.nuriMood='happy';this.nuri.setTexture('nuri-happy-pixel');this.publish();emit('ripple-help',{source:'nuri'})}
     else if(t.kind==='exhibit'&&t.exhibit){this.nuriMood='speak';emit('ripple-world-interaction',{kind:'exhibit',buildingId:t.building?.id||null,exhibitId:t.exhibit.id})}
     else{if(t.building)this.inspected.add(t.building.id);this.nuriMood=t.kind==='field'?'thinking':t.building?.id==='shelter'?'warning':'speak';this.nuri.setTexture('nuri-'+this.nuriMood+'-pixel');this.publish();emit('ripple-world-interaction',{kind:t.kind,buildingId:t.building?.id||null})}
+  }
+  /** End of the opening cinematic: the camera starts close on the astronaut (matching the last low shot)
+   *  and rises into the normal top-down view while Nuri flies in. */
+  arrival(reducedMotion=false,onDone?:()=>void){
+    const cam=this.cameras.main,p=this.player;cam.stopFollow();this.showingMe=true;
+    this.nuri.setPosition(p.x+140,p.y-140).setAlpha(0);this.nuriGlow.setAlpha(0);
+    const done=()=>{cam.startFollow(p,false,.09,.09,0,25);this.showingMe=false;onDone?.()};
+    if(reducedMotion){cam.setZoom(EXTERIOR_CAMERA_ZOOM).centerOn(p.x,p.y-25);this.nuri.setPosition(p.x+34,p.y-16).setAlpha(1);this.nuriGlow.setAlpha(1);cam.fadeIn(400,166,78,67);this.time.delayedCall(450,done);return}
+    cam.setZoom(5.5).centerOn(p.x,p.y-18);cam.fadeIn(700,166,78,67);
+    this.tweens.addCounter({from:5.5,to:EXTERIOR_CAMERA_ZOOM,duration:2800,ease:'Sine.easeInOut',onUpdate:tw=>{cam.setZoom(tw.getValue()!);cam.centerOn(p.x,p.y-18-7*tw.progress)},onComplete:done});
+    this.tweens.add({targets:this.nuri,x:p.x+34,y:p.y-16,alpha:1,duration:1300,delay:1300,ease:'Back.easeOut'});
+    this.tweens.add({targets:this.nuriGlow,alpha:1,duration:600,delay:2000});
   }
   /** Briefly pans the camera to the current objective and back (the "Show me" hint). */
   private showMe(){

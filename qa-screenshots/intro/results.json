@@ -1,0 +1,222 @@
+{
+  "checks": [
+    {
+      "name": "Fresh start shows the title screen with START GAME",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "No sound before the player presses Start",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "World is paused under the title",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Start creates the audio context inside the click",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Cinematic is playing; Skip Intro visible",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "HUD hidden during the cinematic",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Captions tell the story in order (dream → years → future → days → weeks → months → Mars)",
+      "pass": true,
+      "detail": "dream,years,future,days,weeks,months,mars"
+    },
+    {
+      "name": "Full sequence ≈ 30 s and ends in the real world",
+      "pass": true,
+      "detail": "29.8s"
+    },
+    {
+      "name": "Nuri says “Welcome to Mars, Explorer!”",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Camera back at the normal top-down zoom, following the player",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Nuri is next to the astronaut",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Player has control after the cinematic",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Mission untouched (ready); HUD visible again",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Replay Cinematic from Settings plays it again",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Skip after replay returns control",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "After the intro was seen: CONTINUE + WATCH INTRO, no START",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "CONTINUE goes straight to gameplay (no cinematic)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Skip at 0.5s with button → gameplay, control works, settings not opened",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Skip at 11s with Escape → gameplay, control works, settings not opened",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Skip at 21.5s with Enter → gameplay, control works, settings not opened",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Saved mission in progress → CONTINUE offered, cinematic not forced",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Continue keeps the saved stage",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Reduced motion is detected",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Reduced-motion version is shorter (no shakes or camera flights)",
+      "pass": true,
+      "detail": "17.1s"
+    },
+    {
+      "name": "Reduced motion arrival goes straight to the normal view",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Title screen in Arabic (RTL)",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Sound can be turned off before starting",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Arabic caption",
+      "pass": true,
+      "detail": "كل مستكشف بيبدأ بحلم…"
+    },
+    {
+      "name": "Sound off → no audio context created",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Arabic skip button",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "Arabic welcome line",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "mobile-portrait: START GAME fully on screen",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "mobile-portrait: Skip Intro on screen and ≥44 px tall",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "mobile-portrait: returns to the game",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "mobile-landscape: START GAME fully on screen",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "mobile-landscape: Skip Intro on screen and ≥44 px tall",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "mobile-landscape: returns to the game",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "name": "No browser errors or warnings",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "errors": [],
+  "screens": [
+    "qa-screenshots/intro/00-title.png",
+    "qa-screenshots/intro/01-dream.png",
+    "qa-screenshots/intro/02-dream-close.png",
+    "qa-screenshots/intro/03-stars-swirl.png",
+    "qa-screenshots/intro/04-astronaut.png",
+    "qa-screenshots/intro/05-helmet-mars.png",
+    "qa-screenshots/intro/06-launchpad.png",
+    "qa-screenshots/intro/07-ignition.png",
+    "qa-screenshots/intro/08-liftoff.png",
+    "qa-screenshots/intro/09-journey-days.png",
+    "qa-screenshots/intro/10-journey-months.png",
+    "qa-screenshots/intro/11-hatch-open.png",
+    "qa-screenshots/intro/12-boot-lift.png",
+    "qa-screenshots/intro/13-first-step.png",
+    "qa-screenshots/intro/14-settlement-reveal.png",
+    "qa-screenshots/intro/15-camera-rising.png",
+    "qa-screenshots/intro/16-gameplay-begins.png",
+    "qa-screenshots/intro/rm-launch.png",
+    "qa-screenshots/intro/ar-00-title.png",
+    "qa-screenshots/intro/ar-01-dream.png",
+    "qa-screenshots/intro/ar-10-months.png",
+    "qa-screenshots/intro/mobile-portrait-title.png",
+    "qa-screenshots/intro/mobile-portrait-launch.png",
+    "qa-screenshots/intro/mobile-landscape-title.png",
+    "qa-screenshots/intro/mobile-landscape-launch.png"
+  ]
+}

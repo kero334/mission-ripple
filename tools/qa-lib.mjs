@@ -22,7 +22,16 @@ export async function openGame(browser,{width=1280,height=720,errors=[],storage=
   await ready(page);
   return {context,page};
 }
-export const ready=page=>page.waitForFunction(()=>Boolean(window.__ripple?.scene?.player&&window.__mission&&window.__progress),null,{timeout:20000}).then(()=>page.waitForTimeout(400));
+/** Gets past the title screen: START + Skip Intro on a fresh save, CONTINUE otherwise. */
+export async function passTitle(page){
+  await page.waitForFunction(()=>Boolean(window.__title),null,{timeout:20000});
+  if((await page.evaluate(()=>window.__title.state()))==='title'){
+    if(await page.locator('#title-start').count()){await page.locator('#title-start').click();await page.waitForFunction(()=>window.__intro?.playing===true,null,{timeout:5000});await page.locator('#intro-skip').click()}
+    else await page.locator('#title-continue').click();
+  }
+  await page.waitForFunction(()=>window.__title.state()==='play',null,{timeout:15000});
+}
+export const ready=page=>page.waitForFunction(()=>Boolean(window.__ripple?.scene?.player&&window.__mission&&window.__progress),null,{timeout:20000}).then(()=>passTitle(page)).then(()=>page.waitForTimeout(400));
 export const st=page=>page.evaluate(()=>window.__ripple.state());
 export const mission=page=>page.evaluate(()=>window.__mission.getState());
 export const xp=page=>page.evaluate(()=>window.__progress.xp());

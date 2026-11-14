@@ -3,12 +3,12 @@ import {ACHIEVEMENTS,ACHIEVEMENT_ORDER,CHALLENGES,NURI_LIGHTS,nextTitle,titleFor
 import {hintLadder,FIELD_POS} from '../game/guidance';
 import type {ProgressStore} from '../game/progress';
 import {DISCOVERIES,discovery} from '../content/discoveries';
-import {CARDS,HELP,MAP,MISSION,OBJECTIVES,PASSPORT,SETTINGS,STAGE_STEPS,type Locale,type StageKey,pick} from '../content/strings';
+import {CARDS,HELP,INTRO,MAP,MISSION,OBJECTIVES,PASSPORT,SETTINGS,STAGE_STEPS,type Locale,type StageKey,pick} from '../content/strings';
 import {BUILDINGS,WORLD_H,WORLD_W} from '../world-data';
 import {$,asset,bdi,esc,modals,nuriLine} from './shell';
 
 type Mission={getState:()=>{stage:string;choice:string|null};room:()=>string|null;card:()=>{seq:string;page:number}|null;highlightRise:()=>void;graphVisible:()=>boolean;updateGuide:()=>void};
-type Deps={locale:()=>Locale;progress:ProgressStore;mission:()=>Mission;position:()=>{x:number;y:number};setLocale:(l:Locale)=>void};
+type Deps={locale:()=>Locale;progress:ProgressStore;mission:()=>Mission;position:()=>{x:number;y:number};setLocale:(l:Locale)=>void;replayIntro:()=>void};
 const control=(type:string,value?:unknown)=>window.dispatchEvent(new CustomEvent('ripple-control',{detail:{type,value}}));
 
 export function setupPanels(deps:Deps){
@@ -106,6 +106,7 @@ export function setupPanels(deps:Deps){
       <h3>${pick(S.guidance,l)}</h3><div class="opt-row">${opt('guidance','guided',pick(S.guided,l),pick(S.guidedD,l),s.guidance==='guided')}${opt('guidance','independent',pick(S.independent,l),pick(S.independentD,l),s.guidance==='independent')}</div><p class="card-note">${pick(S.same,l)}</p>
       <h3>${pick(S.enjoy,l)}</h3><div class="opt-row four">${(['explore','solve','collect','mix'] as const).map(p=>opt('pref',p,pick(p==='explore'?S.pExplore:p==='solve'?S.pSolve:p==='collect'?S.pCollect:S.pMix,l),'',s.preference===p)).join('')}</div>
       <h3>${pick(S.language,l)}</h3><div class="opt-row">${opt('lang','en','English','',l==='en')}${opt('lang','ar','العربية','',l==='ar')}</div>
+      <div class="opt-row">${opt('sound','toggle',pick(s.sound?INTRO.soundOn:INTRO.soundOff,l),'',s.sound)}<button type="button" class="opt" data-panel-action="replay-intro"><b>${pick(INTRO.replay,l)}</b></button></div>
       <details class="controls"><summary>${pick(S.controlsTitle,l)}</summary><p>${pick(S.controls,l)}</p></details>
       <div class="panel-actions"><button type="button" class="learning-next" data-panel-action="close">${pick(S.resume,l)}</button></div>`}
   function inventory(l:Locale){const items=['tablet','tool','scanner','sample'],names=[['Research tablet','لوح البحث'],['Repair tool','أداة تصليح'],['Scanner','ماسح'],['Plant sample','عينة نبات']];
@@ -124,6 +125,8 @@ export function setupPanels(deps:Deps){
     if(a.startsWith('guidance-')){P.setting('guidance',a.slice(9) as 'guided'|'independent');m.updateGuide();document.body.classList.toggle('guided',a.endsWith('guided'));render();return}
     if(a.startsWith('pref-')){P.setting('preference',a.slice(5) as any);render();return}
     if(a.startsWith('lang-')){deps.setLocale(a.slice(5) as Locale);render();return}
+    if(a==='sound-toggle'){P.setting('sound',!P.get().settings.sound);render();return}
+    if(a==='replay-intro'){deps.replayIntro();return}
   }
   return {open,close,toggle,openHelp,render,isOpen:()=>!!current,current:()=>current,helpFrom:()=>helpFrom};
 }

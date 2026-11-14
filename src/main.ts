@@ -8,6 +8,8 @@ import {ACHIEVEMENTS,NURI_LIGHTS,titleFor} from './game/rewards';
 import {discovery} from './content/discoveries';
 import {MISC,NURI,OBJECTIVES,PASSPORT,PROMPTS,TOAST,type Locale,type StageKey,pick} from './content/strings';
 import {$,asset,bdi,esc,modals,toast} from './ui/shell';
+import {IntroScene} from './intro/IntroScene';
+import {setupIntro} from './intro/intro';
 import './style.css';
 
 const progress=createProgressStore();
@@ -16,7 +18,8 @@ let state:GameState={room:null,visited:[],inspected:[],talkedNuri:false,explored
 const send=(type:string,value?:unknown)=>window.dispatchEvent(new CustomEvent('ripple-control',{detail:{type,value}}));
 let science:ReturnType<typeof setupScienceUI>;
 
-const panels=setupPanels({locale:()=>locale,progress,mission:()=>science,position:()=>state.position,setLocale:l=>{if(l!==locale)switchLocale()}});
+let replayIntro=()=>{};
+const panels=setupPanels({locale:()=>locale,progress,mission:()=>science,position:()=>state.position,setLocale:l=>{if(l!==locale)switchLocale()},replayIntro:()=>replayIntro()});
 science=setupScienceUI({locale:()=>locale,progress,openHelp:from=>panels.openHelp(from),openPassport:()=>panels.open('passport')});
 
 let lastMoveAt=Date.now(),lastPos='';
@@ -74,17 +77,22 @@ setTimeout(()=>$('arrival-note').classList.add('fade'),7000);
 window.addEventListener('ripple-modal',()=>render());
 window.addEventListener('ripple-dialogue',e=>{const {text,mood}=(e as CustomEvent<{text:string;mood:string}>).detail;$('nuri-text').textContent=text;$('nuri-portrait').classList.toggle('warning',mood==='warning');const p=$('nuri-panel');p.classList.remove('pop');void p.offsetWidth;p.classList.add('pop')});
 // Esc closes the top overlay first; only with nothing open does it open Settings.
-window.addEventListener('ripple-pause',()=>{if(!modals.closeTop())panels.open('settings')});
-const guarded=(f:()=>void)=>()=>{if(modals.isOpen('science'))return;f()};
+// While the title screen or the cinematic is showing, world keys do nothing.
+const live=()=>!intro.blocking();
+window.addEventListener('ripple-pause',()=>{if(!live())return;if(!modals.closeTop())panels.open('settings')});
+const guarded=(f:()=>void)=>()=>{if(!live()||modals.isOpen('science'))return;f()};
 window.addEventListener('ripple-map',guarded(()=>panels.toggle('map')));
 window.addEventListener('ripple-journal',guarded(()=>panels.toggle('passport')));
 window.addEventListener('ripple-inventory',guarded(()=>panels.toggle('inventory')));
-window.addEventListener('ripple-help',()=>panels.openHelp(modals.isOpen('science')?'card':'hud'));
-window.addEventListener('ripple-language',switchLocale);
-window.addEventListener('ripple-scene-ready',()=>{send('locale',locale);send('nuri-light',NURI_LIGHTS.find(n=>n.id===progress.get().settings.nuriLight)!.color);science.updateGuide()});
+window.addEventListener('ripple-help',()=>{if(live())panels.openHelp(modals.isOpen('science')?'card':'hud')});
+window.addEventListener('ripple-language',()=>{if(live())switchLocale()});
+window.addEventListener('ripple-scene-ready',()=>{send('locale',locale);send('nuri-light',NURI_LIGHTS.find(n=>n.id===progress.get().settings.nuriLight)!.color);science.updateGuide();if(intro.blocking())send('pause',true)});
 document.addEventListener('keydown',e=>{if(!modals.isOpen('science')||modals.top()!=='science')return;
   if(e.key==='ArrowLeft'||e.key==='ArrowRight'){const rtl=locale==='ar',fwd=(e.key==='ArrowRight')!==rtl;const btn=document.querySelector<HTMLButtonElement>(fwd?'#science-content .learning-next:not([disabled])':'#science-content .card-back');if(btn&&(fwd?btn.dataset.scienceAction==='next':true)){e.preventDefault();btn.click()}}});
 for(const [id,f] of [['map-button',()=>panels.toggle('map')],['journal-button',()=>panels.toggle('passport')],['pause-button',()=>panels.toggle('settings')]] as const)$(id).addEventListener('click',guarded(f));
 (window as any).__progress=progress;(window as any).__panels=panels;
-new Phaser.Game({type:Phaser.AUTO,parent:'game',backgroundColor:'#7f4449',scale:{mode:Phaser.Scale.FIT,autoCenter:Phaser.Scale.CENTER_BOTH,width:1280,height:720},render:{antialias:false,pixelArt:true,roundPixels:true},scene:[MarsScene]});
+const game=new Phaser.Game({type:Phaser.AUTO,parent:'game',backgroundColor:'#7f4449',scale:{mode:Phaser.Scale.FIT,autoCenter:Phaser.Scale.CENTER_BOTH,width:1280,height:720},render:{antialias:false,pixelArt:true,roundPixels:true},scene:[MarsScene,IntroScene]});
+const intro=setupIntro({game:()=>game,locale:()=>locale,toggleLocale:()=>switchLocale(),progress,stage:()=>science.getState().stage});
+replayIntro=()=>{panels.close();intro.play()};
 render();
+intro.showTitle();

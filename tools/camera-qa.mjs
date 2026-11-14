@@ -1,5 +1,6 @@
 import {chromium} from 'playwright';
 import {mkdirSync,writeFileSync} from 'node:fs';
+import {passTitle} from './qa-lib.mjs';
 mkdirSync('qa-screenshots/camera',{recursive:true});
 const browser=await chromium.launch({channel:'chrome',headless:true});
 const report={checks:[],errors:[],screens:[]};
@@ -9,7 +10,7 @@ for(const [width,height] of [[1280,720],[1920,1080]]){
   page.on('pageerror',e=>report.errors.push(e.message));
   page.on('console',m=>{if(m.type()==='error')report.errors.push(m.text())});
   await page.goto('http://localhost:5182/',{waitUntil:'networkidle'});
-  await page.waitForFunction(()=>Boolean(window.__ripple?.scene?.player));await page.evaluate(()=>localStorage.clear());
+  await page.waitForFunction(()=>Boolean(window.__ripple?.scene?.player));await passTitle(page);
   await page.waitForTimeout(550);
   const cam=await page.evaluate(()=>{const c=window.__ripple.scene.cameras.main;return {zoom:c.zoom,viewWidth:c.width/c.zoom,viewHeight:c.height/c.zoom,scrollY:c.scrollY}});
   check(`Exterior framing ${width}x${height}`,cam.zoom===1.6&&cam.viewWidth===800&&cam.viewHeight===450,JSON.stringify(cam));

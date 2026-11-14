@@ -306,6 +306,29 @@ export const TOAST={
   challenge:tx('Challenge done: {name}','تحدي خلص: {name}'),
 };
 
+export const INTRO={
+  title:tx('MISSION RIPPLE','مهمة ريبل'),
+  tagline:tx('A Mars science adventure','مغامرة علمية على المريخ'),
+  start:tx('START GAME','ابدأ اللعب'),
+  continue:tx('CONTINUE','كمّل'),
+  watch:tx('WATCH INTRO','شوف المقدمة'),
+  replay:tx('REPLAY CINEMATIC','شوف المقدمة تاني'),
+  skip:tx('SKIP INTRO','تخطّي المقدمة'),
+  soundOn:tx('SOUND: ON','الصوت: شغال'),
+  soundOff:tx('SOUND: OFF','الصوت: مقفول'),
+  fiction:tx('A made-up story about the future. The Mars data in the game is real NASA data.','قصة خيالية عن المستقبل. وبيانات المريخ في اللعبة بيانات ناسا حقيقية.'),
+  welcome:tx('Welcome to Mars, Explorer!','أهلًا بيك على المريخ يا مستكشف!'),
+  captions:{
+    dream:tx('Every explorer starts with a dream…','كل مستكشف بيبدأ بحلم…'),
+    years:tx('Years later…','بعد سنين…'),
+    future:tx('One day, in the future…','في يوم، في المستقبل…'),
+    days:tx('Days…','أيام…'),
+    weeks:tx('Weeks…','أسابيع…'),
+    months:tx('Months in space, on the way to Mars.','شهور في الفضاء، في الطريق للمريخ.'),
+    mars:tx('Mars.','المريخ.'),
+  } as Record<string,Tx>,
+};
+
 export const MISC={
   sol:tx('SOL 001','اليوم 001'),
   demo:tx('SCIENCE MISSION','مهمة علمية'),

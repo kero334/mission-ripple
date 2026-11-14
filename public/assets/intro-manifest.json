@@ -1,0 +1,254 @@
+[
+  {
+    "name": "intro-bedroom",
+    "purpose": "Scene 1 bedroom background",
+    "dimensions": "320x180",
+    "animationFrames": 1,
+    "file": "assets/intro/bedroom.png",
+    "reuseScope": "opening cinematic",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "intro-child-0",
+    "purpose": "Sleeping child (breathing frames)",
+    "dimensions": "48x24",
+    "animationFrames": 2,
+    "file": "assets/intro/child-0.png",
+    "reuseScope": "opening cinematic",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "intro-child-1",
+    "purpose": "Sleeping child (breathing frames)",
+    "dimensions": "48x24",
+    "animationFrames": 2,
+    "file": "assets/intro/child-1.png",
+    "reuseScope": "opening cinematic",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "intro-helmet",
+    "purpose": "Scene 2 astronaut helmet with Mars reflection",
+    "dimensions": "120x120",
+    "animationFrames": 1,
+    "file": "assets/intro/helmet.png",
+    "reuseScope": "opening cinematic",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "intro-launch-sky",
+    "purpose": "Scene 3 dusk sky and ground",
+    "dimensions": "320x180",
+    "animationFrames": 1,
+    "file": "assets/intro/launch-sky.png",
+    "reuseScope": "opening cinematic",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "intro-tower",
+    "purpose": "Launch tower",
+    "dimensions": "40x120",
+    "animationFrames": 1,
+    "file": "assets/intro/tower.png",
+    "reuseScope": "opening cinematic",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "intro-rocket",
+    "purpose": "Rocket",
+    "dimensions": "28x96",
+    "animationFrames": 1,
+    "file": "assets/intro/rocket.png",
+    "reuseScope": "opening cinematic",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "intro-flame-0",
+    "purpose": "Engine flame frames",
+    "dimensions": "20x34",
+    "animationFrames": 3,
+    "file": "assets/intro/flame-0.png",
+    "reuseScope": "opening cinematic",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "intro-smoke-0",
+    "purpose": "Smoke puff frames",
+    "dimensions": "24x24",
+    "animationFrames": 3,
+    "file": "assets/intro/smoke-0.png",
+    "reuseScope": "opening cinematic",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "intro-dust-0",
+    "purpose": "Boot dust puff frames",
+    "dimensions": "32x16",
+    "animationFrames": 3,
+    "file": "assets/intro/dust-0.png",
+    "reuseScope": "opening cinematic",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "intro-flame-1",
+    "purpose": "Engine flame frames",
+    "dimensions": "20x34",
+    "animationFrames": 3,
+    "file": "assets/intro/flame-1.png",
+    "reuseScope": "opening cinematic",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "intro-smoke-1",
+    "purpose": "Smoke puff frames",
+    "dimensions": "24x24",
+    "animationFrames": 3,
+    "file": "assets/intro/smoke-1.png",
+    "reuseScope": "opening cinematic",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "intro-dust-1",
+    "purpose": "Boot dust puff frames",
+    "dimensions": "32x16",
+    "animationFrames": 3,
+    "file": "assets/intro/dust-1.png",
+    "reuseScope": "opening cinematic",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "intro-flame-2",
+    "purpose": "Engine flame frames",
+    "dimensions": "20x34",
+    "animationFrames": 3,
+    "file": "assets/intro/flame-2.png",
+    "reuseScope": "opening cinematic",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "intro-smoke-2",
+    "purpose": "Smoke puff frames",
+    "dimensions": "24x24",
+    "animationFrames": 3,
+    "file": "assets/intro/smoke-2.png",
+    "reuseScope": "opening cinematic",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "intro-dust-2",
+    "purpose": "Boot dust puff frames",
+    "dimensions": "32x16",
+    "animationFrames": 3,
+    "file": "assets/intro/dust-2.png",
+    "reuseScope": "opening cinematic",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "intro-stars-far",
+    "purpose": "Parallax star layer",
+    "dimensions": "320x180",
+    "animationFrames": 1,
+    "file": "assets/intro/stars-far.png",
+    "reuseScope": "opening cinematic",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "intro-stars-near",
+    "purpose": "Parallax star layer",
+    "dimensions": "320x180",
+    "animationFrames": 1,
+    "file": "assets/intro/stars-near.png",
+    "reuseScope": "opening cinematic",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "intro-earth",
+    "purpose": "earth planet",
+    "dimensions": "64x64",
+    "animationFrames": 1,
+    "file": "assets/intro/earth.png",
+    "reuseScope": "opening cinematic",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "intro-mars",
+    "purpose": "mars planet",
+    "dimensions": "96x96",
+    "animationFrames": 1,
+    "file": "assets/intro/mars.png",
+    "reuseScope": "opening cinematic",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "intro-ship",
+    "purpose": "Spacecraft cruising to Mars",
+    "dimensions": "56x24",
+    "animationFrames": 1,
+    "file": "assets/intro/ship.png",
+    "reuseScope": "opening cinematic",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "intro-ship-glow",
+    "purpose": "Ship engine glow",
+    "dimensions": "16x12",
+    "animationFrames": 1,
+    "file": "assets/intro/ship-glow.png",
+    "reuseScope": "opening cinematic",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "intro-mars-low",
+    "purpose": "Scene 5 low-angle Mars surface",
+    "dimensions": "320x180",
+    "animationFrames": 1,
+    "file": "assets/intro/mars-low.png",
+    "reuseScope": "opening cinematic",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "intro-lander-0",
+    "purpose": "Lander with hatch closed/open",
+    "dimensions": "96x100",
+    "animationFrames": 2,
+    "file": "assets/intro/lander-0.png",
+    "reuseScope": "opening cinematic",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "intro-lander-1",
+    "purpose": "Lander with hatch closed/open",
+    "dimensions": "96x100",
+    "animationFrames": 2,
+    "file": "assets/intro/lander-1.png",
+    "reuseScope": "opening cinematic",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "intro-boots-0",
+    "purpose": "Low-angle boots stepping",
+    "dimensions": "80x46",
+    "animationFrames": 2,
+    "file": "assets/intro/boots-0.png",
+    "reuseScope": "opening cinematic",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "intro-boots-1",
+    "purpose": "Low-angle boots stepping",
+    "dimensions": "80x46",
+    "animationFrames": 2,
+    "file": "assets/intro/boots-1.png",
+    "reuseScope": "opening cinematic",
+    "productionStatus": "production sprite"
+  },
+  {
+    "name": "intro-footprint",
+    "purpose": "First footprint",
+    "dimensions": "14x6",
+    "animationFrames": 1,
+    "file": "assets/intro/footprint.png",
+    "reuseScope": "opening cinematic",
+    "productionStatus": "production sprite"
+  }
+]
