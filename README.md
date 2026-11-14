@@ -6,7 +6,7 @@
 
 **Every decision creates a ripple.**
 
-A pixel-art Mars science adventure for children aged 7–12, built on **real NASA data**.
+A bilingual Mars science adventure for ages **7–12**. Explore a hand-crafted pixel-art outpost with Nuri, investigate authentic NASA observations, make choices across six connected missions, and watch their effects unfold across the base.
 
 [![NASA Space Apps Cairo 2026](https://img.shields.io/badge/NASA%20Space%20Apps-Cairo%202026-0B3D91?style=flat-square)](https://www.spaceappschallenge.org/)
 [![Real NASA data](https://img.shields.io/badge/data-real%20NASA%20data-FC3D21?style=flat-square)](#-scientific-sources)
@@ -16,6 +16,7 @@ A pixel-art Mars science adventure for children aged 7–12, built on **real NAS
 [![Languages](https://img.shields.io/badge/languages-English%20%7C%20العربية-2E8B57?style=flat-square)](#-key-features)
 [![Ages 7–12](https://img.shields.io/badge/ages-7%E2%80%9312-F2A33A?style=flat-square)](#-educational-goals)
 
+[English](README.md) · [العربية](README_AR.md)<br>
 [Overview](#-overview) · [How it works](#-how-the-game-works) · [Gallery](#-gameplay-gallery) · [Science](#-scientific-sources) · [Run it](#-quick-start) · [Team](#-team-maro)
 
 <br>
@@ -23,6 +24,16 @@ A pixel-art Mars science adventure for children aged 7–12, built on **real NAS
 <img src="docs/screenshots/mars-base.png" alt="The Mars outpost: the astronaut and Nuri stand among the Habitat, Greenhouse, Power Station, Research Lab and Water Recovery buildings" width="900">
 
 </div>
+
+<table>
+  <tr>
+    <td width="33%"><img src="docs/screenshots/nasa-chart.png" alt="Curiosity rover radiation readings shown as an interactive in-game chart"><br><b>Investigate real evidence</b></td>
+    <td width="33%"><img src="docs/screenshots/decision.png" alt="Two illustrated mission choices with immediate trade-offs"><br><b>Choose a plan</b></td>
+    <td width="33%"><img src="docs/screenshots/ripple-world.png" alt="The greenhouse changes after a power decision"><br><b>See the ripple</b></td>
+  </tr>
+</table>
+
+<p align="center"><sub>Actual screenshots captured from the running game in Chrome. NASA measurements and fictional base rules are labelled separately in-game.</sub></p>
 
 ---
 
@@ -50,7 +61,7 @@ they read real measurements from NASA's **Curiosity** rover, choose a plan, and 
 
 ## 💡 Our solution
 
-A short, friendly game where every number a child sees comes from a NASA record, and every decision matters.
+A short, friendly game where real measurements are traceable to NASA records, fictional base values are labelled as game rules, and every decision matters.
 
 1. **See real evidence.** Children explore a real radiation chart from Curiosity, recorded on Mars on
    20 May 2024.
@@ -241,6 +252,8 @@ Then open **http://localhost:5182/** and press **START GAME**.
 | `npm run build` | Type-check and build a production bundle into `dist/` |
 | `npm run preview` | Serve the production build at http://localhost:4182/ |
 | `npm test` | Unit tests: science values, rewards, hints, saves, translations, reading level and all 64 decision paths |
+
+Run `npm test` and `npm run build` before publishing changes. Tests that compare against the full original NASA research package skip when that separate package is unavailable; the game ships its validated, source-linked science snapshots.
 
 <details>
 <summary><b>Browser QA scripts</b> (run with <code>npm run dev</code> in another terminal)</summary>
